@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Week 1 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body><div class="pg">
+
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+<h1>Big Data: Concepts, Hadoop Stack &amp; Enabling Technologies</h1>
+<p>Week 1 consolidated study guide</p></header>
+
+<nav><a href="#s1">1 Fundamentals</a><a href="#s2">2 The V's</a><a href="#s3">3 Evolution &amp; Analytics</a><a href="#s4">4 Hadoop Core</a><a href="#s5">5 Ecosystem</a><a href="#s6">6 Spark &amp; NoSQL</a><a href="#s7">7 Revision</a></nav>
+
+<h2 id="s1"><span>1</span>Big Data Fundamentals</h2>
+<div class="box def"><b class="t">Definition</b>Big data is a collection of data sets so large and complex that it is difficult to process using on-hand database management tools or traditional data processing applications.</div>
+<p><b>Challenges:</b> capture, curation, storage, search, sharing, transfer, analysis and visualization.</p>
+<p><b>Why bigger sets help:</b> analysing one large set of related data reveals more than separate smaller sets of equal total size, allowing correlations to spot business trends, determine research quality, prevent diseases, link legal citations, combat crime and determine real-time traffic conditions.</p>
+<h3>Where the data comes from</h3>
+<p>Sources are people, machines and organizations (ubiquitous computing). More people carry data-generating devices (mobile phones, GPS, cameras). The old model had few companies generating data and everyone else consuming it; in the <b>new model all of us both generate and consume data</b>. About <b>80% of world data is unstructured</b>.</p>
+<h3>Scale – facts worth remembering</h3>
+<div class="grid">
+<div><b>Walmart</b>: 1 million transactions/hour</div>
+<div><b>Facebook</b>: 500 TB new data/day; 30+ PB user data; 40 billion photos</div>
+<div><b>Flight</b>: 240 TB of data in 6–8 hours</div>
+<div><b>Human genome</b>: 10 years originally → 1 week now</div>
+<div><b>CERN LHC</b>: 15 PB per year</div>
+<div><b>Earthscope</b>: 67 TB over 3.8 million sq. miles (seismic slips, Yellowstone magma)</div>
+<div><b>Twitter</b>: 12+ TB tweet data/day; 25+ TB logs/day (source slide)</div>
+<div><b>Digital universe</b>: 0.8 ZB (2009) → 35 ZB (2020), a <b>44×</b> rise</div></div>
+<div class="tbl"><table><tr><th>Unit</th><th>Power</th><th>Unit</th><th>Power</th></tr>
+<tr><td>Kilobyte</td><td>10³</td><td>Petabyte</td><td>10¹⁵</td></tr><tr><td>Megabyte</td><td>10⁶</td><td>Exabyte</td><td>10¹⁸</td></tr><tr><td>Gigabyte</td><td>10⁹</td><td>Zettabyte</td><td>10²¹</td></tr><tr><td>Terabyte</td><td>10¹²</td><td>Yottabyte / Brontobyte</td><td>10²⁴ / 10²⁷</td></tr></table></div>
+<h3>The problem with traditional tools</h3>
+<p>RDBMS queries are insufficient for huge volumes; searching a trending topic with traditional tools would take so long the result is meaningless when computed. Big data therefore stores data in novel ways to make it accessible and adds methods to analyse it. <b>Progress is no longer limited by collecting data, but by the ability to manage, analyse, summarize, visualize and discover knowledge in a timely, scalable way.</b></p>
+
+<h2 id="s2"><span>2</span>Characteristics: the V's</h2>
+<p>IBM's <b>3 V's</b> are Volume, Velocity and Variety; <b>Value</b> is the commonly added fourth. Many more V's have been proposed.</p>
+<div class="tbl"><table><tr><th>V</th><th>Dimension</th><th>Meaning &amp; examples</th></tr>
+<tr><td>Volume</td><td>Scale · data at rest</td><td>Terabytes to exabytes; exponential growth. E.g. 12 TB tweets/day for sentiment analysis; 350 billion annual meter readings to predict power use.</td></tr>
+<tr><td>Velocity</td><td>Speed · data in motion</td><td>Milliseconds–seconds to respond; "sometimes 2 minutes is too late". Analyse as it streams. E.g. 5 million daily trade events for fraud; 500 million daily call records for churn; e-promotions by location; healthcare sensor monitoring.</td></tr>
+<tr><td>Variety</td><td>Complexity · many forms</td><td><b>Structured</b> (tables), <b>semi-structured</b> (XML, web data, log files), <b>unstructured</b> (text, sensor data, audio, video); also graph data. Different types must be linked to extract knowledge.</td></tr>
+<tr><td>Value</td><td>Decision dimension</td><td>Integrating data, reducing complexity, increasing availability and unifying systems increases collaboration and value.</td></tr>
+<tr><td>Veracity</td><td>Quality · data in doubt</td><td>Bias, noise, abnormality, trustworthiness; uncertainty from inconsistency, incompleteness, ambiguity, latency, deception. 1 in 3 business leaders don't trust their decision data.</td></tr>
+<tr><td>Valence</td><td>Connectedness</td><td>How connected data is, e.g. graph networks.</td></tr>
+<tr><td>Validity</td><td>Correctness</td><td>Accuracy relative to a particular use, e.g. storm intensity from satellite imagery vs social media posts.</td></tr>
+<tr><td>Variability</td><td>Change of meaning</td><td>Meaning changes over time: language evolution, availability, sampling processes, source characteristics.</td></tr>
+<tr><td>Viscosity</td><td>Velocity-related</td><td>Data velocity relative to the timescale of the event studied.</td></tr>
+<tr><td>Volatility</td><td>Velocity-related</td><td>Rate of data loss / stable lifetime. Scientific data lasts long; social/business data may evaporate.</td></tr>
+<tr><td>Viability</td><td>Relevance</td><td>Which data has meaningful relations to the questions of interest.</td></tr>
+<tr><td>Venue</td><td>Location</td><td>Where the data lives and how to get it.</td></tr>
+<tr><td>Vocabulary</td><td>Metadata</td><td>Structure, content, provenance: schemas, semantics, ontologies, taxonomies.</td></tr>
+<tr><td>Vagueness</td><td>Confusion</td><td>Confusion about what "Big Data" means.</td></tr></table></div>
+<div class="box"><b class="t">Dealing with Volume</b>Distill big data into small information → parallel and automated analysis → automation needs standardization → standardize by <b>reducing Variety</b> (format, standards, structure).</div>
+
+<h2 id="s3"><span>3</span>Evolution &amp; Analytics</h2>
+<div class="flow"><div><b>OLTP</b>1968 hierarchical, 1970 relational DBs<br>Data at rest; reporting on history</div><i>→</i><div><b>OLAP</b>Data warehousing (1983, 1990)<br>Analyse current data to improve transactions</div><i>→</i><div><b>RTAP</b>Stream computing (2000, 2010)<br>Data in motion; real-time response</div></div>
+<p>OLTP = Online Transaction Processing (DBMSs); OLAP = Online Analytical Processing (data warehousing); RTAP = Real-Time Analytics Processing (big data architecture and technology). <i>Source: IBM.</i></p>
+<div class="tbl"><table><tr><th>Aspect</th><th>Business Intelligence</th><th>Predictive Analytics / Data Mining</th></tr>
+<tr><td>Value / complexity</td><td>Lower</td><td>Higher</td></tr><tr><td>Work</td><td>Ad-hoc querying and reporting</td><td>Optimization, predictive analytics, complex statistics</td></tr>
+<tr><td>Data</td><td>Structured, typical sources, small–mid datasets</td><td>All types, many sources, very large, more real-time</td></tr></table></div>
+<p>Big data analytics is more real-time than traditional data warehouses. Traditional DW architectures (e.g. Exadata, Teradata) are <b>not well suited</b>; <b>shared-nothing, massively parallel, scale-out</b> architectures are, and deliver value sooner.</p>
+<h3>Technology layers</h3>
+<ul><li><b>Fast data:</b> Hadoop, MapReduce, Vertica, Esper, kdb, Greenplum, Netezza, Teradata, ETL.</li><li><b>Big analytics:</b> Hive, Mahout, SciPy, MATLAB, R, SPSS, SAS.</li><li><b>Deep insight:</b> unsupervised learning, sentiment and social media analytics, predictive modeling, network analysis, visualization, simulation.</li></ul>
+
+<h2 id="s4"><span>4</span>Hadoop Core</h2>
+<div class="box def"><b class="t">Definition</b>Apache Hadoop is an open-source software framework for storage and large-scale processing of data sets on clusters of commodity hardware.</div>
+<p><b>Origin:</b> created by Doug Cutting and Mike Cafarella in 2005 to support the Nutch search engine; Cutting (then at Yahoo, now Cloudera chief architect) named it after his son's toy elephant. MapReduce and HDFS derive from Google's MapReduce and GFS.</p>
+<h3>Design principles</h3>
+<div class="grid">
+<div><b>Move computation to data</b> – not data to computation; started as batch framework.</div>
+<div><b>Scalability</b> – scale out across 100s–1000s of cheap commodity machines.</div>
+<div><b>Reliability</b> – hardware failure is the norm; failures handled automatically (fault tolerant).</div>
+<div><b>Keep all data</b> – schema-on-read; more data with simple algorithms often beats complex analytics on little data.</div></div>
+<h3>Four basic modules</h3>
+<div class="tbl"><table><tr><th>Module</th><th>Role</th></tr>
+<tr><td>Hadoop Common</td><td>Libraries and utilities for other modules.</td></tr>
+<tr><td>HDFS</td><td>Distributed file system on commodity machines; very high aggregate bandwidth.</td></tr>
+<tr><td>YARN</td><td>Resource management and job scheduling.</td></tr>
+<tr><td>MapReduce</td><td>Programming model that simplifies parallel programming.</td></tr></table></div>
+
+<h3>HDFS</h3>
+<p>Distributed, scalable, portable, Java file system. Stores files from gigabytes to petabytes across machines; reliability comes from <b>replication across hosts</b> (no RAID needed). Files are split into blocks spread over nodes.</p>
+<ul><li><b>NameNode</b> (single per cluster): holds metadata (file name, replicas, e.g. <code>/home/foo/data, 3</code>); client sends metadata ops to it.</li><li><b>DataNodes</b>: store blocks; client reads/writes directly, ideally from closest high-bandwidth rack; replicate between racks; send heartbeats.</li><li><b>Secondary NameNode</b> assists the NameNode; the NameNode remains a <b>single point of failure</b>.</li></ul>
+
+<h3>MapReduce</h3>
+<p>Users write a <b>map</b> function (key/value pair → intermediate key/value pairs) and a <b>reduce</b> function (merges all values for the same intermediate key). Google used it to index websites.</p>
+<div class="flow"><div><b>HDFS split</b>input (k,v)</div><i>→</i><div><b>Map</b>emits (Key, value)</div><i>→</i><div><b>Shuffle &amp; sort</b>aggregate values by key</div><i>→</i><div><b>Reduce</b>final (key, value)</div></div>
+<p><b>Hadoop 1 engine:</b> a <b>JobTracker</b> (master) accepts client jobs and pushes work to <b>TaskTrackers</b> on slaves, keeping work close to data and balanced.</p>
+
+<h3>YARN (MapReduce 2.0)</h3>
+<p>Splits the JobTracker's two functions: resource management and job scheduling/monitoring. There is a <b>global ResourceManager</b> (with Scheduler, focused only on scheduling), per-node <b>NodeManagers</b> that launch <b>Containers</b>, and a per-application <b>ApplicationMaster</b>.</p>
+<ul><li>Scalable for very large clusters; fully compatible with existing MapReduce apps.</li><li>Improved utilization by capacity, guarantees, fairness and SLAs.</li><li>Supports other workloads (graph, iterative, machine learning, streaming) and multiple access engines. Yahoo uses YARN over 40,000 servers.</li></ul>
+<div class="tbl"><table><tr><th>Layer</th><th>Hadoop 1.0</th><th>Hadoop 2.0</th></tr>
+<tr><td>Top</td><td>Pig, Hive, others</td><td>MR (batch), Pig, Hive, RT stream (Storm, Giraph), services (HBase)</td></tr>
+<tr><td>Middle</td><td>MapReduce (resource mgmt + processing)</td><td>Tez execution engine over YARN (resource mgmt)</td></tr>
+<tr><td>Storage</td><td>HDFS</td><td>HDFS2</td></tr></table></div>
+
+<h2 id="s5"><span>5</span>Hadoop Ecosystem</h2>
+<div class="tbl"><table><tr><th>Component</th><th>Purpose &amp; key facts</th></tr>
+<tr><td>Sqoop</td><td>Bulk data transfer between Hadoop and structured stores (relational DBs); ingestion of structured data.</td></tr>
+<tr><td>Flume</td><td>Distributed, reliable log collection/aggregation via streaming flows: Web server → Agent (Source → Channel → Sink) → HDFS. Ingests unstructured/semi-structured data.</td></tr>
+<tr><td>HBase</td><td>Column-oriented, key-value, NoSQL store based on Google Bigtable; fast random access to large data; dynamic model; not relational. Facebook uses it for messaging.</td></tr>
+<tr><td>Pig</td><td>High-level dataflow scripting (Pig Latin) over MapReduce; Yahoo, 2006. Used for ETL (extract, transform, load); ingests via user-defined functions (UDFs).</td></tr>
+<tr><td>Hive</td><td>Data warehouse layer; projects structure onto data and queries with SQL-like HiveQL. Created at Facebook; used for data mining.</td></tr>
+<tr><td>Oozie</td><td>Workflow scheduler for Hadoop jobs (MapReduce, Pig, Hive, Sqoop); coordinator jobs.</td></tr>
+<tr><td>Zookeeper</td><td>Centralized coordination: configuration, naming, distributed synchronization, group services. Created at Yahoo.</td></tr>
+<tr><td>Ambari</td><td>Provisioning, managing and monitoring clusters.</td></tr>
+<tr><td>Mahout / R</td><td>Machine learning / statistics.</td></tr>
+<tr><td>Giraph</td><td>Graph processing; Facebook social graphs.</td></tr>
+<tr><td>Impala</td><td>Cloudera SQL query engine on HDFS/HBase; low-latency parallel database technology; announced end 2012.</td></tr>
+<tr><td>Solr/Lucene, Drill</td><td>Search &amp; indexing; SQL-on-Hadoop.</td></tr></table></div>
+<p><b>Vendor stacks:</b> Google (MapReduce/GFS, Bigtable, Sawzall, Dremel, Chubby) inspired Hadoop; Facebook (Hive, HBase, Scribe, Zookeeper), Yahoo (Pig, Hive, Oozie, HBase, Zookeeper), LinkedIn (Sqoop, Kafka, Voldemort, Azkaban) and Cloudera (Hue, Oozie, Flume, Sqoop, HBase, Impala) all build on Hadoop with Zookeeper for coordination.</p>
+
+<h2 id="s6"><span>6</span>Spark, NoSQL &amp; Streaming</h2>
+<h3>Apache Spark</h3>
+<p>Fast, general engine for large-scale processing, developed at UC Berkeley's AMPLab (2012) and donated to Apache; written in Scala. Uses <b>in-memory</b> primitives, up to <b>100× faster</b> than disk-based two-stage MapReduce for some applications, and is ideal for iterative machine learning. Needs a cluster manager (standalone, YARN or Mesos) and storage (HDFS, Amazon S3).</p>
+<div class="grid">
+<div><b>Spark Streaming</b> – scalable, fault-tolerant processing of live streams (Kafka, Flume, HDFS, sockets, Kinesis) as micro-batches (micro RDDs) → output to HDFS, DBs, dashboards.</div>
+<div><b>MLlib</b> – classification, regression, clustering, collaborative filtering, dimensionality reduction; pipelines, featurization, linear algebra, statistics.</div>
+<div><b>GraphX</b> – extends RDD with graph abstraction; directed multigraph with vertex/edge properties; PageRank, connected components, triangle count.</div></div>
+<h3>NoSQL (Not Only SQL)</h3>
+<p>SQL handles structured data well; NoSQL stores unstructured data with no fixed schema (each row can have its own columns) and performs better on massive data. Types: <b>key-value, column-family, graph, document</b> (examples: Cassandra, HBase, MongoDB).</p>
+<ul><li><b>Cassandra:</b> highly scalable, distributed, high-performance; data replicated across machines for high availability and <b>no single point of failure</b>; nodes form a ring.</li><li><b>HBase:</b> open source, from Google BigTable, Java; terabytes to petabytes.</li></ul>
+<h3>Apache Kafka</h3>
+<p>Open-source distributed streaming platform (Scala/Java) built on a <b>distributed commit log</b>; handles trillions of events a day. Typical flow: data stream → Kafka → Spark Structured Streaming → console/memory/files.</p>
+
+<h2 id="s7"><span>7</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b>
+<ul><li>3 V's + Value; Veracity = data in doubt; Valence = connectedness.</li><li>Big data lifecycle: OLTP → OLAP → RTAP.</li><li>Hadoop = HDFS + MapReduce + YARN + Common; move computation to data.</li><li>NameNode = metadata, single point of failure; DataNodes = blocks, replicated.</li><li>YARN: ResourceManager, NodeManager, ApplicationMaster, Containers.</li><li>Sqoop = structured import; Flume = logs; Pig = dataflow; Hive = SQL; Oozie = workflow; Zookeeper = coordination; HBase = NoSQL store.</li><li>Spark = in-memory, 100× faster; Streaming, MLlib, GraphX; Kafka = commit-log streaming.</li></ul></div>
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer>
+</div></body></html>

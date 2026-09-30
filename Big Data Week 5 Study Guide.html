@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Week 5 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+</style></head><body><div class="pg">
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+<h1>HBase, Spark Streaming &amp; Kafka</h1><p>Week 5 consolidated study guide</p></header>
+<nav><a href="#a">1 HBase</a><a href="#b">2 Streaming Basics</a><a href="#c">3 Spark Streaming</a><a href="#d">4 DStream Ops</a><a href="#e">5 Fault Tolerance</a><a href="#f">6 Windows</a><a href="#g">7 Sentiment</a><a href="#h">8 Kafka</a><a href="#i">9 Revision</a></nav>
+
+<h2 id="a"><span>1</span>HBase</h2>
+<div class="box def"><b class="t">Definition</b>HBase is an open-source NoSQL, distributed, <b>column-oriented</b> store that scales out to 1,000s of commodity servers and petabytes. It runs on <b>HDFS</b> (scalability, fault tolerance, HA), implements Google's <b>BigTable</b> architecture and handles structured, semi-structured and unstructured data. Yahoo! open-sourced it; Facebook uses it. Unlike Cassandra, HBase <b>prefers consistency over availability</b>.</div>
+<p><b>API:</b> Get/Put(row), Scan(row range, filter) for range queries, MultiPut.</p>
+<h3>Architecture &amp; components</h3>
+<p>Tables are split into <b>regions</b> served by region servers; regions are divided vertically by column family into <b>stores</b>, saved as files on HDFS. ZooKeeper (a small group running Zab, Paxos-like) provides coordination.</p>
+<div class="tbl"><table><tr><th>Component</th><th>Role</th></tr>
+<tr><td>Client</td><td>Finds RegionServers serving the row range of interest.</td></tr><tr><td>HMaster</td><td>Monitors all RegionServer instances.</td></tr>
+<tr><td>Region</td><td>Basic unit of availability and distribution: a sorted, contiguous key range (e.g. R1: smithj–yyyyy).</td></tr>
+<tr><td>RegionServer</td><td>Serves and manages regions; runs on a DataNode.</td></tr>
+<tr><td>ZooKeeper</td><td>Distributed coordination.</td></tr></table></div>
+<h3>Data model</h3>
+<ul><li><b>Table</b> → <b>Row</b> (unique <b>row key</b>, byte[], rows stored sorted by key) → <b>Column families</b> (same for every row; a row need not fill all) → <b>column qualifiers</b> (byte[], not declared in advance, may differ between rows; written <code>family:column</code>, e.g. personaldata:Name).</li><li><b>Cell</b> = row key + column family + qualifier, holding a value and <b>timestamp</b>. Cell values are versioned (default timestamp; latest returned if unspecified; default <b>3 versions</b> per column family).</li><li>Full <b>KeyValue</b> = (row key, family, qualifier, timestamp) → value. Column families are stored in separate files (HFiles) and can be read separately.</li></ul>
+<h3>Storage hierarchy</h3>
+<div class="flow"><div><b>Table</b>split into regions, replicated across servers</div><i>→</i><div><b>Store</b>one per (column family + region)</div><i>→</i><div><b>MemStore</b>in-memory updates, flushed when full</div><i>→</i><div><b>StoreFile / HFile</b>on HDFS (like BigTable SSTable)</div></div>
+<p><b>HFile:</b> data blocks of (key, value) plus metadata, file info, indices and trailer; each key holds key/value/row lengths, row, family, qualifier, timestamp, key type.</p>
+<div class="box"><b class="t">Strong consistency: Write-Ahead Log</b>A write goes first to the <b>HLog</b>, then to the MemStore (log before memory), so a failed RegionServer can <b>replay the HLog</b> (using timestamps) to rebuild MemStore edits on recovery or boot-up.</div>
+<ul><li><b>Cross-datacenter replication:</b> one master cluster, other slave clusters replicate the tables; master sends HLogs to slaves; coordination via ZooKeeper (/hbase/replication/state, /peers, /rs).</li><li><b>Auto-sharding:</b> the <b>region is the unit of scalability</b>: sorted contiguous rows, spread "randomly" over RegionServers, moved for load balancing/failover, split automatically or manually as data grows. Capacity depends on nodes vs regions per node.</li><li><b>Bloom filter:</b> generated when an HFile is persisted, stored at its end and loaded in memory; checks at row + column level; can skip whole store files (useful for grouped data and many misses). Example: for "row-R", block index says yes for 6 files (6 blocks loaded) but Bloom says "Maybe" for only 2 (2 loaded).</li><li><b>Fold, Store, Shift:</b> physical layout differs from logical; every value stored with full coordinates (row, family, qualifier, timestamp), columns folded into "row per column"; <b>NULLs cost nothing</b>; versions are extra rows.</li></ul>
+
+<h2 id="b"><span>2</span>Streaming Fundamentals</h2>
+<div class="tbl"><table><tr><th></th><th>Batch processing</th><th>Stream processing</th></tr>
+<tr><td>Data</td><td>At rest (stored)</td><td>In motion, real/near-real-time</td></tr>
+<tr><td>Style</td><td>Request-based bulk, short-lived</td><td>Event or micro-batch driven, continuous, long-lived</td></tr>
+<tr><td>Analytics</td><td>Retrospective, reactive, on-demand</td><td>Prospective, proactive, predictive (next best action)</td></tr></table></div>
+<p>Stream + batch = all-data analytics (historical past + real-time now). <b>Streaming</b> = transferring data as a steady continuous stream (YouTube, Facebook, Twitter, Netflix…). Applications: fraud detection, sensor anomalies, website monitoring, ad monetization, social trends, intrusion detection. Requirements: scale to 100s of nodes, second-scale latency, simple programming model, integration with batch/interactive, efficient fault tolerance in <b>stateful</b> computation.</p>
+<h3>Problems of existing approaches</h3>
+<ul><li><b>Two stacks</b> (batch + streaming) over the same data: Hadoop/MapReduce (TBs, high latency) or Storm (100s MB/s, low latency), not both → different programming models, double implementation and operational effort.</li><li><b>Traditional stateful model:</b> pipeline of nodes with mutable state; state lost on node failure – hard to make fault tolerant.</li><li><b>Storm:</b> replays unprocessed records → <b>at-least-once</b>, may update state twice, state can be lost. <b>Trident:</b> transactions give exactly-once but per-state transactions to an external database are slow.</li></ul>
+<div class="tbl"><table><tr><th>Traditional analytics</th><th>Next-generation analytics</th></tr>
+<tr><td>Structured, repeatable; structure built to store data; start with hypothesis, test on selected data, analyse after landing</td><td>Iterative, exploratory; data is the structure; explore all data for correlations; analyse in motion</td></tr></table></div>
+
+<h2 id="c"><span>3</span>Spark Streaming</h2>
+<p>Extends Spark for scalable, fault-tolerant, second-latency stream processing with a simple batch-like API. Consumes Kafka, Flume, Twitter, ZeroMQ, Kinesis, TCP sockets, HDFS; pushes results to HDFS, databases, dashboards. (Spark 2.x adds <b>Structured Streaming</b>, Dataset-based.) Part of the ecosystem: Spark SQL, Streaming, MLlib, GraphX, SparkR over Spark Core.</p>
+<div class="box def"><b class="t">Core idea – micro-batching</b>Run a streaming computation as a <b>series of very small, deterministic batch jobs</b>: chop the live stream into batches of X seconds; each batch is an RDD processed with RDD operations; results are returned in batches. Batch size as low as ~1 s, latency ≈ 1 s; batch and stream code can live in one system.</div>
+<div class="flow"><div><b>Receivers</b>long-running tasks in executors</div><i>→</i><div><b>Blocks</b>kept in memory, replicated to another executor</div><i>→</i><div><b>Each interval</b>driver launches tasks on the blocks</div><i>→</i><div><b>Results</b>to storage / dashboards</div></div>
+<p>Driver runs user code and launches executors on YARN/Mesos/Standalone. Each batch is a graph that becomes multiple jobs; blocks give parallelism. <b>DStream</b> = sequence of RDDs (RDD@time1 = data from 0–1, RDD@time2 = 1–2, …) held in memory (immutable, distributed). Workflow: streaming sources (Kafka, Flume, Akka…) + static sources (HBase, MySQL, Cassandra…) → Spark Streaming → MLlib/Spark SQL → storage (HBase, Cassandra, MemSQL, Kafka, Elasticsearch, HDFS).</p>
+<pre>val context = new StreamingContext(new SparkConf(), Seconds(1))
+val lines = KafkaUtils.createStream(context, ...)
+val words = lines.flatMap(_.split(" "))
+val wordCounts = words.map(x =&gt; (x,1)).reduceByKey(_ + _)
+wordCounts.print(); context.start(); context.awaitTermination()</pre>
+
+<h2 id="d"><span>4</span>DStream Operations</h2>
+<div class="tbl"><table><tr><th>Kind</th><th>Examples</th></tr>
+<tr><td>Transformations</td><td>map, flatMap, filter, repartition, union, count, reduce, countByValue, reduceByKey, join, cogroup, transform; new RDD created per batch.</td></tr>
+<tr><td>Stateful</td><td>window, reduceByKeyAndWindow, countByWindow, reduceByWindow, countByValueAndWindow, updateStateByKey.</td></tr>
+<tr><td>Output</td><td>print, saveAsTextFiles, saveAsObjectFiles, saveAsHadoopFiles, foreachRDD (message queues, DB writes, anything).</td></tr></table></div>
+<p><b>Hashtag example:</b> <code>tweets = ssc.twitterStream()</code> → <code>hashTags = tweets.flatMap(getTags)</code> → <code>saveAsHadoopFiles("hdfs://…")</code> or <code>foreach</code>. Count: <code>hashTags.countByValue()</code> (map + reduceByKey per batch). Same code style as batch Spark (sc.hadoopFile vs ssc.twitterStream) – the <b>unified stack</b> lets you explore interactively in spark-shell, reuse code for large logs, and for live streams.</p>
+<ul><li><b>Windowed count:</b> <code>hashTags.window(Minutes(10), Seconds(1)).countByValue()</code>. <b>Smart version</b> <code>countByValueAndWindow</code> incrementally <b>subtracts</b> the old batch and <b>adds</b> the new one; generalizes to <code>reduceByKeyAndWindow(_+_, _-_, …)</code> given an inverse-reduce function.</li><li><b>Arbitrary state:</b> <code>updateStateByKey(updateMood)</code> makes new state from previous state + new data (e.g. per-user mood).</li><li><b>Batch + stream mix:</b> <code>tweets.transform(rdd =&gt; rdd.join(spamHDFSFile).filter(...))</code> filters spam.</li><li><b>DStream → jobs:</b> each interval an RDD graph is built from the DStream graph; each output operation creates a Spark action, each action a Spark job.</li><li><b>Power:</b> online machine learning, combining live and historical data, CEP-style window operations.</li></ul>
+
+<h2 id="e"><span>5</span>Fault Tolerance &amp; Performance</h2>
+<ul><li>RDDs remember lineage; input batches are <b>replicated in memory</b> on multiple workers (default factor <b>2</b>); lost partitions are recomputed on other workers; transformations are <b>exactly-once</b>.</li><li><b>Checkpointing</b> to HDFS every ~5–10 batches saves state; needs a checkpoint directory in StreamingContext; the <b>driver</b> must be restarted on another node if it fails.</li><li><b>Backpressure:</b> <code>spark.streaming.backpressure.enabled</code>, <code>spark.streaming.receiver.maxRate</code>.</li></ul>
+<div class="tbl"><table><tr><th>Metric</th><th>Result</th></tr>
+<tr><td>Throughput</td><td>60M records/s (6 GB/s) on 100 nodes at sub-second latency</td></tr>
+<tr><td>Per node</td><td>Spark Streaming 670k records/s vs Storm 115k vs commercial 100–500k</td></tr>
+<tr><td>Recovery</td><td>Recovers from faults/stragglers within 1 s</td></tr>
+<tr><td>Mobile Millennium</td><td>Traffic transit-time estimation via online ML/MCMC on GPS data; CPU-intensive; scales linearly with cluster size</td></tr></table></div>
+<p><b>Vision:</b> Spark Streaming (stream) + Shark (ad-hoc queries) + Spark (batch) = one stack. Roadmap: Spark 0.9 (Jan 2014) out of alpha with automated master fault recovery, web UI; Spark 2.4.0 released Nov 2, 2018.</p>
+
+<h2 id="f"><span>6</span>Sliding Window Analytics</h2>
+<div class="box def"><b class="t">Window parameters</b><b>Window length</b> = duration of the window; <b>sliding interval</b> = how often the window operation runs. Both must be <b>multiples of the batch interval</b>. A window yields a new DStream with a larger batch size.</div>
+<p><b>Spark window functions</b> (DataFrames/SQL, since Spark 1.4) compute <b>one result per row over a window of rows</b> – unlike aggregates (one result per group) and UDFs (one result per row from that row only). Window spec = <b>partitionBy</b> (grouping; data of a group goes to one machine), <b>orderBy</b> (order within group), <b>frame</b> (boundaries relative to current row).</p>
+<pre>val w1 = Window.partitionBy("name").orderBy("date").rowsBetween(-1, 1)
+customers.withColumn("movingAvg", avg(customers("amountSpent")).over(w1))
+val w2 = ... .rowsBetween(Long.MinValue, 0)      // cumulative sum
+lag(customers("amountSpent"), 1).over(w3)        // previous row
+rank().over(w3)                                  // visit order</pre>
+<div class="tbl"><table><tr><th>Customer / date</th><th>Spent</th><th>Moving avg (3 rows)</th><th>Cumulative sum</th><th>Previous</th><th>Rank</th></tr>
+<tr><td>Alice 5/1</td><td>50</td><td>47.5</td><td>50</td><td>null</td><td>1</td></tr><tr><td>Alice 5/3</td><td>45</td><td>50</td><td>95</td><td>50</td><td>2</td></tr><tr><td>Alice 5/4</td><td>55</td><td>50</td><td>150</td><td>45</td><td>3</td></tr>
+<tr><td>Bob 5/1</td><td>25</td><td>27</td><td>25</td><td>null</td><td>1</td></tr><tr><td>Bob 5/4</td><td>29</td><td>27</td><td>54</td><td>25</td><td>2</td></tr><tr><td>Bob 5/6</td><td>27</td><td>28</td><td>81</td><td>29</td><td>3</td></tr></table></div>
+
+<h2 id="g"><span>7</span>Case Study: Twitter Sentiment Analysis</h2>
+<p>Trending topics help create campaigns; <b>sentiment</b> = the emotion behind a mention. Sentiment analysis (categorising tweets on a topic and mining them) supports crisis management, service adjustment and target marketing, and predicts movie or political-campaign success, investment decisions, product reviews.</p>
+<div class="flow"><div><b>Authorize</b>Twitter consumer key/secret, access token/secret via twitter4j properties</div><i>→</i><div><b>StreamingContext</b>local[2], Seconds(5)</div><i>→</i><div><b>createStream</b>TwitterUtils with filters</div><i>→</i><div><b>flatMap / map</b>hashtags; detectSentiment → POSITIVE / NEUTRAL / NEGATIVE</div></div>
+<p>Filtering by keyword (e.g. "Trump") gives sentiment per topic. Business benefits: better customer experience, competitive advantage, business intelligence, revitalizing a losing brand.</p>
+
+<h2 id="h"><span>8</span>Apache Kafka</h2>
+<div class="box def"><b class="t">Definition</b>Kafka is an open-source, high-performance, real-time messaging system: <b>distributed, partitioned, fault-tolerant, scalable</b>; millions of messages/s to many receivers. Developed at LinkedIn, open-sourced early 2011, Apache top-level project Oct 2012 (0.8.2.1, May 2015).</div>
+<p><b>Streaming platform</b> (Unix-pipe analogy): <b>Kafka Core</b> = distributed durable pipes (hub to transport/store event streams); <b>Kafka Connect</b> = I/O redirection (import/export with other systems); <b>Kafka Streams</b> = the commands (Java library to process streams live).</p>
+<p><b>Use cases:</b> messaging service; real-time stream processing (e.g. to Storm); <b>log aggregation</b> (into HDFS); <b>commit log</b> service for distributed systems; <b>event sourcing</b> (time-ordered events); aggregating user activity (clicks, searches from portals → real-time monitoring + Hadoop offline). Adopted by thousands of companies.</p>
+<h3>Data model &amp; architecture</h3>
+<div class="tbl"><table><tr><th>Concept</th><th>Meaning</th></tr>
+<tr><td>Message</td><td>Unit of information (log line, stock row, error).</td></tr><tr><td>Topic</td><td>Category of messages; split into <b>partitions</b>.</td></tr>
+<tr><td>Partition</td><td>Ordered commit log; each message has an <b>offset</b>; append at one end, consume at other; <b>unit of parallelism</b>; should fit on one server; number of partitions sets parallelism.</td></tr>
+<tr><td>Producer</td><td>Publishes to an existing topic; decides the partition.</td></tr>
+<tr><td>Consumer / group</td><td>Reads topics; belongs to a consumer group; consumer groups control the messaging model.</td></tr>
+<tr><td>Broker</td><td>Kafka process handling messages; one per machine; cluster = set of brokers; coordinate via ZooKeeper; leader per partition handles delivery and persistence.</td></tr></table></div>
+<p><b>Partition distribution:</b> replicated across servers; one <b>leader</b> (controls reads/writes) and <b>followers</b> (replicate); on leader failure a follower becomes leader; <b>ZooKeeper</b> selects the leader.</p>
+<div class="two"><div class="box"><b class="t">Queue system</b>Each message consumed by only <b>one consumer</b> of a group; e.g. consumers 1, 2, 3 get messages (1,4), (2,5), (3,6).</div>
+<div class="box"><b class="t">Publish-subscribe</b>Each message goes to <b>all subscribers</b> (each in its own consumer group); each receives 1–6 in order.</div></div>
+<ul><li><b>Guarantees:</b> messages from a producer to a topic-partition are appended in order; consumers see them in produced order; replication factor N tolerates <b>N−1</b> server failures.</li><li><b>Replication:</b> primary-backup; leader propagates writes and waits for all replicas; a down replica is skipped until it returns.</li><li><b>Persistence:</b> Linux file system; relies on OS page cache; data written immediately to file; messages grouped as <b>message sets</b> (compressible); standard binary format across producers, brokers, consumers.</li></ul>
+
+<h2 id="i"><span>9</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b><ul>
+<li>HBase = BigTable clone on HDFS; consistency over availability; region = unit of scalability; write order HLog → MemStore → HFile; Bloom filters skip files; 3 versions default.</li>
+<li>Spark Streaming = micro-batches of RDDs (DStream); latency ≈ seconds; unified batch + stream stack.</li>
+<li>Fault tolerance: lineage + in-memory replication (factor 2) + checkpointing; exactly-once transformations; Storm is at-least-once.</li>
+<li>Window = window length + sliding interval (multiples of batch interval); incremental windows need an inverse function.</li>
+<li>Window functions: partitionBy, orderBy, frame; moving average, cumulative sum, lag, rank.</li>
+<li>Kafka: topics → partitions (offsets, parallelism); producers, consumer groups, brokers; leader/follower via ZooKeeper; replication N tolerates N−1 failures; queue vs publish-subscribe.</li></ul></div>
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

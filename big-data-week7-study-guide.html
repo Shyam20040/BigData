@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Week 7 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+</style></head><body><div class="pg">
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+<h1>Decision Trees, Ensembles &amp; Predictive Analytics</h1><p>Week 7 consolidated study guide</p></header>
+<nav><a href="#a">1 Decision Trees</a><a href="#b">2 ID3 &amp; Entropy</a><a href="#c">3 Regression Trees</a><a href="#d">4 PLANET</a><a href="#e">5 Bagging</a><a href="#f">6 Random Forest</a><a href="#g">7 Boosting</a><a href="#h">8 Spark ML Case</a><a href="#i">9 Cross-Validation</a><a href="#j">10 Revision</a></nav>
+
+<h2 id="a"><span>1</span>Decision Trees</h2>
+<p>A decision tree is an <b>acyclic graph</b> of <b>decision nodes</b>: a <b>root</b>, <b>internal nodes</b> (each tests an attribute) and <b>leaves</b> (predictions). <b>Divide and conquer:</b> split data into subsets, check whether each subset is <b>pure</b> (all yes or all no); if pure stop, otherwise repeat; a new sample is predicted by the subset it falls into.</p>
+<h3>Example: will Sachin play cricket? (14 days: 9 Yes / 5 No)</h3>
+<div class="flow"><div><b>Outlook</b>9 yes / 5 no</div><i>→</i><div><b>Overcast</b>4/0 pure → <b>Yes</b></div><div><b>Sunny</b>2/3 → split on <b>Humidity</b>: High 0/3 → No; Normal 2/0 → Yes</div><div><b>Rain</b>3/2 → split on <b>Wind</b>: Weak 3/0 → Yes; Strong 0/2 → No</div></div>
+<p><b>New day D15</b> (Rain, High humidity, Weak wind) → Rain → Wind = Weak → <b>Yes</b> (3/0).</p>
+<div class="box def"><b class="t">Single decision tree – summary</b><b>+ Handles feature interactions</b> automatically (complex functions with multiple splits); <b>+ computationally scalable</b> (efficient algorithms for very large data with many features, e.g. on Spark clusters); <b>+ interpretable</b> (visualize splits and leaves); <b>− weak predictive power</b> (overfitting/noise).</div>
+
+<h2 id="b"><span>2</span>ID3, Entropy &amp; Information Gain</h2>
+<p><b>ID3</b> (Iterative Dichotomiser 3, Ross Quinlan 1986) generates a decision tree from a dataset; precursor of <b>C4.5</b> (1993); <b>CART</b> (Breiman et al., 1984) comes from statistics.</p>
+<pre>Split(node, {examples}):
+ 1. A ← best attribute for splitting {examples}
+ 2. Decision attribute for this node ← A
+ 3. For each value of A, create a new child node
+ 4. Split training {examples} to child nodes
+ 5. For each child subset: if pure → STOP, else Split(child, subset)</pre>
+<p><b>Which attribute?</b> Measure the "purity" of a split. A pure set (4 yes/0 no) is completely certain; 3 yes/3 no is completely uncertain (50%). The measure must be <b>symmetric</b> (4 yes/0 no as pure as 0 yes/4 no), so P("yes"|set) can't be used → use <b>entropy</b>.</p>
+<div class="box def"><b class="t">Entropy (bits)</b><code>H(S) = −p(+) log₂ p(+) − p(−) log₂ p(−)</code>. Interpretation: bits needed to tell whether an item X of S is positive or negative. Maximum <b>1</b> at p(+) = ½; <b>0</b> when pure (p = 0 or 1). E.g. 3 yes/3 no → 1; 4 yes/0 no → 0.</div>
+<div class="box def"><b class="t">Information Gain</b>Expected drop in entropy after a split (mutual information between attribute A and class labels): <code>Gain(S,A) = H(S) − Σ<sub>v∈Values(A)</sub> (|S<sub>v</sub>|/|S|) · H(S<sub>v</sub>)</code>. The tree grows <b>greedily top-down</b>, each split maximizing IG.</div>
+<p><b>Worked example, Gain(S, Wind):</b> H(S) = 0.94 (9 yes/5 no); H(S<sub>weak</sub>) = 0.81 (6/2); H(S<sub>strong</sub>) = 1.0 (3/3). Gain = 0.94 − 8/14·0.81 − 6/14·1.0 = <b>0.049</b>.</p>
+
+<h2 id="c"><span>3</span>Decision Trees for Regression</h2>
+<p>Given training set Z = {(x<sub>1</sub>,y<sub>1</sub>),…} with real targets y<sub>i</sub>, find f(x) minimizing Σ(f(x<sub>i</sub>) − y<sub>i</sub>)². A node splits by condition <b>x<sub>k</sub> &lt; t</b> into Z<sub>L</sub> (yes, prediction a<sub>L</sub>) and Z<sub>R</sub> (no, prediction a<sub>R</sub>).</p>
+<ul><li><b>No split:</b> predict one number â minimizing squared error; it equals the <b>average of all targets</b>: â = (1/|Z|) Σ y<sub>i</sub>. <b>Impurity(Z)</b> = mean squared error = (1/|Z|) Σ(â − y<sub>i</sub>)².</li><li><b>Best split:</b> choose k, t (and leaf values, which are the means â<sub>L</sub>, â<sub>R</sub> of each side) by maximizing <code>IG = Impurity(Z) − (|Z<sub>L</sub>|/|Z|·Impurity(Z<sub>L</sub>) + |Z<sub>R</sub>|/|Z|·Impurity(Z<sub>R</sub>))</code> (error before split minus error after). Repeated from top to bottom.</li></ul>
+<div class="box"><b class="t">Stopping rules</b>(1) node depth equals <b>maxDepth</b>; (2) no split gives information gain above <b>minInfoGain</b>; (3) no split gives children with at least <b>minInstancesPerNode</b> training instances each.</div>
+
+<h2 id="d"><span>4</span>Building Trees with MapReduce: PLANET</h2>
+<p>Problem: huge dataset with hundreds of attributes – the tree is small (shallow, ~10 levels, fits in memory) but the data is too large for one machine. <b>PLANET</b> (Parallel Learner for Assembling Numerous Ensemble Trees, Panda et al., VLDB '09) is a <b>sequence of MapReduce jobs</b>; setting: numerical attributes, numerical target (regression), binary splits X<sub>j</sub> &lt; v.</p>
+<div class="flow"><div><b>Mapper</b>loads model; "drops" each data point to its leaf; keeps partial statistics for each candidate split</div><i>→</i><div><b>Reducer</b>aggregates statistics, picks best split per node</div><i>→</i><div><b>Master</b>grows the tree <b>one level</b> per MapReduce step</div></div>
+<div class="tbl"><table><tr><th>PLANET job</th><th>Purpose</th></tr>
+<tr><td>Initialization (once, first)</td><td>Identify the attribute values to consider for splits.</td></tr>
+<tr><td>FindBestSplit (many times)</td><td>Find best splits when data is too large for memory.</td></tr>
+<tr><td>InMemoryBuild (once, last)</td><td>When a node's data fits in memory, grow an entire sub-tree.</td></tr></table></div>
+<p>The Master monitors everything and runs the jobs.</p>
+
+<h2 id="e"><span>5</span>Bootstrap &amp; Bagging</h2>
+<div class="box def"><b class="t">Bootstrap</b>Produces replicas of dataset Z by <b>random sampling with replacement</b>; each pick is independent. The new dataset has the same size n, but some objects are missing and others repeat (e.g. original 1 2 3 4 5 → bootstrap 3 1 5 5 2).</div>
+<div class="box def"><b class="t">Bagging (Bootstrap Aggregation)</b>A general method for <b>averaging predictions of any algorithm</b> (not only trees); reduces the <b>variance</b> of the prediction.</div>
+<pre>Input: training set Z, B iterations, learning method M
+For b = 1..B: draw bootstrap sample Z*b of size n; apply M → model f*b(x)
+Return ensemble {f*1 … f*B}
+Regression:     f(x) = (1/B) Σ f*b(x)
+Classification: majority vote of the B predictions</pre>
+<p><b>Why it works:</b> the training set is itself random (user behavior, noisy physical measurements). Averaging over possible datasets removes the noisy, unstable parts of models while stable, reliable parts remain – based on the <b>bias-variance trade-off</b>. Bagging improves almost any method but is <b>very time-consuming</b> for large data.</p>
+
+<h2 id="f"><span>6</span>Random Forest</h2>
+<div class="box def"><b class="t">Definition</b>Random Forest = <b>bagging of de-correlated decision trees</b>. For b = 1..B: draw a bootstrap sample, grow a de-correlated tree T<sub>b</sub>; return ensemble. Regression: average; classification: <b>majority vote</b>.</div>
+<ul><li><b>De-correlation:</b> the tree is grown greedily top-down, but at each split only <b>m randomly selected input variables (m ≤ p)</b> are candidates; each split maximizes information gain. Recommended (inventors): <b>m = √p</b> for classification, <b>m = p/3</b> for regression; minInstancesPerNode = 5 for regression.</li><li><b>Experiment:</b> m = √p (de-correlated trees) is worse for the first ~20 trees but eventually <b>converges to a better result</b> than a single DT or trees using all variables.</li></ul>
+<div class="tbl"><table><tr><th>Property</th><th>Single tree</th><th>Random Forest</th><th>Gradient Boosted Trees</th></tr>
+<tr><td>Predictive power</td><td>Poor</td><td>Better than a tree, slightly worse than GBDT</td><td><b>Best</b> general-purpose</td></tr>
+<tr><td>Interpretability</td><td>Good</td><td>Lost (hundreds/thousands of trees)</td><td>Poor</td></tr>
+<tr><td>Parallelism</td><td>–</td><td>Trees are independent → <b>essentially parallel</b>, trainable in distributed setting</td><td>Sequential iterations</td></tr></table></div>
+<p>Order of quality: <b>Single DT &lt; Random Forest &lt; Gradient Boosted DT</b>; there is always a <b>trade-off between predictive power and interpretability</b>.</p>
+
+<h2 id="g"><span>7</span>Gradient Boosted Decision Trees</h2>
+<p><b>Boosting</b> combines outputs of many <b>weak (base) classifiers</b> into a powerful ensemble; variants: AdaBoost, BrownBoost, LogitBoost, Gradient Boosting. For big data with many examples/features there are two ways to get a complex model: start complex and fit parameters (neural network), or <b>build iteratively</b>, training a simple model at each step (boosting).</p>
+<pre>Regression: f(x) = Σ h_m(x), each h_m a decision tree
+f0(x) = (1/n) Σ y_i                      # initial mean label
+For m = 1..M:
+   ŷ_i = y_i − f_{m−1}(x_i)              # residuals
+   fit tree h_m to targets ŷ_i (auxiliary training set)
+   f_m(x) = f_{m−1}(x) + v · h_m(x)
+Return f_M ;  v = regularization (learningRate), recommended ≤ 0.1</pre>
+<div class="box"><b class="t">Link to optimization</b>Gradient boosting is like <b>gradient descent</b>: move opposite to the gradient with a small step size (here v). It is a <b>minimization in the functional space</b>.</div>
+<p><b>Classification:</b> labels y ∈ {0,1}; probabilistic model <code>P(y=1|x) = 1 / (1 + exp(−f(x)))</code>, 0 &lt; P &lt; 1; maximize the log-likelihood <code>Q[f] = Σ log P(y<sub>i</sub>|x<sub>i</sub>)</code> (equivalently minimize loss L(y<sub>i</sub>, f(x<sub>i</sub>))); each tree is fitted to gradients g<sub>i</sub> = dL/df. <b>Summary:</b> GBDT is considered the best general-purpose algorithm for classification/regression.</p>
+
+<h2 id="h"><span>8</span>Case Study: Breast Cancer Diagnosis with Spark ML</h2>
+<p><b>Data (UCI WDBC):</b> 569 examples; column 1 = ID, column 2 = diagnosis (<b>M</b> malignant, <b>B</b> benign), remaining <b>30 features</b>. Steps: create SparkContext and SparkSession → load lines into (label, <code>Vectors.dense</code> features) → DataFrame → <b>StringIndexer</b> converts label to <code>labelIndexed</code> (<b>M = 1, B = 0</b>) → <code>randomSplit([0.7, 0.3], seed=23)</code>.</p>
+<pre>decisionTree = DecisionTreeClassifier(labelCol="labelIndexed")
+dtModel = decisionTree.fit(trainingData)
+gbdt = GBTClassifier(labelCol="labelIndexed", featuresCol="features",
+                     maxIter=100, stepSize=0.1)
+rfClassifier = RandomForestClassifier(labelCol="labelIndexed", numTrees=100)
+evaluator = MulticlassClassificationEvaluator(labelCol="labelIndexed", ...)
+print("Test Error = %g" % (1.0 - accuracy))</pre>
+<div class="tbl"><table><tr><th>Model</th><th>Results reported</th></tr>
+<tr><td>Decision tree</td><td>29 nodes, depth 5, 30 features; most important feature 22 (importance 0.7215); <code>toDebugString</code> shows If/Else splits (e.g. feature 22 ≤ 114.2) with Predict 0.0/1.0 leaves; test error ≈ 0.045 (about 3–4%, "quite accurate").</td></tr>
+<tr><td>GBT</td><td>100 trees, stepSize 0.1 (default); top importances feature 22 (0.4246) and 20 (0.1718); accuracy <b>a bit lower</b> than the single tree (its printed error digits are unclear in the slides); model too large to interpret.</td></tr>
+<tr><td>Random forest</td><td>100 trees; largest importances features 20 (0.1514) and 22 (0.1206); <b>test error 0.0338983 – best</b> on this dataset.</td></tr></table></div>
+<p><b>Lesson:</b> results depend on the dataset; as a rule, the <b>bigger the dataset and the more features, the better complex models</b> (GBDT, random forest) perform.</p>
+
+<h2 id="i"><span>9</span>Cross-Validation in Spark ML</h2>
+<p>Cross-validation assesses model quality and finds the best model within a family. Build a <b>Pipeline</b> (here a single stage: the decision tree; in general also preprocessing, string indexing…), a <b>ParamGridBuilder</b> (e.g. <code>maxDepth</code> in [1,2,4,5,6,7,8]; optionally also minInstancesPerNode – more parameters make training slower), an <b>evaluator</b> (accuracy) and a <b>CrossValidator</b> with <b>numFolds = 10</b> (folds should not be fewer than 5 or 10).</p>
+<pre>crossval = CrossValidator(estimator=pipeline, estimatorParamMaps=paramGrid,
+                          evaluator=evaluator, numFolds=10)
+cvModel = crossval.fit(inputDF2)      # trains/evaluates 10 times per setting
+cvModel.avgMetrics                    # mean accuracy per maxDepth
+cvModel.bestModel.stages[0]</pre>
+<p>Average accuracies for the seven depths: 0.892, 0.920, 0.942, 0.942, <b>0.946</b>, 0.938, 0.936. The <b>best model has depth 6 and 47 nodes</b> and can then predict on any other dataset.</p>
+
+<h2 id="j"><span>10</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b><ul>
+<li>Entropy H = −Σ p log₂ p (0 pure, 1 for 50:50); Gain = H(S) − weighted child entropies; ID3 splits greedily on max gain; Gain(S, Wind) = 0.049.</li>
+<li>Regression tree: leaf = mean; impurity = MSE; stop by maxDepth, minInfoGain, minInstancesPerNode.</li>
+<li>PLANET: one MapReduce step per tree level; Initialization → FindBestSplit (repeated) → InMemoryBuild.</li>
+<li>Bootstrap = sampling with replacement; bagging = average/majority vote, reduces variance.</li>
+<li>Random forest = bagging + random m of p features per split (√p classification, p/3 regression); trees independent → parallel.</li>
+<li>GBDT: f0 = mean, fit residuals, f_m = f_{m−1} + v·h_m (v ≤ 0.1); gradient descent in functional space.</li>
+<li>Single DT &lt; Random Forest &lt; GBDT in accuracy; the reverse in interpretability.</li>
+<li>Spark ML: StringIndexer, 70/30 split, DecisionTree/GBT/RandomForest classifiers; CrossValidator with ParamGrid, 10 folds → best depth 6.</li></ul></div>
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

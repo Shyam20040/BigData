@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Practice Tests (Weeks 1–6)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;--ok:#1a8f4c;--okb:#e6f6ec;--no:#c0392b;--nob:#fdecea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea;--okb:#12341f;--nob:#3a1a17;--ok:#4cc47f;--no:#ff7b6b}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea;--okb:#12341f;--nob:#3a1a17;--ok:#4cc47f;--no:#ff7b6b}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.6 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:22px 18px 110px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:24px 26px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:4px 0;font-size:24px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5;font-size:13px}
+.tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+.tab{border:1.5px solid var(--bd);background:var(--card);color:var(--tx);border-radius:8px;padding:7px 4px;font:500 12px Poppins,sans-serif;cursor:pointer;text-align:center;line-height:1.3}
+.tab b{display:block;font-size:14px;color:var(--dk)}.tab.on{background:var(--ac);border-color:var(--ac);color:#fff}.tab.on b{color:#fff}
+.tab i{font-style:normal;font-size:10.5px;opacity:.85}
+.stat{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 16px;margin-bottom:14px}
+.stat .r{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;color:var(--dk)}
+.bar{height:8px;background:var(--bd);border-radius:5px;margin-top:7px;overflow:hidden}.bar div{height:100%;background:var(--ac);width:0;transition:width .3s}
+.res{background:var(--dk);color:#fff;border-radius:10px;padding:18px 22px;margin-bottom:14px;display:none}
+:root[data-theme="dark"] .res,:root:not([data-theme="light"]) .res{}
+.res h2{margin:0;font-size:30px;font-weight:700}.res p{margin:4px 0 0;font-weight:300;font-size:13px}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.q.ok{border-left:5px solid var(--ok)}.q.no{border-left:5px solid var(--no)}.q.na{border-left:5px solid #b9a24a}
+.q h3{margin:0 0 9px;font-size:14px;font-weight:600;color:var(--dk)}.q h3 span{color:var(--ac);margin-right:6px}
+.o{display:flex;gap:9px;align-items:flex-start;width:100%;text-align:left;background:var(--lg);border:1.5px solid var(--bd);color:var(--tx);border-radius:8px;padding:8px 11px;margin:6px 0;font:400 13.5px/1.45 Poppins,sans-serif;cursor:pointer}
+.o b{min-width:20px;color:var(--bl)}.o:hover:not(:disabled){border-color:var(--ac)}.o.sel{background:var(--pl);border-color:var(--ac)}
+.o.c{background:var(--okb);border-color:var(--ok)}.o.w{background:var(--nob);border-color:var(--no)}.o:disabled{cursor:default}
+.key{margin-top:8px;padding:8px 11px;border-radius:6px;font-size:12.5px;font-weight:500}
+.key.ok{background:var(--okb);color:var(--ok)}.key.no{background:var(--nob);color:var(--no)}.key.na{background:var(--lg);color:var(--dk)}
+.empty{background:var(--pl);border:1px dashed var(--ac);border-radius:10px;padding:30px;text-align:center;color:var(--dk)}
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;justify-content:center;z-index:9}
+.dock button{font:600 13px Poppins,sans-serif;border-radius:8px;padding:10px 22px;cursor:pointer;border:1.5px solid var(--ac)}
+#sub{background:var(--ac);color:#fff}#rst{background:var(--card);color:var(--ac)}.dock button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:520px){.tab i{display:none}header h1{font-size:20px}}
+</style></head><body><div class="pg">
+<header><small>NPTEL · Big Data Computing · IIT Patna</small><h1>Practice Tests: Week 1 – Week 6</h1><p>30 questions per week · 1 mark each · instant score with correct answers</p></header>
+<div class="tabs" id="tabs"></div>
+<div class="stat"><div class="r"><span id="st1"></span><span id="st2"></span></div><div class="bar"><div id="pb"></div></div></div>
+<div class="res" id="res"></div>
+<div id="qs"></div>
+</div>
+<div class="dock"><button id="rst">↻ Reset Week</button><button id="sub">Submit Week</button></div>
+<script>
+// Format: "question|A|B|C|D|answer"
+const W={1:[
+"A dataset was highly useful in 2024, but by 2026 the same dataset becomes irrelevant because the information has lost significance. Which ‘V’ best describes this situation?|Validity|Veracity|Volatility|Venue|C",
+"Which of the following statements about Oozie is CORRECT?|Oozie is a distributed NoSQL database.|Oozie is a workflow scheduler system for Hadoop jobs.|Oozie is used to store data in HDFS.|Oozie is a machine learning library for Spark.|B",
+"Oozie can directly coordinate which of the following Hadoop ecosystem components?|Hive, Pig, Sqoop, and MapReduce|HDFS, NameNode, DataNode, and YARN only|Cassandra, MongoDB, and Redis only|Spark MLlib and GraphX only|A",
+"What is the primary purpose of Apache Flume in the Hadoop ecosystem?|Querying data stored in HDFS|Collecting and transferring large amounts of log data|Performing machine learning tasks|Managing cluster resources|B",
+"What is the primary role of Apache ZooKeeper in a Hadoop ecosystem?|Distributed data storage|Workflow scheduling|Distributed coordination and synchronization|SQL query processing|C",
+"Hive primarily operates on data stored in:|MongoDB|Cassandra|HDFS|Redis|C",
+"Which of the following best describes Apache Hive?|A distributed coordination service|A workflow scheduler|A data warehouse system built on Hadoop|A NoSQL database|C",
+"Which Hadoop module stores metadata?|DataNode|TaskTracker|NameNode|Reducer|C",
+"Which pair is correctly matched?|Hive – Stream Processing|Kafka – Distributed Commit Log|Sqoop – Graph Analytics|GraphX – ETL Tool|B",
+"Which of the following is the PRIMARY function of Apache ZooKeeper in a distributed Hadoop environment?|Storing large-scale data across cluster nodes|Managing distributed coordination, synchronization, and configuration services|Executing SQL-like queries on HDFS data|Scheduling Hadoop workflows and jobs|B",
+"Which of the following best defines Big Data according to the study guide?|Data that can always be processed efficiently using traditional database management tools|A collection of data sets so large and complex that traditional database management tools or processing applications have difficulty processing them|Data stored only in relational databases|Data generated exclusively by organizations|B",
+"Which of the following is NOT listed as a challenge associated with Big Data?|Capture|Curation|Visualization|Compilation|D",
+"Why can analysing one large set of related data be more useful than analysing separate smaller sets with the same total size?|It eliminates the need for data storage|It allows correlations to be identified that can reveal useful patterns and trends|It guarantees that all data will be structured|It prevents data from being generated by machines|B",
+"According to the study guide, approximately what percentage of the world's data is unstructured?|20%|40%|60%|80%|D",
+"Which sequence correctly represents the progression of digital universe data mentioned in the study guide?|0.8 ZB in 2009 to 35 ZB in 2020|8 ZB in 2009 to 35 ZB in 2020|0.8 ZB in 2009 to 3.5 ZB in 2020|35 ZB in 2009 to 0.8 ZB in 2020|A",
+"Which Big Data V refers primarily to the scale of data, including growth from terabytes to exabytes?|Velocity|Volume|Variety|Veracity|B",
+"A system must respond to incoming data within milliseconds to seconds because a delay of even two minutes may be too late. Which V is most directly involved?|Volume|Variety|Velocity|Value|C",
+"Which option correctly describes the three major forms of data included under Variety?|Numerical, temporal, and spatial|Structured, semi-structured, and unstructured|Local, remote, and distributed|Static, dynamic, and volatile|B",
+"Which V is concerned with bias, noise, abnormality, trustworthiness, inconsistency, incompleteness, ambiguity, latency, and deception in data?|Validity|Veracity|Variability|Viability|B",
+"Which V describes how connected data is, such as the connections represented in graph networks?|Valence|Venue|Value|Vocabulary|A",
+"Which V refers to the accuracy of data relative to a particular use?|Veracity|Validity|Viability|Volatility|B",
+"Data meaning changes over time because of factors such as language evolution, availability, sampling processes, and source characteristics. Which V describes this?|Variability|Velocity|Valence|Vagueness|A",
+"Which V refers to the rate of data loss or the stable lifetime of data?|Viscosity|Volatility|Validity|Viability|B",
+"Which V describes which data has meaningful relationships to the questions of interest?|Viability|Variety|Venue|Veracity|A",
+"Which Hadoop component is responsible for resource management and job scheduling?|HDFS|Hadoop Common|YARN|MapReduce|C",
+"Which sequence correctly represents the major stages of the MapReduce processing flow described in the study guide?|Reduce → Map → HDFS Split → Shuffle & Sort|HDFS Split → Map → Shuffle & Sort → Reduce|Map → Reduce → HDFS Split → Shuffle & Sort|HDFS Split → Reduce → Map → Shuffle & Sort|B",
+"Which HDFS component holds filesystem metadata such as file names, replicas, and mappings, while DataNodes store the actual blocks?|ResourceManager|ApplicationMaster|NameNode|NodeManager|C",
+"Which Hadoop ecosystem component is specifically used for bulk data transfer between Hadoop and structured relational databases?|Flume|Sqoop|Pig|Oozie|B",
+"Which statement correctly describes Apache Spark according to the study guide?|It is a workflow scheduler that manages Hadoop jobs|It is a fast, general engine for large-scale processing that uses in-memory primitives|It is a distributed file system that stores files across commodity machines|It is a centralized coordination service for distributed systems|B",
+"Which pair correctly matches the technology with its primary role described in the study guide?|MLlib – Workflow scheduling|GraphX – Distributed file storage|Kafka – Distributed commit-log streaming|HBase – Hadoop job scheduling|C"],
+2:[
+"Which HDFS component is primarily responsible for monitoring replica counts and initiating re-replication when a block becomes under-replicated?|DataNode|Client|NameNode|Secondary NameNode|C",
+"What is the primary purpose of introducing the HDFS Federation?|Increase replication factor|Increase namespace scalability|Reduce block size|Eliminate DataNodes|B",
+"Which of the following is directly affected by the number of HDFS blocks?|NameNode memory usage|Number of Map tasks|Both A and B|Neither A nor B|C",
+"What is the default value of the parameter dfs.replication?|1|2|3|4|C",
+"If a DataNode stops sending heartbeats, what does the NameNode do?|Ignores the failure|Deletes all blocks immediately|Marks the DataNode and initiates re-replication if needed|Restarts the DataNode automatically|C",
+"Which statement about Reduce tasks is TRUE?|A key can be processed by multiple Reducers.|Each key is assigned to exactly one Reducer.|Reducers execute before Mappers.|Reducers never use partitioning.|B",
+"What is the primary role of a Partitioner in MapReduce?|Sort records within a Reducer|Decide which Reducer receives a key-value pair|Combine Mapper outputs locally|Replicate data blocks across HDFS|B",
+"Which YARN component is responsible for detecting task failures for a specific job?|Resource Manager (RM)|Node Manager (NM)|Application Master (AM)|DataNode|C",
+"Which statement about the Reduce function is TRUE?|It accepts an intermediate key and a set of values.|It processes only one value at a time.|It cannot aggregate values.|It always produces multiple output values.|A",
+"In the Reverse Web-Link Graph application, the Mapper emits:|(source, target)|(target, source)|(URL, 1)|(target, count)|B",
+"Which of the following correctly describes the primary design approach of HDFS for handling frequent failures across thousands of nodes and disks?|Store every file on only one DataNode|Use data replication so the same data is stored on different nodes|Store all metadata on DataNodes|Eliminate local disks from the cluster|B",
+"Which HDFS design technique is associated with handling large data sets and achieving high throughput?|Moving computation close to the data and using a scalable file system across local disks|Storing all data on a single centralized server|Using a read-only centralized database|Increasing POSIX requirements for every operation|A",
+"A 10 GB file is stored using the 64 MB default HDFS block size described in the guide. Approximately how many blocks are required?|64 blocks|128 blocks|160 blocks|320 blocks|C",
+"Which of the following is a direct consequence of having a very large number of small files in HDFS?|Fewer Map tasks are created|The queue becomes very large and task start/stop latency increases|NameNode metadata requirements become zero|Disk I/O becomes automatically more efficient|B",
+"Which of the following is a suggested solution to the HDFS small-files problem?|Split every small file into smaller blocks|Increase the number of NameNodes without Federation|Merge or concatenate files|Remove block replication|C",
+"During an HDFS read operation, which component provides the client with the locations of the required blocks?|DataNode|NameNode|TaskTracker|ApplicationMaster|B",
+"In the HDFS write process described in the study guide, how are packets acknowledged after data is sent through the DataNodes?|Through a pipeline of DataNodes|Directly through the NameNode only|Through the Secondary NameNode|Through the ResourceManager|A",
+"Which mechanism allows HDFS to detect a DataNode that has failed to remain responsive?|Periodic heartbeat and block reports sent to the NameNode|Periodic SQL queries sent to the DataNode|Map output sent to the NameNode|Reduce output sent to the ResourceManager|A",
+"How does HDFS handle data corruption detected during retrieval?|It permanently deletes every replica of the file|It ignores the corruption and returns the damaged data|It verifies the checksum and can re-read the data from an alternate replica|It restarts the NameNode|C",
+"In Hadoop 1.0, which component receives a job from the client, breaks it into tasks, allocates the tasks to slaves, and monitors their progress?|TaskTracker|DataNode|JobTracker|NodeManager|C",
+"In the MapReduce processing flow, what happens during the Shuffle and Sort phase?|Input files are divided into HDFS blocks|Mapper functions are executed for the first time|Intermediate records are grouped by key|Final results are stored directly in the NameNode|C",
+"According to the study guide, which formula represents the common hash-partitioning rule for determining the Reducer assigned to a key?|reduce# = key + number_of_reduce_tasks|reduce# = hash(key) % number_of_reduce_tasks|reduce# = hash(value) / number_of_reduce_tasks|reduce# = key × number_of_reduce_tasks|B",
+"Why does the MapReduce Reduce function receive its values through an iterator?|To ensure that all values are stored permanently in the NameNode|To allow lists that are too large for memory to be handled|To prevent the use of partitioning|To execute the Mapper again|B",
+"Which YARN component is responsible for global scheduling of resources?|Node Manager|Application Master|Global Resource Manager|DataNode|C",
+"Which YARN component negotiates containers with the Resource Manager and Node Managers for a specific application?|Application Master|NameNode|TaskTracker|DataNode|A",
+"In the URL access count MapReduce application, what does the Mapper emit for each URL access?|(URL, 1)|(1, URL)|(URL, total)|(source, target)|A",
+"Which MapReduce application uses range partitioning rather than hashing to balance data distribution?|URL access count|Reverse web-link graph|Distributed sort|Distributed grep|C",
+"In the inverted index example, what does the Reduce phase produce for a word?|The total number of characters in the word|A list of document or tweet IDs associated with the word|The complete original document|A single HDFS block containing the word|B",
+"In the relational join example, what does the Mapper emit for each tuple?|The tuple alone without any key|A join key and a tuple tagged with its relation name|Only the relation name|Only the final joined rows|B",
+"In the common-friends MapReduce example, what operation does the Reduce phase perform on the friend lists grouped by a pair of people?|Addition of the friend-list sizes|Sorting the people alphabetically|Intersection of the friend lists|Replication of the friend lists across DataNodes|C"],
+3:[
+"Which statement best explains Spark's fault tolerance mechanism?|Every RDD is replicated across all nodes.|Every transformation result is written to HDFS.|Spark tracks lineage and recomputes lost partitions.|Spark checkpoints every operation by default.|C",
+"Which operation below is an Action rather than a Transformation?|collect()|join()|map()|filter()|A",
+"Which Spark component is responsible for splitting a DAG into stages?|SparkContext|TaskScheduler|DAGScheduler|BlockManager|C",
+"Why is reduceByKey() generally preferred over groupByKey() for aggregation?|It automatically sorts keys.|It uses combiners on the map side.|It creates fewer partitions.|It avoids shuffling completely.|B",
+"In Spark, which operation triggers actual execution of a DAG?|map()|filter()|join()|count()|D",
+"Which statement about RDDs is FALSE?|RDDs are immutable.|RDDs can be cached for reuse.|RDDs automatically rebuild lost data using lineage.|RDDs support direct modification of existing partitions.|D",
+"Which feature helps Spark recover lost RDD partitions?|Replication|Lineage|Compression|Scheduling|B",
+"SparkContext is:|Storage system|Main entry point to Spark functionality|Worker node|Scheduler|B",
+"Which Spark component launches tasks on worker nodes and retries failed tasks?|SparkContext|DAGScheduler|BlockManager|TaskScheduler|D",
+"A Spark application performs multiple iterations over the same dataset. Which feature provides the greatest performance improvement?|HDFS replication|Data compression|Caching/Persistence of RDDs|Increasing block size|C",
+"Which of the following best describes an RDD in Spark?|A mutable collection stored only on the driver|An immutable, partitioned collection of records distributed across the cluster|A database table that must always be stored in HDFS|A scheduler component responsible for launching tasks|B",
+"Which of the following correctly distinguishes a Transformation from an Action in Spark?|Transformations trigger execution immediately, while Actions are always lazy.|Transformations build new RDDs lazily, while Actions trigger execution and return a value or export data.|Both Transformations and Actions always create new RDDs.|Actions are used only for fault recovery, while Transformations are used only for caching.|B",
+"Which Spark operation converts a local collection into an RDD?|textFile()|parallelize()|collect()|reduceByKey()|B",
+"Which operation is specifically used to load data from a local file system, HDFS, or S3 into an RDD?|textFile(path)|parallelize(list)|saveAsTextFile(path)|groupByKey()|A",
+"Consider the operation lines.flatMap(...).map(...).reduceByKey(...) used for word counting. Which operation performs the distributed aggregation of values associated with the same key?|flatMap()|map()|reduceByKey()|collect()|C",
+"In Spark's job execution process, which sequence correctly represents the main flow after an RDD operation DAG is built?|TaskScheduler → DAGScheduler → Driver → Worker|DAGScheduler → TaskScheduler → Worker|Worker → DAGScheduler → TaskScheduler|BlockManager → Worker → DAGScheduler|B",
+"What is the primary role of the DAGScheduler in Spark?|Store cached blocks on workers|Split the DAG into stages of tasks and submit ready stages|Create the SparkContext automatically|Store all RDD data permanently on HDFS|B",
+"What is the primary role of the TaskScheduler in Spark?|Split the application DAG into stages|Launch tasks through the cluster manager and retry failed or straggling tasks|Convert local collections into RDDs|Store application data in Cassandra|B",
+"Which statement correctly describes a Spark closure according to the study guide?|External variables are shipped to the cluster, and each task receives a new copy.|Updates made to external variables by tasks are automatically sent back to the driver.|Closures do not need to be serializable.|Using a field of an outer object always ships only that field to the cluster.|A",
+"Which statement about Spark's shuffle operation is correct?|It permanently stores every RDD in HDFS.|It exchanges, partitions, and sorts data across executors.|It creates the SparkContext for an application.|It prevents all network communication between executors.|B",
+"In the PageRank algorithm described in the study guide, how is the new rank of a page calculated?|rank = 1 + Σ(rank × neighbors)|rank = 0.15 + 0.85 × Σ(rank/∣neighbors∣)|rank = 0.85 + 0.15 × Σ(neighbors/rank)|rank = 0.15 × Σ(rank × ∣neighbors∣)|B",
+"Why is PageRank particularly suitable for benefiting from Spark's in-memory caching?|It is a single-pass operation that never reuses data.|It is a complex, multi-stage, iterative algorithm.|It requires every intermediate result to be written to HDFS.|It does not use RDDs.|B",
+"Which Spark built-in library is primarily associated with structured data processing and querying?|GraphX|MLlib|Spark SQL|Streaming|C",
+"Which Spark built-in library is designed for machine-learning tasks such as classification, regression, clustering, and collaborative filtering?|GraphX|MLlib|Spark SQL|Streaming|B",
+"Which statement correctly describes Spark Streaming according to the study guide?|It processes large-scale streaming data by cutting the live stream into batches.|It is used only for graph processing.|It replaces RDDs with relational database tables only.|It is a key-value storage system.|A",
+"Which statement correctly describes the key-value abstraction in a key-value store?|Every item is accessed through a fixed SQL join.|A key is associated with a value, supporting operations such as insert, lookup, and delete by key.|Every row must have the same fixed set of columns.|Foreign keys are required for every stored item.|B",
+"Which characteristic distinguishes key-value/NoSQL storage from the RDBMS model described in the study guide?|Key-value/NoSQL systems may be schemaless, while RDBMSs use fixed structured schemas.|Key-value/NoSQL systems require foreign keys, while RDBMSs do not.|RDBMSs use get(key) and put(key, value) as their primary query model.|Key-value/NoSQL systems require joins for every lookup.|A",
+"Why does the study guide describe scale out as an important approach for key-value/NoSQL workloads?|It replaces many commodity machines with one increasingly powerful machine.|It adds commodity machines incrementally and supports incremental scalability.|It prevents data from being distributed across machines.|It requires all processing to occur on a single server.|B",
+"Which statement correctly describes Cassandra's partitioning approach?|Cassandra uses a ring-based DHT for key-to-server mapping.|Cassandra stores every key on a single fixed server.|Cassandra uses only relational foreign keys to determine server placement.|Cassandra does not use a partitioner.|A",
+"In the Cassandra example from the study guide, what happens when a client performs a read or write for key K13?|The client sends the operation to the NameNode, which stores it in HDFS.|The client sends the operation to a coordinator, which forwards it to the primary and backup replicas.|The client sends the operation only to the backup replicas.|The client sends the operation directly to every node in the datacenter.|B"],
+4:[
+"Which Cassandra replication strategy is specifically designed for multi-datacenter deployments?|SimpleStrategy|NetworkTopologyStrategy|RandomPartitioner|ByteOrderedPartitioner|B",
+"What is the primary purpose of Cassandra's Bloom Filter?|Store key-value pairs permanently|Compress SSTables|Quickly determine if a key may exist in an SSTable|Replace indexing structures|C",
+"Which statement about Bloom Filters is TRUE?|They may produce false negatives.|They never produce false positives.|They may produce false positives but never false negatives.|They guarantee exact membership testing.|C",
+"In Cassandra, why are writes generally faster than reads?|Reads use only memory.|Writes avoid disk operations entirely.|Writes are append-oriented using Commit Logs and MemTables.|Reads bypass SSTables.|C",
+"Which Cassandra consistency level is the FASTEST for writes?|ALL|QUORUM|ONE|ANY|D",
+"According to CAP theorem, Cassandra primarily chooses:|Consistency and Availability|Consistency and Partition Tolerance|Availability and Partition Tolerance|Atomicity and Durability|C",
+"Which property defines Eventual Consistency?|All replicas are instantly synchronized.|Replicas converge if updates stop.|Reads always return latest value.|No stale reads are possible.|B",
+"What happens if a ZooKeeper ensemble loses majority availability?|A new leader is elected immediately.|Remaining node becomes leader.|No leader can be elected.|System switches to standalone mode.|C",
+"Which ZooKeeper design goal ensures that all updates are processed in a globally agreed order?|Ordered|Replicated|Fast|Atomic|A",
+"What is the default type of znode in ZooKeeper?|Ephemeral|Sequential|Temporary|Persistent|D",
+"Which Cassandra component maps IP addresses to racks and datacenters?|Partitioner|Snitch|Coordinator|Memtable|B",
+"In Cassandra's write path, which sequence correctly represents the progression of data?|Memtable → Commit Log → SSTable → Bloom Filter|Commit Log → Memtable → SSTable|SSTable → Memtable → Commit Log|Bloom Filter → Commit Log → Memtable|B",
+"What does Cassandra's hinted handoff mechanism do when a replica is temporarily unavailable?|Rejects the write permanently|Deletes the unavailable replica|Stores the write locally until the replica returns|Converts the write into a read operation|C",
+"Which Cassandra structure is immutable and stores key-value pairs sorted by key?|Memtable|Commit Log|SSTable|Bloom Filter|C",
+"Which failure-detection mechanism in Cassandra uses a suspicion value called PHI?|Gossip detector|Accrual detector|Snitch detector|Quorum detector|B",
+"According to the study guide, which two properties does Cassandra choose under the CAP theorem?|Consistency and Availability|Consistency and Partition Tolerance|Availability and Partition Tolerance|Atomicity and Durability|C",
+"Which condition is necessary for Cassandra quorum reads and writes to overlap?|W + R < N|W + R = N|W + R > N|W + R = 1|C",
+"Which Cassandra consistency level requires a quorum in the coordinator's datacenter only?|QUORUM|EACH_QUORUM|LOCAL_QUORUM|ALL|C",
+"In CQL, what does PRIMARY KEY ((A,B),C,D) indicate?|A and B are clustering columns, while C and D form the row key|A and B form the composite row key, while C and D are clustering columns|A, B, C and D are all partition keys|A and B are collections, while C and D are partitioners|B",
+"Which Cassandra collection stores unique elements and does not allow duplicate values?|List|Map|Set|Tuple|C",
+"Which ZooKeeper design goal means that all updates go through the leader and a reply is sent after a majority has persisted the update?|Simple|Replicated|Ordered|Fast|B",
+"Which type of ZooKeeper znode is automatically deleted when the creating client's session ends?|Persistent|Sequential|Ephemeral|Static|C",
+"What is the minimum number of machines required in a ZooKeeper ensemble to tolerate f failures?|f|f + 1|2f|2f + 1|D",
+"During ZooKeeper's atomic broadcast phase, what happens after the leader broadcasts a write?|The client immediately receives success|A majority persists the update before the leader commits it|Every server independently commits without coordination|The update is stored only in memory|B",
+"In a three-node ZooKeeper ensemble, what happens if two nodes fail?|The remaining node automatically becomes leader|A new leader is elected from another datacenter|No leader can be elected because a majority is unavailable|The ensemble switches to standalone mode|C",
+"Which ZooKeeper operation is used to list the children of a znode?|exists|getData|getChildren|sync|C",
+"A watch set using getData is triggered when the znode is:|Created or when a child is added|Deleted or its data is updated|Only when its ACL changes|Only when the client disconnects|B",
+"How many times does a ZooKeeper watch fire for a triggering event?|Continuously until the znode is deleted|Twice for every event|Only once|Once for every connected client|C",
+"In ZooKeeper server discovery, why are ephemeral znodes useful?|They permanently store server configuration|They automatically disappear when the server's session ends|They prevent clients from discovering servers|They store large application datasets|B",
+"Which statement correctly describes when ZooKeeper should NOT be used?|For leader election|For distributed locks|For reliable configuration services|For storing big data and applications requiring extremely strong consistency|D"],
+5:[
+"What is the fundamental processing model used by Spark Streaming?|Record-at-a-time processing|Micro-batch processing|Batch-only processing|Pipeline processing|B",
+"Which abstraction represents a stream of data in Spark Streaming?|DataFrame|RDD|DStream|Dataset|C",
+"Which of the following is NOT a supported Spark Streaming input source?|Kafka|Flume|Twitter|HDFS Block Replicator|D",
+"Why is maintaining two separate stacks for batch and streaming considered problematic?|Reduces throughput|Doubles implementation and operational effort|Prevents fault tolerance|Eliminates scalability|B",
+"What is the main advantage of Spark Streaming's micro-batch architecture?|Eliminates RDDs|Supports only offline processing|Provides fault tolerance and scalability|Requires no cluster|C",
+"Which Spark Streaming feature helps recover lost data after worker failure?|Replicated input data and RDD lineage|ZooKeeper election|Kafka partitions|SQL optimizer|A",
+"Which function maintains arbitrary state across batches?|updateStateByKey()|reduceByKey()|union()|collect()|A",
+"In Spark Streaming, every interval results in:|A new ZooKeeper node|An RDD graph computation|A new Kafka broker|A new DataNode|B",
+"Which statement about Spark Streaming fault tolerance is TRUE?|Lost data cannot be recovered.|Transformations are exactly-once and fault-tolerant|Only input data is fault tolerant.|Failures require manual data recreation.|B",
+"Which requirement is NOT listed for a stream-processing framework in Spark Streaming?|Second-scale latency|Efficient fault tolerance|Scalability|Fixed single-node execution|D",
+"Which statement best describes HBase?|A relational database designed only for single-node systems|An open-source, distributed, column-oriented NoSQL store running on HDFS|A stream-processing framework based only on Kafka|A graph database designed for small datasets|B",
+"Unlike Cassandra, HBase primarily prefers:|Availability over consistency|Consistency over availability|Latency over durability|Replication over partitioning|B",
+"In HBase, what is the basic unit of availability and distribution?|Cell|StoreFile|Region|MemStore|C",
+"Which HBase component monitors all RegionServer instances?|Client|HMaster|Region|ZooKeeper|B",
+"In the HBase data model, which statement about column qualifiers is correct?|They must be identical for every row.|They are declared in advance for the entire table.|They may differ between rows and are not declared in advance.|They can only contain timestamps.|C",
+"Which sequence correctly represents HBase's storage hierarchy after a table is split into regions?|Table → Region → Store → MemStore → StoreFile/HFile|Table → MemStore → Region → StoreFile → Store|Table → HFile → Region → Store → MemStore|Table → Store → Region → HFile → MemStore|A",
+"In HBase, what is the purpose of the write-ahead log (HLog)?|To store only completed scans|To allow failed RegionServers to replay edits and rebuild MemStore state|To replace HFiles permanently|To perform stream processing|B",
+"When is an HBase Bloom filter generated?|When a table is created|When an HFile is persisted|When a RegionServer starts|When a client performs a Put|B",
+"What does an HBase Bloom filter help determine at the row and column level?|Whether whole store files can be skipped|Which RegionServer should become HMaster|Which Kafka partition should receive a message|Whether a row should be deleted|A",
+"What is the fundamental idea behind Spark Streaming's micro-batching model?|Process every record independently without batches|Divide the live stream into small deterministic batch jobs|Store the entire stream before processing it|Process only historical data|B",
+"In Spark Streaming, what does a DStream represent?|A single static RDD|A sequence of RDDs over time|A Kafka broker|A database table|B",
+"Which operation is classified as a stateful DStream operation?|map|filter|updateStateByKey|union|C",
+"What does reduceByKeyAndWindow require for incremental window computation?|A partitioner only|An inverse-reduce function|A new Kafka broker|A ZooKeeper watch|B",
+"In Spark Streaming, each output operation on a DStream creates:|A Kafka topic|A Spark action and therefore a Spark job|A new HBase region|A ZooKeeper ensemble|B",
+"What combination provides Spark Streaming fault tolerance according to the study guide?|Lineage, in-memory replication, and checkpointing|ZooKeeper, HBase, and Kafka|HDFS replication and SQL optimization only|Consumer groups and partitions only|A",
+"Which two parameters define a Spark Streaming window?|Partition and frame|Window length and sliding interval|Offset and partition|Row key and timestamp|B",
+"In Spark SQL window functions, which component determines the boundaries relative to the current row?|partitionBy|orderBy|frame|reduceByKey|C",
+"In Kafka, what is a partition?|An ordered commit log with offsets and a unit of parallelism|A consumer group containing all brokers|A database table stored on HDFS|A ZooKeeper session|A",
+"In a Kafka queue system, how is a message consumed within a consumer group?|Every consumer receives every message|Only one consumer of the group consumes each message|Only the broker consumes messages|Messages are consumed only after all groups acknowledge them|B",
+"If a Kafka partition has replication factor N, how many server failures can it tolerate according to the study guide?|N failures|N + 1 failures|N − 1 failures|2N failures|C"],
+6:[
+"Cluster analysis is primarily a:|Supervised learning technique|Reinforcement learning technique|Unsupervised learning technique|Deep learning technique|C",
+"What is the main goal of cluster analysis?|Predict future values|Organize similar items into groups|Classify labeled data|Reduce storage space|B",
+"Which similarity measure calculates straight-line distance between two points?|Manhattan Distance|Cosine Similarity|Euclidean Distance|Hamming Distance|C",
+"Which similarity measure is based on the angle between vectors?|Euclidean Distance|Manhattan Distance|Cosine Similarity|Jaccard Distance|C",
+"Which is a common application of cluster analysis?|Customer segmentation|Sorting algorithms|Compiler optimization|CPU scheduling|A",
+"Which algorithm is most commonly associated with cluster analysis?|Decision Tree|Naive Bayes|K-Means|Logistic Regression|C",
+"What is the first step of the K-Means algorithm?|Compute accuracy|Select initial centroids|Normalize output|Remove outliers|B",
+"Which metric is commonly used to evaluate K-Means clustering quality?|Accuracy|Recall|WSSE|Precision|C",
+"If WSSE decreases, it generally indicates:|Better cluster compactness|Worse clustering|More classification errors|Data loss|A",
+"K-Means stops iterating when:|No changes occur in centroids|Accuracy becomes 100%|Dataset becomes empty|Number of features decreases|A",
+"Which statement correctly describes supervised and unsupervised learning?|Supervised learning uses an unknown target, while unsupervised learning uses labeled data.|Supervised learning uses labeled data, while unsupervised learning has no target.|Both always require labeled data.|Both always predict numerical values.|B",
+"Which of the following is an example of a supervised learning task?|Customer clustering|Association analysis|Classification|Grouping weather patterns without labels|C",
+"What is the objective of cluster analysis?|Maximize intra-cluster differences and minimize inter-cluster differences|Minimize intra-cluster differences and maximize inter-cluster differences|Minimize both intra-cluster and inter-cluster differences|Maximize both intra-cluster and inter-cluster differences|B",
+"Which statement about clustering is correct?|Every clustering problem has one universally correct clustering.|Clusters always come with predefined labels.|Clustering is unsupervised and there may be no single correct clustering.|Clustering requires a target variable.|C",
+"Which distance measure represents the path along coordinate axes?|Euclidean distance|Manhattan distance|Cosine similarity|WSSE|B",
+"What is the value of cosine similarity when the angle between two vectors is 0°?|−1|0|0.5|1|D",
+"What is the value of cosine similarity when the angle between two vectors is 90°?|−1|0|1|90|B",
+"Which statement about cosine similarity is correct?|It is always a proper distance metric.|It is particularly efficient for sparse vectors.|It measures only horizontal and vertical movement.|It can only have values between 0 and 1 for every type of data.|B",
+"Why may input features need to be normalized before calculating distances?|To make every cluster contain the same number of samples|To prevent one variable from dominating the distance measure|To increase the number of clusters automatically|To remove all outliers|B",
+"Which of the following is NOT listed as a use of cluster results?|Data segmentation|Classifying new data using the closest cluster centre|Anomaly detection|Guaranteeing a unique correct label for every cluster|D",
+"In K-Means, after selecting the initial centroids, what is the next major step?|Report the final clusters|Assign each sample to its closest centroid|Delete samples far from all centroids|Calculate classification accuracy|B",
+"During the recentering step of K-Means, a new centroid is calculated as:|The maximum value of the cluster|The minimum value of the cluster|The mean of the cluster|The first sample of the cluster|C",
+"Why can running K-Means several times with different random initializations be useful?|Final clusters are sensitive to the initial centroids.|It automatically changes the number of features.|It guarantees a unique clustering.|It removes the need to specify k.|A",
+"What does WSSE measure in K-Means?|Sum of squared distances between each sample and its centroid|Number of clusters multiplied by the number of features|Classification accuracy across all samples|Distance between every pair of clusters|A",
+"Which statement about WSSE is correct?|Higher WSSE is always better.|Lower WSSE is numerically better, but it does not necessarily mean the clustering is more correct.|WSSE always increases when k increases.|WSSE can only be calculated for classification.|B",
+"What is the main idea behind the elbow method for choosing k?|Choose the k where accuracy reaches 100%.|Plot WSSE against k and look for the bend in the curve.|Choose the largest possible k.|Choose k equal to the number of features.|B",
+"Which statement about increasing k in K-Means is correct?|Increasing k always increases WSSE.|Increasing k always reduces WSSE.|Increasing k has no effect on WSSE.|Increasing k makes WSSE undefined.|B",
+"Which condition can be used as a stopping criterion for K-Means?|The number of features becomes zero.|No change occurs in the centroids.|Accuracy reaches 100%.|Every cluster contains exactly the same number of samples.|B",
+"In Parallel K-Means using MapReduce, which operation corresponds to the Map phase?|Recenter the clusters by calculating means|Classify each data point by assigning it to the closest centroid|Store all data points in the reducer|Select the value of k|B",
+"In Parallel K-Means using MapReduce, what does the Reduce phase do?|Assigns each sample to its closest centroid|Calculates the new centroid for each cluster using the mean of its points|Selects random initial centroids|Removes all points from HDFS|B"]};
+const L="ABCD",S={w:1,a:{},d:{}};for(let i=1;i<=6;i++){S.a[i]={};S.d[i]=false}
+const $=id=>document.getElementById(id),P=w=>W[w].map(s=>{const p=s.split("|");return{q:p[0],o:p.slice(1,5),k:L.indexOf(p[5])}});
+const score=w=>P(w).reduce((n,q,i)=>n+(S.a[w][i]===q.k?1:0),0);
+function tabs(){$("tabs").innerHTML=[1,2,3,4,5,6].map(w=>{const n=W[w].length,t=S.d[w]?score(w)+"/"+n:Object.keys(S.a[w]).length+"/"+(n||30);return`<button class="tab ${w==S.w?"on":""}" onclick="go(${w})"><b>Week ${w}</b><i>${S.d[w]?"Score "+t:n?t+" done":"Coming"}</i></button>`}).join("")}
+function go(w){S.w=w;draw();scrollTo({top:0,behavior:"smooth"})}
+function pick(i,j){const w=S.w;if(S.d[w])return;S.a[w][i]=j;draw(true)}
+function draw(keep){const w=S.w,Q=P(w),d=S.d[w],n=Q.length,at=Object.keys(S.a[w]).length,y=scrollY;
+tabs();$("st1").textContent=`Week ${w} · ${at}/${n||30} answered`;$("st2").textContent=n?Math.round(at/n*100)+"%":"–";$("pb").style.width=(n?at/n*100:0)+"%";
+$("sub").disabled=!n||d;$("rst").disabled=!n;
+const r=$("res");if(d){const c=score(w),un=n-at;r.style.display="block";r.innerHTML=`<h2>${c} / ${n} marks</h2><p>${Math.round(c/n*100)}% · ✔ ${c} correct · ✘ ${at-c} incorrect · ${un} unattempted</p>`}else r.style.display="none";
+$("qs").innerHTML=n?Q.map((q,i)=>{const s=S.a[w][i],st=d?(s===undefined?"na":s===q.k?"ok":"no"):"";
+return`<div class="q ${st}"><h3><span>Q${i+1}.</span>${q.q}</h3>${q.o.map((t,j)=>`<button class="o ${!d&&s===j?"sel":""} ${d&&j===q.k?"c":""} ${d&&s===j&&j!==q.k?"w":""}" ${d?"disabled":""} onclick="pick(${i},${j})"><b>${L[j]}.</b><span>${t}</span></button>`).join("")}${d?`<div class="key ${st}">${st=="ok"?"✔ Correct (+1)":st=="no"?"✘ Incorrect (0) · You chose "+L[s]:"Not attempted (0)"} — Correct answer: ${L[q.k]}. ${q.o[q.k]}</div>`:""}</div>`}).join(""):`<div class="empty"><h3>Week ${w}</h3>Questions for this week will be added soon.</div>`;
+if(keep)scrollTo(0,y)}
+$("sub").onclick=()=>{const w=S.w,n=W[w].length,at=Object.keys(S.a[w]).length;if(at<n&&!confirm(`${n-at} question(s) unanswered. Submit anyway?`))return;S.d[w]=true;draw();scrollTo({top:0,behavior:"smooth"})};
+$("rst").onclick=()=>{const w=S.w;S.a[w]={};S.d[w]=false;draw();scrollTo({top:0,behavior:"smooth"})};
+draw();
+</script></body></html>

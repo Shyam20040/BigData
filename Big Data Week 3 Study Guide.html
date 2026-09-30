@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Week 3 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+</style></head><body><div class="pg">
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+<h1>Apache Spark &amp; Key-Value Stores</h1><p>Week 3 consolidated study guide</p></header>
+<nav><a href="#a">1 Why Spark</a><a href="#b">2 RDDs</a><a href="#c">3 Scala</a><a href="#d">4 Operations</a><a href="#e">5 Execution</a><a href="#f">6 PageRank</a><a href="#g">7 Performance</a><a href="#h">8 Libraries</a><a href="#i">9 Key-Value Stores</a><a href="#j">10 Cassandra</a><a href="#k">11 Revision</a></nav>
+
+<h2 id="a"><span>1</span>Why Spark?</h2>
+<div class="box def"><b class="t">Definition</b>Spark is a fast, expressive cluster computing system compatible with Apache Hadoop, originally developed at UC Berkeley's AMPLab (2012). It works with any Hadoop-supported storage (HDFS, S3, SequenceFile, Avro…).</div>
+<p><b>Efficiency</b> comes from in-memory computing primitives and general computation graphs; <b>usability</b> from rich APIs (Java, Scala, Python; R in libraries) and an interactive shell. Claims: up to <b>100× faster</b>, often <b>2–10× less code</b>.</p>
+<h3>Limitations of MapReduce</h3>
+<ul><li>Map outputs and intermediate results are saved to HDFS for fault tolerance – an <b>expensive disk save</b> that degrades performance.</li><li>Costly for <b>iterative</b> and <b>interactive</b> applications; lacks efficient data sharing.</li><li>This led to specialized frameworks: Bulk Synchronous Processing (Pregel), iterative MapReduce.</li></ul>
+<p><b>Spark ideas:</b> not limited to the map-reduce model; use system memory, avoid saving intermediate results to disk, cache data for repetitive queries (e.g. machine learning); stay compatible with Hadoop.</p>
+<p><b>Ways to run:</b> local multicore (just a library), EC2 scripts, private cluster via Mesos, YARN or Standalone mode. <b>Applications:</b> Twitter spam classification, EM traffic prediction, K-means, ALS matrix factorization, in-memory OLAP on Hive data, SQL on Spark.</p>
+
+<h2 id="b"><span>2</span>RDDs &amp; Fault Tolerance</h2>
+<div class="box def"><b class="t">Resilient Distributed Dataset</b>An <b>immutable (read-only), partitioned collection of records</b> spread across the cluster, built through coarse-grained transformations (map, join…), automatically rebuilt on failure, and cacheable in memory (different storage levels; fallback to disk).</div>
+<div class="tbl"><table><tr><th>Type</th><th>Nature</th><th>Examples</th></tr>
+<tr><td>Transformations</td><td><b>Lazy</b>; build a new RDD from other RDDs through deterministic operations</td><td>map, filter, flatMap, groupBy, join</td></tr>
+<tr><td>Actions</td><td>Return a value or export data; <b>trigger execution</b></td><td>count, collect, take, reduce, save</td></tr></table></div>
+<p>Programmers also control <b>partitioning</b> and <b>persistence</b> (cache in RAM or disk).</p>
+<div class="box"><b class="t">Fault tolerance by lineage</b>RDDs log the coarse-grained transformations that built them (e.g. HadoopRDD → FilteredRDD → MappedRDD). A lost partition is simply <b>recomputed</b> from lineage – no cost if there is no failure.</div>
+<p><b>Log-mining example:</b> load errors, <code>cache()</code> them, then run repeated searches. 1 TB scanned in <b>5–7 s</b> vs 170 s from disk.</p>
+<pre>lines = spark.textFile("hdfs://...")
+errors = lines.filter(lambda s: s.startswith("ERROR"))
+messages = errors.map(lambda s: s.split('\t')[2])
+messages.cache()
+messages.filter(lambda s: "foo" in s).count()</pre>
+
+<h2 id="c"><span>3</span>Scala Essentials</h2>
+<p>Scala is a high-level, <b>statically typed</b> language for the JVM, object-oriented + functional, speed comparable to Java, with <b>type inference</b> and full Java interoperability. Spark was originally written in Scala; interactive shells exist in Scala and Python only (standalone programs: any language). Java/Scala are faster (static typing); Python does well for numerics with NumPy.</p>
+<div class="two"><pre>var x = 7        // mutable, inferred
+val y = "hi"     // read-only
+def square(x: Int): Int = x * x
+var arr = new Array[Int](8)
+var lst = List(1, 2, 3)
+arr(5) = 7       // indexing with ()</pre>
+<pre>list.map(_ + 2)          // List(3,4,5)
+list.filter(_ % 2 == 1)  // List(1,3)
+list.reduce(_ + _)       // 6
+// (x: Int) =&gt; x + 2   full closure
+// x =&gt; x + 2          inferred</pre></div>
+<p>List is immutable, so these leave the original unchanged. Other Seq methods: <b>flatMap</b> (one-to-many), <b>exists</b>, <b>forall</b>, <b>groupBy</b>, <b>sortBy</b>.</p>
+
+<h2 id="d"><span>4</span>Spark Operations</h2>
+<p>The <b>SparkContext</b> (<code>sc</code>) is the main entry point (auto-created in shells). Shell mode is set by <code>MASTER</code>: <code>local</code> (1 thread), <code>local[2]</code>, or <code>spark://host:port</code> (standalone cluster). Standalone programs create it with (masterUrl, app name, sparkHome, list of JARs/files to ship).</p>
+<div class="tbl"><table><tr><th>Operation</th><th>Effect</th></tr>
+<tr><td>parallelize(list)</td><td>Local collection → RDD</td></tr><tr><td>textFile(path)</td><td>Load from local FS, HDFS or S3; hadoopFile for any InputFormat</td></tr>
+<tr><td>map / filter / flatMap</td><td>[1,2,3] → squares {1,4,9}; evens {4}; flatMap(range(0,x)) → {0,0,1,0,1,2}</td></tr>
+<tr><td>collect / take(k) / count / reduce / saveAsTextFile</td><td>Actions; reduce needs an associative function</td></tr>
+<tr><td>reduceByKey</td><td>Distributed reduce on (k,v) pairs; also does map-side combining. (cat,1),(dog,1),(cat,2) → (cat,3),(dog,1)</td></tr>
+<tr><td>groupByKey / sortByKey</td><td>(cat, Seq(1,2)),(dog, Seq(1)) / sorted by key</td></tr>
+<tr><td>join / cogroup</td><td>Combine two key-value RDDs; cogroup gives (key, (Seq of left, Seq of right))</td></tr>
+<tr><td>sample, union, cartesian, pipe</td><td>Subset sample, merge RDDs, cross product, pass through external program</td></tr></table></div>
+<pre>lines.flatMap(lambda line: line.split(" ")) \
+     .map(lambda word: (word, 1)) \
+     .reduceByKey(lambda x, y: x + y)   # word count</pre>
+<ul><li><b>Parallelism:</b> pair operations take an optional task-count argument (<code>reduceByKey(f, 5)</code>) or set <code>spark.default.parallelism</code>.</li><li><b>Closures:</b> external variables are shipped to the cluster; each task gets a <b>new copy</b> (updates not sent back); must be Serializable/Pickle-able; don't use fields of an outer object (ships the whole object → <code>NotSerializableException</code>). Fix: copy to a local variable first, e.g. <code>val param_ = param</code>.</li></ul>
+
+<h2 id="e"><span>5</span>Job Execution</h2>
+<p>Spark runs as a library inside your application (one instance per app). The <b>Driver</b> holds the SparkContext; a <b>cluster manager</b> (Standalone, Mesos, YARN) allocates <b>Workers/Executors</b>, which run <b>tasks</b> and hold the cache; storage is accessed via Hadoop InputFormat (HDFS, HBase, S3, Cassandra, Avro).</p>
+<div class="flow"><div><b>RDD objects</b>build operator DAG</div><i>→</i><div><b>DAGScheduler</b>split into stages of tasks; submit each stage as ready</div><i>→</i><div><b>TaskScheduler</b>launch tasks via cluster manager; retry failed/straggling</div><i>→</i><div><b>Worker</b>execute tasks; block manager stores/serves blocks</div></div>
+<p><b>DAG</b> (Directed Acyclic Graph): source → transformations → RDDs → action; it is Spark's execution plan and scales automatically over executors. The scheduler supports general task graphs, <b>pipelines functions</b> where possible, is cache-aware (reuse and locality) and partitioning-aware to <b>avoid shuffles</b>. Shuffle = exchange, partition, sort across executors.</p>
+<p><b>Job example:</b> <code>errors.cache()</code> then two <code>filter(...).count()</code> actions – the first action loads and caches blocks on workers; the second reuses the cache.</p>
+<p><b>Build &amp; submit:</b> <code>sbt package</code>, then <code>spark-submit --master local --class GvaWeather target/…jar</code>. Hadoop compatibility: reuses InputFormat/OutputFormat; <code>textFile</code> for filesystems, <code>hadoopRDD</code> with any JobConf.</p>
+
+<h2 id="f"><span>6</span>PageRank in Spark</h2>
+<p>Good example of a complex, multi-stage, <b>iterative</b> algorithm that benefits from in-memory caching. <b>Idea:</b> links from many pages, or from a high-rank page, give high rank.</p>
+<div class="box def"><b class="t">Algorithm</b>1. Start each page at rank 1. 2. Each iteration, page p contributes <b>rank<sub>p</sub> / |neighbors<sub>p</sub>|</b> to its neighbors. 3. New rank = <b>0.15 + 0.85 × Σ contributions</b>.<br>Example: contributions 1 + 0.5 + 0.5 → 0.15 + 0.85 × 2 = <b>1.85</b>. Ranks evolve 1.85, 0.58, 1.0, 0.58 → 1.31, 0.39, 1.72, 0.58 → final 1.44, 0.46, 1.37, 0.73.</div>
+<pre>val links = // RDD of (url, neighbors)
+var ranks = // RDD of (url, rank)
+for (i &lt;- 1 to ITERATIONS) {
+  val contribs = links.join(ranks).flatMap {
+    case (url, (links, rank)) =&gt; links.map(dest =&gt; (dest, rank/links.size)) }
+  ranks = contribs.reduceByKey(_ + _).mapValues(0.15 + 0.85 * _)
+}</pre>
+
+<h2 id="g"><span>7</span>Performance Results</h2>
+<div class="tbl"><table><tr><th>Experiment</th><th>Hadoop</th><th>Spark</th></tr>
+<tr><td>PageRank, 30 machines (s/iter)</td><td>171</td><td>23</td></tr><tr><td>PageRank, 60 machines</td><td>80</td><td>14</td></tr>
+<tr><td>K-means (s/iter)</td><td>155</td><td>4.1</td></tr><tr><td>Logistic regression (s/iter)</td><td>110</td><td>0.96</td></tr></table></div>
+<ul><li><b>Fault recovery:</b> iteration time ≈ 57–59 s (first 119 s); when a failure hits (iteration 6) it rises only to 81 s, then returns to normal – lineage recomputation.</li><li><b>Less RAM:</b> iteration time vs % of working set cached: disabled 69 s, 25% 58, 50% 41, 75% 30, fully cached <b>12 s</b> – graceful degradation.</li></ul>
+
+<h2 id="h"><span>8</span>Spark Built-in Libraries</h2>
+<p>Spark Core plus standard libraries (big-data apps lacked "standard libraries"): <b>Spark SQL</b> (structured), <b>Streaming</b> (real-time), <b>MLlib</b> (machine learning), <b>GraphX</b> (graph).</p>
+<div class="tbl"><table><tr><th>Library</th><th>Details</th></tr>
+<tr><td>MLlib</td><td>Classification (logistic regression, linear SVM, naïve Bayes, trees); regression (GLMs, trees); collaborative filtering (ALS, NMF); clustering (k-means); decomposition (SVD, PCA); optimization (SGD, L-BFGS).</td></tr>
+<tr><td>GraphX</td><td>Graph processing built from RDDs of nodes and edges; composable steps (raw data → ETL → initial graph → slice → subgraph → PageRank → analyze). Algorithms: collaborative filtering, structured prediction, semi-supervised ML, community detection (triangle counting, K-core, K-truss), graph analytics (PageRank, shortest path, coloring), classification.</td></tr>
+<tr><td>Streaming</td><td>Large-scale streaming; live stream cut into batches of X seconds; exactly-once semantics; unifies batch, interactive and streaming.</td></tr>
+<tr><td>Spark SQL</td><td>Load and query structured data, e.g. from Hive (<code>HiveContext</code>, <code>sql(...)</code>) or JSON (<code>jsonFile</code>, <code>registerAsTable</code>).</td></tr></table></div>
+<p>Community: most active open-source big-data project – 200+ developers, 50+ companies; ~130 contributors in the past year vs Hadoop MapReduce ~100, Giraph ~30, Storm ~25.</p>
+
+<h2 id="i"><span>9</span>Design of Key-Value Stores</h2>
+<p>Key-value abstraction: <b>key → value</b> (item number → item info; tweet id → tweet; account number → account). It is a <b>distributed dictionary</b> (insert, lookup, delete by key, like a hash table) and reuses techniques from P2P Distributed Hash Tables (DHTs).</p>
+<div class="tbl"><table><tr><th>Aspect</th><th>RDBMS (e.g. MySQL)</th><th>Key-value / NoSQL ("Not Only SQL")</th></tr>
+<tr><td>Storage</td><td>Tables, entire row stored together</td><td>Tables ("column family" in Cassandra, "table" in HBase, "collection" in MongoDB); typically a column/column group stored together</td></tr>
+<tr><td>Schema</td><td>Fixed, structured; primary/foreign keys</td><td>May be schemaless; columns can be missing per row; no foreign keys; joins often unsupported</td></tr>
+<tr><td>Query</td><td>SQL, joins</td><td><code>get(key)</code>, <code>put(key, value)</code> plus extensions (CQL in Cassandra); can have index tables</td></tr></table></div>
+<div class="box"><b class="t">Why RDBMS mismatches today's workloads</b>Data is large and unstructured (hard to define schemas); millions of clients do random reads/writes, sometimes write-heavy; foreign keys are rarely needed and joins infrequent (an overhead).</div>
+<p><b>Needs:</b> speed, avoid single point of failure (SPOF), low TCO (total cost of operation/ownership), fewer administrators, incremental scalability – <b>scale out, not scale up</b>.</p>
+<div class="two"><div class="box"><b class="t">Scale up</b>Replace with more powerful machines; traditional; not cost-effective (above price-curve sweet spot); frequent replacement.</div>
+<div class="box"><b class="t">Scale out</b>Add more COTS (Components Off The Shelf) machines incrementally; cheaper; phase in newer machines and phase out older; used by most data centers and clouds.</div></div>
+<p><b>Column-oriented storage:</b> range searches within a column are fast without fetching the whole database – e.g. "blog_ids updated in the past month": search the <code>last_updated</code> column and fetch the matching <code>blog_id</code> column only.</p>
+
+<h2 id="j"><span>10</span>Apache Cassandra: Key → Server Mapping</h2>
+<p>Cassandra is a distributed key-value store intended to run in a datacenter (and across DCs); designed at Facebook, now an Apache project. Users include IBM, Adobe, HP, eBay, Ericsson, Twitter, PBS Kids; Netflix uses it to track positions in videos.</p>
+<p><b>Partitioner:</b> the key→server mapping. Cassandra uses a <b>ring-based DHT without finger tables or routing</b>, one ring per datacenter. Example (m = 7, 2⁷ = 128 positions): nodes N0, N16, N32, N45, N80, N96, N112. For key K13, the <b>primary replica</b> is N16 and <b>backup replicas</b> are N32 and N45. A client sends a read/write to a <b>coordinator</b>, which forwards to the replicas.</p>
+<div class="flow"><div><b>Client</b>read/write K13</div><i>→</i><div><b>Coordinator</b></div><i>→</i><div><b>N16</b>primary replica</div><i>→</i><div><b>N32, N45</b>backup replicas</div></div>
+<p><i>Note: the supplied slides end here; the announced consistency-solutions topic is not covered in the provided text.</i></p>
+
+<h2 id="k"><span>11</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b><ul>
+<li>Spark fixes MapReduce's disk-heavy intermediate results for iterative/interactive jobs (up to 100×).</li>
+<li>RDD = immutable, partitioned, lazily transformed; actions trigger execution; recovery by lineage.</li>
+<li>Transformations: map, filter, flatMap, reduceByKey, groupByKey, join, cogroup. Actions: count, collect, take, reduce, save.</li>
+<li>Execution: Driver/SparkContext → cluster manager → executors; DAGScheduler (stages) → TaskScheduler (tasks).</li>
+<li>PageRank: rank = 0.15 + 0.85 × Σ(rank/|neighbors|).</li>
+<li>Libraries: SQL, Streaming, MLlib, GraphX.</li>
+<li>Key-value stores: get/put, no fixed schema, column storage, scale out; Cassandra = ring partitioner with primary and backup replicas.</li></ul></div>
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

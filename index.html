@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A2647">
+<title>Big Data Computing | Study Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.page{max-width:960px;margin:0 auto;padding:28px 22px 36px}
+header{position:relative;overflow:hidden;background:#0A2647;color:#fff;border-radius:10px;padding:30px 30px 28px;margin-bottom:24px;border-left:8px solid #2C7FCE}
+header:after{content:"";position:absolute;width:210px;height:210px;right:-75px;top:-95px;border:1px solid rgba(156,199,240,.2);border-radius:50%;box-shadow:0 0 0 24px rgba(156,199,240,.04),0 0 0 48px rgba(156,199,240,.035)}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{position:relative;margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}
+header p{position:relative;margin:0;font-weight:300;color:#d5e4f5}
+section h2{display:flex;align-items:baseline;justify-content:space-between;gap:12px;color:var(--dk);font-size:19px;font-weight:600;margin:30px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--ac)}
+section h2 small{font-size:11px;font-weight:400;color:var(--bl)}
+.weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.week{position:relative;display:flex;min-height:126px;flex-direction:column;align-items:flex-start;padding:15px 16px 13px;background:var(--card);border:1px solid var(--bd);border-radius:7px;color:var(--tx);text-decoration:none;transition:border-color .16s ease,transform .16s ease,background .16s ease;animation:enter .35s both}
+.week:nth-child(2){animation-delay:.03s}.week:nth-child(3){animation-delay:.06s}.week:nth-child(4){animation-delay:.09s}.week:nth-child(5){animation-delay:.12s}.week:nth-child(6){animation-delay:.15s}.week:nth-child(7){animation-delay:.18s}.week:nth-child(8){animation-delay:.21s}
+.week[href]:hover{border-color:var(--ac);background:var(--pl);transform:translateY(-2px)}
+.week:focus-visible,.practice a:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.week-top{display:flex;width:100%;align-items:center;justify-content:space-between;margin-bottom:10px}
+.number{display:grid;width:34px;height:34px;place-items:center;border-radius:6px;background:var(--pl);color:var(--bl);font-size:15px;font-weight:600}
+.status{color:var(--bl);font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.week h3{margin:0;color:var(--dk);font-size:14px;font-weight:600}
+.week p{margin:3px 0 0;color:var(--bl);font-size:11.5px}
+.week.soon{background:var(--lg);border-style:dashed;color:var(--bl);cursor:default}
+.week.soon .number{background:var(--card);color:var(--bl)}
+.practice{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;background:var(--pl);border:1px solid var(--bd);border-left:5px solid var(--ac);border-radius:7px}
+.practice h3{margin:0;color:var(--dk);font-size:15px;font-weight:600}
+.practice p{margin:3px 0 0;color:var(--bl);font-size:12px}
+.practice a{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;border:1px solid var(--ac);border-radius:6px;background:var(--ac);color:#fff;font-weight:500;font-size:12px;text-decoration:none}
+.practice a:hover{background:var(--dk);border-color:var(--dk)}
+footer{margin-top:30px;padding-top:12px;border-top:1px solid var(--bd);color:var(--bl);font-size:11px;text-align:center}
+@keyframes enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:720px){.weeks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:420px){.page{padding:18px 14px 28px}header{padding:24px 20px}header h1{font-size:24px}.week{min-height:120px;padding:12px}.practice{align-items:flex-start;flex-direction:column}.practice a{width:100%}section h2 small{max-width:42%;text-align:right}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media print{body{background:#fff}.page{max-width:none;padding:0}header{print-color-adjust:exact;-webkit-print-color-adjust:exact}.week{break-inside:avoid;animation:none}.practice a{color:#fff}}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+<small>NPTEL · Big Data Computing · IIT Patna</small>
+<h1>Big Data Study Guides</h1>
+<p>Weeks 1–7 study guides and practice tests, collected in one place.</p>
+</header>
+
+<section aria-labelledby="weeks-heading">
+<h2 id="weeks-heading">Weekly Study Guides <small>Choose a week to open its guide</small></h2>
+<div class="weeks">
+<a class="week" href="Big%20Data%20Week%201%20Study%20Guide.html">
+<span class="week-top"><span class="number">01</span><span class="status">Available</span></span>
+<h3>Week 1</h3><p>Study guide</p>
+</a>
+<a class="week" href="Big%20Data%20Week%202%20Study%20Guide.html">
+<span class="week-top"><span class="number">02</span><span class="status">Available</span></span>
+<h3>Week 2</h3><p>Study guide</p>
+</a>
+<a class="week" href="Big%20Data%20Week%203%20Study%20Guide.html">
+<span class="week-top"><span class="number">03</span><span class="status">Available</span></span>
+<h3>Week 3</h3><p>Study guide</p>
+</a>
+<a class="week" href="Big%20Data%20Week%204%20Study%20Guide.html">
+<span class="week-top"><span class="number">04</span><span class="status">Available</span></span>
+<h3>Week 4</h3><p>Study guide</p>
+</a>
+<a class="week" href="Big%20Data%20Week%205%20Study%20Guide.html">
+<span class="week-top"><span class="number">05</span><span class="status">Available</span></span>
+<h3>Week 5</h3><p>Study guide</p>
+</a>
+<a class="week" href="Big%20Data%20Week%206%20Study%20Guide.html">
+<span class="week-top"><span class="number">06</span><span class="status">Available</span></span>
+<h3>Week 6</h3><p>Study guide</p>
+</a>
+<a class="week" href="big-data-week7-study-guide.html">
+<span class="week-top"><span class="number">07</span><span class="status">Available</span></span>
+<h3>Week 7</h3><p>Study guide</p>
+</a>
+<div class="week soon" aria-label="Week 8 study guide coming soon">
+<span class="week-top"><span class="number">08</span><span class="status">Coming soon</span></span>
+<h3>Week 8</h3><p>Guide not added yet</p>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="practice-heading">
+<h2 id="practice-heading">Practice</h2>
+<div class="practice">
+<div><h3>Big Data Practice Tests</h3><p>Weeks 1–6 · 30 questions per week with instant scoring</p></div>
+<a href="Big%20Data%20Practice%20Tests%20%28Weeks%201%E2%80%936%29%20%282%29.html">Open practice tests</a>
+</div>
+</section>
+
+<footer>Big Data Computing · Study materials</footer>
+</main>
+</body>
+</html>
