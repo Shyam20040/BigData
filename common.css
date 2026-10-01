@@ -1,0 +1,161 @@
+/* Shared visual polish for the Big Data study guides and practice tests. */
+:root {
+  --surface-shadow: 0 12px 32px rgba(10, 38, 71, 0.07);
+  --surface-shadow-hover: 0 16px 36px rgba(10, 38, 71, 0.12);
+  --radius-card: 12px;
+  --content-width: 1040px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse at 50% -18rem, rgba(44,127,206,.11), transparent 42rem);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pg, .page {
+  width: min(100%, var(--content-width));
+  padding-top: clamp(22px, 4vw, 42px);
+  padding-bottom: clamp(30px, 5vw, 56px);
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--surface-shadow);
+}
+header::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: -100px;
+  top: -135px;
+  border: 1px solid rgba(156,199,240,.22);
+  border-radius: 50%;
+  box-shadow: 0 0 0 24px rgba(156,199,240,.055), 0 0 0 50px rgba(156,199,240,.035);
+  pointer-events: none;
+}
+
+nav {
+  position: sticky;
+  top: 10px;
+  z-index: 2;
+  box-shadow: 0 5px 18px rgba(10,38,71,.06);
+  backdrop-filter: blur(12px);
+}
+nav a { display: inline-block; padding: 3px 0; transition: color .18s ease; }
+nav a:hover { color: var(--ac); text-decoration: underline; text-underline-offset: 3px; }
+nav a:focus-visible { border-radius: 4px; }
+
+h2 { scroll-margin-top: 76px; }
+.box, .def, .grid > div, .flow > div, .tbl, pre {
+  box-shadow: 0 4px 16px rgba(10,38,71,.045);
+}
+.box, .grid > div, .flow > div { border-radius: var(--radius-card); }
+.tbl { border-radius: 10px; }
+table { overflow: hidden; border-radius: 8px; }
+th { padding: 10px 12px; }
+td { padding: 8px 12px; }
+tr { transition: background-color .15s ease; }
+
+.week, .practice, .grid > div, .flow > div {
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.week { border-radius: 12px; }
+.week[href]:hover, .grid > div:hover, .flow > div:hover {
+  box-shadow: var(--surface-shadow-hover);
+}
+.practice { border-radius: 12px; }
+.practice a { transition: transform .18s ease, background-color .18s ease; }
+.practice a:hover { transform: translateY(-1px); }
+
+/* Practice test controls share the same touch-friendly treatment as guide cards. */
+.tabs { gap: clamp(5px, 1vw, 10px); }
+.tab, .dock button, .o { transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background-color .16s ease; }
+.tab:hover, .dock button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(10,38,71,.1); }
+.o:hover:not(:disabled) { transform: translateX(2px); }
+.q, .stat, .res, .empty { box-shadow: 0 5px 18px rgba(10,38,71,.055); }
+.q { border-radius: var(--radius-card); }
+.stat { border-radius: var(--radius-card); }
+.bar div { border-radius: inherit; }
+.dock { backdrop-filter: blur(14px); box-shadow: 0 -8px 24px rgba(10,38,71,.06); }
+button, .tab, .o { -webkit-tap-highlight-color: transparent; }
+
+img, video, iframe { max-width: 100%; }
+pre, code { overflow-wrap: anywhere; }
+pre { overflow-x: auto; }
+table { min-width: 100%; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--ac);
+  outline-offset: 3px;
+}
+
+/* Wide screens: preserve readable line lengths and use available space deliberately. */
+@media (min-width: 1100px) {
+  .page { max-width: 1040px; }
+  .weeks { gap: 16px; }
+}
+
+/* Tablet and compact laptop layouts. */
+@media (max-width: 800px) {
+  .pg, .page { padding-left: clamp(16px, 3vw, 24px); padding-right: clamp(16px, 3vw, 24px); }
+  .weeks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow { gap: 8px; }
+  .flow > div { flex-basis: 140px; }
+  .two { grid-template-columns: 1fr; }
+}
+
+/* Phone layouts: stack actions and keep navigation and tables easy to use. */
+@media (max-width: 600px) {
+  .pg, .page { padding-top: 18px; padding-bottom: 34px; }
+  nav { position: static; line-height: 2; }
+  nav a { white-space: normal; margin-right: 10px; }
+  header { border-radius: 12px; }
+  .tbl { margin-left: -2px; margin-right: -2px; }
+  .tabs { position: static; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .practice { align-items: stretch; flex-direction: column; }
+  .practice a { width: 100%; }
+  .dock { gap: 8px; padding-left: 12px; padding-right: 12px; }
+  .dock button { flex: 1 1 0; min-height: 44px; padding: 10px 12px; }
+  .q { padding: 13px; }
+  .o { min-height: 44px; padding: 10px 12px; }
+  th, td { padding: 7px 9px; }
+  h2 { scroll-margin-top: 16px; }
+}
+
+@media (max-width: 400px) {
+  body { font-size: 13.5px; }
+  .pg, .page { padding-left: 12px; padding-right: 12px; }
+  .weeks { gap: 9px; }
+  .week { min-height: 112px; padding: 11px; }
+  .week h3 { font-size: 13px; }
+  header { padding: 21px 18px; }
+  header h1 { font-size: clamp(20px, 6vw, 24px); overflow-wrap: anywhere; }
+  .tabs { gap: 5px; }
+  .tab { padding: 8px 3px; }
+  .dock button { font-size: 12px; }
+  .flow > div { flex-basis: 100%; }
+}
+
+@media (max-width: 340px) {
+  .weeks { grid-template-columns: 1fr; }
+  .week { min-height: 96px; }
+  .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat .r { gap: 8px; flex-wrap: wrap; }
+  .dock { gap: 6px; }
+  .dock button { padding-left: 7px; padding-right: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
+
+@media print {
+  body { background-image: none; }
+  nav { position: static; box-shadow: none; }
+  header, .box, .grid > div, .flow > div, .tbl, pre { box-shadow: none; }
+}

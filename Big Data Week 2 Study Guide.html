@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Big Data Computing – Week 2 Study Guide</title>
+<title>Big Data Computing â€“ Week 2 Study Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -39,8 +39,9 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 @media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-</style></head><body><div class="pg">
-<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+</style><link rel="stylesheet" href="common.css">
+</head><body><div class="pg">
+<header><small>NPTEL Â· Big Data Computing Â· IIT Patna (Dr. Rajiv Misra)</small>
 <h1>HDFS &amp; MapReduce: Architecture, Processes and Worked Examples</h1><p>Week 2 consolidated study guide</p></header>
 <nav><a href="#a">1 HDFS Basics</a><a href="#b">2 Architecture</a><a href="#c">3 Blocks</a><a href="#d">4 Read/Write</a><a href="#e">5 Tuning &amp; Robustness</a><a href="#f">6 MapReduce 1.0</a><a href="#g">7 Paradigm</a><a href="#h">8 YARN</a><a href="#i">9 Applications</a><a href="#j">10 Examples</a><a href="#k">11 Revision</a></nav>
 
@@ -51,32 +52,32 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>HBase</td><td>Column-oriented table service</td><td>Powerset (now Microsoft)</td></tr><tr><td>Pig</td><td>Dataflow language, parallel execution</td><td>Yahoo!</td></tr>
 <tr><td>Hive</td><td>Data warehouse infrastructure</td><td>Facebook</td></tr><tr><td>ZooKeeper</td><td>Distributed coordination</td><td>Yahoo!</td></tr>
 <tr><td>Chukwa</td><td>Collecting management data</td><td>Yahoo!</td></tr><tr><td>Avro</td><td>Data serialization</td><td>Yahoo! (with Cloudera)</td></tr></table></div>
-<h3>Design goals → techniques</h3>
+<h3>Design goals â†’ techniques</h3>
 <div class="tbl"><table><tr><th>Goal</th><th>Technique</th></tr>
-<tr><td>Thousands of nodes/disks → frequent failure</td><td><b>Data replication</b>: same data on different nodes</td></tr>
-<tr><td>Large data sets (TB–PB), high throughput</td><td><b>Move computation close to data</b>; scalable file system on local disks of many nodes</td></tr>
+<tr><td>Thousands of nodes/disks â†’ frequent failure</td><td><b>Data replication</b>: same data on different nodes</td></tr>
+<tr><td>Large data sets (TBâ€“PB), high throughput</td><td><b>Move computation close to data</b>; scalable file system on local disks of many nodes</td></tr>
 <tr><td>Simple commits</td><td><b>Simplified coherency model</b>: write once, read many times</td></tr>
 <tr><td>Portability across heterogeneous hardware/software</td><td><b>Relax POSIX requirements</b> to increase throughput</td></tr></table></div>
 <p>Files are split into blocks distributed over nodes' local disks on low-cost commodity hardware; aggregating many disks scales performance.</p>
 
 <h2 id="b"><span>2</span>HDFS Architecture</h2>
-<div class="grid"><div><b>Single NameNode (master)</b> – manages namespace, regulates client access, tracks where blocks are on DataNodes; holds metadata (name, replicas, e.g. <code>/home/foo/data, 3</code>).</div>
-<div><b>Multiple DataNodes</b> – typically one per node, using local storage; manage storage, serve read/write requests, and create/delete/replicate blocks on NameNode instruction.</div></div>
+<div class="grid"><div><b>Single NameNode (master)</b> â€“ manages namespace, regulates client access, tracks where blocks are on DataNodes; holds metadata (name, replicas, e.g. <code>/home/foo/data, 3</code>).</div>
+<div><b>Multiple DataNodes</b> â€“ typically one per node, using local storage; manage storage, serve read/write requests, and create/delete/replicate blocks on NameNode instruction.</div></div>
 <div class="box def"><b class="t">Hadoop 2.0 improvements</b>
-<b>HDFS Federation:</b> multiple NameNodes and namespaces. A single NameNode (original design) becomes a bottleneck with thousands of nodes and billions of files. Benefits: <b>namespace scalability, performance, isolation</b>. Data is stored in <b>block pools</b> – one pool per NameNode/namespace – spread across all (common) DataNodes.<br>
+<b>HDFS Federation:</b> multiple NameNodes and namespaces. A single NameNode (original design) becomes a bottleneck with thousands of nodes and billions of files. Benefits: <b>namespace scalability, performance, isolation</b>. Data is stored in <b>block pools</b> â€“ one pool per NameNode/namespace â€“ spread across all (common) DataNodes.<br>
 <b>High Availability:</b> redundant NameNodes. <b>Heterogeneous / archival storage:</b> ARCHIVE, DISK, SSD, RAM_DISK.</div>
-<div class="flow"><div><b>NN-1 / NS1 … NN-n / NS n</b>Namespaces</div><i>→</i><div><b>Pool 1 … Pool n</b>Block pools</div><i>→</i><div><b>DataNode 1 … m</b>Common storage</div></div>
+<div class="flow"><div><b>NN-1 / NS1 â€¦ NN-n / NS n</b>Namespaces</div><i>â†’</i><div><b>Pool 1 â€¦ Pool n</b>Block pools</div><i>â†’</i><div><b>DataNode 1 â€¦ m</b>Common storage</div></div>
 
 <h2 id="c"><span>3</span>Block Size &amp; Small Files</h2>
-<p>Default block size is <b>64 MB</b> (often raised to <b>128 MB</b> by workload); good for large files. Block count = file size ÷ block size. <b>Example:</b> 10 GB file → 10 × 1024 / 64 = <b>160 blocks</b>. Block count affects:</p>
-<ul><li><b>NameNode memory</b> – every file/block is an object (~150 bytes each); a billion objects ≈ 300 GB. Replication (3×) triples blocks.</li><li><b>Number of map tasks</b> – depends on the blocks processed.</li><li><b>Network load</b> – DataNode checks are proportional to number of blocks.</li></ul>
-<div class="box"><b class="t">Small-files problem</b>10 GB in 32 KB files → <b>327,680 map tasks</b>: huge queue, start/stop latency of Java processes per task, inefficient disk I/O. <b>Solutions:</b> merge/concatenate files, sequence files, HBase/Hive configuration, <code>CombineFileInputFormat</code>.</div>
+<p>Default block size is <b>64 MB</b> (often raised to <b>128 MB</b> by workload); good for large files. Block count = file size Ã· block size. <b>Example:</b> 10 GB file â†’ 10 Ã— 1024 / 64 = <b>160 blocks</b>. Block count affects:</p>
+<ul><li><b>NameNode memory</b> â€“ every file/block is an object (~150 bytes each); a billion objects â‰ˆ 300 GB. Replication (3Ã—) triples blocks.</li><li><b>Number of map tasks</b> â€“ depends on the blocks processed.</li><li><b>Network load</b> â€“ DataNode checks are proportional to number of blocks.</li></ul>
+<div class="box"><b class="t">Small-files problem</b>10 GB in 32 KB files â†’ <b>327,680 map tasks</b>: huge queue, start/stop latency of Java processes per task, inefficient disk I/O. <b>Solutions:</b> merge/concatenate files, sequence files, HBase/Hive configuration, <code>CombineFileInputFormat</code>.</div>
 
 <h2 id="d"><span>4</span>Read &amp; Write Processes</h2>
 <h3>Read</h3>
-<div class="flow"><div><b>1 open</b>DistributedFileSystem</div><i>→</i><div><b>2 get block locations</b>from NameNode</div><i>→</i><div><b>3–5 read</b>FSDataInputStream reads from DataNodes</div><i>→</i><div><b>6 close</b></div></div>
+<div class="flow"><div><b>1 open</b>DistributedFileSystem</div><i>â†’</i><div><b>2 get block locations</b>from NameNode</div><i>â†’</i><div><b>3â€“5 read</b>FSDataInputStream reads from DataNodes</div><i>â†’</i><div><b>6 close</b></div></div>
 <h3>Write</h3>
-<div class="flow"><div><b>1–2 create</b>DistributedFileSystem asks NameNode</div><i>→</i><div><b>3 write</b>FSDataOutputStream</div><i>→</i><div><b>4–5 packet / ack</b>through pipeline of DataNodes</div><i>→</i><div><b>6 close, 7 complete</b></div></div>
+<div class="flow"><div><b>1â€“2 create</b>DistributedFileSystem asks NameNode</div><i>â†’</i><div><b>3 write</b>FSDataOutputStream</div><i>â†’</i><div><b>4â€“5 packet / ack</b>through pipeline of DataNodes</div><i>â†’</i><div><b>6 close, 7 complete</b></div></div>
 
 <h2 id="e"><span>5</span>Tuning &amp; Robustness</h2>
 <p>Tuning is done in XML files (e.g. <code>hdfs-site.xml</code>); commercial vendors offer GUI consoles.</p>
@@ -87,7 +88,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>dfs.namenode.fs-limits.max-blocks-per-file</td><td>Maximum blocks per file.</td></tr></table></div>
 <p><b>Replication trade-off:</b> with no replicas, a lost node/disk or a bad checksum cannot be recovered. <code>hadoop distcp</code> gives parallel file transfer.</p>
 <div class="tbl"><table><tr><th>Failure</th><th>Mitigation</th></tr>
-<tr><td>DataNode: server/disk crash, corruption; network failure (can affect many DataNodes)</td><td>Periodic <b>heartbeat</b> and block reports to NameNode. No recent heartbeat → node marked dead, no new I/O; NameNode knows blocks under replication factor (system-wide or per file) and <b>re-replicates</b>.</td></tr>
+<tr><td>DataNode: server/disk crash, corruption; network failure (can affect many DataNodes)</td><td>Periodic <b>heartbeat</b> and block reports to NameNode. No recent heartbeat â†’ node marked dead, no new I/O; NameNode knows blocks under replication factor (system-wide or per file) and <b>re-replicates</b>.</td></tr>
 <tr><td>Data corruption</td><td><b>Checksum</b> computed at file creation, stored in HDFS namespace, verified on retrieval; re-read from alternate replica.</td></tr>
 <tr><td>NameNode: disk failure/corruption</td><td>Multiple copies of central metadata; failover to standby NameNode (manual by default).</td></tr></table></div>
 
@@ -95,59 +96,59 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>MapReduce is Hadoop's execution engine; in Hadoop 1.0 it handles both cluster resource management and data processing over HDFS.</p>
 <div class="two"><div class="box"><b class="t">JobTracker (master)</b>Receives job from client, breaks it into tasks, allocates tasks to slaves, monitors progress. Unit of execution = <b>job</b>.</div>
 <div class="box"><b class="t">TaskTracker (each slave)</b>Runs tasks on local data, reports progress/results to JobTracker. Master = JobTracker + NameNode; slaves = TaskTracker + DataNode.</div></div>
-<div class="flow"><div><b>1</b>Client submits job</div><i>→</i><div><b>2</b>JT asks NameNode data location</div><i>→</i><div><b>3</b>JT tells TaskTrackers to run</div><i>→</i><div><b>4</b>Results stored on DataNode; NN informed</div><i>→</i><div><b>5–6</b>TTs report to JT; JT tells client</div><i>→</i><div><b>7</b>Client gets results from NN</div></div>
+<div class="flow"><div><b>1</b>Client submits job</div><i>â†’</i><div><b>2</b>JT asks NameNode data location</div><i>â†’</i><div><b>3</b>JT tells TaskTrackers to run</div><i>â†’</i><div><b>4</b>Results stored on DataNode; NN informed</div><i>â†’</i><div><b>5â€“6</b>TTs report to JT; JT tells client</div><i>â†’</i><div><b>7</b>Client gets results from NN</div></div>
 <p><i>Example:</i> 20,000 customer records split as 5 chunks of 4,000 across 5 nodes; each finds customers in "Mumbai" in parallel.</p>
 
 <h2 id="g"><span>7</span>MapReduce Paradigm</h2>
-<div class="box def"><b class="t">Definition</b>MapReduce is a programming model and implementation for processing and generating large data sets. Users write <b>map</b> (key/value → intermediate key/value pairs) and <b>reduce</b> (merges all values for the same intermediate key). Run-time automatically handles partitioning, scheduling, machine failures and inter-machine communication, so programmers need no parallel-systems experience.</div>
-<p><b>Why:</b> use 1000s of CPUs without the management hassle – automatic parallelization and distribution, fault tolerance, I/O scheduling, monitoring and status updates. Terms come from functional languages (Lisp): <code>(map square '(1 2 3 4))</code> → (1 4 9 16), processing records independently; <code>(reduce + '(1 4 9 16))</code> → 30, combining in batches.</p>
-<div class="flow"><div><b>Input</b>chunks / records</div><i>→</i><div><b>Map</b>parallel; emits (k, v)</div><i>→</i><div><b>Shuffle &amp; sort</b>group by key</div><i>→</i><div><b>Reduce</b>merge values per key</div><i>→</i><div><b>Output</b></div></div>
-<ul><li>Signature: <code>map(k,v) → list(k1,v1)</code>; <code>reduce(k1, list(v1)) → v2</code>.</li><li>Reduce receives values via an <b>iterator</b> so lists too large for memory can be handled; usually 0 or 1 output per call.</li><li>Each key goes to exactly one reducer; common <b>hash partitioning</b>: <code>reduce# = hash(key) % number_of_reduce_tasks</code>.</li><li>Distributed file: chunks 16–64 MB, replicated 2–3×, replicas kept on different racks; master (NameNode) holds metadata, clients then talk directly to chunkservers.</li></ul>
+<div class="box def"><b class="t">Definition</b>MapReduce is a programming model and implementation for processing and generating large data sets. Users write <b>map</b> (key/value â†’ intermediate key/value pairs) and <b>reduce</b> (merges all values for the same intermediate key). Run-time automatically handles partitioning, scheduling, machine failures and inter-machine communication, so programmers need no parallel-systems experience.</div>
+<p><b>Why:</b> use 1000s of CPUs without the management hassle â€“ automatic parallelization and distribution, fault tolerance, I/O scheduling, monitoring and status updates. Terms come from functional languages (Lisp): <code>(map square '(1 2 3 4))</code> â†’ (1 4 9 16), processing records independently; <code>(reduce + '(1 4 9 16))</code> â†’ 30, combining in batches.</p>
+<div class="flow"><div><b>Input</b>chunks / records</div><i>â†’</i><div><b>Map</b>parallel; emits (k, v)</div><i>â†’</i><div><b>Shuffle &amp; sort</b>group by key</div><i>â†’</i><div><b>Reduce</b>merge values per key</div><i>â†’</i><div><b>Output</b></div></div>
+<ul><li>Signature: <code>map(k,v) â†’ list(k1,v1)</code>; <code>reduce(k1, list(v1)) â†’ v2</code>.</li><li>Reduce receives values via an <b>iterator</b> so lists too large for memory can be handled; usually 0 or 1 output per call.</li><li>Each key goes to exactly one reducer; common <b>hash partitioning</b>: <code>reduce# = hash(key) % number_of_reduce_tasks</code>.</li><li>Distributed file: chunks 16â€“64 MB, replicated 2â€“3Ã—, replicas kept on different racks; master (NameNode) holds metadata, clients then talk directly to chunkservers.</li></ul>
 <pre>map(key, value):            // key: doc name; value: text
   for each word w in value: emit(w, 1)
 reduce(key, values):        // key: word; values: iterator of counts
   result = 0
   for each v in values: result += v
   emit(key, result)</pre>
-<p><b>Word count:</b> "see bob run", "see spot throw" → map: bob 1, see 1, run 1, see 1, spot 1, throw 1 → shuffle groups the two "see" → reduce: bob 1, run 1, <b>see 2</b>, spot 1, throw 1.</p>
+<p><b>Word count:</b> "see bob run", "see spot throw" â†’ map: bob 1, see 1, run 1, see 1, spot 1, throw 1 â†’ shuffle groups the two "see" â†’ reduce: bob 1, run 1, <b>see 2</b>, spot 1, throw 1.</p>
 
 <h2 id="h"><span>8</span>YARN Scheduler (Hadoop 2.x+)</h2>
 <p>YARN = Yet Another Resource Negotiator. Each server is a set of <b>containers</b> (fixed CPU + fixed memory; e.g. 8 cores + 16 GB server = containers of 1 core + 2 GB).</p>
 <div class="tbl"><table><tr><th>Component</th><th>Role</th></tr><tr><td>Global Resource Manager</td><td>Scheduling</td></tr><tr><td>Per-server Node Manager</td><td>Daemon and server-specific functions</td></tr><tr><td>Per-application Application Master</td><td>Negotiates containers with RM and NMs; detects task failures of its job</td></tr></table></div>
-<p><b>Getting a container:</b> AM needs container → RM allocates on a node (e.g. Node B) → AM asks that NodeManager to start the task → container completion reported.</p>
+<p><b>Getting a container:</b> AM needs container â†’ RM allocates on a node (e.g. Node B) â†’ AM asks that NodeManager to start the task â†’ container completion reported.</p>
 
 <h2 id="i"><span>9</span>MapReduce Applications</h2>
 <div class="tbl"><table><tr><th>Application</th><th>Map</th><th>Reduce</th></tr>
 <tr><td>Distributed grep</td><td>Emit line if it matches pattern</td><td>Identity (copy to output)</td></tr>
-<tr><td>URL access count</td><td>Log → (URL, 1)</td><td>Sum → (URL, total)</td></tr>
-<tr><td>URL access %</td><td>Job 1 as above; job 2 map → (1, (URL, count))</td><td>Single reducer: pass 1 sums overall count, pass 2 computes %</td></tr>
-<tr><td>Reverse web-link graph</td><td>(source, target) → (target, source)</td><td>(target, list(source))</td></tr>
+<tr><td>URL access count</td><td>Log â†’ (URL, 1)</td><td>Sum â†’ (URL, total)</td></tr>
+<tr><td>URL access %</td><td>Job 1 as above; job 2 map â†’ (1, (URL, count))</td><td>Single reducer: pass 1 sums overall count, pass 2 computes %</td></tr>
+<tr><td>Reverse web-link graph</td><td>(source, target) â†’ (target, source)</td><td>(target, list(source))</td></tr>
 <tr><td>Term-vector per host</td><td>(hostname, term vector) per document</td><td>Add vectors, drop infrequent terms</td></tr>
-<tr><td>Inverted index</td><td>(word, docID)</td><td>Sort IDs → (word, list(docID))</td></tr>
+<tr><td>Inverted index</td><td>(word, docID)</td><td>Sort IDs â†’ (word, list(docID))</td></tr>
 <tr><td>Distributed sort</td><td>(key, record); map output sorted</td><td>Identity; input sorted; <b>range partitioning</b> (not hashing) balanced by data distribution</td></tr></table></div>
 
 <h2 id="j"><span>10</span>Worked Examples</h2>
 <h3>Word-length counting</h3>
-<p>Map emits (length, word): 3:the, 3:and, 3:you, 4:then … Grouped: 3:[the, and, you], 4:[then, what, when], 5:[steve, where], 8:[savannah, research]. Reduce counts list size → 3:3, 4:3, 5:2, 8:2.</p>
+<p>Map emits (length, word): 3:the, 3:and, 3:you, 4:then â€¦ Grouped: 3:[the, and, you], 4:[then, what, when], 5:[steve, where], 8:[savannah, research]. Reduce counts list size â†’ 3:3, 4:3, 5:2, 8:2.</p>
 <h3>Word-length histogram</h3>
-<p>Classes: Big 10+ letters, Medium 5–9, Small 2–4, Tiny 1. Map Task 1 (204 words): yellow 17, red 77, blue 107, pink 3; Map Task 2 (190 words): 20, 71, 93, 6. After shuffle and reduce: <b>yellow 37, red 148, blue 200, pink 9</b>. A combiner can pre-sum locally.</p>
+<p>Classes: Big 10+ letters, Medium 5â€“9, Small 2â€“4, Tiny 1. Map Task 1 (204 words): yellow 17, red 77, blue 107, pink 3; Map Task 2 (190 words): 20, 71, 93, 6. After shuffle and reduce: <b>yellow 37, red 148, blue 200, pink 9</b>. A combiner can pre-sum locally.</p>
 <h3>Inverted index</h3>
-<p>Tweets: 1 "I love pancakes for breakfast", 2 "I dislike pancakes", 3 "What should I eat for breakfast?", 4 "I love to eat". Map emits (word, tweet ID); reduce output: pancakes → (1,2), breakfast → (1,3), eat → (3,4), love → (1,4).</p>
-<h3>Relational join (Employee ⨝ Department on SSN = EmpSSN)</h3>
-<p>Lump all tuples together; map emits (join key, tuple tagged with relation name); reduce combines tuples of the same key from both tables. E.g. key 777777777 → (Employee, Tony) with (Department, Sales) and (Marketing) → two joined rows. Same pattern for Order/LineItem on orderid (tags "Order", "Line").</p>
+<p>Tweets: 1 "I love pancakes for breakfast", 2 "I dislike pancakes", 3 "What should I eat for breakfast?", 4 "I love to eat". Map emits (word, tweet ID); reduce output: pancakes â†’ (1,2), breakfast â†’ (1,3), eat â†’ (3,4), love â†’ (1,4).</p>
+<h3>Relational join (Employee â¨ Department on SSN = EmpSSN)</h3>
+<p>Lump all tuples together; map emits (join key, tuple tagged with relation name); reduce combines tuples of the same key from both tables. E.g. key 777777777 â†’ (Employee, Tony) with (Department, Sales) and (Marketing) â†’ two joined rows. Same pattern for Order/LineItem on orderid (tags "Order", "Line").</p>
 <h3>Finding common friends</h3>
-<p>Input Person → friends: A→BCD, B→ACDE, C→ABDE, D→ABCE, E→BCD. Precomputed daily and stored. Map(P → friends) emits (sorted pair of P and each friend) → P's whole friend list. Group by pair, reduce <b>intersects</b> the lists.</p>
-<pre>map(A → B C D): (A B)→BCD  (A C)→BCD  (A D)→BCD
-Group: (A B) → (A C D E)(B C D)   reduce = intersection → (A B) : (C D)
-Results: AB→CD, AC→BD, AD→BC, BC→ADE, BD→ACE, BE→CD, CD→ABE, CE→BD, DE→BC</pre>
-<p>When D visits B's profile, lookup (B D) → common friends A, C, E.</p>
+<p>Input Person â†’ friends: Aâ†’BCD, Bâ†’ACDE, Câ†’ABDE, Dâ†’ABCE, Eâ†’BCD. Precomputed daily and stored. Map(P â†’ friends) emits (sorted pair of P and each friend) â†’ P's whole friend list. Group by pair, reduce <b>intersects</b> the lists.</p>
+<pre>map(A â†’ B C D): (A B)â†’BCD  (A C)â†’BCD  (A D)â†’BCD
+Group: (A B) â†’ (A C D E)(B C D)   reduce = intersection â†’ (A B) : (C D)
+Results: ABâ†’CD, ACâ†’BD, ADâ†’BC, BCâ†’ADE, BDâ†’ACE, BEâ†’CD, CDâ†’ABE, CEâ†’BD, DEâ†’BC</pre>
+<p>When D visits B's profile, lookup (B D) â†’ common friends A, C, E.</p>
 
 <h2 id="k"><span>11</span>Quick Revision</h2>
 <div class="box"><b class="t">Must remember</b><ul>
-<li>HDFS goals: fault tolerance, portability, large data, high throughput → replication, write-once-read-many, computation to data, relaxed POSIX.</li>
-<li>Block 64 MB (128 MB common); 10 GB = 160 blocks; ~150 bytes/object on NameNode; small files → too many map tasks.</li>
+<li>HDFS goals: fault tolerance, portability, large data, high throughput â†’ replication, write-once-read-many, computation to data, relaxed POSIX.</li>
+<li>Block 64 MB (128 MB common); 10 GB = 160 blocks; ~150 bytes/object on NameNode; small files â†’ too many map tasks.</li>
 <li>Federation = many NameNodes + block pools; HA = redundant NameNodes; storage types ARCHIVE, DISK, SSD, RAM_DISK.</li>
 <li>Failure handling: heartbeat, re-replication, checksums, standby NameNode (manual failover default).</li>
 <li>MR 1.0: JobTracker (master) + TaskTracker (slave), 7 steps; MR 2.0: YARN with RM, NM, AM and containers.</li>
-<li>Flow: map → shuffle → reduce; partition = hash(key) % reducers; sort needs range partitioning.</li></ul></div>
-<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>
+<li>Flow: map â†’ shuffle â†’ reduce; partition = hash(key) % reducers; sort needs range partitioning.</li></ul></div>
+<footer>Source: NPTEL Big Data Computing, IIT Patna Â· Print-ready for A4</footer></div></body></html>
