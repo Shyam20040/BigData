@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Big Data Computing â€“ Week 4 Study Guide</title>
+<title>Big Data Computing – Week 4 Study Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -41,13 +41,13 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 </style><link rel="stylesheet" href="common.css">
 </head><body><div class="pg">
-<header><small>NPTEL Â· Big Data Computing Â· IIT Patna (Dr. Rajiv Misra)</small>
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Cassandra, Consistency, CQL &amp; ZooKeeper</h1><p>Week 4 consolidated study guide</p></header>
 <nav><a href="#a">1 Placement</a><a href="#b">2 Read/Write Path</a><a href="#c">3 Membership</a><a href="#d">4 CAP</a><a href="#e">5 Quorums</a><a href="#f">6 Models</a><a href="#g">7 CQL</a><a href="#h">8 ZooKeeper</a><a href="#i">9 ZK Architecture</a><a href="#j">10 ZK Usage</a><a href="#k">11 Revision</a></nav>
 
 <h2 id="a"><span>1</span>Cassandra: Data Placement</h2>
 <div class="tbl"><table><tr><th>Replication strategy</th><th>Details</th></tr>
-<tr><td>SimpleStrategy</td><td>Uses the <b>Partitioner</b>: <b>RandomPartitioner</b> (Chord-like hash partitioning) or <b>ByteOrderedPartitioner</b> (assigns key ranges to servers; easier for range queries, e.g. twitter users starting with [aâ€“b]).</td></tr>
+<tr><td>SimpleStrategy</td><td>Uses the <b>Partitioner</b>: <b>RandomPartitioner</b> (Chord-like hash partitioning) or <b>ByteOrderedPartitioner</b> (assigns key ranges to servers; easier for range queries, e.g. twitter users starting with [a–b]).</td></tr>
 <tr><td>NetworkTopologyStrategy</td><td>For <b>multi-DC</b> deployments; e.g. two or three replicas per DC. Per DC: first replica placed by the Partitioner, then go <b>clockwise around the ring until a different rack</b> is hit (rack-failure tolerance).</td></tr></table></div>
 <h3>Snitches</h3>
 <p>A snitch maps IPs to racks and DCs; configured in <code>cassandra.yaml</code>. Options: <b>SimpleSnitch</b> (topology-unaware), <b>RackInferring</b> (infers topology from octets of the IP, e.g. 101.102.103.104), <b>PropertyFileSnitch</b> (config file), <b>EC2Snitch</b> (EC2 region = DC, availability zone = rack), and others.</p>
@@ -55,31 +55,31 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <h2 id="b"><span>2</span>Writes, Reads &amp; Storage</h2>
 <h3>Write path</h3>
 <ul><li>Writes must be <b>lock-free and fast</b> (no reads or disk seeks). Client sends to one <b>coordinator</b> (per-key, per-client or per-query; per-key serializes writes).</li><li>Coordinator uses the Partitioner to send to all replicas; after <b>X replicas respond</b> it acknowledges the client.</li><li><b>Hinted handoff</b> (always writable): if a replica is down, the coordinator writes to the others and keeps the write locally until the replica returns; if all are down it buffers writes (up to a few hours).</li><li>One ring per DC; a per-DC coordinator is elected to coordinate with other DCs via <b>ZooKeeper (a Paxos variant)</b>.</li></ul>
-<div class="flow"><div><b>1 Commit log</b>on disk, for recovery</div><i>â†’</i><div><b>2 Memtable</b>in-memory, append-only, write-back cache searchable by key</div><i>â†’</i><div><b>3 Flush</b>when full/old â†’ SSTable data file + index file + Bloom filter</div></div>
+<div class="flow"><div><b>1 Commit log</b>on disk, for recovery</div><i>→</i><div><b>2 Memtable</b>in-memory, append-only, write-back cache searchable by key</div><i>→</i><div><b>3 Flush</b>when full/old → SSTable data file + index file + Bloom filter</div></div>
 <p><b>SSTable</b> = Sorted String Table, key-value pairs sorted by key; <b>immutable</b>. Index file = SSTable of (key, position in data file).</p>
-<div class="box def"><b class="t">Bloom filter</b>Compact set representation; cheap membership check; <b>false positives possible, never false negatives</b>. Insert sets all hashed bits; check returns true only if all hashed bits are set. Example: 4 hash functions, 100 items, 3200 bits â†’ false-positive rate 0.02%.</div>
+<div class="box def"><b class="t">Bloom filter</b>Compact set representation; cheap membership check; <b>false positives possible, never false negatives</b>. Insert sets all hashed bits; check returns true only if all hashed bits are set. Example: 4 hash functions, 100 items, 3200 bits → false-positive rate 0.02%.</div>
 <ul><li><b>Compaction:</b> periodically, locally per server, merges SSTables (merging updates for a key).</li><li><b>Deletes:</b> a <b>tombstone</b> is added; the item is removed when compaction meets it.</li><li><b>Reads:</b> coordinator contacts X replicas (quickest responders), returns the <b>latest-timestamped</b> value; also checks other replicas in the background and starts <b>read repair</b> if values differ. A row may span multiple SSTables, so reads are slower than writes (still fast).</li></ul>
 
 <h2 id="c"><span>3</span>Membership &amp; Failure Detection</h2>
 <p>Any server can be coordinator, so each keeps a list of all servers, updated automatically. Cassandra uses <b>gossip-style membership</b>: nodes periodically gossip their lists (address, local time, heartbeat counter); receivers keep the latest heartbeat; a heartbeat older than <b>T<sub>fail</sub></b> marks the node failed.</p>
-<div class="box"><b class="t">Suspicion (accrual detector)</b>The failure detector outputs <b>PHI</b>, a suspicion value, adapting the timeout to network behavior using inter-arrival times of gossip messages; applications set a threshold. <code>PHI(t) = âˆ’log(P(t<sub>now</sub> âˆ’ t<sub>last</sub>)) / log 10</code>. In practice PHI = 5 â†’ 10â€“15 s detection.</div>
+<div class="box"><b class="t">Suspicion (accrual detector)</b>The failure detector outputs <b>PHI</b>, a suspicion value, adapting the timeout to network behavior using inter-arrival times of gossip messages; applications set a threshold. <code>PHI(t) = −log(P(t<sub>now</sub> − t<sub>last</sub>)) / log 10</code>. In practice PHI = 5 → 10–15 s detection.</div>
 
 <h2 id="d"><span>4</span>CAP Theorem</h2>
 <p>Proposed by Eric Brewer, proved by Gilbert and Lynch: a distributed system can satisfy <b>at most 2 of 3</b>:</p>
-<div class="grid"><div><b>Consistency</b> â€“ all nodes see the same data; reads return the latest write. (Needed e.g. bank accounts across devices, flight booking.)</div>
-<div><b>Availability</b> â€“ operations always allowed and fast. (500 ms extra latency â†’ 20% revenue drop; at Amazon each ms â‰ˆ $6M/year; SLAs are about latency.)</div>
-<div><b>Partition-tolerance</b> â€“ works despite network partitions (router outages, cut cables, DNS failure, rack switch outage).</div></div>
+<div class="grid"><div><b>Consistency</b> – all nodes see the same data; reads return the latest write. (Needed e.g. bank accounts across devices, flight booking.)</div>
+<div><b>Availability</b> – operations always allowed and fast. (500 ms extra latency → 20% revenue drop; at Amazon each ms ≈ $6M/year; SLAs are about latency.)</div>
+<div><b>Partition-tolerance</b> – works despite network partitions (router outages, cut cables, DNS failure, rack switch outage).</div></div>
 <p>Since partition-tolerance is essential in cloud systems, one must <b>choose between consistency and availability</b>.</p>
 <div class="tbl"><table><tr><th>Pair chosen</th><th>Systems</th></tr>
 <tr><td>C + P</td><td>HBase, HyperTable, BigTable, Spanner</td></tr><tr><td>C + A</td><td>Non-replicated RDBMSs</td></tr><tr><td>A + P</td><td>Cassandra, Riak, Dynamo, Voldemort</td></tr></table></div>
-<p><b>Cassandra vs MySQL</b> (&gt;50 GB): MySQL writes 300 ms, reads 350 ms; Cassandra writes 0.12 ms, reads 15 ms â€“ the cost is strong consistency. <b>ACID</b> (RDBMS: Atomicity, Consistency, Isolation, Durability) vs <b>BASE</b> (key-value stores: Basically Available, Soft-state, Eventual consistency â€“ prefers availability).</p>
+<p><b>Cassandra vs MySQL</b> (&gt;50 GB): MySQL writes 300 ms, reads 350 ms; Cassandra writes 0.12 ms, reads 15 ms – the cost is strong consistency. <b>ACID</b> (RDBMS: Atomicity, Consistency, Isolation, Durability) vs <b>BASE</b> (key-value stores: Basically Available, Soft-state, Eventual consistency – prefers availability).</p>
 <div class="box"><b class="t">Eventual consistency</b>If writes to a key stop, all replicas converge. While writes continue, a "wave" of updates lags behind but keeps catching up; stale values may be returned. Works well when there are periods of low writes.</div>
 
 <h2 id="e"><span>5</span>Quorums &amp; Consistency Levels</h2>
-<p><b>Quorum = majority (&gt;50%)</b>; any two quorums intersect, so a read quorum contains at least one server with the latest write. Faster than ALL yet strongly consistent. Reads: client sets <b>R</b> (â‰¤ N replicas); coordinator waits for R, and repairs the other Nâˆ’R in background. Writes: client sets <b>W</b>; coordinator either blocks until quorum or writes asynchronously.</p>
-<div class="box def"><b class="t">Necessary conditions</b><b>W + R &gt; N</b> and <b>W &gt; N/2</b>.<br>(W=1,R=1): few reads/writes Â· (W=N,R=1): read-heavy Â· (W=N/2+1,R=N/2+1): write-heavy Â· (W=1,R=N): write-heavy with mostly one writer per key.</div>
+<p><b>Quorum = majority (&gt;50%)</b>; any two quorums intersect, so a read quorum contains at least one server with the latest write. Faster than ALL yet strongly consistent. Reads: client sets <b>R</b> (≤ N replicas); coordinator waits for R, and repairs the other N−R in background. Writes: client sets <b>W</b>; coordinator either blocks until quorum or writes asynchronously.</p>
+<div class="box def"><b class="t">Necessary conditions</b><b>W + R &gt; N</b> and <b>W &gt; N/2</b>.<br>(W=1,R=1): few reads/writes · (W=N,R=1): read-heavy · (W=N/2+1,R=N/2+1): write-heavy · (W=1,R=N): write-heavy with mostly one writer per key.</div>
 <div class="tbl"><table><tr><th>Level</th><th>Meaning</th></tr>
-<tr><td>ANY</td><td>Any server (may not be a replica); fastest â€“ coordinator caches write.</td></tr>
+<tr><td>ANY</td><td>Any server (may not be a replica); fastest – coordinator caches write.</td></tr>
 <tr><td>ALL</td><td>All replicas; strong consistency, slowest.</td></tr>
 <tr><td>ONE</td><td>At least one replica; faster than ALL, ensures durability without failures.</td></tr>
 <tr><td>QUORUM</td><td>Quorum across all replicas in all DCs; global consistency, still fast.</td></tr>
@@ -87,7 +87,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>EACH_QUORUM</td><td>Quorum in every DC; supports hierarchical replies.</td></tr></table></div>
 
 <h2 id="f"><span>6</span>Consistency Models Spectrum</h2>
-<p>From left (faster reads/writes) to right (more consistency): <b>Eventual â†’ Per-key sequential â†’ Causal â†’ Red-Blue / CRDTs / Probabilistic â†’ Strong (e.g. sequential)</b>. Rule: <b>use the lowest (leftmost) model that is correct</b> for your application.</p>
+<p>From left (faster reads/writes) to right (more consistency): <b>Eventual → Per-key sequential → Causal → Red-Blue / CRDTs / Probabilistic → Strong (e.g. sequential)</b>. Rule: <b>use the lowest (leftmost) model that is correct</b> for your application.</p>
 <div class="tbl"><table><tr><th>Model</th><th>Idea</th></tr>
 <tr><td>Eventual</td><td>Replicas converge if writes stop; from Amazon Dynamo and LinkedIn Voldemort.</td></tr>
 <tr><td>Per-key sequential</td><td>Per key, all operations have a global order.</td></tr>
@@ -100,9 +100,9 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 
 <h2 id="g"><span>7</span>CQL (Cassandra Query Language)</h2>
 <p>Cassandra: distributed columnar store, no SPOF, tunably consistent, write-optimized, scalable. Its challenges (no joins/schema, huge tables) are solved by <b>CQL</b>: a re-introduction of schema, a common data-modeling language, a best-practice SQL-like interface. CQL protocol is binary (language-interoperable), asynchronous (Thrift is synchronous) and allows prepared statements.</p>
-<p><b>Data model:</b> Keyspace (database) â†’ Column Family (table) â†’ rows (row key) â†’ columns (name, value or tombstone, timestamp, time-to-live). Rows may have any number of columns; values can be omitted; row key has a partitioner, column name a comparator.</p>
+<p><b>Data model:</b> Keyspace (database) → Column Family (table) → rows (row key) → columns (name, value or tombstone, timestamp, time-to-live). Rows may have any number of columns; values can be omitted; row key has a partitioner, column name a comparator.</p>
 <div class="two"><div class="box"><b class="t">Write path</b>Insert into memtable + commit log; no read before write; very fast.</div>
-<div class="box"><b class="t">Read path</b>Memtable â†’ row cache â†’ Bloom filter to find SSTables â†’ key cache â†’ SSTables â†’ repopulate row cache.</div></div>
+<div class="box"><b class="t">Read path</b>Memtable → row cache → Bloom filter to find SSTables → key cache → SSTables → repopulate row cache.</div></div>
 <p><b>Remember:</b> Cassandra finds rows fast, scans columns fast, does <b>not</b> scan rows.</p>
 <pre>CREATE TABLE users (id timeuuid PRIMARY KEY, lastname varchar,
                     firstname varchar, dateOfBirth timestamp);
@@ -111,24 +111,24 @@ INSERT INTO users (id, lastname, firstname, dateofbirth)
 SELECT dateofbirth, firstname, lastname FROM users;</pre>
 <div class="tbl"><table><tr><th>CQL primary key</th><th>Internal mapping</th></tr>
 <tr><td>PRIMARY KEY (name)</td><td>name = row key (partition); each other CQL column = one Cassandra column.</td></tr>
-<tr><td>PRIMARY KEY (company, name)</td><td>company = row key; <b>compound</b> column names: e.g. OSC row: eric:age 38, eric:role ceo, john:age 37â€¦</td></tr>
+<tr><td>PRIMARY KEY (company, name)</td><td>company = row key; <b>compound</b> column names: e.g. OSC row: eric:age 38, eric:role ceo, john:age 37…</td></tr>
 <tr><td>PRIMARY KEY ((A,B),C,D)</td><td>(A,B) composite row key; clustering columns C,D prefix column names, e.g. c:d:E, c:d:F.</td></tr></table></div>
 <p><b>Collections:</b> <b>set</b> (unique elements), <b>list</b> (ordered, repeats allowed), <b>map</b> (key-value pairs); cannot be part of a primary key. Stored as extra columns: set element in column name (<code>b:myset:1</code>), list uses a time-UUID name, map key in column name (<code>b:mymap:m</code>). Update syntax: <code>myset = myset + {'apple'}</code>, <code>mylist = ['x'] + mylist</code>, <code>mymap['fruit'] = 'apple'</code>.</p>
 
 <h2 id="h"><span>8</span>ZooKeeper: Why &amp; What</h2>
 <p><b>Classic system:</b> one master, many slaves (e.g. HDFS). A fault-tolerant system adds a <b>backup master and a coordination service</b>.</p>
 <div class="two"><div class="box"><b class="t">Race condition</b>Two processes compete, corrupting data: two people deposit 1 Rs into an account holding 17; both read 17 and write 18 instead of 19.</div>
-<div class="box"><b class="t">Deadlock</b>Processes wait on each other directly or indirectly (P1â†’P2â†’P3â†’P1) and never end.</div></div>
-<p><b>Coordination needs:</b> group membership, leader election, dynamic configuration (service registry), status monitoring, queuing, barriers, critical sections. Example: several email-indexer processes on different machines need a central, concurrency-safe store to avoid indexing the same email â€“ ZooKeeper's role.</p>
-<div class="box def"><b class="t">Definition</b>ZooKeeper is a highly reliable distributed coordination kernel and a <b>replicated service holding metadata</b> of distributed applications (small, performance-sensitive, dynamic, critical). A central key-value store for coordination, running itself on many machines. Uses: locking, synchronization, configuration, leader election, work queues â€“ free from race conditions and deadlocks.</div>
+<div class="box"><b class="t">Deadlock</b>Processes wait on each other directly or indirectly (P1→P2→P3→P1) and never end.</div></div>
+<p><b>Coordination needs:</b> group membership, leader election, dynamic configuration (service registry), status monitoring, queuing, barriers, critical sections. Example: several email-indexer processes on different machines need a central, concurrency-safe store to avoid indexing the same email – ZooKeeper's role.</p>
+<div class="box def"><b class="t">Definition</b>ZooKeeper is a highly reliable distributed coordination kernel and a <b>replicated service holding metadata</b> of distributed applications (small, performance-sensitive, dynamic, critical). A central key-value store for coordination, running itself on many machines. Uses: locking, synchronization, configuration, leader election, work queues – free from race conditions and deadlocks.</div>
 <h3>Design goals</h3>
-<div class="grid"><div><b>Simple</b> â€“ shared hierarchical namespace like a file system of <b>znodes</b>; data in memory â†’ high throughput, low latency.</div>
-<div><b>Replicated</b> â€“ ensemble of servers, each with in-memory state; leader elected at startup; followers serve clients, all updates go through the leader; reply after a majority persisted; <b>2f+1 machines tolerate f failures</b>.</div>
-<div><b>Ordered</b> â€“ each update stamped with a number reflecting transaction order (basis for synchronization primitives).</div>
-<div><b>Fast</b> â€“ best for read-heavy loads (~10:1); Yahoo! benchmark &gt;10,000 write-dominant ops/s.</div></div>
+<div class="grid"><div><b>Simple</b> – shared hierarchical namespace like a file system of <b>znodes</b>; data in memory → high throughput, low latency.</div>
+<div><b>Replicated</b> – ensemble of servers, each with in-memory state; leader elected at startup; followers serve clients, all updates go through the leader; reply after a majority persisted; <b>2f+1 machines tolerate f failures</b>.</div>
+<div><b>Ordered</b> – each update stamped with a number reflecting transaction order (basis for synchronization primitives).</div>
+<div><b>Fast</b> – best for read-heavy loads (~10:1); Yahoo! benchmark &gt;10,000 write-dominant ops/s.</div></div>
 <p>Clients keep a TCP connection, get watch events, send heartbeats, and reconnect to another server if it breaks. Servers keep in-memory state plus persistent transaction logs and snapshots.</p>
 <h3>Data model</h3>
-<p>Like a highly available file system: data lives in <b>znodes</b> (JSON data, updated whole â€“ <b>no append</b>); reads/writes are <b>atomic</b>; znodes can have children, forming a tree rooted at "/" (e.g. /zoo/duck); "." and ".." are invalid.</p>
+<p>Like a highly available file system: data lives in <b>znodes</b> (JSON data, updated whole – <b>no append</b>); reads/writes are <b>atomic</b>; znodes can have children, forming a tree rooted at "/" (e.g. /zoo/duck); "." and ".." are invalid.</p>
 <div class="tbl"><table><tr><th>Znode type</th><th>Behavior</th></tr>
 <tr><td>Persistent</td><td>Default; stays until deleted (<code>create /name "data"</code>).</td></tr>
 <tr><td>Ephemeral</td><td>Deleted when the creating session ends (visible to others meanwhile); <b>cannot have children</b>.</td></tr>
@@ -136,12 +136,12 @@ SELECT dateofbirth, firstname, lastname FROM users;</pre>
 
 <h2 id="i"><span>9</span>ZooKeeper Architecture</h2>
 <p>Modes: <b>Standalone</b> (one machine; testing only; no HA) and <b>Replicated</b> (ensemble; highly available; tolerates failures while a majority survives).</p>
-<div class="flow"><div><b>Phase 1: Leader election</b>Paxos-like; done when a majority sync with the leader; re-election ~200 ms; leader steps down if majority is lost</div><i>â†’</i><div><b>Phase 2: Atomic broadcast</b>Writes forwarded to leader â†’ broadcast â†’ majority persist â†’ leader commits â†’ client gets success (like two-phase commit; disk before memory)</div></div>
-<h3>Election details (Zab â€“ ZooKeeper Atomic Broadcast)</h3>
-<ul><li>Each server takes the next-higher sequence id (via the ZK file system); <b>highest id becomes leader</b>.</li><li>NaÃ¯ve failure handling (everyone monitors the leader) causes an election flood. <b>ZooKeeper's way:</b> each process monitors its <b>next-higher-id</b> process; if that was the leader and failed, it becomes leader, otherwise it waits and rechecks.</li><li>Id conflicts / leader failure mid-election: leader sends <b>NEW_LEADER</b>; each process ACKs at most one leader (highest id); on a majority of ACKs leader sends <b>COMMIT</b>; processes then update their leader variable â€“ safety preserved.</li></ul>
-<div class="box"><b class="t">Why majority?</b>3 nodes, leader dies â†’ remaining 2 (majority) elect a leader. 3 nodes, two die â†’ <b>no leader</b> (1/3 is not majority). For a 6-server ensemble split across two data centres, without the majority rule each side would elect its own leader â†’ inconsistency and chaos.</div>
+<div class="flow"><div><b>Phase 1: Leader election</b>Paxos-like; done when a majority sync with the leader; re-election ~200 ms; leader steps down if majority is lost</div><i>→</i><div><b>Phase 2: Atomic broadcast</b>Writes forwarded to leader → broadcast → majority persist → leader commits → client gets success (like two-phase commit; disk before memory)</div></div>
+<h3>Election details (Zab – ZooKeeper Atomic Broadcast)</h3>
+<ul><li>Each server takes the next-higher sequence id (via the ZK file system); <b>highest id becomes leader</b>.</li><li>Naïve failure handling (everyone monitors the leader) causes an election flood. <b>ZooKeeper's way:</b> each process monitors its <b>next-higher-id</b> process; if that was the leader and failed, it becomes leader, otherwise it waits and rechecks.</li><li>Id conflicts / leader failure mid-election: leader sends <b>NEW_LEADER</b>; each process ACKs at most one leader (highest id); on a majority of ACKs leader sends <b>COMMIT</b>; processes then update their leader variable – safety preserved.</li></ul>
+<div class="box"><b class="t">Why majority?</b>3 nodes, leader dies → remaining 2 (majority) elect a leader. 3 nodes, two die → <b>no leader</b> (1/3 is not majority). For a 6-server ensemble split across two data centres, without the majority rule each side would elect its own leader → inconsistency and chaos.</div>
 <h3>Sessions</h3>
-<p>Client tries servers from its list until connected; the server creates a <b>session with a timeout</b>. If no request arrives within the timeout the session may expire and <b>ephemeral nodes are lost</b>; the client library sends pings (heartbeats). Sessions survive switching servers; failover is automatic, but operations fail during disconnection. States: CONNECTING â†’ CONNECTED (SyncConnected) â‡„ Disconnected; Expired/close â†’ CLOSED.</p>
+<p>Client tries servers from its list until connected; the server creates a <b>session with a timeout</b>. If no request arrives within the timeout the session may expire and <b>ephemeral nodes are lost</b>; the client library sends pings (heartbeats). Sessions survive switching servers; failover is automatic, but operations fail during disconnection. States: CONNECTING → CONNECTED (SyncConnected) ⇄ Disconnected; Expired/close → CLOSED.</p>
 
 <h2 id="j"><span>10</span>ZooKeeper: Usage</h2>
 <p><b>Guarantees:</b> sequential consistency (a client's updates applied in order), atomicity, single system image (a new server won't accept a client until caught up), durability, timeliness (no very stale data).</p>
@@ -149,7 +149,7 @@ SELECT dateofbirth, firstname, lastname FROM users;</pre>
 <tr><td>create</td><td>Create znode (parent must exist)</td></tr><tr><td>delete</td><td>Delete znode (no children)</td></tr><tr><td>exists</td><td>Test existence, get metadata</td></tr>
 <tr><td>getACL / setACL</td><td>Access control list</td></tr><tr><td>getChildren (ls)</td><td>List children</td></tr><tr><td>getData (get) / setData</td><td>Read / write data</td></tr><tr><td>sync</td><td>Sync client's view with ZooKeeper</td></tr></table></div>
 <p><b>Multi-update</b> batches operations: all succeed or all fail, enabling transactions. <b>APIs:</b> Java and C core; Perl, Python, REST in contrib; synchronous and asynchronous versions.</p>
-<div class="tbl"><table><tr><th>Watch on</th><th>Triggered when znode isâ€¦</th></tr>
+<div class="tbl"><table><tr><th>Watch on</th><th>Triggered when znode is…</th></tr>
 <tr><td>exists</td><td>created, deleted, or data updated</td></tr><tr><td>getData</td><td>deleted or data updated</td></tr><tr><td>getChildren</td><td>deleted, or a child created/deleted</td></tr></table></div>
 <p>Watches fire <b>only once</b> (re-register for more); set by read ops, triggered by write ops (create, delete, setData); ACL ops do not participate. <b>ACL</b> = authentication scheme + identity + permissions; schemes: <b>digest</b> (username/password), <b>sasl</b> (Kerberos), <b>ip</b>.</p>
 <div class="box"><b class="t">Server discovery use case</b>Each server creates an <b>ephemeral znode</b> under /servers (e.g. duck, cow); clients run <code>ls /servers</code>. When duck dies its znode vanishes and the next <code>ls</code> returns only cow.</div>
@@ -158,11 +158,11 @@ SELECT dateofbirth, firstname, lastname FROM users;</pre>
 
 <h2 id="k"><span>11</span>Quick Revision</h2>
 <div class="box"><b class="t">Must remember</b><ul>
-<li>Placement: SimpleStrategy (Random/ByteOrdered partitioner) vs NetworkTopologyStrategy; snitches map IP â†’ rack/DC.</li>
-<li>Write: commit log â†’ memtable â†’ SSTable (+ index + Bloom filter); compaction; tombstones; hinted handoff; read repair.</li>
-<li>Gossip membership; PHI accrual detector (PHI 5 â‰ˆ 10â€“15 s).</li>
+<li>Placement: SimpleStrategy (Random/ByteOrdered partitioner) vs NetworkTopologyStrategy; snitches map IP → rack/DC.</li>
+<li>Write: commit log → memtable → SSTable (+ index + Bloom filter); compaction; tombstones; hinted handoff; read repair.</li>
+<li>Gossip membership; PHI accrual detector (PHI 5 ≈ 10–15 s).</li>
 <li>CAP: pick 2; Cassandra = A+P (eventual, BASE); RDBMS = ACID.</li>
 <li>Quorum: W+R &gt; N and W &gt; N/2; levels ANY, ONE, QUORUM, LOCAL_QUORUM, EACH_QUORUM, ALL.</li>
 <li>CQL: row key = partition; compound keys become compound column names; collections not in primary keys.</li>
 <li>ZooKeeper: znodes (persistent, ephemeral, sequential); ensemble of 2f+1; leader election + atomic broadcast (Zab); majority rule; watches fire once.</li></ul></div>
-<footer>Source: NPTEL Big Data Computing, IIT Patna Â· Print-ready for A4</footer></div></body></html>
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>
