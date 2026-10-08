@@ -45,7 +45,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Decision Trees, Ensembles &amp; Predictive Analytics</h1><p>Week 7 consolidated study guide · Hinglish</p></header>
 <nav><a href="#a">1 Decision Trees</a><a href="#b">2 ID3 &amp; Entropy</a><a href="#c">3 Regression Trees</a><a href="#d">4 PLANET</a><a href="#e">5 Bagging</a><a href="#f">6 Random Forest</a><a href="#g">7 Boosting</a><a href="#h">8 Spark ML Case</a><a href="#i">9 Cross-Validation</a><a href="#j">10 Revision</a></nav>
-<h2 id="a"><span>1</span>Decision Trees</h2>
+<h2 id="a"><span>1</span>Decision Trees</h2><div class="flow"><div><b>Outlook</b> Root: 9 Yes / 5 No.</div><div><b>Overcast</b> 4/0; pure, prediction Yes.</div><div><b>Sunny</b> 2/3; Humidity par split.</div><div><b>Rain</b> 3/2; Wind par split.</div></div>
 <p>A <strong>decision tree</strong> ek acyclic graph hota hai jisme <strong>decision nodes</strong> hote hain: ek <strong>root</strong>, internal nodes (jo har baar kisi attribute ko test karte hain) aur <strong>leaves</strong> (predictions).</p>
 <p><strong>Divide and conquer:</strong> Data ko different subsets mein split karo, check karo ki har subset <strong>pure</strong> hai ya nahi (saare Yes ya saare No). Agar pure hai → stop. Agar pure nahi hai → process ko repeat karo.</p>
 <p>Ek new sample ko us subset ke basis par predict kiya jata hai jisme woh fall karta hai.</p>
@@ -115,7 +115,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>error before split − error after split</strong></p>
 <p>Ye process top-to-bottom repeatedly perform hota hai.</p>
 <div class="box"><b class="t">Stopping rules</b><ol><li>Node depth = <strong>maxDepth</strong></li><li>Koi split <strong>minInfoGain</strong> se above information gain nahi deta.</li><li>Koi split dono children mein kam se kam <strong>minInstancesPerNode</strong> training instances nahi de pata.</li></ol></div>
-<h2 id="d"><span>4</span>Building Trees with MapReduce: PLANET</h2>
+<h2 id="d"><span>4</span>Building Trees with MapReduce: PLANET</h2><div class="flow"><div><b>Mapper</b> Model load karta hai; points ko leaf tak bhejta hai; candidate splits ke partial stats rakhta hai.</div><div><b>Reducer</b> Statistics aggregate karke har node ka best split select karta hai.</div><div><b>Master</b> Tree ko grow karta hai; har MapReduce step mein one level.</div></div>
 <p><strong>Problem: </strong>Dataset bahut huge hai aur usme hundreds of attributes hain.</p>
 <p>Tree relatively small/shallow hota hai (~10 levels) aur memory mein fit ho sakta hai, lekin <strong>data ek single machine par fit nahi hota</strong>.</p>
 <p><strong>PLANET</strong>:</p>

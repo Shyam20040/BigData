@@ -80,7 +80,7 @@ errors = lines.filter(lambda s: s.startswith("ERROR"))
 messages = errors.map(lambda s: s.split('\t')[2])
 messages.cache()
 messages.filter(lambda s: "foo" in s).count()</code></pre>
-<h2 id="c"><span>3</span>Scala Essentials</h2>
+<h2 id="c"><span>3</span>Scala Essentials</h2><div class="two"><div><b>val / var</b> `val` read-only hai; `var` mutable hota hai.</div><div><b>Functions &amp; collections</b> Functions define karo; immutable collections par map/filter/flatMap apply karo.</div></div>
 <p><strong>Scala</strong> JVM ke liye ek <strong>high-level, statically typed language</strong> hai. Ye <strong>object-oriented + functional</strong> dono hai.</p>
 <p>Iski speed Java ke comparable hai aur ismein:</p>
 <ul><li><strong>Type inference</strong></li><li>Full <strong>Java interoperability</strong></li></ul>
@@ -137,7 +137,7 @@ list.reduce(_ + _)       // 6</code></pre>
 <p>Outer object ke fields ko directly use nahi karna chahiye, kyunki isse <strong>poora object ship</strong> ho sakta hai aur <code>NotSerializableException</code> aa sakta hai.</p>
 <p>Fix: pehle value ko local variable mein copy karo:</p>
 <pre><code class="language-scala">val param_ = param</code></pre>
-<h2 id="e"><span>5</span>Job Execution</h2><div class="flow"><div>Build operator DAG</div><div>DAGScheduler Stages of tasks mein split karta hai aur ready stages ko submit karta hai.</div><div>TaskScheduler Cluster manager ke through tasks launch karta hai aur failed/straggling tasks ko retry karta hai.</div><div>Worker</div></div>
+<h2 id="e"><span>5</span>Job Execution</h2><div class="flow"><div><b>RDD objects</b> Build operator DAG</div><div><b>DAGScheduler</b> Stages of tasks mein split karta hai aur ready stages submit karta hai.</div><div><b>TaskScheduler</b> Cluster manager ke through tasks launch karta hai; failed/straggling tasks retry karta hai.</div><div><b>Worker</b> Tasks execute karta hai; Block Manager blocks store/serve karta hai.</div></div>
 <p>Spark application ke andar <strong>library</strong> ki tarah run karta hai — har application ka ek instance hota hai.</p>
 <ul><li><strong>Driver</strong> → <code>SparkContext</code> hold karta hai.</li><li><strong>Cluster Manager</strong> → Standalone, Mesos ya YARN.</li><li><strong>Workers/Executors</strong> → tasks run karte hain aur cache hold karte hain.</li><li>Storage ko <strong>Hadoop InputFormat</strong> ke through access kiya ja sakta hai:<ul><li>HDFS</li><li>HBase</li><li>S3</li><li>Cassandra</li><li>Avro</li></ul></li></ul>
 <p>Tasks execute karta hai aur <strong>Block Manager</strong> blocks ko store/serve karta hai.</p>
@@ -241,7 +241,7 @@ for (i &lt;- 1 to ITERATIONS) {
 <ul><li>Hive → <code>HiveContext</code>, <code>sql(...)</code></li><li>JSON → <code>jsonFile</code>, <code>registerAsTable</code></li></ul>
 <p><strong>Community: </strong>Spark ko most active open-source big-data projects mein se ek bataya gaya hai:</p>
 <ul><li><strong>200+ developers</strong></li><li><strong>50+ companies</strong></li><li>Past year mein ~<strong>130 contributors</strong></li><li>Hadoop MapReduce ~100</li><li>Giraph ~30</li><li>Storm ~25</li></ul>
-<h2 id="i"><span>9</span>Design of Key-Value Stores</h2>
+<h2 id="i"><span>9</span>Design of Key-Value Stores</h2><div class="two"><div><b>Scale up</b> Ek more powerful machine use karo; traditional approach, limited capacity.</div><div><b>Scale out</b> More COTS machines add karke capacity incrementally badhao.</div></div>
 <p><strong>Key-Value Abstraction: </strong>Basic model:</p>
 <p><strong>key → value</strong></p>
 <p>Examples:</p>
@@ -269,7 +269,7 @@ for (i &lt;- 1 to ITERATIONS) {
 <p>Example:</p>
 <p><code>"blog_ids updated in the past month"</code></p>
 <p>→ <code>last_updated</code> column mein search karo aur sirf matching <code>blog_id</code> column fetch karo.</p>
-<h2 id="j"><span>10</span>Apache Cassandra: Key → Server Mapping</h2><p>read/write K13</p><p>Coordinator</p><p>N16 Primary replica</p><p><b>N32, N45 Backup replicas Note</b>Provided slides yahin end hoti hain; announced consistency-solutions topic provided text mein covered nahi hai.</p>
+<h2 id="j"><span>10</span>Apache Cassandra: Key → Server Mapping</h2><div class="flow"><div><b>Client</b> read/write K13</div><div><b>Coordinator</b> Request ko replicas tak forward karta hai.</div><div><b>N16</b> Primary replica</div><div><b>N32, N45</b> Backup replicas</div></div><p>read/write K13</p><p>Coordinator</p><p>N16 Primary replica</p><p><b>N32, N45 Backup replicas Note</b>Provided slides yahin end hoti hain; announced consistency-solutions topic provided text mein covered nahi hai.</p>
 <p><strong>Cassandra</strong> ek distributed <strong>key-value store</strong> hai jo datacenter ke andar aur multiple datacenters ke across run karne ke liye designed hai.</p>
 <p>Ye originally <strong>Facebook</strong> mein design hua tha aur ab <strong>Apache project</strong> hai.</p>
 <p>Users include:</p>

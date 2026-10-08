@@ -45,7 +45,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>HBase, Spark Streaming &amp; Kafka</h1><p>Week 5 consolidated study guide · Hinglish</p></header>
 <nav><a href="#a">1 HBase</a><a href="#b">2 Streaming Basics</a><a href="#c">3 Spark Streaming</a><a href="#d">4 DStream Ops</a><a href="#e">5 Fault Tolerance</a><a href="#f">6 Windows</a><a href="#g">7 Sentiment</a><a href="#h">8 Kafka</a><a href="#i">9 Revision</a></nav>
-<h2 id="a"><span>1</span>HBase</h2>
+<h2 id="a"><span>1</span>HBase</h2><div class="flow"><div><b>Table</b> Regions mein split hoti hai.</div><div><b>Region</b> Column family ke hisaab se Stores mein divide hota hai.</div><div><b>MemStore</b> In-memory updates rakhta hai; full hone par flush hota hai.</div><div><b>StoreFile / HFile</b> HDFS par store hota hai; BigTable SSTable jaisa.</div></div>
 <div class="box def"><b class="t">Definition</b><p><strong>HBase</strong> ek open-source <strong>NoSQL, distributed, column-oriented store</strong> hai jo <strong>1,000s of commodity servers</strong> aur <strong>petabytes</strong> tak scale out kar sakta hai.</p>
 <p>Ye <strong>HDFS</strong> ke upar run karta hai aur HDFS se:</p></div>
 <ul><li>Scalability</li><li>Fault tolerance</li><li>High availability</li></ul>
@@ -198,7 +198,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>Hypothesis se start</td><td>All data mein correlations explore</td></tr>
 <tr><td>Selected data test</td><td>Data in motion analyse</td></tr>
 </tbody></table></div>
-<h2 id="c"><span>3</span>Spark Streaming</h2>
+<h2 id="c"><span>3</span>Spark Streaming</h2><div class="flow"><div><b>Receivers</b> Executors mein long-running tasks.</div><div><b>Blocks</b> Memory mein rakhe jaate hain aur another executor par replicate hote hain.</div><div><b>Each interval</b> Driver blocks par tasks launch karta hai.</div><div><b>Results</b> Storage ya dashboards tak bheje jaate hain.</div></div>
 <p><strong>Spark Streaming</strong> Spark ko extend karta hai taaki scalable, fault-tolerant, <strong>second-latency stream processing</strong> possible ho.</p>
 <p>Ismein simple <strong>batch-like API</strong> hoti hai.</p>
 <p><strong>Sources: </strong>Spark Streaming consume kar sakta hai:</p>
@@ -241,7 +241,6 @@ RDD@time2 = data from 1–2
 <p>Har batch ek graph hota hai jo multiple jobs mein convert hota hai.</p>
 <p><strong>Blocks parallelism provide karte hain.</strong></p>
 <p class="subtopic"><strong>Workflow</strong></p>
-<div class="flow"><div>Streaming Sources Kafka / Flume / Akka...</div><div>Spark Streaming</div><div>MLlib / Spark SQL</div><div>Storage HBase / Cassandra / MemSQL / Kafka / Elasticsearch / HDFS</div></div>
 <p>Static sources bhi use ho sakte hain:</p>
 <ul><li>HBase</li><li>MySQL</li><li>Cassandra</li></ul>
 <p class="subtopic"><strong>Spark Streaming Code</strong></p>
@@ -374,7 +373,7 @@ Spark            → Batch</code></pre>
 <tr><td>Bob 5/4</td><td>29</td><td>27</td><td>54</td><td>25</td><td>2</td></tr>
 <tr><td>Bob 5/6</td><td>27</td><td>28</td><td>81</td><td>29</td><td>3</td></tr>
 </tbody></table></div>
-<h2 id="g"><span>7</span>Case Study: Twitter Sentiment Analysis</h2>
+<h2 id="g"><span>7</span>Case Study: Twitter Sentiment Analysis</h2><div class="flow"><div><b>Authorize</b> Twitter consumer key/secret aur access token/secret.</div><div><b>StreamingContext</b> local[2], Seconds(5).</div><div><b>createStream</b> Twitter stream ko filters ke saath create karo.</div><div><b>flatMap / map</b> Hashtags process karo; sentiment POSITIVE / NEGATIVE detect karo.</div></div>
 <p><strong>Trending topics</strong> campaigns create karne mein help karte hain.</p>
 <p><strong>Sentiment = kisi mention ke behind emotion.</strong></p>
 <p>Sentiment analysis ka matlab:</p>
@@ -400,7 +399,7 @@ Seconds(5)</code></pre>
 <p>se kisi specific topic ka sentiment obtain kiya ja sakta hai.</p>
 <p class="subtopic"><strong>Business Benefits</strong></p>
 <ul><li>Better customer experience</li><li>Competitive advantage</li><li>Business intelligence</li><li>Losing brand ko revitalize karna</li></ul>
-<h2 id="h"><span>8</span>Apache Kafka</h2>
+<h2 id="h"><span>8</span>Apache Kafka</h2><div class="two"><div><b>Queue system</b> Consumer group ka har message ek consumer read karta hai.</div><div><b>Publish-subscribe</b> Har message sabhi subscribers tak pahunchta hai.</div></div>
 <div class="box def"><b class="t">Definition</b><p><strong>Kafka</strong> ek open-source, high-performance, real-time messaging system hai.</p>
 <p>Features:</p></div>
 <ul><li>Distributed</li><li>Partitioned</li><li>Fault-tolerant</li><li>Scalable</li></ul>

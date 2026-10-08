@@ -45,7 +45,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Big Data Machine Learning: Concepts, Evaluation &amp; K-Means</h1><p>Week 6 consolidated study guide · Hinglish</p></header>
 <nav><a href="#a">1 ML Basics</a><a href="#b">2 ML Process</a><a href="#c">3 Overfitting</a><a href="#d">4 Validation</a><a href="#e">5 Metrics</a><a href="#f">6 Spark Classification</a><a href="#g">7 Clustering</a><a href="#h">8 K-Means</a><a href="#i">9 Parallel K-Means</a><a href="#j">10 Revision</a></nav>
-<h2 id="a"><span>1</span>Machine Learning Basics</h2>
+<h2 id="a"><span>1</span>Machine Learning Basics</h2><div class="grid"><div><b>Fraud detection</b> Purchase ko history se compare karke unusual activity flag karo.</div><div><b>Digit recognition</b> ATM handwritten cheque amounts read karta hai.</div><div><b>Recommendations</b> Similar customers ke purchases ke basis par suggestions.</div><div><b>Other uses</b> Mobile ads, sentiment, climate, crime patterns, drug effectiveness.</div></div>
 <div class="box def"><b class="t">Definition</b><p><strong>Machine Learning</strong> computer systems ka aisa study hai jahan systems <strong>data se learn karte hain without being explicitly programmed</strong>.</p>
 <p>Models kisi task ko bahut saare examples ko analyse karke learn karte hain.</p>
 <p>Example:</p>
@@ -85,7 +85,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 </tbody></table></div>
 <p><strong>Supervised vs Unsupervised: </strong><strong>Supervised</strong> = target provided hota hai (<strong>labeled data</strong>).</p>
 <p><strong>Unsupervised</strong> = target unknown hota hai (<strong>unlabeled data</strong>).</p>
-<h2 id="b"><span>2</span>The Machine Learning Process</h2>
+<h2 id="b"><span>2</span>The Machine Learning Process</h2><div class="flow"><div><b>1. Acquire</b> Data identify, collect aur integrate karo.</div><div><b>2. Prepare</b> Data explore aur pre-process karo.</div><div><b>3. Analyze</b> Technique select, model build aur evaluate karo.</div><div><b>4. Report</b> Results communicate karo.</div><div><b>5. Act</b> Insights apply karo.</div></div>
 <p>Machine Learning process ke <strong>five steps</strong> hain.</p>
 <p>Har step ek clear purpose ke saath perform hota hai.</p>
 <p>Example:</p>
@@ -232,7 +232,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>Error Rate: </strong><code>error rate = 1 − 0.7 = 0.3</code></p>
 <p><strong>Precision: </strong><code>precision = 3/4 = 0.75</code></p>
 <p><strong>Recall: </strong><code>recall = 3/5 = 0.6</code></p>
-<h2 id="f"><span>6</span>Spark MLlib &amp; Classification in Spark</h2>
+<h2 id="f"><span>6</span>Spark MLlib &amp; Classification in Spark</h2><div class="flow"><div><b>1. Load CSV</b> SQLContext se DataFrame banao.</div><div><b>2. Clean</b> Number column aur missing-data rows drop karo.</div><div><b>3. Binarizer</b> Relative humidity ko label mein convert karo.</div><div><b>4. VectorAssembler</b> Feature columns ko `features` vector mein combine karo.</div><div><b>5. Split</b> Training/test data split karo.</div><div><b>6. Train</b> Pipeline mein decision tree train karo.</div><div><b>7. Save</b> Predictions CSV mein save karo.</div></div>
 <p><strong>MLlib</strong> Spark Core ke upar built ek <strong>scalable, distributed machine-learning library</strong> hai.</p>
 <p>MLlib provide karta hai:</p>
 <p class="subtopic"><strong>Algorithms</strong></p>
@@ -331,7 +331,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Example:</p>
 <p><strong>Age = 150</strong></p>
 <p>Aise samples ko further analysis ki need hoti hai.</p>
-<h2 id="h"><span>8</span>K-Means Algorithm</h2>
+<h2 id="h"><span>8</span>K-Means Algorithm</h2><div class="flow"><div><b>Select k</b> Initial centroids select karo.</div><div><b>Classify</b> Har sample ko closest centroid assign karo.</div><div><b>Recenter</b> Har cluster ka new centroid uske samples ka mean hai.</div><div><b>Repeat</b> Stopping criterion satisfy hone tak repeat karo.</div></div>
 <p>K-Means iterative algorithm hai.</p>
 <p>Process:</p>
 <p><strong>Select k: </strong>Initial centroids select karo.</p>

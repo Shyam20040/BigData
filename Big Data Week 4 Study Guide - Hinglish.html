@@ -54,7 +54,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>Snitch</strong> IP addresses ko <strong>racks aur data centers (DCs)</strong> se map karta hai. Ye <code>cassandra.yaml</code> mein configure hota hai.</p>
 <p>Options:</p>
 <ul><li><strong>SimpleSnitch</strong> → topology-unaware</li><li><strong>RackInferring</strong> → IP ke octets se topology infer karta hai, e.g. <code>101.102.103.104</code></li><li><strong>PropertyFileSnitch</strong> → configuration file use karta hai</li><li><strong>EC2Snitch</strong> → EC2 region = DC, availability zone = rack</li><li>Aur bhi options available hain.</li></ul>
-<h2 id="b"><span>2</span>Writes, Reads &amp; Storage</h2>
+<h2 id="b"><span>2</span>Writes, Reads &amp; Storage</h2><div class="flow"><div><b>1. Commit Log</b> Disk par store hota hai; recovery ke liye use hota hai.</div><div><b>2. Memtable</b> In-memory, append-only write-back cache; key se searchable.</div><div><b>3. Flush</b> Memtable full/old ho to SSTable data file, index file aur Bloom filter create hote hain.</div></div>
 <h3>Write path</h3>
 <p>Writes ko <strong>lock-free aur fast</strong> hona chahiye, yani write ke time reads ya disk seeks nahi hone chahiye.</p>
 <p>Client ek <strong>coordinator</strong> ko send karta hai:</p>
@@ -107,7 +107,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><code>PHI(t) = −log(P(tnow − tlast)) / log 10</code></p>
 <p>Practical case mein:</p>
 <p><strong>PHI = 5 → approximately 10–15 s detection</strong></p>
-<h2 id="d"><span>4</span>CAP Theorem</h2>
+<h2 id="d"><span>4</span>CAP Theorem</h2><div class="grid"><div><b>Consistency</b> Nodes same data dikhayein; reads latest write return karein.</div><div><b>Availability</b> Requests ka response milta rahe.</div><div><b>Partition tolerance</b> Network partition ke bawajood system operate kare.</div></div>
 <p><strong>CAP Theorem</strong> Eric Brewer ne propose kiya tha aur Gilbert aur Lynch ne prove kiya.</p>
 <p>Ek distributed system maximum <strong>3 mein se 2</strong> properties satisfy kar sakta hai:</p>
 <p><strong>C — Consistency: </strong>Sabhi nodes ko <strong>same data</strong> dikhega aur reads <strong>latest write</strong> return karengi.</p>
@@ -195,7 +195,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>NewSQL: </strong><strong>NewSQL = NoSQL + ACID transactions</strong></p>
 <p>Examples:</p>
 <ul><li>HyperDex</li><li>Spanner</li><li>Transaction chains</li></ul>
-<h2 id="g"><span>7</span>CQL (Cassandra Query Language)</h2>
+<h2 id="g"><span>7</span>CQL (Cassandra Query Language)</h2><div class="two"><div><b>Write path</b> Memtable + Commit Log mein insert; write se pehle read nahi.</div><div><b>Read path</b> Memtable ? Row Cache ? Bloom Filter/SSTables ? merge latest values.</div></div>
 <p>Cassandra ek:</p>
 <ul><li>Distributed columnar store</li><li>No SPOF</li><li>Tunably consistent</li><li>Write-optimized</li><li>Scalable</li></ul>
 <p>system hai.</p>
@@ -244,7 +244,7 @@ VALUES (now(), 'Berryman','John','1975-09-15');</code></pre>
 <pre><code class="language-text">myset = myset + {'apple'}
 mylist = ['x'] + mylist
 mymap['fruit'] = 'apple'</code></pre>
-<h2 id="h"><span>8</span>ZooKeeper: Why &amp; What</h2>
+<h2 id="h"><span>8</span>ZooKeeper: Why &amp; What</h2><div class="two"><div><b>Race condition</b> Concurrent processes same shared value update karke inconsistent result de sakte hain.</div><div><b>Deadlock</b> Processes ek dusre ke resources ka wait karte reh sakte hain.</div></div><div class="grid"><div><b>Simple</b> Shared hierarchical namespace, file system ke znode paths jaisa.</div><div><b>Replicated</b> Server ensemble; leader updates coordinate karta hai.</div><div><b>Ordered</b> Updates ko transaction order reflect karne wale numbers milte hain.</div><div><b>Fast</b> Read-heavy loads ke liye optimized.</div></div>
 <p><strong>Classic System: </strong>Classic distributed system mein:</p>
 <p><strong>One Master + Many Slaves</strong></p>
 <p>Example:</p>
@@ -317,7 +317,7 @@ mymap['fruit'] = 'apple'</code></pre>
 <tr><td><strong>Ephemeral</strong></td><td>Creating session end hote hi delete ho jaata hai. Tab tak others ko visible hota hai; children nahi ho sakte.</td></tr>
 <tr><td><strong>Sequential</strong></td><td><code>-s</code> use karne par name ke end mein monotonically increasing counter add hota hai, e.g. <code>/zoo0000000008</code>. Har parent apna counter maintain karta hai.</td></tr>
 </tbody></table></div>
-<h2 id="i"><span>9</span>ZooKeeper Architecture</h2>
+<h2 id="i"><span>9</span>ZooKeeper Architecture</h2><div class="flow"><div><b>Phase 1: Leader Election</b> Paxos-like election; majority leader ke saath sync ho to election complete.</div><div><b>Phase 2: Atomic Broadcast</b> Writes Leader ko forward hote hain; broadcast, majority persist, leader commit, phir client success.</div></div>
 <p>ZooKeeper ke two modes hain:</p>
 <p class="subtopic"><strong>Standalone</strong></p>
 <ul><li>One machine</li><li>Testing ke liye</li><li>No High Availability</li></ul>
