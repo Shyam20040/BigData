@@ -159,3 +159,40 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   nav { position: static; box-shadow: none; }
   header, .box, .grid > div, .flow > div, .tbl, pre { box-shadow: none; }
 }
+
+/* Low-glare monochrome palette shared by every guide and practice page. */
+:root {
+  color-scheme: dark;
+  --dk: #f2f2f2;
+  --bl: #d0d0d0;
+  --ac: #bdbdbd;
+  --pl: #242424;
+  --lg: #1b1b1b;
+  --bd: #454545;
+  --tx: #ededed;
+  --bg: #111;
+  --card: #1b1b1b;
+  --ok: #ededed;
+  --okb: #252525;
+  --no: #c9c9c9;
+  --nob: #303030;
+}
+body { background-color: #111 !important; color: #ededed !important; }
+header { background: #080808 !important; color: #f5f5f5 !important; border-color: #aaa !important; }
+header small, header p { color: #d0d0d0 !important; }
+h2 { border-color: #888 !important; }
+h2 span, .number, .practice a, .tab.on, #sub { background: #454545 !important; color: #fff !important; border-color: #888 !important; }
+nav, .box, .def, .grid > div, .flow > div, .week, .practice, .stat, .q, .o, .key, .empty, .dock, .tab, code {
+  background-color: #1d1d1d !important;
+  color: #ededed !important;
+  border-color: #484848 !important;
+}
+table { background: #1b1b1b !important; color: #ededed !important; }
+th { background: #303030 !important; color: #fff !important; }
+td { border-color: #484848 !important; }
+tr:nth-child(even) td { background: #222 !important; }
+pre, .res { background: #080808 !important; color: #f2f2f2 !important; }
+a { color: #ededed !important; }
+a:hover, .week:hover, button:hover { filter: brightness(1.25); }
+::selection { background: #777; color: #fff; }
+.language-switch { background: #303030 !important; color: #fff !important; border: 1px solid #777 !important; }
