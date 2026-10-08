@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="hi-Latn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Big Data Computing ? Week 2 Study Guide (Hinglish)</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:#0A2647;color:#fff;text-decoration:none;font-size:23px;box-shadow:0 4px 16px rgba(10,38,71,.25)}.language-switch:hover{background:#1E5A96}.language-switch:focus-visible{outline:3px solid #2C7FCE;outline-offset:3px}@media print{.language-switch{display:none}}</style><link rel="stylesheet" href="common.css"><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:#0A2647;color:#fff;text-decoration:none;font-size:23px;box-shadow:0 4px 16px rgba(10,38,71,.25)}.language-switch:hover{background:#1E5A96}.language-switch:focus-visible{outline:3px solid #2C7FCE;outline-offset:3}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="Big Data Week 2 Study Guide.html" aria-label="Switch to English" title="Switch to English">&#127468;&#127479;</a><div class="pg"><header><small>NPTEL ? Big Data Computing ? IIT Patna (Dr. Rajiv Misra)</small><h1>HDFS &amp; MapReduce: Architecture, Processes and Worked Examples</h1><p>Week 2 consolidated study guide ? Hinglish</p></header><nav><a href="#w2s1">1 HDFS: Introduction &amp; Design</a><a href="#w2s2">2 HDFS Architecture</a><a href="#w2s3">3 Hadoop 2.0 Improvements</a><a href="#w2s4">4 Block Size &amp; Small Files</a><a href="#w2s5">5 Read &amp; Write Processes</a><a href="#w2s6">6 Tuning &amp; Robustness</a><a href="#w2s7">7 MapReduce 1.0</a><a href="#w2s8">8 MapReduce Paradigm</a><a href="#w2s9">9 YARN Scheduler (Hadoop 2.x+)</a><a href="#w2s10">10 MapReduce Applications</a><a href="#w2s11">11 Worked Examples</a><a href="#w2s12">12 Quick Revision</a></nav><h2 id="w2s1"><span>1</span>HDFS: Introduction &amp; Design</h2>
+<p>Hadoop ek <strong>distributed file system</strong> provide karta hai aur <strong>MapReduce paradigm</strong> ka use karke very large data sets ko analyse karne ka framework bhi provide karta hai. Data aur computation ko <strong>thousands of hosts</strong> ke across partition kiya jata hai aur computations <strong>parallel</strong> run hoti hain, woh bhi <strong>data ke close</strong>.</p>
+<p>Capacity, storage aur <strong>I/O bandwidth</strong> ko simply <strong>commodity servers add karke</strong> scale kiya ja sakta hai. Yahoo! ke clusters mein <strong>25,000 servers</strong> tak hain jo <strong>25 PB</strong> data store karte hain, aur largest cluster mein <strong>3,500 servers</strong> hain. Yahoo! ne Hadoop ke core ka lagbhag <strong>80%</strong> contribute kiya, including HDFS aur MapReduce.</p>
+<div class="tbl"><table><thead><tr><th><strong>Project</strong></th><th><strong>Purpose</strong></th><th><strong>Origin</strong></th></tr></thead><tbody>
+<tr><td><strong>HDFS</strong></td><td>Distributed file system</td><td>Yahoo!</td></tr>
+<tr><td><strong>MapReduce</strong></td><td>Distributed computation framework</td><td>Yahoo!</td></tr>
+<tr><td><strong>HBase</strong></td><td>Column-oriented table service</td><td>Powerset (now Microsoft)</td></tr>
+<tr><td><strong>Pig</strong></td><td>Dataflow language, parallel execution</td><td>Yahoo!</td></tr>
+<tr><td><strong>Hive</strong></td><td>Data warehouse infrastructure</td><td>Facebook</td></tr>
+<tr><td><strong>ZooKeeper</strong></td><td>Distributed coordination</td><td>Yahoo!</td></tr>
+<tr><td><strong>Chukwa</strong></td><td>Management data collect karna</td><td>Yahoo!</td></tr>
+<tr><td><strong>Avro</strong></td><td>Data serialization</td><td>Yahoo! (with Cloudera)</td></tr>
+</tbody></table></div>
+<h3>Design Goals → Techniques</h3>
+<div class="tbl"><table><thead><tr><th><strong>Goal</strong></th><th><strong>Technique</strong></th></tr></thead><tbody>
+<tr><td><strong>Thousands of nodes/disks → frequent failure</strong></td><td><strong>Data replication:</strong> same data ko different nodes par store karna</td></tr>
+<tr><td><strong>Large data sets (TB–PB), high throughput</strong></td><td><strong>Computation ko data ke close move karna</strong>; many nodes ke local disks par scalable file system use karna</td></tr>
+<tr><td><strong>Simple commits</strong></td><td><strong>Simplified coherency model:</strong> write once, read many times</td></tr>
+<tr><td><strong>Portability across heterogeneous hardware/software</strong></td><td><strong>POSIX requirements ko relax karna</strong> taaki throughput increase ho sake</td></tr>
+</tbody></table></div>
+<p>Files ko <strong>blocks</strong> mein split kiya jata hai aur ye blocks low-cost <strong>commodity hardware</strong> ke nodes ke local disks par distribute kiye jaate hain. Bahut saare disks ko aggregate karne se system ki <strong>performance aur scalability</strong> increase hoti hai.</p>
+<h2 id="w2s2"><span>2</span>HDFS Architecture</h2>
+<h3>Single NameNode (Master)</h3>
+<p><strong>NameNode</strong> ek <strong>master node</strong> hota hai jo:</p>
+<ul>
+<li><strong>Namespace</strong> manage karta hai.</li>
+<li>Client access ko regulate karta hai.</li>
+<li>Track karta hai ki kaunse <strong>blocks kis DataNode par stored hain</strong>.</li>
+<li><strong>Metadata</strong> hold karta hai, jaise file name aur replicas.</li>
+</ul>
+<p>Example: <code>/home/foo/data, 3</code></p>
+<h3>Multiple DataNodes</h3>
+<p>Normally har node par ek <strong>DataNode</strong> hota hai, jo local storage use karta hai.</p>
+<p>DataNodes:</p>
+<ul>
+<li>Storage ko manage karte hain.</li>
+<li>Client ki <strong>read/write requests</strong> serve karte hain.</li>
+<li>NameNode ke instruction par <strong>blocks create, delete aur replicate</strong> karte hain.</li>
+</ul>
+<hr>
+<h2 id="w2s3"><span>3</span>Hadoop 2.0 Improvements</h2>
+<h3>HDFS Federation</h3>
+<p>HDFS Federation mein <strong>multiple NameNodes aur multiple namespaces</strong> hote hain.</p>
+<p>Original design mein ek hi NameNode hota tha, lekin thousands of nodes aur <strong>billions of files</strong> hone par single NameNode <strong>bottleneck</strong> ban sakta hai.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>Namespace scalability</strong> – namespaces ko independently scale kiya ja sakta hai.</li>
+<li><strong>Performance</strong> – load multiple NameNodes ke across distribute hota hai.</li>
+<li><strong>Isolation</strong> – different namespaces ko separately manage kiya ja sakta hai.</li>
+</ul>
+<p>Data ko <strong>Block Pools</strong> mein store kiya jata hai.</p>
+<ul>
+<li>Har <strong>NameNode/Namespace ke liye ek block pool</strong> hota hai.</li>
+<li>Ye block pools sabhi common <strong>DataNodes</strong> ke across spread hote hain.</li>
+<li>DataNodes multiple namespaces ke blocks store kar sakte hain.</li>
+</ul>
+<h3>High Availability</h3>
+<p>HDFS mein <strong>redundant NameNodes</strong> use kiye ja sakte hain, taaki NameNode failure ki situation mein system available rahe.</p>
+<h3>Heterogeneous / Archival Storage</h3>
+<p>HDFS different types ki storage ko support karta hai:</p>
+<ul>
+<li><strong>ARCHIVE</strong></li>
+<li><strong>DISK</strong></li>
+<li><strong>SSD</strong></li>
+<li><strong>RAM_DISK</strong></li>
+</ul>
+<h3>Architecture Flow</h3>
+<p><strong>NN-1 / NS1 … NN-n / NS n</strong> → Multiple <strong>Namespaces</strong></p>
+<p>↓</p>
+<p><strong>Pool 1 … Pool n</strong> → Multiple <strong>Block Pools</strong></p>
+<p>↓</p>
+<p><strong>DataNode 1 … m</strong> → Common <strong>Storage</strong></p>
+<h2 id="w2s4"><span>4</span>Block Size &amp; Small Files</h2>
+<p>Default <strong>block size 64 MB</strong> hota hai, lekin workload ke according ise often <strong>128 MB</strong> tak increase kiya jata hai. Ye <strong>large files</strong> ke liye suitable hota hai.</p>
+<p><strong>Block Count = File Size ÷ Block Size</strong></p>
+<p><strong>Example:</strong> 10 GB file → <code>10 × 1024 / 64</code> = <strong>160 blocks</strong></p>
+<p>Block count ka impact:</p>
+<ul>
+<li><strong>NameNode Memory</strong> – har file/block ek object hota hai (~150 bytes each). <strong>1 billion objects ≈ 300 GB</strong> memory le sakte hain. Agar <strong>3× replication</strong> hai, to blocks ki count bhi 3× ho jaati hai.</li>
+<li><strong>Number of Map Tasks</strong> – kitne blocks process karne hain, uske according <strong>Map tasks</strong> ki number depend karti hai.</li>
+<li><strong>Network Load</strong> – DataNode checks ki frequency <strong>number of blocks</strong> ke proportional hoti hai.</li>
+</ul>
+<h3>Small-Files Problem</h3>
+<p>Agar <strong>10 GB data ko 32 KB files</strong> mein divide kiya gaya, to:</p>
+<p><strong>10 GB → 327,680 map tasks</strong></p>
+<p>Isse:</p>
+<ul>
+<li>Bahut bada <strong>task queue</strong> create hota hai.</li>
+<li>Har task ke liye Java process ko <strong>start/stop karne ki latency</strong> hoti hai.</li>
+<li><strong>Disk I/O inefficient</strong> ho jata hai.</li>
+</ul>
+<h3>Solutions</h3>
+<p>Small-files problem ko solve karne ke liye:</p>
+<ul>
+<li>Files ko <strong>merge/concatenate</strong> karna.</li>
+<li><strong>Sequence Files</strong> use karna.</li>
+<li><strong>HBase/Hive configuration</strong> use karna.</li>
+<li><code><strong>CombineFileInputFormat</strong></code> use karna.</li>
+</ul>
+<h2 id="w2s5"><span>5</span>Read &amp; Write Processes</h2>
+<h3>Read Process</h3>
+<p><strong>1. Open</strong> Client <code>DistributedFileSystem</code> ke through file ko <strong>open</strong> karta hai.</p>
+<p>↓</p>
+<p><strong>2. Get Block Locations</strong> <code>DistributedFileSystem</code>, <strong>NameNode</strong> se file ke blocks ki <strong>locations</strong> obtain karta hai.</p>
+<p>↓</p>
+<p><strong>3–5. Read</strong> <code>FSDataInputStream</code> ke through client directly <strong>DataNodes se blocks read</strong> karta hai.</p>
+<p>↓</p>
+<p><strong>6. Close</strong> File ko <strong>close</strong> kar diya jata hai.</p>
+<hr>
+<h3>Write Process</h3>
+<p><strong>1–2. Create</strong> Client <code>DistributedFileSystem</code> ke through file create karne ke liye <strong>NameNode ko request</strong> karta hai.</p>
+<p>↓</p>
+<p><strong>3. Write</strong> Data ko <code>FSDataOutputStream</code> ke through <strong>write</strong> kiya jata hai.</p>
+<p>↓</p>
+<p><strong>4–5. Packet / ACK</strong> Data <strong>packets</strong> mein DataNodes ki pipeline ke through flow karta hai aur har stage par <strong>ACK (acknowledgement)</strong> milta hai.</p>
+<p>↓</p>
+<p><strong>6. Close → 7. Complete</strong> File <strong>close</strong> hoti hai aur write operation <strong>complete</strong> ho jata hai.</p>
+<h2 id="w2s6"><span>6</span>Tuning &amp; Robustness</h2>
+<p>HDFS ki <strong>tuning</strong> XML configuration files mein ki jaati hai, jaise <code>hdfs-site.xml</code>. Commercial vendors <strong>GUI consoles</strong> bhi provide karte hain.</p>
+<div class="tbl"><table><thead><tr><th><strong>Parameter</strong></th><th><strong>Default / Effect</strong></th></tr></thead><tbody>
+<tr><td><strong>dfs.blocksize</strong></td><td>64 MB, often 128 MB; ye <strong>NameNode memory, map tasks aur performance</strong> ko affect karta hai.</td></tr>
+<tr><td><strong>dfs.replication</strong></td><td>3. Lower value → <strong>less cost, more available space, but less robustness</strong>. Higher value → data <strong>more workers ke paas local</strong> available hota hai.</td></tr>
+<tr><td><strong>dfs.datanode.handler.count</strong></td><td>10; har DataNode par <strong>server threads</strong> ki number.</td></tr>
+<tr><td><strong>dfs.namenode.fs-limits.max-blocks-per-file</strong></td><td>Ek file mein <strong>maximum blocks</strong> ki limit.</td></tr>
+</tbody></table></div>
+<h3>Replication Trade-off</h3>
+<p>Agar <strong>replicas nahi hain</strong>, to lost node/disk ya <strong>bad checksum</strong> ki situation mein data recover nahi kiya ja sakta.</p>
+<p><code>hadoop distcp</code> ka use <strong>parallel file transfer</strong> ke liye kiya jata hai.</p>
+<h3>Failures &amp; Mitigation</h3>
+<div class="tbl"><table><thead><tr><th><strong>Failure</strong></th><th><strong>Mitigation</strong></th></tr></thead><tbody>
+<tr><td><strong>DataNode: server/disk crash, corruption; network failure</strong> <em>(jo multiple DataNodes ko affect kar sakta hai)</em></td><td>NameNode ko periodic <strong>heartbeat</strong> aur <strong>block reports</strong> bheje jaate hain. Agar recent heartbeat nahi milta, node ko <strong>dead</strong> mark kar diya jata hai aur new I/O stop kar diya jata hai. NameNode ko replication factor ke according blocks ki information hoti hai, isliye woh blocks ko <strong>re-replicate</strong> karta hai.</td></tr>
+<tr><td><strong>Data Corruption</strong></td><td>File creation ke time <strong>checksum</strong> calculate karke HDFS namespace mein store kiya jata hai. Retrieval ke time checksum <strong>verify</strong> hota hai. Agar corruption mile, to data ko <strong>alternate replica</strong> se re-read kiya jata hai.</td></tr>
+<tr><td><strong>NameNode: disk failure/corruption</strong></td><td>Central metadata ki <strong>multiple copies</strong> maintain ki jaati hain. Failure hone par <strong>standby NameNode</strong> par failover kiya ja sakta hai <em>(default mein manual)</em>.</td></tr>
+</tbody></table></div>
+<h2 id="w2s7"><span>7</span>MapReduce 1.0</h2>
+<p><strong>MapReduce</strong> Hadoop ka <strong>execution engine</strong> hai. Hadoop 1.0 mein ye <strong>cluster resource management</strong> aur <strong>HDFS par data processing</strong>, dono handle karta hai.</p>
+<h3>JobTracker (Master)</h3>
+<p><strong>JobTracker</strong> client se job receive karta hai, usse <strong>tasks mein break</strong> karta hai, slaves ko tasks allocate karta hai aur unki <strong>progress monitor</strong> karta hai.</p>
+<p><strong>Unit of execution = Job</strong></p>
+<h3>TaskTracker (Each Slave)</h3>
+<p><strong>TaskTracker</strong> local data par tasks run karta hai aur apni <strong>progress/results</strong> JobTracker ko report karta hai.</p>
+<p><strong>Master = JobTracker + NameNode</strong> <strong>Slaves = TaskTracker + DataNode</strong></p>
+<h3>MapReduce 1.0 Process</h3>
+<p><strong>1. Client submits job</strong> Client JobTracker ko <strong>job submit</strong> karta hai.</p>
+<p>↓</p>
+<p><strong>2. JT asks NameNode for data location</strong> JobTracker, NameNode se <strong>data ki location</strong> poochta hai.</p>
+<p>↓</p>
+<p><strong>3. JT tells TaskTrackers to run</strong> JobTracker TaskTrackers ko <strong>tasks execute karne ke instructions</strong> deta hai.</p>
+<p>↓</p>
+<p><strong>4. Results stored on DataNode; NN informed</strong> Processing ke results <strong>DataNode</strong> par store hote hain aur NameNode ko inform kiya jata hai.</p>
+<p>↓</p>
+<p><strong>5–6. TTs report to JT; JT tells client</strong> TaskTrackers apni <strong>progress/results JobTracker</strong> ko report karte hain, aur JobTracker client ko information deta hai.</p>
+<p>↓</p>
+<p><strong>7. Client gets results from NN</strong> Client <strong>NameNode</strong> ke through results obtain karta hai.</p>
+<h3>Example</h3>
+<p>Maan lo <strong>20,000 customer records</strong> hain. Inhe <strong>5 chunks × 4,000 records</strong> mein split karke 5 nodes par distribute kiya jata hai.</p>
+<p>Har node apne <strong>4,000 records</strong> mein <code>"Mumbai"</code> ke customers ko find karta hai, aur parallel processing ke through complete dataset ko efficiently process kiya jata hai.</p>
+<h2 id="w2s8"><span>8</span>MapReduce Paradigm</h2>
+<h3>Definition</h3>
+<p><strong>MapReduce</strong> ek <strong>programming model aur implementation</strong> hai jo large data sets ko process aur generate karne ke liye use hota hai.</p>
+<p>User mainly do functions likhta hai:</p>
+<ul>
+<li><strong>Map:</strong> <code>(key/value) → intermediate key/value pairs</code></li>
+<li><strong>Reduce:</strong> same <strong>intermediate key</strong> ke saare values ko merge karta hai.</li>
+</ul>
+<p>Runtime automatically <strong>partitioning, scheduling, machine failures aur inter-machine communication</strong> handle karta hai. Isliye programmer ko <strong>parallel systems ka special experience</strong> hona zaroori nahi hai.</p>
+<h3>Why MapReduce?</h3>
+<p>MapReduce ka purpose hai <strong>1000s of CPUs</strong> ko use karna without manually managing all the complexity.</p>
+<p>Ye automatically handle karta hai:</p>
+<ul>
+<li><strong>Parallelization and distribution</strong></li>
+<li><strong>Fault tolerance</strong></li>
+<li><strong>I/O scheduling</strong></li>
+<li><strong>Monitoring</strong></li>
+<li><strong>Status updates</strong></li>
+</ul>
+<p>Map aur Reduce terms <strong>functional programming languages</strong>, especially <strong>Lisp</strong>, se aaye hain.</p>
+<p>Example:</p>
+<p><code>(map square '(1 2 3 4))</code> → <code>(1 4 9 16)</code></p>
+<p>Yahan records ko <strong>independently process</strong> kiya jata hai.</p>
+<p><code>(reduce + '(1 4 9 16))</code> → <code>30</code></p>
+<p>Yahan values ko <strong>combine</strong> kiya jata hai.</p>
+<hr>
+<h3>MapReduce Flow</h3>
+<p><strong>Input</strong> Chunks / Records</p>
+<p>↓</p>
+<p><strong>Map</strong> Parallel processing; <code>(k, v)</code> emit karta hai</p>
+<p>↓</p>
+<p><strong>Shuffle &amp; Sort</strong> Same key ke according data ko <strong>group</strong> karta hai</p>
+<p>↓</p>
+<p><strong>Reduce</strong> Har key ki values ko <strong>merge</strong> karta hai</p>
+<p>↓</p>
+<p><strong>Output</strong></p>
+<hr>
+<h3>MapReduce Signatures</h3>
+<p><code>map(k, v) → list(k1, v1)</code></p>
+<p><code>reduce(k1, list(v1)) → v2</code></p>
+<ul>
+<li><strong>Reduce</strong> values ko ek <strong>iterator</strong> ke through receive karta hai, isliye agar list memory se bahut badi ho tab bhi handle ki ja sakti hai.</li>
+<li>Usually ek reduce call se <strong>0 ya 1 output</strong> generate hota hai.</li>
+<li>Har key exactly <strong>one reducer</strong> ko assign hoti hai.</li>
+<li>Common method <strong>hash partitioning</strong> hai:</li>
+</ul>
+<p><code>reduce# = hash(key) % number_of_reduce_tasks</code></p>
+<hr>
+<h3>Distributed File</h3>
+<p>Distributed file ko <strong>16–64 MB chunks</strong> mein divide kiya jata hai.</p>
+<ul>
+<li>Chunks ko <strong>2–3× replicate</strong> kiya jata hai.</li>
+<li>Replicas ko <strong>different racks</strong> par rakha jata hai.</li>
+<li><strong>Master (NameNode)</strong> metadata maintain karta hai.</li>
+<li>Uske baad clients directly <strong>chunkservers/DataNodes</strong> se data access karte hain.</li>
+</ul>
+<hr>
+<h3>Map &amp; Reduce Example</h3>
+<pre>map(key, value):
+    // key: document name; value: text
+    for each word w in value:
+        emit(w, 1)
+
+reduce(key, values):
+    // key: word; values: iterator of counts
+    result = 0
+    for each v in values:
+        result += v
+    emit(key, result)</pre>
+<h3>Word Count Example</h3>
+<p>Input:</p>
+<pre>&quot;see bob run&quot;
+&quot;see spot throw&quot;</pre>
+<p><strong>Map:</strong></p>
+<pre>bob   1
+see   1
+run   1
+see   1
+spot  1
+throw 1</pre>
+<p><strong>Shuffle &amp; Sort:</strong> Same key ko group kiya jayega, isliye dono <strong><code>see</code></strong> values ek saath aa jayengi.</p>
+<p><strong>Reduce:</strong></p>
+<pre>bob   1
+run   1
+see   2
+spot  1
+throw 1</pre>
+<p>So, <strong><code>see = 2</code></strong> because <code>"see"</code> input mein <strong>2 times</strong> appear hua.</p>
+<h2 id="w2s9"><span>9</span>YARN Scheduler (Hadoop 2.x+)</h2>
+<p><strong>YARN = Yet Another Resource Negotiator</strong></p>
+<p>YARN mein har server ko multiple <strong>containers</strong> ke form mein divide kiya jata hai. Har container ke paas fixed <strong>CPU + memory</strong> resources hote hain.</p>
+<p><strong>Example:</strong> Agar server mein <strong>8 cores + 16 GB RAM</strong> hai, to ise <strong>1 core + 2 GB</strong> ke containers mein divide kiya ja sakta hai.</p>
+<div class="tbl"><table><thead><tr><th><strong>Component</strong></th><th><strong>Role</strong></th></tr></thead><tbody>
+<tr><td><strong>Global Resource Manager (RM)</strong></td><td><strong>Scheduling</strong> handle karta hai.</td></tr>
+<tr><td><strong>Per-server Node Manager (NM)</strong></td><td>Daemon aur <strong>server-specific functions</strong> handle karta hai.</td></tr>
+<tr><td><strong>Per-application Application Master (AM)</strong></td><td>RM aur NMs ke saath <strong>containers negotiate</strong> karta hai aur apne job ke <strong>task failures detect</strong> karta hai.</td></tr>
+</tbody></table></div>
+<h3>Getting a Container</h3>
+<p><strong>1. AM needs container</strong> Application Master ko ek <strong>container</strong> ki requirement hoti hai.</p>
+<p>↓</p>
+<p><strong>2. RM allocates container</strong> Resource Manager available resources ke according kisi node par, maan lo <strong>Node B</strong>, container allocate karta hai.</p>
+<p>↓</p>
+<p><strong>3. AM asks NodeManager to start task</strong> Application Master, <strong>NodeManager</strong> ko task start karne ke liye request karta hai.</p>
+<p>↓</p>
+<p><strong>4. Container completion reported</strong> Task complete hone par <strong>container completion</strong> ki information report ki jaati hai.</p>
+<h2 id="w2s10"><span>10</span>MapReduce Applications</h2>
+<div class="tbl"><table><thead><tr><th><strong>Application</strong></th><th><strong>Map</strong></th><th><strong>Reduce</strong></th></tr></thead><tbody>
+<tr><td><strong>Distributed grep</strong></td><td>Agar line given pattern se <strong>match</strong> karti hai, to us line ko emit karta hai.</td><td><strong>Identity</strong> — output mein same data ko copy karta hai.</td></tr>
+<tr><td><strong>URL access count</strong></td><td>Log se <strong><code>(URL, 1)</code></strong> emit karta hai.</td><td>Values ko <strong>sum</strong> karta hai → <strong><code>(URL, total)</code></strong>.</td></tr>
+<tr><td><strong>URL access %</strong></td><td><strong>Job 1:</strong> upar wale URL access count jaisa. <strong>Job 2:</strong> map → <strong><code>(1, (URL, count))</code></strong>.</td><td><strong>Single reducer:</strong> Pass 1 mein overall count sum karta hai, Pass 2 mein <strong>percentage (%)</strong> calculate karta hai.</td></tr>
+<tr><td><strong>Reverse web-link graph</strong></td><td><strong><code>(source, target) → (target, source)</code></strong></td><td><strong><code>(target, list(source))</code></strong> generate karta hai.</td></tr>
+<tr><td><strong>Term-vector per host</strong></td><td>Har document ke liye <strong><code>(hostname, term vector)</code></strong> generate karta hai.</td><td>Vectors ko <strong>add</strong> karta hai aur <strong>infrequent terms</strong> ko remove karta hai.</td></tr>
+<tr><td><strong>Inverted index</strong></td><td><strong><code>(word, docID)</code></strong> generate karta hai.</td><td>IDs ko <strong>sort</strong> karta hai → <strong><code>(word, list(docID))</code></strong>.</td></tr>
+<tr><td><strong>Distributed sort</strong></td><td><strong><code>(key, record)</code></strong>; map output already sorted hota hai.</td><td><strong>Identity</strong> — input sorted hota hai. Yahan <strong>range partitioning</strong> use hoti hai, hashing nahi, taaki data distribution ke according workload balanced rahe.</td></tr>
+</tbody></table></div>
+<h2 id="w2s11"><span>11</span>Worked Examples</h2>
+<h3>Word-Length Counting</h3>
+<p>Map <strong><code>(length, word)</code></strong> emit karta hai:</p>
+<p><code>3:the, 3:and, 3:you, 4:then …</code></p>
+<p>Phir same length ke words ko group kiya jata hai:</p>
+<ul>
+<li><code>3 → [the, and, you]</code></li>
+<li><code>4 → [then, what, when]</code></li>
+<li><code>5 → [steve, where]</code></li>
+<li><code>8 → [savannah, research]</code></li>
+</ul>
+<p>Reduce list ke size ko count karta hai:</p>
+<p><strong><code>3:3, 4:3, 5:2, 8:2</code></strong></p>
+<hr>
+<h3>Word-Length Histogram</h3>
+<p>Classes:</p>
+<ul>
+<li><strong>Big:</strong> 10+ letters</li>
+<li><strong>Medium:</strong> 5–9 letters</li>
+<li><strong>Small:</strong> 2–4 letters</li>
+<li><strong>Tiny:</strong> 1 letter</li>
+</ul>
+<p><strong>Map Task 1 (204 words):</strong></p>
+<p><code>yellow = 17, red = 77, blue = 107, pink = 3</code></p>
+<p><strong>Map Task 2 (190 words):</strong></p>
+<p><code>yellow = 20, red = 71, blue = 93, pink = 6</code></p>
+<p>Shuffle ke baad Reduce local counts ko combine karta hai:</p>
+<p><strong>Final result:</strong></p>
+<p><code>yellow = 37, red = 148, blue = 200, pink = 9</code></p>
+<p>Ek <strong>combiner</strong> locally hi values ko pre-sum kar sakta hai, jisse data transfer kam ho jata hai.</p>
+<hr>
+<h3>Inverted Index</h3>
+<p>Tweets:</p>
+<ol>
+<li><code>"I love pancakes for breakfast"</code></li>
+<li><code>"I dislike pancakes"</code></li>
+<li><code>"What should I eat for breakfast?"</code></li>
+<li><code>"I love to eat"</code></li>
+</ol>
+<p><strong>Map</strong> <code>(word, tweet ID)</code> emit karta hai.</p>
+<p><strong>Reduce output:</strong></p>
+<ul>
+<li><code>pancakes → (1, 2)</code></li>
+<li><code>breakfast → (1, 3)</code></li>
+<li><code>eat → (3, 4)</code></li>
+<li><code>love → (1, 4)</code></li>
+</ul>
+<p>Yaani har word ke saath un tweets ke <strong>IDs store</strong> hote hain jahan woh word present hai.</p>
+<hr>
+<h3>Relational Join</h3>
+<p><strong>Employee ⨝ Department</strong> on:</p>
+<p><code>SSN = EmpSSN</code></p>
+<p>Sabhi tuples ko ek saath <strong>lump</strong> kiya jata hai.</p>
+<p><strong>Map</strong> <code>(join key, tuple tagged with relation name)</code> emit karta hai.</p>
+<p>Phir <strong>Reduce</strong> same key wale tuples ko dono tables se combine karta hai.</p>
+<p><strong>Example:</strong></p>
+<p>Key <code>777777777</code>:</p>
+<p><code>(Employee, Tony)</code> + <code>(Department, Sales)</code></p>
+<p>aur</p>
+<p><code>(Employee, Tony)</code> + <code>(Department, Marketing)</code></p>
+<p>→ <strong>2 joined rows</strong> generate hongi.</p>
+<p>Isi same pattern ko <strong>Order/LineItem</strong> join par bhi apply kiya ja sakta hai using <code>orderid</code>, jahan tags <code>"Order"</code> aur <code>"Line"</code> honge.</p>
+<hr>
+<h3>Finding Common Friends</h3>
+<p>Input:</p>
+<pre>A → B C D
+B → A C D E
+C → A B D E
+D → A B C E
+E → B C D</pre>
+<p>Ye data daily <strong>precompute</strong> karke store kiya jata hai.</p>
+<p><strong>Map:</strong> <code>P → friends</code> se sorted pair of <code>P</code> and each friend generate hota hai, aur saath mein <strong>P ki complete friend list</strong> emit hoti hai.</p>
+<p>Example:</p>
+<pre>map(A → B C D):
+
+(A B) → B C D
+(A C) → B C D
+(A D) → B C D</pre>
+<p>Phir same pair ke according data ko <strong>group</strong> kiya jata hai.</p>
+<p>Example:</p>
+<pre>(A B) → (A C D E)(B C D)</pre>
+<p><strong>Reduce</strong> dono friend lists ka <strong>intersection</strong> karta hai:</p>
+<p><code>(A B) → (C D)</code></p>
+<p>Final results:</p>
+<pre>AB → CD
+AC → BD
+AD → BC
+BC → ADE
+BD → ACE
+BE → CD
+CD → ABE
+CE → BD
+DE → BC</pre>
+<p>Jab <strong>D, B ki profile</strong> visit karta hai, to lookup:</p>
+<p><code>(B D) → common friends A, C, E</code></p>
+<p>Isliye <strong>B aur D ke common friends = A, C, E</strong>.</p>
+<h2 id="w2s12"><span>12</span>Quick Revision</h2>
+<h3>Must Remember</h3>
+<ul>
+<li><strong>HDFS Goals:</strong> Fault tolerance, portability, large data aur high throughput → <strong>replication, write-once-read-many, computation ko data ke paas le jaana, relaxed POSIX requirements</strong>.</li>
+<li><strong>Block Size:</strong> 64 MB <em>(128 MB common)</em>; <strong>10 GB = 160 blocks</strong>; NameNode par approximately <strong>150 bytes/object</strong>; <strong>small files → bahut zyada map tasks</strong>.</li>
+<li><strong>Federation:</strong> <strong>Many NameNodes + Block Pools</strong>; <strong>HA:</strong> redundant NameNodes; storage types = <strong>ARCHIVE, DISK, SSD, RAM_DISK</strong>.</li>
+<li><strong>Failure Handling:</strong> <strong>Heartbeat, re-replication, checksums, standby NameNode</strong> <em>(manual failover default)</em>.</li>
+<li><strong>MR 1.0:</strong> <strong>JobTracker (master) + TaskTracker (slave)</strong>, 7 steps; <strong>MR 2.0:</strong> <strong>YARN</strong> with <strong>ResourceManager (RM), NodeManager (NM), ApplicationMaster (AM) aur Containers</strong>.</li>
+<li><strong>MapReduce Flow:</strong> <strong>Map → Shuffle → Reduce</strong>; partitioning = <code>hash(key) % reducers</code>; distributed sort ke liye <strong>range partitioning</strong> use hoti hai.</li>
+</ul><footer>Week 2 ? Big Data Computing ? Hinglish Study Guide</footer></div></body></html>
