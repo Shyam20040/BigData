@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html lang="hi-Latn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Week 3 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+</style><link rel="stylesheet" href="common.css">
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="Big Data Week 3 Study Guide.html" aria-label="Switch to English" title="Switch to English">EN</a><div class="pg">
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+<h1>Apache Spark &amp; Key-Value Stores</h1><p>Week 3 consolidated study guide &middot; Hinglish</p></header>
+<nav><a href="#a">1 Why Spark</a><a href="#b">2 RDDs</a><a href="#c">3 Scala</a><a href="#d">4 Operations</a><a href="#e">5 Execution</a><a href="#f">6 PageRank</a><a href="#g">7 Performance</a><a href="#h">8 Libraries</a><a href="#i">9 Key-Value Stores</a><a href="#j">10 Cassandra</a><a href="#k">11 Revision</a></nav>
+
+<h2 id="a"><span>1</span>Why Spark?</h2>
+<h4>Definition</h4>
+<p><strong>Spark</strong> ek fast, expressive <strong>cluster computing system</strong> hai jo Apache Hadoop ke saath compatible hai. Isse originally <strong>UC Berkeley's AMPLab (2012)</strong> mein develop kiya gaya tha.</p>
+<p>Ye Hadoop-supported kisi bhi storage ke saath work kar sakta hai, jaise <strong>HDFS, S3, SequenceFile, Avro…</strong></p>
+<p>Spark ki efficiency <strong>in-memory computing primitives</strong> aur <strong>general computation graphs</strong> se aati hai. Uski usability rich APIs ki wajah se hai — <strong>Java, Scala, Python</strong> aur libraries mein <strong>R</strong> — aur ek <strong>interactive shell</strong> bhi available hai.</p>
+<p><strong>Claims:</strong> up to <strong>100× faster</strong>, aur often <strong>2–10× less code</strong>.</p>
+<h4>Limitations of MapReduce</h4>
+<p>MapReduce mein <strong>Map outputs aur intermediate results HDFS par save</strong> kiye jaate hain taaki fault tolerance maintain ho sake. Lekin ye disk save expensive hota hai aur performance ko degrade karta hai.</p>
+<ul><li><strong>Iterative aur interactive applications</strong> ke liye costly hai.</li><li>Efficient <strong>data sharing</strong> nahi hoti.</li><li>Isi wajah se specialized frameworks aaye, jaise <strong>Bulk Synchronous Processing (Pregel)</strong> aur <strong>iterative MapReduce</strong>.</li></ul>
+<h4>Spark Ideas</h4>
+<p>Spark:</p>
+<ul><li>Sirf <strong>map-reduce model</strong> tak limited nahi hai.</li><li><strong>System memory</strong> ka use karta hai.</li><li>Intermediate results ko repeatedly <strong>disk par save karne se avoid</strong> karta hai.</li><li>Repetitive queries ke liye data ko <strong>cache</strong> kar sakta hai, jaise <strong>machine learning</strong>.</li><li>Hadoop ke saath <strong>compatible</strong> rehta hai.</li></ul>
+<h4>Ways to Run Spark</h4>
+<p>Spark ko different ways mein run kiya ja sakta hai:</p>
+<ul><li><strong>Local multicore</strong> — sirf ek library ki tarah.</li><li><strong>EC2 scripts</strong></li><li><strong>Private cluster</strong> via Mesos</li><li><strong>YARN</strong></li><li><strong>Standalone mode</strong></li></ul>
+<h4>Applications</h4>
+<p>Spark ke applications mein:</p>
+<ul><li>Twitter <strong>spam classification</strong></li><li>EM <strong>traffic prediction</strong></li><li><strong>K-means</strong></li><li><strong>ALS matrix factorization</strong></li><li>Hive data par <strong>in-memory OLAP</strong></li><li><strong>SQL on Spark</strong></li></ul>
+<hr>
+<h2 id="b"><span>2</span>RDDs &amp; Fault Tolerance</h2>
+<h3>Resilient Distributed Dataset</h3>
+<p><strong>RDD</strong> ek <strong>immutable (read-only), partitioned collection of records</strong> hai jo cluster ke across spread hota hai.</p>
+<p>RDDs <strong>coarse-grained transformations</strong> jaise <code>map</code>, <code>join</code> etc. ke through build hote hain, failure hone par automatically <strong>rebuild</strong> kiye ja sakte hain aur memory mein <strong>cache</strong> bhi kiye ja sakte hain.</p>
+<p>Different <strong>storage levels</strong> available hote hain, aur zarurat padne par <strong>disk fallback</strong> bhi ho sakta hai.</p>
+<div class="tbl"><table><thead><tr><th><strong>Type</strong></th><th><strong>Nature</strong></th><th><strong>Examples</strong></th></tr></thead><tbody>
+<tr><td><strong>Transformations</strong></td><td>Lazy; deterministic operations ke through existing RDDs se new RDD create karte hain</td><td><code>map</code>, <code>filter</code>, <code>flatMap</code>, <code>groupBy</code>, <code>join</code></td></tr>
+<tr><td><strong>Actions</strong></td><td>Value return karte hain ya data export karte hain; execution trigger karte hain</td><td><code>count</code>, <code>collect</code>, <code>take</code>, <code>reduce</code>, <code>save</code></td></tr>
+</tbody></table></div>
+<p>Programmers <strong>partitioning aur persistence</strong> ko bhi control kar sakte hain — data ko <strong>RAM ya disk</strong> mein cache karna.</p>
+<h4>Fault Tolerance by Lineage</h4>
+<p>RDDs un <strong>coarse-grained transformations</strong> ka record, yani <strong>lineage</strong>, maintain karte hain jinke through woh build hue hain.</p>
+<p>Example:</p>
+<p><strong>HadoopRDD → FilteredRDD → MappedRDD</strong></p>
+<p>Agar koi partition lost ho jata hai, to us partition ko uski <strong>lineage se simply recompute</strong> kiya ja sakta hai.</p>
+<p>Agar failure nahi hota, to is recomputation ki <strong>koi cost nahi</strong> hoti.</p>
+<h4>Log-Mining Example</h4>
+<p>Errors ko load karke <code>cache()</code> kiya ja sakta hai aur phir repeated searches run ki ja sakti hain.</p>
+<p><strong>1 TB</strong> data:</p>
+<ul><li><strong>5–7 s</strong> → cached/in-memory</li><li><strong>170 s</strong> → disk se</li></ul>
+<h4>Code</h4>
+<pre><code class="language-python">lines = spark.textFile("hdfs://...")
+errors = lines.filter(lambda s: s.startswith("ERROR"))
+messages = errors.map(lambda s: s.split('\t')[2])
+messages.cache()
+messages.filter(lambda s: "foo" in s).count()</code></pre>
+<hr>
+<h2 id="c"><span>3</span>Scala Essentials</h2>
+<p><strong>Scala</strong> JVM ke liye ek <strong>high-level, statically typed language</strong> hai. Ye <strong>object-oriented + functional</strong> dono hai.</p>
+<p>Iski speed Java ke comparable hai aur ismein:</p>
+<ul><li><strong>Type inference</strong></li><li>Full <strong>Java interoperability</strong></li></ul>
+<p>available hai.</p>
+<p>Spark originally <strong>Scala</strong> mein written tha.</p>
+<p>Interactive shells sirf <strong>Scala aur Python</strong> mein available hain, jabki standalone programs <strong>any language</strong> mein likhe ja sakte hain.</p>
+<p><strong>Java/Scala</strong> static typing ki wajah se faster hote hain, jabki <strong>Python</strong> NumPy ke saath numerics ke liye achha perform karta hai.</p>
+<h4>Scala Examples</h4>
+<pre><code class="language-scala">var x = 7        // mutable, inferred
+val y = "hi"     // read-only
+def square(x: Int): Int = x * x
+var arr = new Array[Int](8)
+var lst = List(1, 2, 3)
+arr(5) = 7       // indexing with ()
+list.map(_ + 2)          // List(3,4,5)
+list.filter(_ % 2 == 1)  // List(1,3)
+list.reduce(_ + _)       // 6</code></pre>
+<h4>Closures</h4>
+<pre><code class="language-scala">// (x: Int) =&gt; x + 2   full closure
+// x =&gt; x + 2          inferred</code></pre>
+<p><code>List</code> <strong>immutable</strong> hoti hai, isliye ye operations original list ko change nahi karte.</p>
+<p>Other <code>Seq</code> methods:</p>
+<ul><li><code>flatMap</code> → one-to-many</li><li><code>exists</code></li><li><code>forall</code></li><li><code>groupBy</code></li><li><code>sortBy</code></li></ul>
+<hr>
+<h2 id="d"><span>4</span>Spark Operations</h2>
+<p><strong>SparkContext (<code>sc</code>)</strong> Spark ka main entry point hai. Shells mein ye automatically create ho jata hai.</p>
+<p>Shell mode <strong>MASTER</strong> se set hota hai:</p>
+<ul><li><code>local</code> → 1 thread</li><li><code>local[2]</code></li><li><code>spark://host:port</code> → standalone cluster</li></ul>
+<p>Standalone programs mein SparkContext ko <code>(masterUrl, app name, sparkHome, list of JARs/files to ship)</code> ke saath create kiya jata hai.</p>
+<div class="tbl"><table><thead><tr><th><strong>Operation</strong></th><th><strong>Effect</strong></th></tr></thead><tbody>
+<tr><td><code>parallelize(list)</code></td><td>Local collection → RDD</td></tr>
+<tr><td><code>textFile(path)</code></td><td>Local FS, HDFS ya S3 se load; <code>hadoopFile</code> any InputFormat ke liye</td></tr>
+<tr><td><code>map / filter / flatMap</code></td><td><code>[1,2,3]</code> → squares <code>{1,4,9}</code>; evens <code>{4}</code>; <code>flatMap(range(0,x))</code> → <code>{0,0,1,0,1,2}</code></td></tr>
+<tr><td><code>collect / take(k) / count / reduce / saveAsTextFile</code></td><td>Actions; <code>reduce</code> ko associative function chahiye</td></tr>
+<tr><td><code>reduceByKey</code></td><td><code>(k,v)</code> pairs par distributed reduce; <strong>map-side combining</strong> bhi karta hai</td></tr>
+<tr><td><code>groupByKey / sortByKey</code></td><td><code>(cat, Seq(1,2)), (dog, Seq(1))</code> / key ke according sorted</td></tr>
+<tr><td><code>join / cogroup</code></td><td>Do key-value RDDs ko combine karta hai; <code>cogroup</code> → <code>(key, (Seq of left, Seq of right))</code></td></tr>
+<tr><td><code>sample, union, cartesian, pipe</code></td><td>Subset sample, RDDs merge, cross product, external program ke through pass</td></tr>
+</tbody></table></div>
+<h4><code>reduceByKey</code> Example</h4>
+<pre><code class="language-text">(cat,1),(dog,1),(cat,2)
+        ↓
+(cat,3),(dog,1)</code></pre>
+<h4>Word Count</h4>
+<pre><code class="language-python">lines.flatMap(lambda line: line.split(" ")) \
+     .map(lambda word: (word, 1)) \
+     .reduceByKey(lambda x, y: x + y)   # word count</code></pre>
+<h4>Parallelism</h4>
+<p>Pair operations optional <strong>task-count argument</strong> le sakte hain:</p>
+<pre><code class="language-text">reduceByKey(f, 5)</code></pre>
+<p>Ya:</p>
+<pre><code class="language-text">spark.default.parallelism</code></pre>
+<p>set kiya ja sakta hai.</p>
+<h4>Closures</h4>
+<p>External variables ko cluster par <strong>ship</strong> kiya jata hai. Har task ko variable ki <strong>new copy</strong> milti hai, aur updates wapas send nahi hote.</p>
+<p>Variables ko <strong>Serializable/Pickle-able</strong> hona chahiye.</p>
+<p>Outer object ke fields ko directly use nahi karna chahiye, kyunki isse <strong>poora object ship</strong> ho sakta hai aur <code>NotSerializableException</code> aa sakta hai.</p>
+<p>Fix: pehle value ko local variable mein copy karo:</p>
+<pre><code class="language-scala">val param_ = param</code></pre>
+<hr>
+<h2 id="e"><span>5</span>Job Execution</h2>
+<p>Spark application ke andar <strong>library</strong> ki tarah run karta hai — har application ka ek instance hota hai.</p>
+<ul><li><strong>Driver</strong> → <code>SparkContext</code> hold karta hai.</li><li><strong>Cluster Manager</strong> → Standalone, Mesos ya YARN.</li><li><strong>Workers/Executors</strong> → tasks run karte hain aur cache hold karte hain.</li><li>Storage ko <strong>Hadoop InputFormat</strong> ke through access kiya ja sakta hai:<ul><li>HDFS</li><li>HBase</li><li>S3</li><li>Cassandra</li><li>Avro</li></ul></li></ul>
+<h4>Execution Flow</h4>
+<p><strong>RDD objects</strong></p>
+<p>↓</p>
+<p><strong>Build operator DAG</strong></p>
+<p>↓</p>
+<p><strong>DAGScheduler</strong></p>
+<p>Stages of tasks mein split karta hai aur ready stages ko submit karta hai.</p>
+<p>↓</p>
+<p><strong>TaskScheduler</strong></p>
+<p>Cluster manager ke through tasks launch karta hai aur failed/straggling tasks ko retry karta hai.</p>
+<p>↓</p>
+<p><strong>Worker</strong></p>
+<p>Tasks execute karta hai aur <strong>Block Manager</strong> blocks ko store/serve karta hai.</p>
+<h4>DAG</h4>
+<p><strong>DAG = Directed Acyclic Graph</strong></p>
+<p>Flow:</p>
+<p><strong>Source → Transformations → RDDs → Action</strong></p>
+<p>Ye Spark ka <strong>execution plan</strong> hai aur executors ke across automatically scale hota hai.</p>
+<p>Scheduler:</p>
+<ul><li>General task graphs support karta hai.</li><li>Jahan possible ho functions ko <strong>pipeline</strong> karta hai.</li><li><strong>Cache-aware</strong> hai → reuse aur locality.</li><li><strong>Partitioning-aware</strong> hai → unnecessary shuffles avoid karta hai.</li></ul>
+<p><strong>Shuffle</strong> = executors ke across <strong>exchange, partition aur sort</strong>.</p>
+<h4>Job Example</h4>
+<p>Agar:</p>
+<pre><code class="language-text">errors.cache()</code></pre>
+<p>ke baad do:</p>
+<pre><code class="language-text">filter(...).count()</code></pre>
+<p>actions run hote hain, to:</p>
+<ul><li>First action workers par blocks ko <strong>load + cache</strong> karta hai.</li><li>Second action same <strong>cache reuse</strong> karta hai.</li></ul>
+<h4>Build &amp; Submit</h4>
+<pre><code class="language-text">sbt package</code></pre>
+<p>Then:</p>
+<pre><code class="language-text">spark-submit --master local --class GvaWeather target/…jar</code></pre>
+<h4>Hadoop Compatibility</h4>
+<p>Spark existing <strong>InputFormat/OutputFormat</strong> reuse karta hai.</p>
+<ul><li><code>textFile</code> → filesystems ke liye</li><li><code>hadoopRDD</code> → any <code>JobConf</code> ke saath</li></ul>
+<hr>
+<h2 id="f"><span>6</span>PageRank in Spark</h2>
+<p><strong>PageRank</strong> ek complex, multi-stage aur <strong>iterative algorithm</strong> ka good example hai jo <strong>in-memory caching</strong> se benefit karta hai.</p>
+<h4>Idea</h4>
+<ul><li>Many pages se links aana → <strong>high rank</strong></li><li>High-rank page se link aana → <strong>high rank</strong></li></ul>
+<h4>Algorithm</h4>
+<ol><li>Har page ko initially <strong>rank 1</strong> do.</li><li>Har iteration mein page <code>p</code> apne neighbors ko:</li></ol>
+<p><code>rankp / |neighborsp|</code></p>
+<p>rank contribute karta hai.</p>
+<ol><li>New rank:</li></ol>
+<p><code>0.15 + 0.85 × Σ contributions</code></p>
+<h4>Example</h4>
+<p>Contributions:</p>
+<p><code>1 + 0.5 + 0.5</code></p>
+<p>Then:</p>
+<p><code>0.15 + 0.85 × 2 = 1.85</code></p>
+<p>Ranks evolve:</p>
+<pre><code class="language-text">1.85, 0.58, 1.0, 0.58
+        ↓
+1.31, 0.39, 1.72, 0.58
+        ↓
+1.44, 0.46, 1.37, 0.73</code></pre>
+<h4>Code</h4>
+<pre><code class="language-scala">val links = // RDD of (url, neighbors)
+var ranks = // RDD of (url, rank)
+
+for (i &lt;- 1 to ITERATIONS) {
+  val contribs = links.join(ranks).flatMap {
+    case (url, (links, rank)) =&gt;
+      links.map(dest =&gt; (dest, rank/links.size))
+  }
+  ranks = contribs.reduceByKey(_ + _).mapValues(0.15 + 0.85 * _)
+}</code></pre>
+<hr>
+<h2 id="g"><span>7</span>Performance Results</h2>
+<div class="tbl"><table><thead><tr><th><strong>Experiment</strong></th><th><strong>Hadoop</strong></th><th><strong>Spark</strong></th></tr></thead><tbody>
+<tr><td><strong>PageRank, 30 machines (s/iter)</strong></td><td>171</td><td>23</td></tr>
+<tr><td><strong>PageRank, 60 machines</strong></td><td>80</td><td>14</td></tr>
+<tr><td><strong>K-means (s/iter)</strong></td><td>155</td><td>4.1</td></tr>
+<tr><td><strong>Logistic regression (s/iter)</strong></td><td>110</td><td>0.96</td></tr>
+</tbody></table></div>
+<h4>Fault Recovery</h4>
+<p>Normal iteration time approximately <strong>57–59 s</strong> tha, first iteration <strong>119 s</strong>.</p>
+<p>Jab iteration 6 mein failure aaya:</p>
+<ul><li>Time increased to <strong>81 s</strong></li><li>Phir normal level par return ho gaya.</li></ul>
+<p>Ye <strong>lineage recomputation</strong> ki wajah se possible hua.</p>
+<h4>Less RAM</h4>
+<p>Working set ke cached percentage ke according iteration time:</p>
+<div class="tbl"><table><thead><tr><th><strong>Cached Working Set</strong></th><th><strong>Iteration Time</strong></th></tr></thead><tbody>
+<tr><td>Disabled</td><td>69 s</td></tr>
+<tr><td>25%</td><td>58 s</td></tr>
+<tr><td>50%</td><td>41 s</td></tr>
+<tr><td>75%</td><td>30 s</td></tr>
+<tr><td>Fully cached</td><td>12 s</td></tr>
+</tbody></table></div>
+<p>Yaani RAM kam hone par performance gradually degrade hoti hai — <strong>graceful degradation</strong>.</p>
+<hr>
+<h2 id="h"><span>8</span>Spark Built-in Libraries</h2>
+<p>Spark Core ke saath standard libraries provide karta hai, kyunki big-data applications mein pehle <strong>standard libraries</strong> ki kami thi.</p>
+<p>Main libraries:</p>
+<ul><li><strong>Spark SQL</strong> → structured data</li><li><strong>Spark Streaming</strong> → real-time processing</li><li><strong>MLlib</strong> → machine learning</li><li><strong>GraphX</strong> → graph processing</li></ul>
+<div class="tbl"><table><thead><tr><th><strong>Library</strong></th><th><strong>Details</strong></th></tr></thead><tbody>
+<tr><td><strong>MLlib</strong></td><td>Classification, regression, collaborative filtering, clustering, decomposition aur optimization</td></tr>
+<tr><td><strong>GraphX</strong></td><td>RDDs ke nodes aur edges se graph processing</td></tr>
+<tr><td><strong>Streaming</strong></td><td>Large-scale streaming; live stream ko X-second batches mein divide karta hai; exactly-once semantics</td></tr>
+<tr><td><strong>Spark SQL</strong></td><td>Structured data ko load aur query karta hai</td></tr>
+</tbody></table></div>
+<h4>MLlib</h4>
+<p><strong>Classification:</strong></p>
+<ul><li>Logistic regression</li><li>Linear SVM</li><li>Naïve Bayes</li><li>Trees</li></ul>
+<p><strong>Regression:</strong></p>
+<ul><li>GLMs</li><li>Trees</li></ul>
+<p><strong>Collaborative filtering:</strong></p>
+<ul><li>ALS</li><li>NMF</li></ul>
+<p><strong>Clustering:</strong></p>
+<ul><li>K-means</li></ul>
+<p><strong>Decomposition:</strong></p>
+<ul><li>SVD</li><li>PCA</li></ul>
+<p><strong>Optimization:</strong></p>
+<ul><li>SGD</li><li>L-BFGS</li></ul>
+<h4>GraphX</h4>
+<p>GraphX <strong>RDDs of nodes and edges</strong> se graph processing build karta hai.</p>
+<p>Composable flow:</p>
+<p><strong>Raw data → ETL → Initial graph → Slice → Subgraph → PageRank → Analyze</strong></p>
+<p>Algorithms include:</p>
+<ul><li>Collaborative filtering</li><li>Structured prediction</li><li>Semi-supervised ML</li><li>Community detection</li><li>Triangle counting</li><li>K-core</li><li>K-truss</li><li>PageRank</li><li>Shortest path</li><li>Coloring</li><li>Classification</li></ul>
+<h4>Streaming</h4>
+<p>Large-scale streaming ke liye use hota hai.</p>
+<p>Live stream ko <strong>X seconds ke batches</strong> mein cut karta hai aur <strong>exactly-once semantics</strong> provide karta hai.</p>
+<p>Batch, interactive aur streaming workloads ko <strong>unify</strong> karta hai.</p>
+<h4>Spark SQL</h4>
+<p>Structured data ko load aur query karta hai.</p>
+<p>Examples:</p>
+<ul><li>Hive → <code>HiveContext</code>, <code>sql(...)</code></li><li>JSON → <code>jsonFile</code>, <code>registerAsTable</code></li></ul>
+<h4>Community</h4>
+<p>Spark ko most active open-source big-data projects mein se ek bataya gaya hai:</p>
+<ul><li><strong>200+ developers</strong></li><li><strong>50+ companies</strong></li><li>Past year mein ~<strong>130 contributors</strong></li><li>Hadoop MapReduce ~100</li><li>Giraph ~30</li><li>Storm ~25</li></ul>
+<hr>
+<h2 id="i"><span>9</span>Design of Key-Value Stores</h2>
+<h4>Key-Value Abstraction</h4>
+<p>Basic model:</p>
+<p><strong>key → value</strong></p>
+<p>Examples:</p>
+<ul><li>item number → item info</li><li>tweet ID → tweet</li><li>account number → account</li></ul>
+<p>Ye ek <strong>distributed dictionary</strong> ki tarah hai jisme key ke through:</p>
+<ul><li><code>insert</code></li><li><code>lookup</code></li><li><code>delete</code></li></ul>
+<p>kiya ja sakta hai.</p>
+<p>Ye <strong>P2P Distributed Hash Tables (DHTs)</strong> se techniques reuse karta hai.</p>
+<h4>RDBMS vs Key-Value / NoSQL</h4>
+<div class="tbl"><table><thead><tr><th><strong>Aspect</strong></th><th><strong>RDBMS (e.g. MySQL)</strong></th><th><strong>Key-value / NoSQL ("Not Only SQL")</strong></th></tr></thead><tbody>
+<tr><td><strong>Storage</strong></td><td>Tables, entire row stored together</td><td>Tables/column families; typically column/column group together stored hota hai</td></tr>
+<tr><td><strong>Schema</strong></td><td>Fixed, structured; primary/foreign keys</td><td>May be schemaless; columns row-wise missing ho sakte hain; no foreign keys; joins often unsupported</td></tr>
+<tr><td><strong>Query</strong></td><td>SQL, joins</td><td><code>get(key)</code>, <code>put(key, value)</code> + extensions like CQL</td></tr>
+</tbody></table></div>
+<p>Cassandra mein <strong>CQL</strong> use ho sakta hai aur index tables bhi ho sakti hain.</p>
+<h4>Why RDBMS Mismatches Today's Workloads</h4>
+<p>Aaj ke workloads mein:</p>
+<ul><li>Data <strong>large aur unstructured</strong> hota hai, isliye schema define karna difficult ho sakta hai.</li><li>Millions of clients <strong>random reads/writes</strong> karte hain.</li><li>Kabhi-kabhi workload <strong>write-heavy</strong> hota hai.</li><li>Foreign keys rarely required hote hain.</li><li>Joins infrequent hote hain, isliye relational overhead useful nahi hota.</li></ul>
+<h4>Requirements</h4>
+<p>Need hai:</p>
+<ul><li><strong>Speed</strong></li><li><strong>Single Point of Failure (SPOF)</strong> avoid karna</li><li>Low <strong>TCO (Total Cost of Operation/Ownership)</strong></li><li>Fewer administrators</li><li><strong>Incremental scalability</strong></li><li><strong>Scale out</strong>, not scale up</li></ul>
+<hr>
+<h3>Scale Up</h3>
+<p>More powerful machines se existing system ko replace karna.</p>
+<ul><li>Traditional approach</li><li>Cost-effective nahi hota jab system <strong>price-curve sweet spot</strong> se above chala jaye.</li><li>Machines ko frequently replace karna padta hai.</li></ul>
+<h3>Scale Out</h3>
+<p>Incrementally more <strong>COTS (Components Off The Shelf)</strong> machines add karna.</p>
+<p>Benefits:</p>
+<ul><li>Cheaper</li><li>Newer machines ko gradually phase in kar sakte hain.</li><li>Older machines ko phase out kar sakte hain.</li><li>Most data centers aur clouds mein use hota hai.</li></ul>
+<h4>Column-Oriented Storage</h4>
+<p>Column ke andar <strong>range searches</strong> fast hoti hain bina poori database ko fetch kiye.</p>
+<p>Example:</p>
+<p><code>"blog_ids updated in the past month"</code></p>
+<p>→ <code>last_updated</code> column mein search karo aur sirf matching <code>blog_id</code> column fetch karo.</p>
+<hr>
+<h2 id="j"><span>10</span>Apache Cassandra: Key → Server Mapping</h2>
+<p><strong>Cassandra</strong> ek distributed <strong>key-value store</strong> hai jo datacenter ke andar aur multiple datacenters ke across run karne ke liye designed hai.</p>
+<p>Ye originally <strong>Facebook</strong> mein design hua tha aur ab <strong>Apache project</strong> hai.</p>
+<p>Users include:</p>
+<ul><li>IBM</li><li>Adobe</li><li>HP</li><li>eBay</li><li>Ericsson</li><li>Twitter</li><li>PBS Kids</li></ul>
+<p><strong>Netflix</strong> Cassandra ko videos mein user positions track karne ke liye use karta hai.</p>
+<h4>Partitioner</h4>
+<p><strong>Partitioner = key → server mapping</strong></p>
+<p>Cassandra ek <strong>ring-based DHT</strong> use karta hai, jisme:</p>
+<ul><li>Finger tables nahi hote.</li><li>Routing nahi hoti.</li><li>Har datacenter ke liye <strong>one ring</strong> hoti hai.</li></ul>
+<h4>Example</h4>
+<p><code>m = 7</code></p>
+<p><code>2⁷ = 128 positions</code></p>
+<p>Nodes:</p>
+<pre><code class="language-text">N0, N16, N32, N45, N80, N96, N112</code></pre>
+<p>Agar key:</p>
+<p><code>K13</code></p>
+<p>hai, to:</p>
+<ul><li><strong>Primary replica → N16</strong></li><li><strong>Backup replicas → N32, N45</strong></li></ul>
+<p>Client read/write request ko ek <strong>coordinator</strong> ko send karta hai.</p>
+<p>Coordinator request ko appropriate <strong>replicas</strong> ko forward karta hai.</p>
+<h4>Flow</h4>
+<p><strong>Client</strong></p>
+<p>↓</p>
+<p><code>read/write K13</code></p>
+<p>↓</p>
+<p><strong>Coordinator</strong></p>
+<p>↓</p>
+<p><strong>N16</strong></p>
+<p>Primary replica</p>
+<p>↓</p>
+<p><strong>N32, N45</strong></p>
+<p>Backup replicas</p>
+<blockquote><strong>Note:</strong> Provided slides yahin end hoti hain; announced <strong>consistency-solutions</strong> topic provided text mein covered nahi hai.</blockquote>
+<hr>
+<h2 id="k"><span>11</span>Quick Revision</h2>
+<h4><strong>Must Remember</strong></h4>
+<ul><li><strong>Spark</strong> MapReduce ke disk-heavy intermediate results ko avoid karta hai, especially <strong>iterative/interactive jobs</strong> mein; claims up to <strong>100× faster</strong>.</li><li><strong>RDD</strong> = immutable, partitioned aur lazily transformed; <strong>actions execution trigger</strong> karte hain; recovery <strong>lineage</strong> se hoti hai.</li><li><strong>Transformations:</strong> <code>map</code>, <code>filter</code>, <code>flatMap</code>, <code>reduceByKey</code>, <code>groupByKey</code>, <code>join</code>, <code>cogroup</code>.</li><li><strong>Actions:</strong> <code>count</code>, <code>collect</code>, <code>take</code>, <code>reduce</code>, <code>save</code>.</li><li><strong>Execution:</strong> <strong>Driver/SparkContext → Cluster Manager → Executors → DAGScheduler (stages) → TaskScheduler (tasks)</strong>.</li><li><strong>PageRank:</strong> <code>rank = 0.15 + 0.85 × Σ(rank/|neighbors|)</code>.</li><li><strong>Libraries:</strong> <strong>SQL, Streaming, MLlib, GraphX</strong>.</li><li><strong>Key-value stores:</strong> <code>get/put</code>, <strong>no fixed schema</strong>, column storage, <strong>scale out</strong>.</li><li><strong>Cassandra:</strong> <strong>ring-based partitioner</strong> with <strong>primary aur backup replicas</strong>.</li></ul>
+
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

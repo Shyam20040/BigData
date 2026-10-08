@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html>
+<html lang="hi-Latn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Big Data Computing – Week 4 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+</style><link rel="stylesheet" href="common.css">
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="Big Data Week 4 Study Guide.html" aria-label="Switch to English" title="Switch to English">EN</a><div class="pg">
+<header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
+<h1>Cassandra, Consistency, CQL &amp; ZooKeeper</h1><p>Week 4 consolidated study guide &middot; Hinglish</p></header>
+<nav><a href="#a">1 Placement</a><a href="#b">2 Read/Write Path</a><a href="#c">3 Membership</a><a href="#d">4 CAP</a><a href="#e">5 Quorums</a><a href="#f">6 Models</a><a href="#g">7 CQL</a><a href="#h">8 ZooKeeper</a><a href="#i">9 ZK Architecture</a><a href="#j">10 ZK Usage</a><a href="#k">11 Revision</a></nav>
+
+<h2 id="a"><span>1</span>Cassandra: Data Placement</h2>
+<div class="tbl"><table><thead><tr><th><strong>Replication Strategy</strong></th><th><strong>Details</strong></th></tr></thead><tbody>
+<tr><td><strong>SimpleStrategy</strong></td><td>Partitioner use karta hai: <strong>RandomPartitioner</strong> (Chord-like hash partitioning) ya <strong>ByteOrderedPartitioner</strong> (key ranges ko servers par assign karta hai; range queries ke liye easier, e.g. <code>[a–b]</code> se start hone wale Twitter users).</td></tr>
+<tr><td><strong>NetworkTopologyStrategy</strong></td><td><strong>Multi-DC deployments</strong> ke liye use hota hai; e.g. har DC mein two ya three replicas. Har DC mein first replica Partitioner se place hota hai, phir ring par clockwise move karke different rack hit hone tak replicas place kiye jaate hain. Isse <strong>rack-failure tolerance</strong> milti hai.</td></tr>
+</tbody></table></div>
+<h4>Snitches</h4>
+<p><strong>Snitch</strong> IP addresses ko <strong>racks aur data centers (DCs)</strong> se map karta hai. Ye <code>cassandra.yaml</code> mein configure hota hai.</p>
+<p>Options:</p>
+<ul><li><strong>SimpleSnitch</strong> → topology-unaware</li><li><strong>RackInferring</strong> → IP ke octets se topology infer karta hai, e.g. <code>101.102.103.104</code></li><li><strong>PropertyFileSnitch</strong> → configuration file use karta hai</li><li><strong>EC2Snitch</strong> → EC2 region = DC, availability zone = rack</li><li>Aur bhi options available hain.</li></ul>
+<hr>
+<h2 id="b"><span>2</span>Writes, Reads &amp; Storage</h2>
+<h3>Write Path</h3>
+<p>Writes ko <strong>lock-free aur fast</strong> hona chahiye, yani write ke time reads ya disk seeks nahi hone chahiye.</p>
+<p>Client ek <strong>coordinator</strong> ko send karta hai:</p>
+<ul><li>per-key</li><li>per-client</li><li>ya per-query</li></ul>
+<p><strong>Per-key</strong> writes ko serialize karta hai.</p>
+<p>Coordinator <strong>Partitioner</strong> ka use karke write ko saare replicas ko send karta hai. Jab <strong>X replicas respond</strong> kar dete hain, coordinator client ko acknowledgement de deta hai.</p>
+<h4>Hinted Handoff — Always Writable</h4>
+<p>Agar koi replica down hai:</p>
+<ul><li>Coordinator baaki replicas ko write karta hai.</li><li>Write ko locally keep karta hai.</li><li>Jab failed replica wapas aata hai, stored write usse forward kar di jaati hai.</li></ul>
+<p>Agar <strong>saare replicas down</strong> hain, to Cassandra writes ko buffer karta hai — generally <strong>few hours</strong> tak.</p>
+<p>Har DC ke liye <strong>one ring</strong> hoti hai.</p>
+<p>Ek <strong>per-DC coordinator</strong> elect hota hai jo other DCs ke saath <strong>ZooKeeper</strong> ke through coordinate karta hai; ye Paxos ka ek variant use karta hai.</p>
+<h3>Storage Path</h3>
+<h4>Commit Log</h4>
+<p><strong>Disk par</strong> store hota hai aur recovery ke liye use hota hai.</p>
+<p>↓</p>
+<h4>Memtable</h4>
+<p><strong>In-memory, append-only, write-back cache</strong> hai jo key ke through searchable hota hai.</p>
+<p>↓</p>
+<h4>Flush</h4>
+<p>Jab memtable full ya old ho jaata hai:</p>
+<p><strong>SSTable data file + index file + Bloom filter</strong></p>
+<p>create hote hain.</p>
+<h4>SSTable</h4>
+<p><strong>SSTable = Sorted String Table</strong></p>
+<p>Ismein key-value pairs <strong>key ke according sorted</strong> hote hain aur SSTable <strong>immutable</strong> hota hai.</p>
+<p><strong>Index file</strong> = SSTable of:</p>
+<p><code>(key, position in data file)</code></p>
+<hr>
+<h3>Bloom Filter</h3>
+<p>Bloom filter ek <strong>compact set representation</strong> hai jo cheap membership check provide karta hai.</p>
+<p>Important:</p>
+<ul><li><strong>False positives possible</strong></li><li><strong>False negatives never possible</strong></li></ul>
+<p>Insert ke time:</p>
+<ul><li>All hashed bits set kiye jaate hain.</li></ul>
+<p>Check ke time:</p>
+<ul><li><code>true</code> tabhi return hota hai jab all hashed bits set hon.</li></ul>
+<h4>Example</h4>
+<ul><li>4 hash functions</li><li>100 items</li><li>3200 bits</li><li>False-positive rate = <strong>0.02%</strong></li></ul>
+<h4>Compaction</h4>
+<p>Periodically, har server par locally <strong>SSTables merge</strong> kiye jaate hain.</p>
+<p>Agar kisi key ke multiple updates hain, compaction unhe merge karta hai.</p>
+<h4>Deletes</h4>
+<p>Delete ke liye ek <strong>tombstone</strong> add hota hai.</p>
+<p>Actual item tab remove hota hai jab <strong>compaction</strong> us tombstone ko process karta hai.</p>
+<h4>Reads</h4>
+<p>Coordinator <strong>X replicas</strong> ko contact karta hai — generally quickest responders.</p>
+<p>Phir:</p>
+<ul><li>Latest-timestamped value return karta hai.</li><li>Background mein other replicas ko bhi check karta hai.</li><li>Agar values different hain, to <strong>read repair</strong> start karta hai.</li></ul>
+<p>Ek row multiple SSTables mein spread ho sakti hai, isliye <strong>reads writes se slower</strong> hote hain, although still fast.</p>
+<hr>
+<h2 id="c"><span>3</span>Membership &amp; Failure Detection</h2>
+<p>Cassandra mein <strong>koi bhi server coordinator</strong> ban sakta hai.</p>
+<p>Isliye har server ke paas all servers ki list hoti hai aur ye list automatically update hoti rehti hai.</p>
+<p>Cassandra <strong>gossip-style membership</strong> use karta hai.</p>
+<p>Nodes periodically apni lists gossip karte hain, jisme:</p>
+<ul><li>Address</li><li>Local time</li><li>Heartbeat counter</li></ul>
+<p>hota hai.</p>
+<p>Receivers latest heartbeat ko maintain karte hain.</p>
+<p>Agar heartbeat <code>Tfail</code> se zyada old ho jaata hai, to node ko <strong>failed</strong> mark kar diya jaata hai.</p>
+<h3>Suspicion — Accrual Detector</h3>
+<p>Failure detector ek <strong>PHI suspicion value</strong> output karta hai.</p>
+<p>Ye network behavior ke according timeout adapt karta hai, gossip messages ke <strong>inter-arrival times</strong> ka use karke.</p>
+<p>Formula:</p>
+<p><code>PHI(t) = −log(P(tnow − tlast)) / log 10</code></p>
+<p>Practical case mein:</p>
+<p><strong>PHI = 5 → approximately 10–15 s detection</strong></p>
+<hr>
+<h2 id="d"><span>4</span>CAP Theorem</h2>
+<p><strong>CAP Theorem</strong> Eric Brewer ne propose kiya tha aur Gilbert aur Lynch ne prove kiya.</p>
+<p>Ek distributed system maximum <strong>3 mein se 2</strong> properties satisfy kar sakta hai:</p>
+<h4>C — Consistency</h4>
+<p>Sabhi nodes ko <strong>same data</strong> dikhega aur reads <strong>latest write</strong> return karengi.</p>
+<p>Examples:</p>
+<ul><li>Bank accounts across devices</li><li>Flight booking</li></ul>
+<h4>A — Availability</h4>
+<p>Operations <strong>always allowed aur fast</strong> honi chahiye.</p>
+<p>Example:</p>
+<ul><li>500 ms extra latency → approximately <strong>20% revenue drop</strong></li><li>Amazon par each additional ms ≈ <strong>$6M/year</strong></li><li>SLAs mainly <strong>latency</strong> ke around hote hain.</li></ul>
+<h4>P — Partition Tolerance</h4>
+<p>Network partition ke despite system work karta rahe.</p>
+<p>Examples:</p>
+<ul><li>Router outages</li><li>Cut cables</li><li>DNS failure</li><li>Rack switch outage</li></ul>
+<p>Cloud systems mein <strong>partition tolerance essential</strong> hai, isliye practically choice <strong>Consistency vs Availability</strong> ke beech hoti hai.</p>
+<h3>CAP Combinations</h3>
+<div class="tbl"><table><thead><tr><th><strong>Pair Chosen</strong></th><th><strong>Systems</strong></th></tr></thead><tbody>
+<tr><td><strong>C + P</strong></td><td>HBase, HyperTable, BigTable, Spanner</td></tr>
+<tr><td><strong>C + A</strong></td><td>Non-replicated RDBMSs</td></tr>
+<tr><td><strong>A + P</strong></td><td>Cassandra, Riak, Dynamo, Voldemort</td></tr>
+</tbody></table></div>
+<h4>Cassandra vs MySQL (&gt;50 GB)</h4>
+<div class="tbl"><table><thead><tr><th></th><th><strong>MySQL</strong></th><th><strong>Cassandra</strong></th></tr></thead><tbody>
+<tr><td><strong>Writes</strong></td><td>300 ms</td><td>0.12 ms</td></tr>
+<tr><td><strong>Reads</strong></td><td>350 ms</td><td>15 ms</td></tr>
+</tbody></table></div>
+<p>Cassandra ki speed ka cost <strong>strong consistency</strong> hai.</p>
+<h4>ACID vs BASE</h4>
+<p><strong>RDBMS → ACID</strong></p>
+<ul><li><strong>A</strong>tomicity</li><li><strong>C</strong>onsistency</li><li><strong>I</strong>solation</li><li><strong>D</strong>urability</li></ul>
+<p><strong>Key-value stores → BASE</strong></p>
+<ul><li><strong>B</strong>asically Available</li><li><strong>S</strong>oft-state</li><li><strong>E</strong>ventual consistency</li></ul>
+<p>BASE approach <strong>availability ko prefer</strong> karta hai.</p>
+<hr>
+<h3>Eventual Consistency</h3>
+<p>Agar kisi key par writes <strong>stop</strong> ho jaati hain, to eventually <strong>all replicas converge</strong> kar jaate hain.</p>
+<p>Jab writes continuously ho rahi hoti hain:</p>
+<ul><li>Updates ki ek <strong>"wave"</strong> lag karti hai.</li><li>Lekin continuously catch up karti rehti hai.</li><li>Is period mein <strong>stale values</strong> return ho sakti hain.</li></ul>
+<p>Ye model un situations mein achha work karta hai jahan <strong>low-write periods</strong> hote hain.</p>
+<hr>
+<h2 id="e"><span>5</span>Quorums &amp; Consistency Levels</h2>
+<h3>Quorum</h3>
+<p><strong>Quorum = majority (&gt;50%)</strong></p>
+<p>Kisi bhi do quorums ka intersection hota hai, isliye read quorum mein at least ek server aisa hota hai jiske paas <strong>latest write</strong> hoti hai.</p>
+<p>Quorum:</p>
+<ul><li><code>ALL</code> se faster hota hai.</li><li>Strong consistency provide kar sakta hai.</li></ul>
+<h4>Reads</h4>
+<p>Client <code>R</code> set karta hai:</p>
+<p><code>R ≤ N replicas</code></p>
+<p>Coordinator <code>R</code> replicas ka response wait karta hai aur remaining:</p>
+<p><code>N − R</code></p>
+<p>replicas ko background mein repair karta hai.</p>
+<h4>Writes</h4>
+<p>Client <code>W</code> set karta hai.</p>
+<p>Coordinator:</p>
+<ul><li>Quorum tak block kar sakta hai</li><li>Ya writes asynchronously kar sakta hai.</li></ul>
+<h3>Necessary Conditions</h3>
+<p>Strong consistency ke liye:</p>
+<p><code>W + R &gt; N</code></p>
+<p>and</p>
+<p><code>W &gt; N/2</code></p>
+<h4>Common Configurations</h4>
+<ul><li><code>(W=1, R=1)</code> → few reads/writes</li><li><code>(W=N, R=1)</code> → read-heavy</li><li><code>(W=N/2+1, R=N/2+1)</code> → write-heavy</li><li><code>(W=1, R=N)</code> → write-heavy with mostly one writer per key</li></ul>
+<h3>Consistency Levels</h3>
+<div class="tbl"><table><thead><tr><th><strong>Level</strong></th><th><strong>Meaning</strong></th></tr></thead><tbody>
+<tr><td><strong>ANY</strong></td><td>Any server, replica hona zaroori nahi; fastest. Coordinator write ko cache karta hai.</td></tr>
+<tr><td><strong>ALL</strong></td><td>All replicas; strong consistency, but slowest.</td></tr>
+<tr><td><strong>ONE</strong></td><td>At least one replica; ALL se faster, aur failures ke absence mein durability ensure karta hai.</td></tr>
+<tr><td><strong>QUORUM</strong></td><td>All DCs ke across quorum; global consistency aur still fast.</td></tr>
+<tr><td><strong>LOCAL_QUORUM</strong></td><td>Sirf coordinator ke DC mein quorum; faster.</td></tr>
+<tr><td><strong>EACH_QUORUM</strong></td><td>Har DC mein quorum; hierarchical replies support karta hai.</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="f"><span>6</span>Consistency Models Spectrum</h2>
+<p>Left se right jaane par:</p>
+<p><strong>Faster reads/writes → More consistency</strong></p>
+<p><code>Eventual → Per-key sequential → Causal → Red-Blue / CRDTs / Probabilistic → Strong</code></p>
+<h4>Rule</h4>
+<p>Application ke liye jo model correct ho, usmein <strong>lowest / leftmost model</strong> choose karo.</p>
+<div class="tbl"><table><thead><tr><th><strong>Model</strong></th><th><strong>Idea</strong></th></tr></thead><tbody>
+<tr><td><strong>Eventual</strong></td><td>Writes stop hone par replicas converge karte hain. Amazon Dynamo aur LinkedIn Voldemort se associated.</td></tr>
+<tr><td><strong>Per-key sequential</strong></td><td>Har key ke liye all operations ka ek global order hota hai.</td></tr>
+<tr><td><strong>CRDTs</strong></td><td><strong>Commutative Replicated Data Types</strong> — commuted writes same result deti hain. Example: integer par only <code>+1</code>. Isliye servers ko consistency ke baare mein worry nahi karni padti.</td></tr>
+<tr><td><strong>Red-Blue</strong></td><td>Blue operations DCs ke across kisi bhi order mein run kar sakti hain; red operations ko har DC mein same order mein run karna padta hai.</td></tr>
+<tr><td><strong>Causal</strong></td><td>Reads information flow ke partial order ko respect karti hain.</td></tr>
+<tr><td><strong>Linearizability</strong></td><td>Har operation real time mein sabhi clients ko instantaneously visible hoti hai.</td></tr>
+<tr><td><strong>Sequential (Lamport)</strong></td><td>Result kisi sequential order ke equal hota hai jo har processor ke program order ko respect karta hai.</td></tr>
+</tbody></table></div>
+<h4>Causal Example</h4>
+<p>Suppose:</p>
+<p><code>A: W(K1,33)</code></p>
+<p>Then:</p>
+<p><code>B reads 33</code></p>
+<p>and then:</p>
+<p><code>B: W(K2,55)</code></p>
+<p>Ab agar:</p>
+<p><code>C reads K2 = 55</code></p>
+<p>to C ko:</p>
+<p><code>K1 = 33</code></p>
+<p>bhi read karna chahiye.</p>
+<h4>NewSQL</h4>
+<p><strong>NewSQL = NoSQL + ACID transactions</strong></p>
+<p>Examples:</p>
+<ul><li>HyperDex</li><li>Spanner</li><li>Transaction chains</li></ul>
+<hr>
+<h2 id="g"><span>7</span>CQL — Cassandra Query Language</h2>
+<p>Cassandra ek:</p>
+<ul><li>Distributed columnar store</li><li>No SPOF</li><li>Tunably consistent</li><li>Write-optimized</li><li>Scalable</li></ul>
+<p>system hai.</p>
+<h4>Cassandra Challenges</h4>
+<p>Cassandra mein:</p>
+<ul><li>No joins</li><li>No traditional schema</li><li>Huge tables</li></ul>
+<p>jaise challenges hain.</p>
+<p><strong>CQL</strong> in challenges ko address karta hai by providing:</p>
+<ul><li>Schema ka re-introduction</li><li>Common data-modeling language</li><li>Best-practice SQL-like interface</li></ul>
+<h4>CQL Protocol</h4>
+<p>CQL protocol:</p>
+<ul><li><strong>Binary</strong> hai → language-interoperable</li><li><strong>Asynchronous</strong> hai → Thrift synchronous tha</li><li><strong>Prepared statements</strong> allow karta hai</li></ul>
+<hr>
+<h3>CQL Data Model</h3>
+<p>Hierarchy:</p>
+<p><strong>Keyspace (database)</strong> ↓ <strong>Column Family (table)</strong> ↓ <strong>Rows (row key)</strong> ↓ <strong>Columns</strong></p>
+<p>Column ke components:</p>
+<ul><li>Name</li><li>Value or tombstone</li><li>Timestamp</li><li>Time-to-live</li></ul>
+<p>Rows mein <strong>any number of columns</strong> ho sakte hain.</p>
+<p>Values omit bhi kiye ja sakte hain.</p>
+<ul><li>Row key → <strong>Partitioner</strong></li><li>Column name → <strong>Comparator</strong></li></ul>
+<hr>
+<h3>Write Path</h3>
+<p>Insert hota hai:</p>
+<p><strong>Memtable + Commit Log</strong></p>
+<p>Write se pehle read ki requirement nahi hoti, isliye write <strong>very fast</strong> hota hai.</p>
+<h3>Read Path</h3>
+<p><code>Memtable → Row Cache → Bloom Filter → Key Cache → SSTables → Repopulate Row Cache</code></p>
+<p>Bloom filter SSTables locate karne mein help karta hai.</p>
+<h4>Remember</h4>
+<p><strong>Cassandra rows ko fast find karta hai, columns ko fast scan karta hai, but rows ko scan nahi karta.</strong></p>
+<hr>
+<h3>CQL Examples</h3>
+<pre><code class="language-sql">CREATE TABLE users (
+    id timeuuid PRIMARY KEY,
+    lastname varchar,
+    firstname varchar,
+    dateOfBirth timestamp
+);</code></pre>
+<pre><code class="language-sql">INSERT INTO users (id, lastname, firstname, dateofbirth)
+VALUES (now(), 'Berryman','John','1975-09-15');</code></pre>
+<pre><code class="language-sql">SELECT dateofbirth, firstname, lastname FROM users;</code></pre>
+<h3>CQL Primary Keys → Internal Mapping</h3>
+<div class="tbl"><table><thead><tr><th><strong>CQL Primary Key</strong></th><th><strong>Internal Mapping</strong></th></tr></thead><tbody>
+<tr><td><code>PRIMARY KEY (name)</code></td><td><code>name</code> = row key (partition); har other CQL column = one Cassandra column.</td></tr>
+<tr><td><code>PRIMARY KEY (company, name)</code></td><td><code>company</code> = row key; compound column names, e.g. <code>OSC</code> row: <code>eric:age 38</code>, <code>eric:role ceo</code>, <code>john:age 37</code>…</td></tr>
+<tr><td><code>PRIMARY KEY ((A,B),C,D)</code></td><td><code>(A,B)</code> composite row key; clustering columns <code>C,D</code> column names ke prefix banate hain, e.g. <code>c:d:E</code>, <code>c:d:F</code>.</td></tr>
+</tbody></table></div>
+<hr>
+<h3>Collections</h3>
+<p>CQL collections:</p>
+<ul><li><strong>Set</strong> → unique elements</li><li><strong>List</strong> → ordered, repeats allowed</li><li><strong>Map</strong> → key-value pairs</li></ul>
+<p>Collections <strong>primary key ka part nahi ban sakti</strong>.</p>
+<p>Internally ye extra columns ke form mein stored hoti hain:</p>
+<ul><li>Set element → column name, e.g. <code>b:myset:1</code></li><li>List → time-UUID name</li><li>Map key → column name, e.g. <code>b:mymap:m</code></li></ul>
+<h4>Update Syntax</h4>
+<pre><code class="language-text">myset = myset + {'apple'}
+mylist = ['x'] + mylist
+mymap['fruit'] = 'apple'</code></pre>
+<hr>
+<h2 id="h"><span>8</span>ZooKeeper: Why &amp; What</h2>
+<h4>Classic System</h4>
+<p>Classic distributed system mein:</p>
+<p><strong>One Master + Many Slaves</strong></p>
+<p>Example:</p>
+<p><strong>HDFS</strong></p>
+<p>Fault-tolerant system mein ek <strong>backup master</strong> aur ek <strong>coordination service</strong> add ki jaati hai.</p>
+<hr>
+<h3>Race Condition</h3>
+<p>Do processes same data ko simultaneously modify karne ki koshish karte hain aur data corrupt ho sakta hai.</p>
+<p>Example:</p>
+<p>Account mein <strong>17 Rs</strong> hain.</p>
+<p>Do people simultaneously <strong>1 Rs deposit</strong> karte hain.</p>
+<p>Dono:</p>
+<p><code>17 read</code></p>
+<p>karte hain aur:</p>
+<p><code>18 write</code></p>
+<p>kar dete hain.</p>
+<p>Expected result:</p>
+<p><code>19</code></p>
+<p>But actual result:</p>
+<p><code>18</code></p>
+<hr>
+<h3>Deadlock</h3>
+<p>Processes ek doosre ka wait karte rehte hain, directly ya indirectly.</p>
+<p>Example:</p>
+<p><code>P1 → P2 → P3 → P1</code></p>
+<p>Aur process kabhi finish nahi hota.</p>
+<hr>
+<h3>Coordination Needs</h3>
+<p>Distributed applications ko coordination ke liye:</p>
+<ul><li>Group membership</li><li>Leader election</li><li>Dynamic configuration</li><li>Service registry</li><li>Status monitoring</li><li>Queuing</li><li>Barriers</li><li>Critical sections</li></ul>
+<p>ki need hoti hai.</p>
+<h4>Example</h4>
+<p>Different machines par multiple <strong>email-indexer processes</strong> run kar rahe hain.</p>
+<p>Unhe ek central, concurrency-safe store chahiye taaki same email ko multiple processes index na karein.</p>
+<p>Yahi role <strong>ZooKeeper</strong> play karta hai.</p>
+<hr>
+<h3>Definition</h3>
+<p><strong>ZooKeeper</strong> ek highly reliable <strong>distributed coordination kernel</strong> aur replicated service hai jo distributed applications ka metadata hold karta hai.</p>
+<p>Ye applications generally:</p>
+<ul><li>Small</li><li>Performance-sensitive</li><li>Dynamic</li><li>Critical</li></ul>
+<p>hoti hain.</p>
+<p>ZooKeeper ko coordination ke liye ek <strong>central key-value store</strong> ki tarah samajh sakte hain, jo khud multiple machines par run karta hai.</p>
+<h4>Uses</h4>
+<ul><li>Locking</li><li>Synchronization</li><li>Configuration</li><li>Leader election</li><li>Work queues</li></ul>
+<p>Aur ye race conditions aur deadlocks se protection provide karta hai.</p>
+<hr>
+<h3>Design Goals</h3>
+<h3>Simple</h3>
+<p>Shared hierarchical namespace provide karta hai, jo file system jaisa hota hai.</p>
+<p>Is namespace ke objects ko <strong>znodes</strong> kehte hain.</p>
+<p>Data memory mein hota hai, isliye:</p>
+<ul><li>High throughput</li><li>Low latency</li></ul>
+<p>milti hai.</p>
+<h3>Replicated</h3>
+<p>ZooKeeper ek <strong>ensemble of servers</strong> hota hai.</p>
+<p>Har server ke paas in-memory state hoti hai.</p>
+<ul><li>Startup par leader elected hota hai.</li><li>Followers clients ko serve karte hain.</li><li>All updates leader ke through jaate hain.</li><li>Majority ke persist hone ke baad reply diya jaata hai.</li></ul>
+<p><code>2f + 1</code> machines → <code>f</code> failures tolerate kar sakti hain.</p>
+<h3>Ordered</h3>
+<p>Har update ko ek number ke saath stamp kiya jaata hai jo <strong>transaction order</strong> represent karta hai.</p>
+<p>Ye synchronization primitives ka basis hai.</p>
+<h3>Fast</h3>
+<p>Read-heavy workloads ke liye best:</p>
+<p><strong>~10:1 read/write ratio</strong></p>
+<p>Yahoo! benchmark:</p>
+<p><strong>&gt;10,000 write-dominant operations/sec</strong></p>
+<h3>Clients &amp; Servers</h3>
+<p>Clients TCP connection maintain karte hain, watch events receive karte hain aur heartbeats send karte hain.</p>
+<p>Agar connected server break ho jaata hai, client automatically kisi doosre server se reconnect kar sakta hai.</p>
+<p>Servers maintain karte hain:</p>
+<ul><li>In-memory state</li><li>Persistent transaction logs</li><li>Snapshots</li></ul>
+<hr>
+<h3>ZooKeeper Data Model</h3>
+<p>ZooKeeper ek highly available file system jaisa hai.</p>
+<p>Data <strong>znodes</strong> mein stored hota hai.</p>
+<ul><li>JSON data</li><li>Whole update hota hai</li><li>Append operation nahi hota</li><li>Reads/writes <strong>atomic</strong> hote hain</li></ul>
+<p>Znodes ke children ho sakte hain, jisse ek tree structure banta hai.</p>
+<p>Root:</p>
+<p><code>/</code></p>
+<p>Example:</p>
+<p><code>/zoo/duck</code></p>
+<p><code>.</code> aur <code>..</code> invalid hain.</p>
+<h3>Znode Types</h3>
+<div class="tbl"><table><thead><tr><th><strong>Znode Type</strong></th><th><strong>Behavior</strong></th></tr></thead><tbody>
+<tr><td><strong>Persistent</strong></td><td>Default type; jab tak explicitly delete na ho, tab tak exist karta hai. Example: <code>create /name "data"</code></td></tr>
+<tr><td><strong>Ephemeral</strong></td><td>Creating session end hote hi delete ho jaata hai. Tab tak others ko visible hota hai; children nahi ho sakte.</td></tr>
+<tr><td><strong>Sequential</strong></td><td><code>-s</code> use karne par name ke end mein monotonically increasing counter add hota hai, e.g. <code>/zoo0000000008</code>. Har parent apna counter maintain karta hai.</td></tr>
+</tbody></table></div>
+<hr>
+<h2 id="i"><span>9</span>ZooKeeper Architecture</h2>
+<p>ZooKeeper ke two modes hain:</p>
+<h4>Standalone</h4>
+<ul><li>One machine</li><li>Testing ke liye</li><li>No High Availability</li></ul>
+<h4>Replicated</h4>
+<ul><li>Ensemble</li><li>Highly available</li><li>Jab tak majority survive karti hai, failures tolerate karta hai.</li></ul>
+<hr>
+<h3>Phase 1: Leader Election</h3>
+<p>Leader election <strong>Paxos-like</strong> hai.</p>
+<p>Leader election tab complete hoti hai jab <strong>majority leader ke saath sync</strong> kar leti hai.</p>
+<p>Re-election approximately:</p>
+<p><strong>~200 ms</strong></p>
+<p>Agar leader majority lose kar deta hai, to leader <strong>step down</strong> karta hai.</p>
+<hr>
+<h3>Phase 2: Atomic Broadcast</h3>
+<p>Flow:</p>
+<p><strong>Writes forwarded to Leader</strong></p>
+<p>↓</p>
+<p><strong>Broadcast</strong></p>
+<p>↓</p>
+<p><strong>Majority persist</strong></p>
+<p>↓</p>
+<p><strong>Leader commits</strong></p>
+<p>↓</p>
+<p><strong>Client gets success</strong></p>
+<p>Ye approximately <strong>two-phase commit</strong> jaisa hai.</p>
+<p>Important:</p>
+<p><strong>Disk before memory</strong></p>
+<hr>
+<h3>Election Details — Zab</h3>
+<p><strong>Zab = ZooKeeper Atomic Broadcast</strong></p>
+<p>Har server next-higher sequence ID leta hai, jo ZK file system ke through milti hai.</p>
+<p><strong>Highest ID → Leader</strong></p>
+<h4>Naïve Failure Handling</h4>
+<p>Agar everyone leader ko monitor kare, to leader failure ke time <strong>election flood</strong> create ho sakta hai.</p>
+<p>ZooKeeper ka approach:</p>
+<p>Har process apne <strong>next-higher-ID process</strong> ko monitor karta hai.</p>
+<ul><li>Agar woh leader tha aur fail ho gaya → current process leader ban sakta hai.</li><li>Otherwise → wait karta hai aur recheck karta hai.</li></ul>
+<h4>ID Conflicts / Leader Failure</h4>
+<p>Leader:</p>
+<p><code>NEW_LEADER</code></p>
+<p>send karta hai.</p>
+<p>Har process maximum <strong>one leader</strong> ko ACK karta hai — highest ID wale leader ko.</p>
+<p>Majority ACKs milne par:</p>
+<p><code>COMMIT</code></p>
+<p>send hota hai.</p>
+<p>Phir processes apna leader variable update karte hain.</p>
+<p>Isse <strong>safety preserve</strong> hoti hai.</p>
+<hr>
+<h3>Why Majority?</h3>
+<h4>3 Nodes</h4>
+<p>Agar leader die ho jaata hai:</p>
+<p><strong>Remaining 2 = majority</strong></p>
+<p>→ new leader elect ho sakta hai.</p>
+<h4>3 Nodes</h4>
+<p>Agar 2 nodes die ho jaate hain:</p>
+<p><strong>Remaining 1/3</strong></p>
+<p>→ majority nahi hai.</p>
+<p>→ No leader.</p>
+<h4>6-server ensemble across 2 DCs</h4>
+<p>Agar majority rule na ho, to dono data centers apna-apna leader elect kar sakte hain.</p>
+<p>Result:</p>
+<p><strong>Inconsistency + Chaos</strong></p>
+<p>Isliye majority rule essential hai.</p>
+<hr>
+<h3>Sessions</h3>
+<p>Client apni server list se servers try karta hai jab tak connection establish na ho.</p>
+<p>Connected server ek <strong>session with timeout</strong> create karta hai.</p>
+<p>Agar timeout ke andar request nahi aati:</p>
+<ul><li>Session expire ho sakta hai.</li><li>Ephemeral nodes lost ho jaate hain.</li></ul>
+<p>Client library automatically <strong>pings / heartbeats</strong> send karti hai.</p>
+<p>Sessions server switch karne ke baad bhi survive kar sakte hain.</p>
+<p>Failover automatic hai, lekin disconnection ke time operations fail ho sakte hain.</p>
+<h4>States</h4>
+<p><code>CONNECTING → CONNECTED (SyncConnected) ⇄ Disconnected</code></p>
+<p>Then:</p>
+<p><code>Expired / close → CLOSED</code></p>
+<hr>
+<h2 id="j"><span>10</span>ZooKeeper: Usage</h2>
+<p>ZooKeeper guarantees:</p>
+<ul><li><strong>Sequential consistency</strong> → ek client's updates order mein apply hote hain.</li><li><strong>Atomicity</strong></li><li><strong>Single system image</strong> → new server client accept karne se pehle caught up hona chahiye.</li><li><strong>Durability</strong></li><li><strong>Timeliness</strong> → extremely stale data nahi hona chahiye.</li></ul>
+<h3>Operations</h3>
+<div class="tbl"><table><thead><tr><th><strong>Operation</strong></th><th><strong>Purpose</strong></th></tr></thead><tbody>
+<tr><td><code>create</code></td><td>Znode create karta hai; parent exist karna chahiye</td></tr>
+<tr><td><code>delete</code></td><td>Znode delete karta hai; children nahi hone chahiye</td></tr>
+<tr><td><code>exists</code></td><td>Existence test + metadata</td></tr>
+<tr><td><code>getACL / setACL</code></td><td>Access control list</td></tr>
+<tr><td><code>getChildren (ls)</code></td><td>Children list karta hai</td></tr>
+<tr><td><code>getData (get) / setData</code></td><td>Data read/write</td></tr>
+<tr><td><code>sync</code></td><td>Client view ko ZooKeeper ke saath sync karta hai</td></tr>
+</tbody></table></div>
+<h4>Multi-Update</h4>
+<p>Multi-update operations ko batch karta hai:</p>
+<p><strong>All succeed OR all fail</strong></p>
+<p>Isse <strong>transactions</strong> possible hote hain.</p>
+<p>APIs:</p>
+<ul><li>Java</li><li>C core</li><li>Perl</li><li>Python</li><li>REST in contrib</li></ul>
+<p>Synchronous aur asynchronous versions dono available hain.</p>
+<hr>
+<h3>Watches</h3>
+<div class="tbl"><table><thead><tr><th><strong>Watch On</strong></th><th><strong>Triggered When Znode Is…</strong></th></tr></thead><tbody>
+<tr><td><code>exists</code></td><td>Created, deleted, ya data updated</td></tr>
+<tr><td><code>getData</code></td><td>Deleted ya data updated</td></tr>
+<tr><td><code>getChildren</code></td><td>Deleted, ya child created/deleted</td></tr>
+</tbody></table></div>
+<h4>Important</h4>
+<p>Watches <strong>only once fire</strong> karte hain.</p>
+<p>Agar future changes ke liye watch chahiye, to usse <strong>re-register</strong> karna padta hai.</p>
+<p>Watches:</p>
+<ul><li>Read operations se set hote hain.</li><li>Write operations se trigger hote hain:<ul><li><code>create</code></li><li><code>delete</code></li><li><code>setData</code></li></ul></li><li>ACL operations watches ko participate nahi karte.</li></ul>
+<h4>ACL</h4>
+<p><strong>ACL = Authentication scheme + Identity + Permissions</strong></p>
+<p>Schemes:</p>
+<ul><li><strong>digest</strong> → username/password</li><li><strong>sasl</strong> → Kerberos</li><li><strong>ip</strong> → IP based</li></ul>
+<hr>
+<h3>Server Discovery Use Case</h3>
+<p>Har server <code>/servers</code> ke andar ek <strong>ephemeral znode</strong> create karta hai.</p>
+<p>Example:</p>
+<pre><code class="language-text">/servers/duck
+/servers/cow</code></pre>
+<p>Clients:</p>
+<pre><code class="language-text">ls /servers</code></pre>
+<p>run karte hain.</p>
+<p>Agar <strong>duck server die</strong> ho jaata hai, uska ephemeral znode automatically disappear ho jaata hai.</p>
+<p>Next:</p>
+<pre><code class="language-text">ls /servers</code></pre>
+<p>sirf:</p>
+<pre><code class="language-text">cow</code></pre>
+<p>return karega.</p>
+<hr>
+<h3>Other ZooKeeper Uses</h3>
+<ul><li>Reliable configuration service</li><li>Distributed lock service</li><li>Only one process ko lock hold karne dena</li></ul>
+<h4>Applications</h4>
+<p><strong>Yahoo! Fetching Service</strong></p>
+<ul><li>Crawler configuration metadata</li><li>Master election</li></ul>
+<p><strong>Katta</strong></p>
+<p>Distributed indexer ke liye:</p>
+<ul><li>Group membership</li><li>Failover</li><li>Shard assignment</li></ul>
+<p><strong>Yahoo! Message Broker</strong></p>
+<p>Publish-subscribe ke liye:</p>
+<ul><li>Topic distribution</li><li>Failure detection</li><li>Membership</li></ul>
+<p>Ephemeral znodes:</p>
+<p><code>nodes</code></p>
+<p>Topic znodes mein:</p>
+<ul><li>Primary</li><li>Backup</li></ul>
+<p>information hoti hai.</p>
+<hr>
+<h3>When Not to Use ZooKeeper</h3>
+<p>ZooKeeper ko use <strong>nahi</strong> karna chahiye:</p>
+<h4>Big Data Store Karne Ke Liye</h4>
+<p>Reason:</p>
+<ul><li>Copies = number of nodes</li><li>All data RAM mein hota hai</li><li>High network load</li></ul>
+<h4>Extremely Strong Consistency</h4>
+<p>Agar application ko <strong>extremely strong consistency</strong> chahiye, to ZooKeeper appropriate choice nahi hai.</p>
+<hr>
+<h2 id="k"><span>11</span>Quick Revision</h2>
+<h3>Must Remember</h3>
+<h4>Cassandra Placement</h4>
+<ul><li><strong>SimpleStrategy</strong><ul><li>RandomPartitioner</li><li>ByteOrderedPartitioner</li></ul></li><li><strong>NetworkTopologyStrategy</strong></li><li><strong>Snitches</strong> → IP → Rack/DC mapping</li></ul>
+<h4>Cassandra Write Path</h4>
+<p><strong>Commit Log → Memtable → SSTable + Index + Bloom Filter</strong></p>
+<p>Also remember:</p>
+<ul><li>Compaction</li><li>Tombstones</li><li>Hinted handoff</li><li>Read repair</li></ul>
+<h4>Membership</h4>
+<ul><li><strong>Gossip membership</strong></li><li><strong>PHI accrual detector</strong></li><li><code>PHI = 5</code> → approximately <strong>10–15 s detection</strong></li></ul>
+<h4>CAP</h4>
+<p><strong>Pick 2</strong></p>
+<ul><li>Cassandra → <strong>A + P</strong></li><li>Eventual consistency</li><li>BASE</li><li>RDBMS → ACID</li></ul>
+<h4>Quorum</h4>
+<p><code>W + R &gt; N</code></p>
+<p>and:</p>
+<p><code>W &gt; N/2</code></p>
+<p>Consistency levels:</p>
+<ul><li><code>ANY</code></li><li><code>ONE</code></li><li><code>QUORUM</code></li><li><code>LOCAL_QUORUM</code></li><li><code>EACH_QUORUM</code></li><li><code>ALL</code></li></ul>
+<h4>CQL</h4>
+<ul><li>Row key = <strong>partition</strong></li><li>Compound keys → <strong>compound column names</strong></li><li>Collections <strong>primary keys ka part nahi</strong> ban sakti</li></ul>
+<h4>ZooKeeper</h4>
+<ul><li><strong>Znodes</strong><ul><li>Persistent</li><li>Ephemeral</li><li>Sequential</li></ul></li><li>Ensemble = <strong>2f + 1</strong></li><li><strong>Leader election + Atomic Broadcast (Zab)</strong></li><li><strong>Majority rule</strong></li><li>Watches <strong>once fire</strong> karte hain.</li></ul>
+
+<footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>
