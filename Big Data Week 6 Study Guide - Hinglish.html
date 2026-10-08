@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="hi-Latn"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<html lang="hi-Latn"><head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>Big Data Computing – Week 6 Study Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
@@ -39,12 +40,11 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 @media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-</style><link rel="stylesheet" href="common.css">
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="./Big%20Data%20Week%206%20Study%20Guide.html" aria-label="Switch to English" title="Switch to English">EN</a><a class="language-switch" href="Big Data Week 6 Study Guide - Hinglish.html" aria-label="Switch to Hinglish" title="Switch to Hinglish">??</a><div class="pg">
+</style><link href="common.css" rel="stylesheet"/>
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>p.subtopic{margin:9px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style></head><body><a aria-label="Switch to English" class="language-switch" href="./Big%20Data%20Week%206%20Study%20Guide.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to English">EN</a><a aria-label="Switch to Hinglish" class="language-switch" href="Big Data Week 6 Study Guide - Hinglish.html" title="Switch to Hinglish">??</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
-<h1>Big Data Machine Learning: Concepts, Evaluation &amp; K-Means</h1><p>Week 6 consolidated study guide &middot; Hinglish</p></header>
+<h1>Big Data Machine Learning: Concepts, Evaluation &amp; K-Means</h1><p>Week 6 consolidated study guide · Hinglish</p></header>
 <nav><a href="#a">1 ML Basics</a><a href="#b">2 ML Process</a><a href="#c">3 Overfitting</a><a href="#d">4 Validation</a><a href="#e">5 Metrics</a><a href="#f">6 Spark Classification</a><a href="#g">7 Clustering</a><a href="#h">8 K-Means</a><a href="#i">9 Parallel K-Means</a><a href="#j">10 Revision</a></nav>
-
 <h2 id="a"><span>1</span>Machine Learning Basics</h2>
 <div class="box def"><b class="t">Definition</b><p><strong>Machine Learning</strong> computer systems ka aisa study hai jahan systems <strong>data se learn karte hain without being explicitly programmed</strong>.</p>
 <p>Models kisi task ko bahut saare examples ko analyse karke learn karte hain.</p>
@@ -57,46 +57,46 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <ul><li>Mathematics &amp; Statistics</li><li>Computer Science &amp; AI</li><li>Domain knowledge</li></ul>
 <p>include hote hain.</p>
 <p><strong>Domain knowledge</strong> ka matlab application ko, uske data ko aur outcomes ko kaise use kiya jaayega, ye samajhna hai. Ye successful ML ke liye essential hai.</p>
-<hr>
-<h3>Examples</h3>
-<h3>Credit-card fraud detection</h3>
-<p>Purchase ko user ki previous history ke saath compare kiya jaata hai.</p>
+<hr/>
+
+
+<p><strong>Examples: Credit-card fraud detection: </strong>Purchase ko user ki previous history ke saath compare kiya jaata hai.</p>
 <p>Agar purchase bahut different ho, jaise:</p>
 <ul><li>Big-ticket item</li><li>Foreign location</li></ul>
 <p>to usse fraud ke liye flag kiya ja sakta hai.</p>
-<h3>Handwritten digit recognition</h3>
-<p>ATMs cheque amounts read kar sakte hain.</p>
+
+<p><strong>Handwritten digit recognition: </strong>ATMs cheque amounts read kar sakte hain.</p>
 <p>Challenge ye hai ki handwriting person-to-person bahut vary karti hai.</p>
-<h3>Recommendations</h3>
-<p><strong>"Customers who bought this also bought…"</strong></p>
-<h3>Others</h3>
+
+<p><strong>Recommendations: </strong><strong>"Customers who bought this also bought…"</strong></p>
+<p class="subtopic"><strong>Others</strong></p>
 <ul><li>Targeted mobile ads</li><li>Sentiment analysis</li><li>Climate monitoring</li><li>Crime-pattern detection</li><li>Drug-effectiveness analysis</li></ul>
-<hr>
-<h3>Related Terms</h3>
-<h3>Data Mining</h3>
-<p>Databases ya data warehouses mein patterns find karna.</p>
+<hr/>
+<h3>Related terms</h3>
+
+<p><strong>Data Mining: </strong>Databases ya data warehouses mein patterns find karna.</p>
 <p>ML ke same algorithms use ho sakte hain, lekin data-access aspects bhi include hote hain.</p>
-<h3>Predictive Analytics</h3>
-<p>Data ko analyse karke <strong>future outcomes predict</strong> karna.</p>
+
+<p><strong>Predictive Analytics: </strong>Data ko analyse karke <strong>future outcomes predict</strong> karna.</p>
 <p>Examples:</p>
 <ul><li>Sales forecasting</li><li>Customer behavior</li></ul>
-<h3>Data Science</h3>
-<p>Data se meaning extract karna, usually big data se.</p>
+
+<p><strong>Data Science: </strong>Data se meaning extract karna, usually big data se.</p>
 <p>Ismein:</p>
 <ul><li>Data collection</li><li>Data storage</li><li>Data management</li></ul>
 <p>include hote hain aur ML techniques use ki jaati hain.</p>
-<hr>
-<h3>Categories of Techniques</h3>
+<hr/>
+<h3>Categories of techniques</h3>
 <div class="tbl"><table><thead><tr><th><strong>Technique</strong></th><th><strong>Type</strong></th><th><strong>Goal &amp; Examples</strong></th></tr></thead><tbody>
 <tr><td><strong>Classification</strong></td><td>Supervised, predictive</td><td>Kisi category ko predict karna: weather (sunny/rainy/windy/cloudy), tumor benign/malignant, rain tomorrow, loan risk high/medium/low, tweet sentiment.</td></tr>
 <tr><td><strong>Regression</strong></td><td>Supervised, predictive</td><td>Numeric value predict karna: stock price (lekin "will it rise or fall" classification hai), product demand, test score, rainfall amount, drug effectiveness.</td></tr>
 <tr><td><strong>Cluster analysis</strong></td><td>Unsupervised, descriptive</td><td>Similar items ko groups mein organize karna: customer segmentation (seniors/adults/teens), topography types, tissue types, weather patterns, crime hot spots.</td></tr>
 <tr><td><strong>Association analysis</strong></td><td>Unsupervised, descriptive</td><td>Saath mein occur hone wale items/events ke rules find karna: market-basket analysis, cross-selling CDs → money-market accounts, pages accessed together.</td></tr>
 </tbody></table></div>
-<h3>Supervised vs Unsupervised</h3>
-<p><strong>Supervised</strong> = target provided hota hai (<strong>labeled data</strong>).</p>
+
+<p><strong>Supervised vs Unsupervised: </strong><strong>Supervised</strong> = target provided hota hai (<strong>labeled data</strong>).</p>
 <p><strong>Unsupervised</strong> = target unknown hota hai (<strong>unlabeled data</strong>).</p>
-<hr>
+<hr/>
 <h2 id="b"><span>2</span>The Machine Learning Process</h2>
 <p>Machine Learning process ke <strong>five steps</strong> hain.</p>
 <p>Har step ek clear purpose ke saath perform hota hai.</p>
@@ -106,25 +106,25 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Agar kisi stage par problem milti hai, to previous stage par wapas jaana pad sakta hai.</p>
 <p>Example:</p>
 <p><strong>Prepare mein data-quality problem → Acquire par return.</strong></p>
-<hr>
-<h3>Five Steps</h3>
-<h3>Acquire</h3>
-<p><strong>Identify, collect, integrate data</strong></p>
+<hr/>
+
+
+<p><strong>Five Steps: Acquire: </strong><strong>Identify, collect, integrate data</strong></p>
 <p>↓</p>
-<h3>Prepare</h3>
-<p><strong>Explore + pre-process</strong></p>
+
+<p><strong>Prepare: </strong><strong>Explore + pre-process</strong></p>
 <p>↓</p>
-<h3>Analyze</h3>
-<p><strong>Select technique, build, evaluate model</strong></p>
+
+<p><strong>Analyze: </strong><strong>Select technique, build, evaluate model</strong></p>
 <p>↓</p>
-<h3>Report</h3>
-<p><strong>Communicate results</strong></p>
+
+<p><strong>Report: </strong><strong>Communicate results</strong></p>
 <p>↓</p>
-<h3>Act</h3>
-<p><strong>Apply insights</strong></p>
-<hr>
-<h3>Acquire</h3>
-<p>Sabhi data sources identify karo:</p>
+
+<p><strong>Act: </strong><strong>Apply insights</strong></p>
+<hr/>
+
+<p><strong>Acquire: </strong>Sabhi data sources identify karo:</p>
 <ul><li>Files</li><li>Databases</li><li>Internet</li><li>Mobile devices</li></ul>
 <p>Phir data ko:</p>
 <ul><li>Collect</li><li>Integrate</li></ul>
@@ -136,90 +136,90 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <ul><li>Gather</li><li>Filter</li><li>Clean</li></ul>
 <p>karna hai.</p>
 <p>Ye <strong>big-data ka major challenge</strong> hai.</p>
-<hr>
-<h3>Explore</h3>
-<p>Data mein:</p>
+<hr/>
+
+<p><strong>Explore: </strong>Data mein:</p>
 <ul><li>Correlations</li><li>Trends</li><li>Outliers</li></ul>
 <p>find karo.</p>
-<h3>Summary Statistics</h3>
+<p class="subtopic"><strong>Summary Statistics</strong></p>
 <ul><li><strong>Mean</strong></li><li><strong>Median</strong> → location</li><li><strong>Mode</strong></li><li><strong>Range</strong></li><li><strong>Standard deviation</strong> → spread</li></ul>
 <p>Example:</p>
 <p>Ages jo:</p>
 <ul><li>Negative hain</li><li><code>&gt;100</code> hain</li></ul>
 <p>suspicious ho sakti hain.</p>
-<h3>Visualization</h3>
+<p class="subtopic"><strong>Visualization</strong></p>
 <ul><li><strong>Histogram</strong> → distribution, skew</li><li><strong>Line plot</strong> → trends</li><li><strong>Heat map</strong> → hot spots</li><li><strong>Scatter plot</strong> → correlation</li></ul>
-<hr>
-<h3>Pre-process</h3>
-<p>Data ko clean karo:</p>
+<hr/>
+
+<p><strong>Pre-process: </strong>Data ko clean karo:</p>
 <ul><li>Missing values</li><li>Duplicates</li><li>Inconsistent/invalid data</li><li>Noise</li><li>Outliers</li></ul>
 <p>Example:</p>
 <p><strong>Six-digit zip code</strong> invalid ho sakta hai.</p>
-<h3>Feature Selection</h3>
-<p>Redundant ya irrelevant features remove karo.</p>
+
+<p><strong>Feature Selection: </strong>Redundant ya irrelevant features remove karo.</p>
 <p>Example:</p>
 <p><strong>Sales tax vs price</strong></p>
 <p>Ya multiple features ko combine/create karo.</p>
-<h3>Feature Transformation</h3>
+<p class="subtopic"><strong>Feature Transformation</strong></p>
 <ul><li>Scaling to a range</li><li>Filtering/aggregation</li><li>Dimensionality reduction</li></ul>
-<hr>
-<h3>Analyze</h3>
-<p>Steps:</p>
+<hr/>
+
+<p><strong>Analyze: </strong>Steps:</p>
 <ol><li>Problem type determine karo.</li><li>Appropriate technique choose karo.</li><li>Model build karo.</li><li>New samples par apply karo.</li><li>Model evaluate karo.</li></ol>
-<hr>
-<h3>Report</h3>
-<p>Decide karo:</p>
+<hr/>
+
+<p><strong>Report: </strong>Decide karo:</p>
 <ul><li>Kya present karna hai?</li><li>Kaise present karna hai?</li></ul>
 <p>Include:</p>
 <ul><li>Main results</li><li>Insights</li><li>Added value</li></ul>
 <p><strong>Negative results bhi useful hote hain.</strong></p>
 <p>Use:</p>
 <ul><li>Visualizations</li><li>Backup tables</li></ul>
-<hr>
-<h3>Act</h3>
-<p>Insights ke basis par:</p>
+<hr/>
+
+<p><strong>Act: </strong>Insights ke basis par:</p>
 <ul><li>Decision lo.</li><li>Action implement karo.</li><li>Users par effect consider karo.</li><li>Impact assess karo.</li></ul>
 <p>Impact ke basis par process <strong>another cycle</strong> start kar sakta hai.</p>
-<hr>
+<hr/>
 <h2 id="c"><span>3</span>Generalization &amp; Overfitting</h2>
-<h3>Error Rate</h3>
-<p><strong>Error rate (misclassification rate)</strong>:</p>
+
+<p><strong>Error Rate: </strong><strong>Error rate (misclassification rate)</strong>:</p>
 <p><code>incorrect predictions ÷ total samples</code></p>
 <p>Model:</p>
 <ul><li>Training data par build hota hai.</li><li>Separate test data par evaluate hota hai.</li></ul>
 <p>Test data training ke time unseen hota hai.</p>
-<h3>Training Error</h3>
-<p>Training data par error.</p>
-<h3>Test Error</h3>
-<p>Test data par error.</p>
+
+<p><strong>Training Error: </strong>Training data par error.</p>
+
+<p><strong>Test Error: </strong>Test data par error.</p>
 <p>Test error ko <strong>generalization error</strong> bhi kehte hain.</p>
 <p>Ye batata hai ki model <strong>new/unseen data ko kitna achha handle karta hai</strong>.</p>
-<hr>
-<h3>Underfitting vs Good Fit vs Overfitting</h3>
+<hr/>
+<p class="subtopic"><strong>Underfitting vs Good Fit vs Overfitting</strong></p>
 <div class="tbl"><table><thead><tr><th><strong>Condition</strong></th><th><strong>Training Error</strong></th><th><strong>Test Error</strong></th><th><strong>Cause</strong></th></tr></thead><tbody>
 <tr><td><strong>Underfitting</strong></td><td>High</td><td>High</td><td>Model ne data ka structure properly learn nahi kiya.</td></tr>
 <tr><td><strong>Good fit</strong></td><td>Low</td><td>Low</td><td>Model underlying trend learn karta hai.</td></tr>
 <tr><td><strong>Overfitting</strong></td><td>Very low</td><td>High</td><td>Model noise ko model kar raha hai; model too complex hai, yani samples ke comparison mein too many parameters.</td></tr>
 </tbody></table></div>
-<h3>Overfit Models</h3>
-<p>Overfit models <strong>generalize nahi karte</strong>.</p>
+
+<p><strong>Overfit Models: </strong>Overfit models <strong>generalize nahi karte</strong>.</p>
 <p>Goal:</p>
 <blockquote>Model ko as simple as possible rakho while still solving the mapping.</blockquote>
-<hr>
-<h3>Overfitting in Decision Trees</h3>
+<hr/>
+<h3>Overfitting in decision trees</h3>
 <p>Decision tree repeatedly data ko split karta hai.</p>
 <p>Example:</p>
 <p><strong>Outlook → Sunny / Overcast / Rain → Humidity, Wind → Yes / No</strong></p>
 <p>Agar tree ko unchecked chhod diya jaaye:</p>
 <ul><li>Ye grow karta rahega.</li><li>Training data ko perfectly classify kar sakta hai.</li><li>Noise ke basis par space partition kar sakta hai.</li></ul>
 <p>Isliye complexity control karni padti hai.</p>
-<hr>
-<h3>Methods</h3>
+<hr/>
+<p class="subtopic"><strong>Methods</strong></p>
 <div class="tbl"><table><thead><tr><th><strong>Method</strong></th><th><strong>How</strong></th></tr></thead><tbody>
 <tr><td><strong>Pre-pruning</strong></td><td>Growth ko early stop karo restrictive conditions ke saath, e.g. node mein too few samples ya impurity improvement threshold se below. Lekin prematurely stop ho sakta hai.</td></tr>
 <tr><td><strong>Post-pruning</strong></td><td>Full tree grow karo, phir bottom-up prune karo. Agar generalization error improve ya unchanged ho, subtree ko leaf se replace karo. Usually better because full tree use hota hai, but computationally more expensive hai.</td></tr>
 </tbody></table></div>
-<hr>
+<hr/>
 <h2 id="d"><span>4</span>Validation &amp; Model Selection</h2>
 <p><strong>Validation set</strong> training data se carve kiya gaya ek separate set hota hai jo batata hai ki training/model complexity ko kab stop karna hai.</p>
 <p>Model complexity ke against error plot karo.</p>
@@ -234,43 +234,43 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>kehlata hai.</p>
 <p>Ye kisi bhi model type par apply hota hai.</p>
 <p>Validation error generalization performance ko estimate bhi karta hai.</p>
-<hr>
-<h3>Validation Methods</h3>
+<hr/>
+<p class="subtopic"><strong>Validation Methods</strong></p>
 <div class="tbl"><table><thead><tr><th><strong>Method</strong></th><th><strong>Description &amp; Notes</strong></th></tr></thead><tbody>
 <tr><td><strong>Holdout</strong></td><td>Training data ka ek part validation set ke liye reserve karo. Limitations: training ke liye less data; agar distributions different hain to misleading result aa sakta hai.</td></tr>
 <tr><td><strong>Repeated holdout (random subsampling)</strong></td><td>Har baar different random holdout set use karke repeat karo; validation errors ka average lo.</td></tr>
 <tr><td><strong>K-fold cross-validation</strong></td><td>Data ko <code>k</code> disjoint partitions mein split karo. Har iteration mein ek partition validation ke liye use hota hai; total <code>k</code> times. Har partition exactly once use hota hai. Errors ka average lo aur smallest average wala model choose karo. Very common; single split ki variability reduce karta hai.</td></tr>
 <tr><td><strong>Leave-one-out (LOOCV)</strong></td><td><code>k-fold</code> jahan <code>k = N</code>; validation set mein one sample hota hai aur training <code>N−1</code> samples par hoti hai.</td></tr>
 </tbody></table></div>
-<hr>
-<h3>Three Datasets</h3>
-<h3>Training</h3>
-<p>Model parameters fit karne ke liye.</p>
-<h3>Validation</h3>
-<p>Training ko kab stop karna hai decide karne ke liye aur overfitting avoid karne ke liye.</p>
-<h3>Test</h3>
-<p>New data par final evaluation ke liye.</p>
-<h3>Important</h3>
-<p><strong>Test set ko model build ya tune karne ke liye kabhi use nahi karna chahiye.</strong></p>
+<hr/>
+
+
+<p><strong>Three Datasets: Training: </strong>Model parameters fit karne ke liye.</p>
+
+<p><strong>Validation: </strong>Training ko kab stop karna hai decide karne ke liye aur overfitting avoid karne ke liye.</p>
+
+<p><strong>Test: </strong>New data par final evaluation ke liye.</p>
+
+<p><strong>Important: </strong><strong>Test set ko model build ya tune karne ke liye kabhi use nahi karna chahiye.</strong></p>
 <p>Cross-validation mein bhi test set use nahi hota.</p>
 <p>Test set end tak <strong>untouched</strong> rehna chahiye.</p>
 <p>All datasets mein same class distribution hona chahiye.</p>
 <p>Example:</p>
 <p>Agar original distribution <code>70% / 30%</code> hai, to ye proportion datasets mein preserve hona chahiye.</p>
 <p>Otherwise results misleading ho sakte hain.</p>
-<hr>
+<hr/>
 <h2 id="e"><span>5</span>Evaluation Metrics</h2>
 <p>Binary/yes-no classification ke liye:</p>
 <p>Example:</p>
 <p><strong>"Is this animal a mammal?"</strong></p>
-<hr>
-<h3>Confusion Matrix</h3>
+<hr/>
+<p class="subtopic"><strong>Confusion Matrix</strong></p>
 <div class="tbl"><table><thead><tr><th><strong>True Label</strong></th><th><strong>Predicted: Yes</strong></th><th><strong>Predicted: No</strong></th></tr></thead><tbody>
 <tr><td><strong>Yes</strong></td><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
 <tr><td><strong>No</strong></td><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
 </tbody></table></div>
-<hr>
-<h3>Metrics</h3>
+<hr/>
+<p class="subtopic"><strong>Metrics</strong></p>
 <div class="tbl"><table><thead><tr><th><strong>Metric</strong></th><th><strong>Formula</strong></th><th><strong>Meaning</strong></th></tr></thead><tbody>
 <tr><td><strong>Accuracy</strong></td><td><code>(TP+TN) / (TP+TN+FP+FN)</code></td><td>Correct predictions ÷ total</td></tr>
 <tr><td><strong>Error rate</strong></td><td><code>1 − Accuracy</code></td><td>Incorrect ÷ total</td></tr>
@@ -278,173 +278,173 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td><strong>Recall</strong></td><td><code>TP / (TP+FN)</code></td><td>Actual Yes samples mein se kitne find kiye gaye — <strong>completeness</strong></td></tr>
 <tr><td><strong>F-measure</strong></td><td><code>F1 = 2·P·R / (P+R)</code></td><td>Precision aur recall ko combine karta hai; F1 equally weight karta hai, F2 recall ko more weight karta hai, F0.5 precision ko more weight karta hai.</td></tr>
 </tbody></table></div>
-<hr>
-<h3>Example</h3>
-<p>Given:</p>
+<hr/>
+
+<p><strong>Example: </strong>Given:</p>
 <ul><li><code>TP = 3</code></li><li><code>FN = 2</code></li><li><code>FP = 1</code></li><li><code>TN = 4</code></li></ul>
-<h3>Accuracy</h3>
-<p><code>accuracy = 7/10 = 0.7</code></p>
-<h3>Error Rate</h3>
-<p><code>error rate = 1 − 0.7 = 0.3</code></p>
-<h3>Precision</h3>
-<p><code>precision = 3/4 = 0.75</code></p>
-<h3>Recall</h3>
-<p><code>recall = 3/5 = 0.6</code></p>
-<hr>
+
+<p><strong>Accuracy: </strong><code>accuracy = 7/10 = 0.7</code></p>
+
+<p><strong>Error Rate: </strong><code>error rate = 1 − 0.7 = 0.3</code></p>
+
+<p><strong>Precision: </strong><code>precision = 3/4 = 0.75</code></p>
+
+<p><strong>Recall: </strong><code>recall = 3/5 = 0.6</code></p>
+<hr/>
 <h2 id="f"><span>6</span>Spark MLlib &amp; Classification in Spark</h2>
 <p><strong>MLlib</strong> Spark Core ke upar built ek <strong>scalable, distributed machine-learning library</strong> hai.</p>
 <p>MLlib provide karta hai:</p>
-<h3>Algorithms</h3>
+<p class="subtopic"><strong>Algorithms</strong></p>
 <ul><li>Classification</li><li>Regression</li><li>Clustering</li><li>Collaborative filtering</li></ul>
-<h3>Pipeline</h3>
+<p class="subtopic"><strong>Pipeline</strong></p>
 <ul><li>Constructing</li><li>Evaluating</li><li>Tuning</li><li>Persistence</li></ul>
-<h3>Featurization</h3>
+<p class="subtopic"><strong>Featurization</strong></p>
 <ul><li>Feature extraction</li><li>Feature transformation</li></ul>
-<h3>Utilities</h3>
+<p class="subtopic"><strong>Utilities</strong></p>
 <ul><li>Linear algebra</li><li>Statistics</li></ul>
-<hr>
-<h3>Decision-Tree Weather Example</h3>
+<hr/>
+<h3>Decision-tree weather example (daily_weather.csv)</h3>
 <p>Dataset:</p>
 <p><code>daily_weather.csv</code></p>
 <p>Workflow:</p>
-<h3>Load CSV</h3>
-<p>DataFrame mein load karo using:</p>
+
+<p><strong>Load CSV: </strong>DataFrame mein load karo using:</p>
 <p><strong>SQLContext</strong></p>
 <p>↓</p>
-<h3>Clean</h3>
-<p>Number column drop karo aur missing-data rows remove karo.</p>
+
+<p><strong>Clean: </strong>Number column drop karo aur missing-data rows remove karo.</p>
 <p>↓</p>
-<h3>Binarizer</h3>
-<p>Label create karo.</p>
+
+<p><strong>Binarizer: </strong>Label create karo.</p>
 <p>↓</p>
-<h3>VectorAssembler</h3>
-<p>Features ko ek single <strong>features</strong> column mein combine karo.</p>
+
+<p><strong>VectorAssembler: </strong>Features ko ek single <strong>features</strong> column mein combine karo.</p>
 <p>↓</p>
-<h3>Split</h3>
-<p>Training/test data split karo.</p>
+
+<p><strong>Split: </strong>Training/test data split karo.</p>
 <p>↓</p>
-<h3>Train</h3>
-<p>Pipeline mein decision tree train karo.</p>
+
+<p><strong>Train: </strong>Pipeline mein decision tree train karo.</p>
 <p>↓</p>
-<h3>Save</h3>
-<p>Predictions ko CSV mein save karo.</p>
-<hr>
-<h3>Features</h3>
-<p>Features include:</p>
+
+<p><strong>Save: </strong>Predictions ko CSV mein save karo.</p>
+<hr/>
+
+<p><strong>Features: </strong>Features include:</p>
 <ul><li>Air pressure</li><li>Air temperature</li><li>Average wind direction</li><li>Maximum wind direction</li><li>Average wind speed</li><li>Maximum wind speed</li><li>Rain accumulation</li><li>Rain duration</li></ul>
 <p>Sabhi measurements <strong>9 AM</strong> par hain.</p>
 <p>Dropping ke baad DataFrame:</p>
 <p><strong>1064 rows × 10 columns</strong></p>
-<hr>
-<h3>Binarizer</h3>
-<p><code>relative_humidity_3pm</code></p>
+<hr/>
+
+<p><strong>Binarizer: </strong><code>relative_humidity_3pm</code></p>
 <p>par Binarizer apply hota hai.</p>
 <p>Threshold:</p>
 <p><code>24.99999</code></p>
 <p>Label:</p>
 <ul><li>Humidity <code>&gt; 25%</code> → <code>label = 1</code></li><li>Otherwise → <code>label = 0</code></li></ul>
 <p>Ye <strong>low-humidity categorical variable</strong> create karta hai.</p>
-<hr>
-<h3>VectorAssembler</h3>
-<p>Multiple feature columns ko merge karke ek single:</p>
+<hr/>
+
+<p><strong>VectorAssembler: </strong>Multiple feature columns ko merge karke ek single:</p>
 <p><code>features</code></p>
 <p>column create karta hai.</p>
-<hr>
-<h3>Train/Test Split</h3>
-<p><strong>80/20 split</strong></p>
+<hr/>
+
+<p><strong>Train/Test Split: </strong><strong>80/20 split</strong></p>
 <p>Seed:</p>
 <p><code>13234</code></p>
 <p>Result:</p>
 <ul><li><strong>854 training rows</strong></li><li><strong>210 test rows</strong></li></ul>
-<hr>
-<h3>Decision Tree Code</h3>
-<pre><code class="language-python id=&quot;w7lq3x&quot;">dt = DecisionTreeClassifier(labelCol='label', featuresCol='features',
+<hr/>
+<p class="subtopic"><strong>Decision Tree Code</strong></p>
+<pre><code class='language-python id="w7lq3x"'>dt = DecisionTreeClassifier(labelCol='label', featuresCol='features',
        maxDepth=5, minInstancesPerNode=20, impurity="gini")</code></pre>
-<pre><code class="language-python id=&quot;f3e4zr&quot;">pipeline = Pipeline(stages=[dt])</code></pre>
-<pre><code class="language-python id=&quot;x8qj1s&quot;">model = pipeline.fit(trainingData)</code></pre>
-<pre><code class="language-python id=&quot;m2zv6p&quot;">predictions = model.transform(testData)</code></pre>
-<pre><code class="language-python id=&quot;c5r8ka&quot;">predictions.select('prediction','label').show(10)</code></pre>
-<hr>
+<pre><code class='language-python id="f3e4zr"'>pipeline = Pipeline(stages=[dt])</code></pre>
+<pre><code class='language-python id="x8qj1s"'>model = pipeline.fit(trainingData)</code></pre>
+<pre><code class='language-python id="m2zv6p"'>predictions = model.transform(testData)</code></pre>
+<pre><code class='language-python id="c5r8ka"'>predictions.select('prediction','label').show(10)</code></pre>
+<hr/>
 <h2 id="g"><span>7</span>Cluster Analysis</h2>
-<h3>Goal</h3>
-<p>Similar items ko groups, yani <strong>clusters</strong>, mein organize karna taaki har cluster ko closely analyse kiya ja sake.</p>
+
+<p><strong>Goal: </strong>Similar items ko groups, yani <strong>clusters</strong>, mein organize karna taaki har cluster ko closely analyse kiya ja sake.</p>
 <p>Objective:</p>
 <ul><li><strong>Intra-cluster differences minimize</strong> karna.</li><li><strong>Inter-cluster differences maximize</strong> karna.</li></ul>
 <p>Yaani:</p>
 <p><strong>Same cluster ke samples close hone chahiye.</strong></p>
 <p><strong>Different clusters ke samples far hone chahiye.</strong></p>
 <p>Ye kisi <strong>similarity measure</strong> ke basis par hota hai.</p>
-<h3>Applications</h3>
+<p class="subtopic"><strong>Applications</strong></p>
 <ul><li>Customer segmentation by purchase history<ul><li>Sci-fi</li><li>Non-fiction</li><li>Children's books</li></ul></li><li>Weather patterns</li><li>News ko topics mein group karna</li><li>Crime hot spots</li></ul>
-<hr>
-<h3>Similarity / Distance Measures</h3>
+<hr/>
+<p class="subtopic"><strong>Similarity / Distance Measures</strong></p>
 <div class="tbl"><table><thead><tr><th><strong>Similarity Measure</strong></th><th><strong>Description</strong></th></tr></thead><tbody>
 <tr><td><strong>Euclidean distance</strong></td><td>Points A aur B ke beech straight-line distance.</td></tr>
 <tr><td><strong>Manhattan distance</strong></td><td>Sirf axes ke along path; horizontal + vertical steps.</td></tr>
 <tr><td><strong>Cosine similarity</strong></td><td>Vectors ke beech angle ka cosine. <code>cos θ = xi·xq / (‖xi‖‖xq‖)</code>; inner product = <code>Σ xi[j]·xq[j]</code>.</td></tr>
 </tbody></table></div>
-<hr>
-<h3>Cosine Similarity</h3>
-<p>Formula:</p>
+<hr/>
+
+<p><strong>Cosine Similarity: </strong>Formula:</p>
 <p><code>cos θ = xi·xq / (‖xi‖‖xq‖)</code></p>
 <p>Inner product:</p>
 <p><code>Σ xi[j]·xq[j]</code></p>
-<h3>Values</h3>
+<p class="subtopic"><strong>Values</strong></p>
 <ul><li><code>θ = 0</code> → similarity <code>1</code></li><li><code>θ = 90°</code> → similarity <code>0</code></li><li>Range → <code>−1 to 1</code></li></ul>
 <p>Positive features, jaise <strong>tf-idf</strong>, ke case mein:</p>
 <p><code>0 to 1</code></p>
 <p>Distance:</p>
 <p><code>1 − similarity</code></p>
 <p>Cosine similarity ek <strong>proper distance metric nahi hai</strong>, lekin sparse vectors ke liye efficient hai.</p>
-<h3>Normalization</h3>
-<p>Vector ko uske norm se divide kiya jaata hai.</p>
+
+<p><strong>Normalization: </strong>Vector ko uske norm se divide kiya jaata hai.</p>
 <p>Example:</p>
 <p><code>norm = √(1+25+9+1) = 6</code></p>
 <p>Distance measures mein inputs ko normalize karna pad sakta hai, otherwise koi ek variable disproportionately dominate kar sakta hai.</p>
-<hr>
-<h3>Key Points of Clustering</h3>
+<hr/>
+<p class="subtopic"><strong>Key Points of Clustering</strong></p>
 <ul><li>Clustering <strong>unsupervised</strong> hai.</li><li>Ismein target nahi hota.</li><li>Koi single "correct" clustering nahi hoti.</li><li>Clustering application/use-case par depend karti hai.</li><li>Clusters ke labels automatically nahi milte.</li><li>Interpretation aur analysis required hota hai.</li></ul>
-<hr>
-<h3>Uses of Cluster Results</h3>
-<h3>Data Segmentation</h3>
-<p>Har segment ko separately analyse karke:</p>
+<hr/>
+<h3>Uses of cluster results</h3>
+
+<p><strong>Data Segmentation: </strong>Har segment ko separately analyse karke:</p>
 <ul><li>Insights</li><li>Targeted marketing</li></ul>
 <p>kiya ja sakta hai.</p>
-<h3>Classify New Data</h3>
-<p>New sample ko closest cluster centre assign karo.</p>
+
+<p><strong>Classify New Data: </strong>New sample ko closest cluster centre assign karo.</p>
 <p>Phir us cluster ka manually determined label use kiya ja sakta hai.</p>
-<h3>Labeled Data</h3>
-<p>Cluster samples ko labeled training data ki tarah use karke classification ki ja sakti hai.</p>
-<h3>Anomaly Detection</h3>
-<p>Jo samples har centre se far hain, wo outliers ho sakte hain.</p>
+
+<p><strong>Labeled Data: </strong>Cluster samples ko labeled training data ki tarah use karke classification ki ja sakti hai.</p>
+
+<p><strong>Anomaly Detection: </strong>Jo samples har centre se far hain, wo outliers ho sakte hain.</p>
 <p>Example:</p>
 <p><strong>Age = 150</strong></p>
 <p>Aise samples ko further analysis ki need hoti hai.</p>
-<hr>
+<hr/>
 <h2 id="h"><span>8</span>K-Means Algorithm</h2>
 <p>K-Means iterative algorithm hai.</p>
 <p>Process:</p>
-<h3>Select k</h3>
-<p>Initial centroids select karo.</p>
+
+<p><strong>Select k: </strong>Initial centroids select karo.</p>
 <p>↓</p>
-<h3>Classify</h3>
-<p>Har sample ko closest centroid assign karo.</p>
+
+<p><strong>Classify: </strong>Har sample ko closest centroid assign karo.</p>
 <p>↓</p>
-<h3>Recenter</h3>
-<p>Har cluster ka new centroid:</p>
+
+<p><strong>Recenter: </strong>Har cluster ka new centroid:</p>
 <p><strong>cluster ka mean</strong></p>
 <p>hota hai.</p>
 <p>↓</p>
-<h3>Repeat</h3>
-<p>Stopping criterion satisfy hone tak repeat karo.</p>
-<hr>
-<h3>Initial Centroids</h3>
-<p>Final clusters <strong>initial centroids</strong> ke liye sensitive hote hain.</p>
+
+<p><strong>Repeat: </strong>Stopping criterion satisfy hone tak repeat karo.</p>
+<hr/>
+
+<p><strong>Initial Centroids: </strong>Final clusters <strong>initial centroids</strong> ke liye sensitive hote hain.</p>
 <p>Isliye:</p>
 <ul><li>Algorithm ko several times run karo.</li><li>Different random starting centroids use karo.</li><li>Best result choose karo.</li></ul>
-<hr>
-<h3>Evaluation — WSSE</h3>
-<p><strong>WSSE = Within-Cluster Sum of Squared Error</strong></p>
+<hr/>
+
+<p><strong>Evaluation — WSSE: </strong><strong>WSSE = Within-Cluster Sum of Squared Error</strong></p>
 <p>Har cluster mein:</p>
 <p><strong>sample aur centroid ke beech squared distance</strong></p>
 <p>calculate karke sabhi clusters ke across sum kiya jaata hai.</p>
@@ -453,50 +453,50 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>Lower WSSE ka matlab necessarily more "correct" clustering nahi hota.</strong></p>
 <p>Important:</p>
 <p><strong>Larger k always WSSE reduce karta hai.</strong></p>
-<hr>
-<h3>Choosing k</h3>
-<h3>Visualization</h3>
+<hr/>
+
+<p class="subtopic"><strong>Choosing k: </strong><strong>Visualization</strong></p>
 <ul><li>Scatter plots</li><li>Dimensionality reduction</li></ul>
-<h3>Application-dependent</h3>
-<p>Example:</p>
+
+<p><strong>Application-dependent: </strong>Example:</p>
 <ul><li>Number of product categories</li><li>Number of regions</li></ul>
-<h3>Data-driven — Elbow Method</h3>
-<p>WSSE ko <code>k</code> ke against plot karo.</p>
+
+<p><strong>Data-driven — Elbow Method: </strong>WSSE ko <code>k</code> ke against plot karo.</p>
 <p>Jahan graph mein noticeable <strong>bend/elbow</strong> aaye, wo suitable <code>k</code> suggest kar sakta hai.</p>
 <p>Example:</p>
 <p><code>k = 3</code></p>
 <p>Lekin elbow:</p>
 <ul><li>Ambiguous ho sakta hai.</li><li>Ek range of <code>k</code> try karne ko suggest kar sakta hai.</li></ul>
-<hr>
-<h3>Stopping Criteria</h3>
-<p>K-Means stop ho sakta hai jab:</p>
+<hr/>
+
+<p><strong>Stopping Criteria: </strong>K-Means stop ho sakta hai jab:</p>
 <ul><li>Centroids mein koi change na ho.</li><li>Cluster change karne wale samples threshold se below ho jaayein.</li></ul>
 <p>Example:</p>
 <p><strong>&lt; 1% samples changing clusters</strong></p>
-<hr>
-<h3>Interpretation</h3>
-<p>Har centroid:</p>
+<hr/>
+
+<p><strong>Interpretation: </strong>Har centroid:</p>
 <p><strong>us cluster ke samples ka mean</strong></p>
 <p>hota hai.</p>
 <p>Isliye centroid ek <strong>representative sample</strong> ki tarah interpret kiya ja sakta hai.</p>
 <p>Centroid values compare karke clusters ka difference samajh sakte hain.</p>
 <p>Example:</p>
 <p><strong>Age values compare karna.</strong></p>
-<hr>
-<h3>K-Means Summary</h3>
+<hr/>
+<p class="subtopic"><strong>K-Means Summary</strong></p>
 <ul><li>Classic</li><li>Simple</li><li>Efficient</li><li><code>k</code> pehle specify karna padta hai.</li><li>Initial centroids ke liye sensitive hai.</li></ul>
-<hr>
+<hr/>
 <h2 id="i"><span>9</span>Parallel K-Means with MapReduce</h2>
 <p>K-Means ka <strong>one iteration</strong> directly MapReduce mein map kiya ja sakta hai.</p>
-<h3>Classify</h3>
-<p><strong>Map</strong></p>
+
+<p><strong>Classify: </strong><strong>Map</strong></p>
 <p>Data points ke across data-parallel operation.</p>
-<h3>Recenter</h3>
-<p><strong>Reduce</strong></p>
+
+<p><strong>Recenter: </strong><strong>Reduce</strong></p>
 <p>Centers ke across data-parallel operation.</p>
-<hr>
-<h3>Map Phase</h3>
-<p>Given:</p>
+<hr/>
+
+<p><strong>Map Phase: </strong>Given:</p>
 <ul><li>Centers <code>μ1..k</code></li><li>Point <code>xi</code></li></ul>
 <p>Closest centroid find karo:</p>
 <p><code>zi = argminj ‖μj − xi‖²</code></p>
@@ -504,34 +504,34 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><code>(zi, xi)</code></p>
 <p>where:</p>
 <ul><li>Key = centroid ID</li><li>Value = data point</li></ul>
-<hr>
-<h3>Reduce Phase</h3>
-<p>Cluster <code>j</code> ke saare assigned points receive karo.</p>
+<hr/>
+
+<p><strong>Reduce Phase: </strong>Cluster <code>j</code> ke saare assigned points receive karo.</p>
 <p>New centroid:</p>
 <p><code>μj = (1/nj) Σi: zi=j xi</code></p>
 <p>Yaani:</p>
 <ol><li>Sum calculate karo.</li><li>Count calculate karo.</li><li><code>sum/count</code> karo.</li></ol>
-<hr>
-<h3>Reduce Pseudocode</h3>
-<pre><code class="language-text id=&quot;h4nq7x&quot;">reduce(j, x_in_cluster: [x1, x3, ...])
+<hr/>
+<p class="subtopic"><strong>Reduce Pseudocode</strong></p>
+<pre><code class='language-text id="h4nq7x"'>reduce(j, x_in_cluster: [x1, x3, ...])
     sum = 0
     count = 0
     for x in x_in_cluster:
         sum += x
         count += 1
     emit(j, sum/count)</code></pre>
-<hr>
-<h3>Iterative Loop</h3>
-<p>New centers:</p>
+<hr/>
+
+<p><strong>Iterative Loop: </strong>New centers:</p>
 <p><strong>old centers ko replace karte hain</strong></p>
 <p>aur next pass mein use hote hain.</p>
 <p>Ye process stopping condition tak repeat hota hai.</p>
 <p>Data points:</p>
 <p><strong>HDFS</strong></p>
 <p>mein stored hote hain.</p>
-<hr>
-<h3>Practical Issues</h3>
-<p>K-Means ko <strong>iterative MapReduce</strong> chahiye.</p>
+<hr/>
+
+<p><strong>Practical Issues: </strong>K-Means ko <strong>iterative MapReduce</strong> chahiye.</p>
 <p>Ye standard MapReduce formulation nahi hai.</p>
 <p>Isi wajah se:</p>
 <p><strong>Spark K-Means ke liye well suited hai.</strong></p>
@@ -541,57 +541,56 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Agar centers bahut data represent karte hain, to ye costly ho sakta hai.</p>
 <p>Better implementation mein:</p>
 <p><strong>Har mapper ko many data points assign kiye jaate hain.</strong></p>
-<hr>
+<hr/>
 <h2 id="j"><span>10</span>Quick Revision</h2>
-<h3>Must Remember</h3>
-<h3>Machine Learning</h3>
-<p><strong>ML = data se learning without explicit programming</strong></p>
-<h3>Supervised</h3>
+
+
+<p><strong>Must Remember: Machine Learning: </strong><strong>ML = data se learning without explicit programming</strong></p>
+<p class="subtopic"><strong>Supervised</strong></p>
 <ul><li>Classification</li><li>Regression</li></ul>
-<h3>Unsupervised</h3>
+<p class="subtopic"><strong>Unsupervised</strong></p>
 <ul><li>Clustering</li><li>Association</li></ul>
-<hr>
-<h3>ML Process</h3>
-<p><strong>Acquire → Prepare → Analyze → Report → Act</strong></p>
+<hr/>
+
+<p><strong>ML Process: </strong><strong>Acquire → Prepare → Analyze → Report → Act</strong></p>
 <p>Process:</p>
 <p><strong>Iterative</strong></p>
-<hr>
-<h3>Overfitting</h3>
-<p><strong>Overfitting = low training error + high test error</strong></p>
+<hr/>
+
+<p><strong>Overfitting: </strong><strong>Overfitting = low training error + high test error</strong></p>
 <p><strong>Underfitting = high training error + high test error</strong></p>
 <p>Overfitting control:</p>
 <ul><li>Pre-pruning</li><li>Post-pruning</li><li>Validation</li></ul>
-<hr>
-<h3>Validation</h3>
-<p>Methods:</p>
+<hr/>
+
+<p><strong>Validation: </strong>Methods:</p>
 <ul><li>Holdout</li><li>Repeated holdout</li><li>K-fold cross-validation</li><li>LOOCV (<code>k = N</code>)</li></ul>
 <p><strong>Test set is never touched during training/model tuning.</strong></p>
-<hr>
-<h3>Evaluation Metrics</h3>
-<h3>Accuracy</h3>
-<p><code>Accuracy = (TP+TN)/all</code></p>
-<h3>Precision</h3>
-<p><code>Precision = TP/(TP+FP)</code></p>
-<h3>Recall</h3>
-<p><code>Recall = TP/(TP+FN)</code></p>
-<h3>F1</h3>
-<p><code>F1 = 2PR/(P+R)</code></p>
-<hr>
-<h3>K-Means</h3>
-<p>Process:</p>
+<hr/>
+
+
+<p><strong>Evaluation Metrics: Accuracy: </strong><code>Accuracy = (TP+TN)/all</code></p>
+
+<p><strong>Precision: </strong><code>Precision = TP/(TP+FP)</code></p>
+
+<p><strong>Recall: </strong><code>Recall = TP/(TP+FN)</code></p>
+
+<p><strong>F1: </strong><code>F1 = 2PR/(P+R)</code></p>
+<hr/>
+
+<p><strong>K-Means: </strong>Process:</p>
 <p><strong>Select centroids → Classify → Recenter</strong></p>
 <p>Important:</p>
 <ul><li>WSSE</li><li>Elbow method</li><li>Initial centroids sensitivity</li><li><code>k</code> must be specified</li></ul>
-<hr>
-<h3>MapReduce K-Means</h3>
-<h3>Map</h3>
-<p><strong>Classify</strong></p>
+<hr/>
+
+
+<p><strong>MapReduce K-Means: Map: </strong><strong>Classify</strong></p>
 <p>→ emit:</p>
 <p><code>(centroid id, point)</code></p>
-<h3>Reduce</h3>
-<p><strong>Average points per centroid</strong></p>
-<p>K-Means requires <strong>iteration</strong>, which is one reason Spark is well suited for it.</p>
-<hr>
-<p><strong>Source:</strong> NPTEL Big Data Computing, IIT Patna · Print-ready for A4</p>
 
+<p><strong>Reduce: </strong><strong>Average points per centroid</strong></p>
+<p>K-Means requires <strong>iteration</strong>, which is one reason Spark is well suited for it.</p>
+<hr/>
+<p><strong>Source:</strong> NPTEL Big Data Computing, IIT Patna · Print-ready for A4</p>
 <footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

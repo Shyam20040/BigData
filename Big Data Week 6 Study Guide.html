@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<html lang="en"><head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>Big Data Computing – Week 6 Study Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
@@ -39,12 +40,11 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 @media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-</style><link rel="stylesheet" href="common.css">
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="./Big%20Data%20Week%206%20Study%20Guide%20-%20Hinglish.html" aria-label="Switch to Hinglish" title="Switch to Hinglish">HI</a><div class="pg">
+</style><link href="common.css" rel="stylesheet"/>
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a aria-label="Switch to Hinglish" class="language-switch" href="./Big%20Data%20Week%206%20Study%20Guide%20-%20Hinglish.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to Hinglish">HI</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Big Data Machine Learning: Concepts, Evaluation &amp; K-Means</h1><p>Week 6 consolidated study guide</p></header>
 <nav><a href="#a">1 ML Basics</a><a href="#b">2 ML Process</a><a href="#c">3 Overfitting</a><a href="#d">4 Validation</a><a href="#e">5 Metrics</a><a href="#f">6 Spark Classification</a><a href="#g">7 Clustering</a><a href="#h">8 K-Means</a><a href="#i">9 Parallel K-Means</a><a href="#j">10 Revision</a></nav>
-
 <h2 id="a"><span>1</span>Machine Learning Basics</h2>
 <div class="box def"><b class="t">Definition</b>Machine learning is the study of computer systems that <b>learn from data without being explicitly programmed</b>. Models learn a task by analysing many examples (e.g. recognising cats from many cat images, not step-by-step rules). The <b>amount and quality of data</b> strongly affect how well the model learns. ML discovers hidden patterns and trends, enabling <b>data-driven decisions</b>.</div>
 <p>ML is <b>interdisciplinary</b>: maths and statistics, computer science and AI, plus <b>domain knowledge</b> (understanding the application, its data and how outcomes will be used) – essential for success.</p>
@@ -61,12 +61,10 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>Cluster analysis</td><td>Unsupervised, descriptive</td><td>Group similar items: customer segmentation (seniors/adults/teens), topography types, tissue types, weather patterns, crime hot spots.</td></tr>
 <tr><td>Association analysis</td><td>Unsupervised, descriptive</td><td>Rules on items/events occurring together: <b>market-basket analysis</b> (e.g. of transactions with milk: 71% bread, 43% eggs, 29% toilet paper), cross-selling CDs → money-market accounts, pages accessed together.</td></tr></table></div>
 <p><b>Supervised</b> = target is provided (<b>labeled data</b>); <b>unsupervised</b> = target unknown (unlabeled data).</p>
-
 <h2 id="b"><span>2</span>The Machine Learning Process</h2>
 <p>Five steps, always carried out with a clear <b>purpose</b> (e.g. study purchasing behavior to raise sales revenue), and <b>iterative</b> – findings may send you back (e.g. quality problems in Prepare → return to Acquire).</p>
 <div class="flow"><div><b>1 Acquire</b>identify, collect, integrate data</div><i>→</i><div><b>2 Prepare</b>explore + pre-process</div><i>→</i><div><b>3 Analyze</b>select technique, build, evaluate model</div><i>→</i><div><b>4 Report</b>communicate results</div><i>→</i><div><b>5 Act</b>apply insights</div></div>
 <ul><li><b>Acquire:</b> find all sources (files, databases, internet, mobile devices), collect and integrate; may need format conversion and alignment of time/spatial resolution. Data acquisition = gathering, filtering, cleaning before storage; a major big-data challenge.</li><li><b>Explore:</b> look for correlations, trends, outliers. <b>Summary statistics:</b> mean, median (location), mode, range, standard deviation (spread) – e.g. negative or &gt;100 ages are suspicious. <b>Visualize:</b> histogram (distribution, skew), line plot (trends), heat map (hot spots), scatter plot (correlation).</li><li><b>Pre-process:</b> <b>clean</b> (missing values, duplicates, inconsistent/invalid data such as a six-digit zip, noise, outliers); <b>feature selection</b> (remove redundant/irrelevant features, e.g. sales tax vs price; combine or create features); <b>feature transformation</b> (scaling to a range, filtering/aggregation, dimensionality reduction).</li><li><b>Analyze:</b> determine problem type, choose technique, build model, apply to new samples and evaluate.</li><li><b>Report:</b> what and how to present; main results, insights, added value; even negative results are useful; visualizations plus backup tables.</li><li><b>Act:</b> decide and implement action, consider effect on users, assess impact – which may start another cycle.</li></ul>
-
 <h2 id="c"><span>3</span>Generalization &amp; Overfitting</h2>
 <p><b>Error rate</b> (misclassification rate) = incorrect predictions ÷ total samples. The model is <b>built on training data</b> and <b>evaluated on separate test data</b> (unseen during training). <b>Training error</b> = error on training data; <b>test error</b> = error on test data = <b>generalization error</b> (how well the model handles new data).</p>
 <div class="tbl"><table><tr><th>Condition</th><th>Training error</th><th>Test error</th><th>Cause</th></tr>
@@ -79,7 +77,6 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <div class="tbl"><table><tr><th>Method</th><th>How</th></tr>
 <tr><td>Pre-pruning</td><td>Stop growth early with restrictive conditions (e.g. too few samples in a node; impurity improvement below a threshold). May stop prematurely.</td></tr>
 <tr><td>Post-pruning</td><td>Grow the full tree, then prune <b>bottom-up</b>, replacing a subtree with a leaf if generalization error improves or is unchanged. Usually better (uses the full tree) but more computationally expensive.</td></tr></table></div>
-
 <h2 id="d"><span>4</span>Validation &amp; Model Selection</h2>
 <p>A <b>validation set</b> (carved from the training data) tells us <b>when to stop training</b>. Plot error vs model complexity (e.g. number of nodes): training error keeps falling; validation error falls then <b>rises</b> – the rise marks overfitting, so <b>stop where validation error is lowest</b>. Using a validation set to choose among models of varying complexity is <b>model selection</b> (applies to any model type). Validation error also estimates generalization performance.</p>
 <div class="tbl"><table><tr><th>Method</th><th>Description &amp; notes</th></tr>
@@ -88,7 +85,6 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>K-fold cross-validation</td><td>Split data into k disjoint partitions; each iteration one partition validates, k times; every partition used exactly once; <b>average</b> error; pick model with smallest average. Very common; reduces variability of a single split.</td></tr>
 <tr><td>Leave-one-out (LOOCV)</td><td>k-fold with <b>k = N</b>; validation set has one sample; train on N−1.</td></tr></table></div>
 <div class="box"><b class="t">Three datasets</b><b>Training</b> – fit model parameters; <b>Validation</b> – decide when to stop (avoid overfitting); <b>Test</b> – evaluate on new data. The test set must <b>never</b> be used to build or tune the model (nor in cross-validation) and stays untouched until the end. All sets must have the <b>same class distribution</b> (e.g. 70%/30% preserved), otherwise results mislead.</div>
-
 <h2 id="e"><span>5</span>Evaluation Metrics</h2>
 <p>For a yes/no class (e.g. "is this animal a mammal?"):</p>
 <div class="tbl"><table><tr><th>True label</th><th>Predicted: Yes</th><th>Predicted: No</th></tr>
@@ -100,7 +96,6 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td>Recall</td><td>TP / (TP+FN)</td><td>Of true Yes samples, how many found – <b>completeness</b></td></tr>
 <tr><td>F-measure</td><td>F1 = 2·P·R / (P+R)</td><td>Combines precision and recall; F1 evenly weighted, <b>F2</b> weights recall more, <b>F0.5</b> weights precision more</td></tr></table></div>
 <p><b>Example</b> (slide counts TP=3, FN=2, FP=1, TN=4): accuracy = 7/10 = 0.7, error rate = 1 − 0.7 = 0.3; computed from these: precision = 3/4 = 0.75, recall = 3/5 = 0.6.</p>
-
 <h2 id="f"><span>6</span>Spark MLlib &amp; Classification in Spark</h2>
 <p><b>MLlib</b> is Spark's scalable, distributed ML library on Spark Core: <b>algorithms</b> (classification, regression, clustering, collaborative filtering), <b>pipeline</b> (constructing, evaluating, tuning, persistence), <b>featurization</b> (extraction, transformation) and <b>utilities</b> (linear algebra, statistics).</p>
 <h3>Decision-tree weather example (daily_weather.csv)</h3>
@@ -112,7 +107,6 @@ pipeline = Pipeline(stages=[dt])
 model = pipeline.fit(trainingData)
 predictions = model.transform(testData)
 predictions.select('prediction','label').show(10)</pre>
-
 <h2 id="g"><span>7</span>Cluster Analysis</h2>
 <p><b>Goal:</b> organize similar items into groups (clusters) so each cluster can be analysed closely. Objective: <b>intra-cluster differences minimized, inter-cluster differences maximized</b> (samples in a cluster close together, clusters far apart), based on a similarity measure. Applications: customer segmentation by purchase history (sci-fi vs non-fiction vs children's books), weather patterns, grouping news into topics, crime hot spots.</p>
 <div class="tbl"><table><tr><th>Similarity measure</th><th>Description</th></tr>
@@ -123,11 +117,9 @@ predictions.select('prediction','label').show(10)</pre>
 <div class="box"><b class="t">Key points</b>Clustering is <b>unsupervised</b> (no target); there is <b>no single correct clustering</b> (depends on use); clusters come <b>without labels</b> – interpretation and analysis are required.</div>
 <h3>Uses of cluster results</h3>
 <ul><li><b>Data segmentation</b> – analyse each segment for insight and targeted marketing.</li><li><b>Classify new data</b> – assign a new sample to the closest cluster centre and use that cluster's (manually determined) label.</li><li><b>Labeled data</b> – cluster samples become labeled training data for classification.</li><li><b>Anomaly detection</b> – samples far from every centre are outliers needing further analysis (e.g. age 150).</li></ul>
-
 <h2 id="h"><span>8</span>K-Means Algorithm</h2>
 <div class="flow"><div><b>Select k</b>initial centroids</div><i>→</i><div><b>Classify</b>assign each sample to closest centroid</div><i>→</i><div><b>Recenter</b>new centroid = mean of cluster</div><i>→</i><div><b>Repeat</b>until stopping criterion</div></div>
 <ul><li><b>Initial centroids:</b> final clusters are sensitive to them → run several times with different random starts and choose the best.</li><li><b>Evaluation – WSSE</b> (within-cluster sum of squared error): sum over all clusters of squared distance between each sample and its centroid. Lower is numerically better, but it doesn't mean more "correct"; <b>larger k always reduces WSSE</b>.</li><li><b>Choosing k:</b> visualization (scatter plots, dimensionality reduction); <b>application-dependent</b> (e.g. number of product categories or regions); <b>data-driven</b> – the <b>elbow method</b>: plot WSSE against k; the bend (e.g. k = 3) suggests k; may be ambiguous or give a range to try.</li><li><b>Stopping:</b> no change to centroids, or number of samples changing clusters below a threshold (e.g. 1%).</li><li><b>Interpretation:</b> each centroid is the mean of its cluster, a representative sample; compare centroid values (e.g. age) to see how clusters differ.</li><li><b>Summary:</b> classic, simple, efficient; k must be specified; sensitive to initial centroids.</li></ul>
-
 <h2 id="i"><span>9</span>Parallel K-Means with MapReduce</h2>
 <p>One iteration maps directly to MapReduce: <b>Classify = Map</b> (data-parallel over data points), <b>Recenter = Reduce</b> (data-parallel over centers).</p>
 <div class="tbl"><table><tr><th>Phase</th><th>Operation</th></tr>
@@ -138,7 +130,6 @@ predictions.select('prediction','label').show(10)</pre>
   for x in x_in_cluster: sum += x; count += 1
   emit(j, sum/count)</pre>
 <p>Iterative loop: new centers replace the old center version for the next pass until stopping (data points stored in HDFS). <b>Practical issues:</b> k-means needs an <b>iterative</b> MapReduce (not the standard formulation → Spark suits it); a mapper needs the data point <b>and all centers</b> (lots of data), so a better implementation has each mapper take many data points.</p>
-
 <h2 id="j"><span>10</span>Quick Revision</h2>
 <div class="box"><b class="t">Must remember</b><ul>
 <li>ML = learning from data without explicit programming; supervised (classification, regression) vs unsupervised (clustering, association).</li>

@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<html lang="en"><head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>Big Data Computing – Week 8 Study Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
@@ -39,19 +40,17 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 @media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-</style><link rel="stylesheet" href="common.css">
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="./Big%20Data%20Week%208%20Study%20Guide%20-%20Hinglish.html" aria-label="Switch to Hinglish" title="Switch to Hinglish">HI</a><div class="pg">
+</style><link href="common.css" rel="stylesheet"/>
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a aria-label="Switch to Hinglish" class="language-switch" href="./Big%20Data%20Week%208%20Study%20Guide%20-%20Hinglish.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to Hinglish">HI</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Parameter Servers, PageRank &amp; GraphX</h1><p>Week 8 consolidated study guide</p></header>
 <nav><a href="#a">1 ML Systems</a><a href="#b">2 Parameter Server</a><a href="#c">3 PageRank</a><a href="#d">4 PageRank at Scale</a><a href="#e">5 Graph-Parallel</a><a href="#f">6 GraphX Design</a><a href="#g">7 Optimizations</a><a href="#h">8 Flight Case Study</a><a href="#i">9 Revision</a></nav>
-
 <h2 id="a"><span>1</span>ML Systems Landscape</h2>
 <div class="tbl"><table><tr><th>System type</th><th>Examples</th><th>Suited for</th></tr>
 <tr><td>Dataflow</td><td>Hadoop, Spark (abstraction: Map &amp; Reduce)</td><td>Naïve Bayes, Rocchio</td></tr>
 <tr><td>Graph</td><td>GraphLab, TensorFlow (abstraction: vertex programs)</td><td>Graph algorithms, graphical models</td></tr>
 <tr><td>Shared memory</td><td>Bosen, DMTK, ParameterServer.org (Parameter Server [VLDB'10])</td><td>SGD, sampling; used at Google, Yahoo</td></tr></table></div>
 <p>Simplest case of a parameter server: the ML parameters live in a <b>distributed hash table</b> accessible over the network.</p>
-
 <h2 id="b"><span>2</span>Parameter Server &amp; Stale Synchronous Parallel</h2>
 <div class="box def"><b class="t">Parameter Server (PS)</b>An ML framework that <b>distributes a model over multiple machines</b> (PS shards). Training state is stored in shards with asynchronous updates. Two operations: <b>Pull</b> (query parts of the model) and <b>Push</b> (update parts). Update equation: <b>W<sub>i</sub> â† W<sub>i</sub> + Δ</b> (e.g. stochastic gradient descent, collapsed Gibbs sampling for topic models); push updates are aggregated by <b>addition</b>.</div>
 <ul><li><b>Key-value API for workers:</b> <code>get(key) → value</code>, <code>add(key, delta)</code> (distributed shared memory). Extensions: multiple keys (matrix), multiple "channels", push/pull of recent copies, optional blocking, clock-based blocking.</li><li><b>Data-parallel learning:</b> split data across worker machines; different parts of the model sit on different servers; workers fetch the part they need.</li><li><b>Flexible:</b> used for LDA (topic model), matrix factorization (MF), CNN, DNN (Petuum, YahooLDA, DistBelief…). <b>Glint</b> adds parameter servers to Spark.</li></ul>
@@ -64,30 +63,27 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <ul><li><b>Solution 1 – cache synchronization:</b> workers cache parameters and send sparse changes to the model.</li><li><b>Solution 2 – asynchronous execution:</b> avoids barriers (no idle waiting) and enables more frequent coordination, but <b>lacks theoretical guarantees</b> because of arbitrary network delays and stragglers.</li></ul>
 <div class="box def"><b class="t">Stale Synchronous Parallel (SSP)</b>Global clock t; a worker's "get" may be <b>out of date but not older than a staleness bound s (τ)</b>. The fastest and slowest workers may not drift more than <b>s clocks</b> apart (the fast worker blocks). SSP <b>interpolates between BSP and async and subsumes both</b> (BSP = staleness 0); workers mostly run at their own pace; implemented efficiently by caching parameters. Delayed SGD: <code>x<sub>t+1</sub> = argmin<sub>x∈X</sub> ‖x − (x<sub>t</sub> − η<sub>t</sub> g<sub>t−τ</sub>)‖</code> – a gradient step with a stale gradient plus projection onto the feasible space.</div>
 <p><b>Consistency matters:</b> in LDA on 32 machines (256 cores), a suitable delay (SSP) gives a big speed-up over strong consistency (BSP) by cutting network waiting time; SSP outperforms BSP and pure async in convergence.</p>
-
 <h2 id="c"><span>3</span>PageRank</h2>
 <p><b>Big graphs:</b> social-scale (1 billion vertices, 100 billion edges), web-scale (50 billion vertices, 1 trillion edges), brain-scale (100 billion vertices, 100 trillion edges). Web pages grew from 150 million (1998) to 1000 billion (2008), diverse in topic and quality – hence the need to rate page importance <b>objectively and mechanically</b> from link structure.</p>
 <div class="box def"><b class="t">PageRank</b>Developed by Larry Page and Sergey Brin (project started 1995, prototype 1998) – Google's first algorithm to rank search results. Links from many pages, or from a high-rank page, give a high rank. PR(E) denotes the PageRank of E. Equivalent to a <b>random surfer</b>; ranks form the <b>stationary distribution</b> x* = (x*)<sup>T</sup>P.</div>
 <ul><li><b>Basic form:</b> <code>PR(u) = Σ<sub>v∈Γ(u)</sub> PR(v)/L(v)</code> – L(v) = number of outbound links of v, Γ(u) = set of pages linking to u.</li><li><b>With damping factor d (0.85):</b> <code>PR(p<sub>i</sub>) = (1−d)/N + d · Σ<sub>p<sub>j</sub>∈Γ(p<sub>i</sub>)</sub> PR(p<sub>j</sub>)/L(p<sub>j</sub>)</code>, N = total pages (i.e. 0.15/N + 0.85·sum).</li><li><b>Iteration:</b> start with PR(p;0) = 1/N; update each step; stop after a <b>fixed number of iterations</b> or at <b>convergence</b>, Σ|PR(t+1) − PR(t)| &lt; ε.</li><li><b>Stationary distribution theorem:</b> a unique stationary distribution exists if (1) there is a path from every node to every node, and (2) the greatest common divisor of all cycle lengths is 1.</li></ul>
 <p><b>Example:</b> four pages A, B, C, D, each initial 0.25. If B, C, D all point only to A: PR(A) = 0.25·1 + 0.25·1 + 0.25·1 = <b>0.75</b>. With B→A, C→A, D→A having outgoing weights ½, 1 and ⅓: PR(A) = 0.25(½ + 1 + ⅓) = <b>0.458</b>.</p>
-
 <h2 id="d"><span>4</span>PageRank at Scale: MapReduce &amp; Pregel</h2>
 <div class="tbl"><table><tr><th>Framework</th><th>How it works</th><th>Limitation</th></tr>
 <tr><td>MapReduce</td><td><b>Map:</b> for vertex n emit the vertex itself and p = PageRank/|adjacency list| to each neighbor. <b>Reduce:</b> separate the vertex object from contributions, sum s, set PageRank = s·0.85 + 0.15/TotalVertices.</td><td>The <b>entire graph state is shuffled every iteration</b> (only rank contributions need to be); iteration must be controlled <b>outside</b> MapReduce.</td></tr>
 <tr><td>Pregel (Google)</td><td>Batch algorithms on large graphs; each vertex program runs in parallel in supersteps: process messages from the previous iteration, send messages to neighbors, set the active flag. Loop until no vertex is active or max iterations. Open source: Apache Giraph, Stanford GPS, JPregel, Hama.</td><td>Bulk-synchronous barriers.</td></tr></table></div>
 <pre>// PageRank in Pregel (Compute)
-if (superstep() >= 1) { sum = Σ msgs; value = 0.15/NumVertices() + 0.85 * sum }
-if (superstep() < 30) SendMessageToAllNeighbors(value / numOutEdges)
+if (superstep() &gt;= 1) { sum = Σ msgs; value = 0.15/NumVertices() + 0.85 * sum }
+if (superstep() &lt; 30) SendMessageToAllNeighbors(value / numOutEdges)
 else VoteToHalt()</pre>
 <p><b>Worked example:</b> five vertices start at 0.2; each step <code>rank = 0.15/5 + 0.85·sum(incoming)</code> – values evolve (e.g. 0.03, 0.172, 0.34, 0.426, 0.03 → 0.03, 0.0513, 0.095, 0.794, 0.03), concentrating rank on the best-linked vertex.</p>
-
 <h2 id="e"><span>5</span>Graph Data &amp; Graph-Parallel Computation</h2>
 <div class="tbl"><table><tr><th>Graph</th><th>Vertices</th><th>Edges</th></tr>
 <tr><td>Social network</td><td>Users, posts</td><td>Relationships, likes</td></tr><tr><td>Web graph</td><td>Web pages</td><td>Links</td></tr>
 <tr><td>Transaction (Bitcoin)</td><td>People, organizations</td><td>Currency exchange</td></tr><tr><td>Communication (Internet, Enron email)</td><td>Devices/routers; users</td><td>Network flows; emails (directed)</td></tr>
 <tr><td>User-item (bipartite)</td><td>Users and items</td><td>Ratings</td></tr></table></div>
 <p>GraphX (built on Spark Core, with Spark SQL, Streaming, MLlib) measures connectedness, degree distribution, average path length and triangle counts; applies PageRank; supports the <b>Pregel API</b>; introduces <b>VertexRDD, EdgeRDD, Edge, triplets</b>.</p>
-<div class="box def"><b class="t">Graph-parallel pattern (Gonzalez et al., OSDI'12)</b>A vertex's computation depends only on its neighbors: <b>Gather</b> information from neighbors → <b>Apply</b> an update to the vertex property → <b>Scatter</b> information to neighbors.<br>PageRank: <code>R[i] = 0.15 + Σ w<sub>ji</sub>·R[j]</code>. Shortest path: <code>D[i] = 1 + min D[j]</code>. Cluster coefficient: <code>2·#Triangles[i] / (Deg[i](Deg[i]−1))</code> (triangle counting measures local-community cohesiveness: more triangles = stronger community).</div>
+<div class="box def"><b class="t">Graph-parallel pattern (Gonzalez et al., OSDI'12)</b>A vertex's computation depends only on its neighbors: <b>Gather</b> information from neighbors → <b>Apply</b> an update to the vertex property → <b>Scatter</b> information to neighbors.<br/>PageRank: <code>R[i] = 0.15 + Σ w<sub>ji</sub>·R[j]</code>. Shortest path: <code>D[i] = 1 + min D[j]</code>. Cluster coefficient: <code>2·#Triangles[i] / (Deg[i](Deg[i]−1))</code> (triangle counting measures local-community cohesiveness: more triangles = stronger community).</div>
 <div class="tbl"><table><tr><th>Abstraction</th><th>Style</th></tr>
 <tr><td>Pregel (push)</td><td>"Think like a vertex"; vertex programs interact by <b>sending messages</b> to out-neighbors.</td></tr>
 <tr><td>GraphLab (pull)</td><td>Vertex programs <b>directly read adjacent vertices and edges</b>; data movement managed by the system, not the user.</td></tr></table></div>
@@ -96,11 +92,9 @@ else VoteToHalt()</pre>
 <tr><td>PageRank, LiveJournal, 10 iterations</td><td>Mahout/Hadoop 1340 s · naïve Spark 354 s · GraphLab 22 s (Spark 4× faster than Hadoop; GraphLab 16× faster than Spark, 60× than Hadoop)</td></tr>
 <tr><td>Triangle counting, Twitter (40M users, 1.4B links, 34.8B triangles)</td><td>Hadoop on 1536 machines: 423 min · GraphLab on 64 machines: 15 s (≈1000× faster)</td></tr></table></div>
 <p><b>Problem with separate systems:</b> analytics pipelines mix <b>table views</b> (Hadoop, Spark) and <b>graph views</b> (Pregel, GraphLab, Giraph) – users must learn and manage several systems (brittle interfaces), with <b>extensive data movement and duplication</b> across network and file system and little reuse of internal structures.</p>
-
 <h2 id="f"><span>6</span>GraphX: Unified Approach &amp; Design</h2>
 <div class="box def"><b class="t">GraphX idea</b>A new API that <b>blurs the distinction between tables and graphs</b> and a system combining <b>data-parallel and graph-parallel</b> execution. Encode graphs as distributed tables, express graph computations in relational algebra, and reduce graph-system optimization to <b>distributed joins</b> and <b>incremental materialized maintenance</b>. Tables and graphs are composable views of the same physical data.</div>
 <ul><li><b>Property graph:</b> a <b>Vertex Property Table</b> (id → property, e.g. rxin → Student) plus an <b>Edge Property Table</b> (source, destination, property, e.g. Friend, Advisor).</li><li><b>Distributed representation:</b> partitioned by a <b>2D vertex-cut heuristic</b> into parts; stored as a <b>Vertex Table</b>, <b>Routing Table</b> and <b>Edge Table</b> (RDDs).</li><li><b>Operators:</b> inherits all Spark RDD operators (map, filter, groupBy, join, reduceByKey…); graph operators: table views <code>vertices</code>, <code>edges</code>, <code>triplets</code>; <code>reverse</code>, <code>subgraph</code>, <code>mapV</code>, <code>mapE</code>; <code>joinV</code>, <code>joinE</code>; and <b>mrTriplets</b>.</li><li><b>triplets</b> = vertex info joined with edge info; <b>mrTriplets</b> = map-reduce over triplets (map per edge, reduce grouped by destination id) – e.g. "age of the oldest follower of each user": map emits (dst, src age), reduce takes the maximum.</li></ul>
-
 <h2 id="g"><span>7</span>GraphX Optimizations &amp; Performance</h2>
 <div class="tbl"><table><tr><th>Optimization</th><th>Effect</th></tr>
 <tr><td>Mirror cache</td><td>Vertex properties cached locally beside the edge table for iterative mrTriplets.</td></tr>
@@ -110,7 +104,6 @@ else VoteToHalt()</pre>
 <tr><td>Join elimination</td><td>Skip joins for unused triplet fields (PageRank needs only the source attribute) – <b>2× less communication</b> than a three-way join.</td></tr>
 <tr><td>Indices &amp; bitmaps; reuse</td><td>Speed joins and subgraph construction; reuse routing tables, edge adjacency data and indices across graphs.</td></tr></table></div>
 <ul><li><b>Performance:</b> PageRank on LiveJournal (69M edges): GraphX faster than Hadoop and Giraph but ≈ <b>3× slower than GraphLab</b>; on Twitter (1.5B edges) ≈ <b>2× slower than GraphLab</b> – due to Scala/Java overhead (garbage collection) and no shared-memory parallelism. An <b>integrated GraphX pipeline</b> (Wikipedia XML → top 20 pages) beats combining separate systems (e.g. GraphLab + Spark).</li><li><b>Code size:</b> GraphX engine ≈ 3575 lines on Spark; PageRank, connected components, SVD etc. need only ~5–120 lines. Status: alpha in Spark 0.9.</li><li><b>Real-world graph properties:</b> <b>power-law degree distribution</b> (top 1% of vertices touch ~50% of edges); <b>51% of vertices are updated only once</b> in PageRank.</li><li><b>Use cases:</b> recommendation via low-rank matrix factorization on bipartite user-item graphs (Netflix); behavior prediction (Conditional Random Fields, belief propagation); community discovery by triangle counts. <b>Standard pipeline:</b> raw XML → ETL → initial graph → slice subgraph → compute (PageRank) → post-process (top users).</li><li><b>Conclusion:</b> a standard graph algebra matters for graph systems as SQL did for databases; research directions: dynamic (time-evolving) graphs and serving graph data to external systems.</li></ul>
-
 <h2 id="h"><span>8</span>Case Study: Flight Data with Spark GraphX</h2>
 <p><b>Goal:</b> analyse flight data to get near-real-time results and visualize them. <b>Dataset:</b> January 2014 delays and cancellations of domestic flights by major carriers (US DOT Bureau of Transportation Statistics); 17 attributes (day of month/week, times, carrier, tail number, flight number, origin/destination IDs and names, delay minutes, elapsed time, distance).</p>
 <div class="flow"><div><b>Ingest</b>flight data into a database</div><i>→</i><div><b>Parse</b>into a GraphX graph (airports = vertices, routes = edges)</div><i>→</i><div><b>Query</b>graph</div><i>→</i><div><b>Plot</b>on a USA map (Google Data Studio)</div></div>
@@ -121,7 +114,6 @@ else VoteToHalt()</pre>
 <tr><td>inDegrees / outDegrees</td><td><b>Atlanta (ATL)</b> top in both, degree 173</td></tr>
 <tr><td>PageRank (top)</td><td>ATL, DFW, ORD, MSP, SLC</td></tr>
 <tr><td>Cheapest routes</td><td>Single-source shortest path with the <b>Pregel API</b>; routes &gt; 1000 miles via edge filter</td></tr></table></div>
-
 <h2 id="i"><span>9</span>Quick Revision</h2>
 <div class="box"><b class="t">Must remember</b><ul>
 <li>Parameter server: pull/push, W â† W + Δ, <code>get</code>/<code>add</code> key-value API, sharded model, async updates.</li>
