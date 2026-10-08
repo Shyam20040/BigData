@@ -187,6 +187,17 @@ nav, .box, .def, .grid > div, .flow > div, .week, .practice, .stat, .q, .o, .key
   color: #ededed !important;
   border-color: #484848 !important;
 }
+.o.sel {
+  background-color: #383838 !important;
+  border-color: #d0d0d0 !important;
+  box-shadow: inset 4px 0 #f2f2f2;
+}
+.o.sel::after {
+  content: "✓";
+  margin-left: auto;
+  color: #fff;
+  font-weight: 700;
+}
 table { background: #1b1b1b !important; color: #ededed !important; }
 th { background: #303030 !important; color: #fff !important; }
 td { border-color: #484848 !important; }
