@@ -140,21 +140,10 @@ list.reduce(_ + _)       // 6</code></pre>
 <h2 id="e"><span>5</span>Job Execution</h2><div class="flow"><div>Build operator DAG</div><div>DAGScheduler Stages of tasks mein split karta hai aur ready stages ko submit karta hai.</div><div>TaskScheduler Cluster manager ke through tasks launch karta hai aur failed/straggling tasks ko retry karta hai.</div><div>Worker</div></div>
 <p>Spark application ke andar <strong>library</strong> ki tarah run karta hai — har application ka ek instance hota hai.</p>
 <ul><li><strong>Driver</strong> → <code>SparkContext</code> hold karta hai.</li><li><strong>Cluster Manager</strong> → Standalone, Mesos ya YARN.</li><li><strong>Workers/Executors</strong> → tasks run karte hain aur cache hold karte hain.</li><li>Storage ko <strong>Hadoop InputFormat</strong> ke through access kiya ja sakta hai:<ul><li>HDFS</li><li>HBase</li><li>S3</li><li>Cassandra</li><li>Avro</li></ul></li></ul>
-
-
-
-
-
-
-
-
-
-
-
 <p>Tasks execute karta hai aur <strong>Block Manager</strong> blocks ko store/serve karta hai.</p>
 <p><strong>DAG: </strong><strong>DAG = Directed Acyclic Graph</strong></p>
 <p>Flow:</p>
-<div class="flow"><div>Source</div><div>Transformations</div><div>RDDs</div><div>Action</div></div>
+<p>Source</p><p>Transformations</p><p>RDDs</p><p>Action</p>
 <p>Ye Spark ka <strong>execution plan</strong> hai aur executors ke across automatically scale hota hai.</p>
 <p>Scheduler:</p>
 <ul><li>General task graphs support karta hai.</li><li>Jahan possible ho functions ko <strong>pipeline</strong> karta hai.</li><li><strong>Cache-aware</strong> hai → reuse aur locality.</li><li><strong>Partitioning-aware</strong> hai → unnecessary shuffles avoid karta hai.</li></ul>
@@ -185,7 +174,7 @@ list.reduce(_ + _)       // 6</code></pre>
 <p>Then:</p>
 <p><code>0.15 + 0.85 × 2 = 1.85</code></p>
 <p>Ranks evolve:</p>
-<div class="flow"><div>1.85, 0.58, 1.0, 0.58</div><div>1.31, 0.39, 1.72, 0.58</div><div>1.44, 0.46, 1.37, 0.73</div></div>
+<p>1.85, 0.58, 1.0, 0.58</p><p>1.31, 0.39, 1.72, 0.58</p><p>1.44, 0.46, 1.37, 0.73</p>
 <p class="subtopic"><strong>Code</strong></p>
 <pre><code class="language-scala">val links = // RDD of (url, neighbors)
 var ranks = // RDD of (url, rank)
@@ -241,7 +230,7 @@ for (i &lt;- 1 to ITERATIONS) {
 <ul><li>SGD</li><li>L-BFGS</li></ul>
 <p><strong>GraphX: </strong>GraphX <strong>RDDs of nodes and edges</strong> se graph processing build karta hai.</p>
 <p>Composable flow:</p>
-<div class="flow"><div>Raw data</div><div>ETL</div><div>Initial graph</div><div>Slice</div><div>Subgraph</div><div>PageRank</div><div>Analyze</div></div>
+<p>Raw data</p><p>ETL</p><p>Initial graph</p><p>Slice</p><p>Subgraph</p><p>PageRank</p><p>Analyze</p>
 <p>Algorithms include:</p>
 <ul><li>Collaborative filtering</li><li>Structured prediction</li><li>Semi-supervised ML</li><li>Community detection</li><li>Triangle counting</li><li>K-core</li><li>K-truss</li><li>PageRank</li><li>Shortest path</li><li>Coloring</li><li>Classification</li></ul>
 <p><strong>Streaming: </strong>Large-scale streaming ke liye use hota hai.</p>
@@ -280,7 +269,7 @@ for (i &lt;- 1 to ITERATIONS) {
 <p>Example:</p>
 <p><code>"blog_ids updated in the past month"</code></p>
 <p>→ <code>last_updated</code> column mein search karo aur sirf matching <code>blog_id</code> column fetch karo.</p>
-<h2 id="j"><span>10</span>Apache Cassandra: Key → Server Mapping</h2><div class="flow"><div>read/write K13</div><div>Coordinator</div><div>N16 Primary replica</div><div><b>N32, N45 Backup replicas Note</b>Provided slides yahin end hoti hain; announced consistency-solutions topic provided text mein covered nahi hai.</div></div>
+<h2 id="j"><span>10</span>Apache Cassandra: Key → Server Mapping</h2><p>read/write K13</p><p>Coordinator</p><p>N16 Primary replica</p><p><b>N32, N45 Backup replicas Note</b>Provided slides yahin end hoti hain; announced consistency-solutions topic provided text mein covered nahi hai.</p>
 <p><strong>Cassandra</strong> ek distributed <strong>key-value store</strong> hai jo datacenter ke andar aur multiple datacenters ke across run karne ke liye designed hai.</p>
 <p>Ye originally <strong>Facebook</strong> mein design hua tha aur ab <strong>Apache project</strong> hai.</p>
 <p>Users include:</p>
@@ -299,17 +288,5 @@ for (i &lt;- 1 to ITERATIONS) {
 <ul><li><strong>Primary replica → N16</strong></li><li><strong>Backup replicas → N32, N45</strong></li></ul>
 <p>Client read/write request ko ek <strong>coordinator</strong> ko send karta hai.</p>
 <p>Coordinator request ko appropriate <strong>replicas</strong> ko forward karta hai.</p>
-
-
-
-
-
-
-
-
-
-
-
-
 <h2 id="k"><span>11</span>Quick Revision</h2><div class="box"><b class="t">Must Remember</b><p class="subtopic"><strong><strong>Must Remember</strong></strong></p><ul><li><strong>Spark</strong> MapReduce ke disk-heavy intermediate results ko avoid karta hai, especially <strong>iterative/interactive jobs</strong> mein; claims up to <strong>100× faster</strong>.</li><li><strong>RDD</strong> = immutable, partitioned aur lazily transformed; <strong>actions execution trigger</strong> karte hain; recovery <strong>lineage</strong> se hoti hai.</li><li><strong>Transformations:</strong> <code>map</code>, <code>filter</code>, <code>flatMap</code>, <code>reduceByKey</code>, <code>groupByKey</code>, <code>join</code>, <code>cogroup</code>.</li><li><strong>Actions:</strong> <code>count</code>, <code>collect</code>, <code>take</code>, <code>reduce</code>, <code>save</code>.</li><li><strong>Execution:</strong> <strong>Driver/SparkContext → Cluster Manager → Executors → DAGScheduler (stages) → TaskScheduler (tasks)</strong>.</li><li><strong>PageRank:</strong> <code>rank = 0.15 + 0.85 × Σ(rank/|neighbors|)</code>.</li><li><strong>Libraries:</strong> <strong>SQL, Streaming, MLlib, GraphX</strong>.</li><li><strong>Key-value stores:</strong> <code>get/put</code>, <strong>no fixed schema</strong>, column storage, <strong>scale out</strong>.</li><li><strong>Cassandra:</strong> <strong>ring-based partitioner</strong> with <strong>primary aur backup replicas</strong>.</li></ul></div>
 <footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

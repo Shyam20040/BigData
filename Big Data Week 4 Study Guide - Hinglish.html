@@ -170,7 +170,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <h2 id="f"><span>6</span>Consistency Models Spectrum</h2>
 <p>Left se right jaane par:</p>
 <p><strong>Faster reads/writes → More consistency</strong></p>
-<div class="flow"><div>Eventual</div><div>Per-key sequential</div><div>Causal</div><div>Red-Blue / CRDTs / Probabilistic</div><div>Strong</div></div>
+<p>Eventual</p><p>Per-key sequential</p><p>Causal</p><p>Red-Blue / CRDTs / Probabilistic</p><p>Strong</p>
 <p><strong>Rule: </strong>Application ke liye jo model correct ho, usmein <strong>lowest / leftmost model</strong> choose karo.</p>
 <div class="tbl"><table><thead><tr><th><strong>Model</strong></th><th><strong>Idea</strong></th></tr></thead><tbody>
 <tr><td><strong>Eventual</strong></td><td>Writes stop hone par replicas converge karte hain. Amazon Dynamo aur LinkedIn Voldemort se associated.</td></tr>
@@ -216,7 +216,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>Write Path: </strong>Insert hota hai:</p>
 <p><strong>Memtable + Commit Log</strong></p>
 <p>Write se pehle read ki requirement nahi hoti, isliye write <strong>very fast</strong> hota hai.</p>
-<div class="flow"><div><b>Read Path</b>Memtable</div><div>Row Cache</div><div>Bloom Filter</div><div>Key Cache</div><div>SSTables</div><div>Repopulate Row Cache</div></div>
+<p><b>Read Path</b>Memtable</p><p>Row Cache</p><p>Bloom Filter</p><p>Key Cache</p><p>SSTables</p><p>Repopulate Row Cache</p>
 <p>Bloom filter SSTables locate karne mein help karta hai.</p>
 <p><strong>Remember: </strong><strong>Cassandra rows ko fast find karta hai, columns ko fast scan karta hai, but rows ko scan nahi karta.</strong></p>
 <p class="subtopic"><strong>CQL Examples</strong></p>
@@ -265,7 +265,7 @@ mymap['fruit'] = 'apple'</code></pre>
 <p><code>18</code></p>
 <p><strong>Deadlock: </strong>Processes ek doosre ka wait karte rehte hain, directly ya indirectly.</p>
 <p>Example:</p>
-<div class="flow"><div>P1</div><div>P2</div><div>P3</div><div>P1</div></div>
+<p>P1</p><p>P2</p><p>P3</p><p>P1</p>
 <p>Aur process kabhi finish nahi hota.</p>
 <p><strong>Coordination Needs: </strong>Distributed applications ko coordination ke liye:</p>
 <ul><li>Group membership</li><li>Leader election</li><li>Dynamic configuration</li><li>Service registry</li><li>Status monitoring</li><li>Queuing</li><li>Barriers</li><li>Critical sections</li></ul>

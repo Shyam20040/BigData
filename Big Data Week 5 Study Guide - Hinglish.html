@@ -257,7 +257,7 @@ wordCounts.print(); context.start(); context.awaitTermination()</code></pre>
 <tr><td><strong>Output</strong></td><td><code>print</code>, <code>saveAsTextFiles</code>, <code>saveAsObjectFiles</code>, <code>saveAsHadoopFiles</code>, <code>foreachRDD</code> — message queues, DB writes, anything</td></tr>
 </tbody></table></div>
 <p class="subtopic"><strong>Hashtag Example</strong></p>
-<div class="flow"><div>tweets = ssc.twitterStream()</div><div>hashTags = tweets.flatMap(getTags)</div><div><b>saveAsHadoopFiles("hdfs</b>//…")</div></div>
+<p>tweets = ssc.twitterStream()</p><p>hashTags = tweets.flatMap(getTags)</p><p><b>saveAsHadoopFiles("hdfs</b>//…")</p>
 <p>Ya:</p>
 <pre><code class="language-text">foreach</code></pre>
 <p class="subtopic"><strong>Count</strong></p>
