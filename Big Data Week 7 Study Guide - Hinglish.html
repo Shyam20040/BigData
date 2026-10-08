@@ -41,7 +41,7 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 </style><link href="common.css" rel="stylesheet"/>
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>p.subtopic{margin:9px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style></head><body><a aria-label="Switch to English" class="language-switch" href="./big-data-week7-study-guide.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to English">EN</a><a aria-label="Switch to Hinglish" class="language-switch" href="Big Data Week 7 Study Guide - Hinglish.html" title="Switch to Hinglish">??</a><div class="pg">
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>p.subtopic{margin:9px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style><style class="subtopic-style">p.subtopic{margin:6px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style></head><body><a aria-label="Switch to English" class="language-switch" href="./big-data-week7-study-guide.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to English">EN</a><a aria-label="Switch to Hinglish" class="language-switch" href="Big Data Week 7 Study Guide - Hinglish.html" title="Switch to Hinglish">??</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Decision Trees, Ensembles &amp; Predictive Analytics</h1><p>Week 7 consolidated study guide · Hinglish</p></header>
 <nav><a href="#a">1 Decision Trees</a><a href="#b">2 ID3 &amp; Entropy</a><a href="#c">3 Regression Trees</a><a href="#d">4 PLANET</a><a href="#e">5 Bagging</a><a href="#f">6 Random Forest</a><a href="#g">7 Boosting</a><a href="#h">8 Spark ML Case</a><a href="#i">9 Cross-Validation</a><a href="#j">10 Revision</a></nav>
@@ -53,15 +53,11 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>14 days ka data: <strong>9 Yes / 5 No</strong></p>
 <p class="subtopic"><strong>Outlook</strong></p>
 <ul><li><strong>Overcast:</strong> 4/0 → pure → <strong>Yes</strong></li><li><strong>Sunny:</strong> 2/3 → split on <strong>Humidity</strong><ul><li>High: 0/3 → <strong>No</strong></li><li>Normal: 2/0 → <strong>Yes</strong></li></ul></li><li><strong>Rain:</strong> 3/2 → split on <strong>Wind</strong><ul><li>Weak: 3/0 → <strong>Yes</strong></li><li>Strong: 0/2 → <strong>No</strong></li></ul></li></ul>
-
 <p><strong>New day D15: </strong><strong>Rain, High humidity, Weak wind</strong></p>
 <p>→ Rain → Wind = Weak → <strong>Yes (3/0)</strong></p>
-
-<p><strong>Single Decision Tree — Summary: </strong><strong>Advantages:</strong></p>
-<ul><li>Feature interactions ko automatically handle karta hai (multiple splits ke saath complex functions).</li><li>Computationally scalable hai — bahut large data aur many features ke liye efficient algorithms use kar sakta hai, jaise Spark clusters par.</li><li>Interpretable hai — splits aur leaves ko visualize kiya ja sakta hai.</li></ul>
+<div class="box def"><b class="t">Single decision tree – summary</b><p><strong>Advantages:</strong></p><ul><li>Feature interactions ko automatically handle karta hai (multiple splits ke saath complex functions).</li><li>Computationally scalable hai — bahut large data aur many features ke liye efficient algorithms use kar sakta hai, jaise Spark clusters par.</li><li>Interpretable hai — splits aur leaves ko visualize kiya ja sakta hai.</li></ul></div>
 <p><strong>Disadvantage:</strong></p>
 <ul><li>Predictive power weak ho sakti hai due to <strong>overfitting/noise</strong>.</li></ul>
-<hr/>
 <h2 id="b"><span>2</span>ID3, Entropy &amp; Information Gain</h2>
 <p><strong>ID3 (Iterative Dichotomiser 3, Ross Quinlan 1986)</strong> dataset se decision tree generate karta hai.</p>
 <ul><li>Ye <strong>C4.5 (1993)</strong> ka precursor hai.</li><li><strong>CART (Breiman et al., 1984)</strong> statistics se aaya hai.</li></ul>
@@ -72,27 +68,19 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
   3. For each value of A, create a new child node
   4. Split training {examples} to child nodes
   5. For each child subset: if pure → STOP, else Split(child, subset)</code></pre>
-
 <p><strong>Which Attribute?: </strong>Humein split ki <strong>"purity"</strong> measure karni hoti hai.</p>
 <ul><li>Ek pure set, jaise <strong>4 yes / 0 no</strong>, completely certain hota hai.</li><li><strong>3 yes / 3 no</strong> completely uncertain hota hai (50%).</li></ul>
 <p>Measure <strong>symmetric</strong> hona chahiye:</p>
 <p><strong>4 yes / 0 no</strong> aur <strong>0 yes / 4 no</strong> equally pure hone chahiye.</p>
 <p>Isliye <strong>P("yes"|set)</strong> use nahi kar sakte → <strong>entropy</strong> use karte hain.</p>
-<hr/>
-
-<p><strong>Entropy (bits): </strong>\[ H(S) = -p(+) \log_2 p(+) - p(-) \log_2 p(-) \]</p>
-<p>Interpretation:</p>
+<div class="box def"><b class="t">Entropy (bits)</b><p>\[ H(S) = -p(+) \log_2 p(+) - p(-) \log_2 p(-) \]</p><p>Interpretation:</p></div>
 <p>Entropy batata hai ki set <strong>S</strong> ke kisi item <strong>X</strong> ko positive ya negative batane ke liye kitne bits required hain.</p>
 <ul><li>Maximum entropy = <strong>1</strong>, jab \(p(+) = \frac{1}{2}\)</li><li>Entropy = <strong>0</strong>, jab set pure ho, yani \(p = 0\) ya \(1\)</li></ul>
 <p>Examples:</p>
 <ul><li><strong>3 yes / 3 no → Entropy = 1</strong></li><li><strong>4 yes / 0 no → Entropy = 0</strong></li></ul>
-<hr/>
-
-<p><strong>Information Gain: </strong>Information Gain split ke baad entropy mein hone wale <strong>expected drop</strong> ko measure karta hai.</p>
-<p>Ye attribute <strong>A</strong> aur class labels ke beech <strong>mutual information</strong> ko represent karta hai.</p>
+<div class="box def"><b class="t">Information Gain</b><p>Information Gain split ke baad entropy mein hone wale <strong>expected drop</strong> ko measure karta hai.</p><p>Ye attribute <strong>A</strong> aur class labels ke beech <strong>mutual information</strong> ko represent karta hai.</p></div>
 <p>\[ Gain(S,A) = H(S) - \sum_{v\in Values(A)} \frac{|S_v|}{|S|}\cdot H(S_v) \]</p>
 <p>Tree <strong>greedily top-down</strong> grow hota hai, aur har split par woh attribute select hota hai jo <strong>maximum Information Gain (IG)</strong> deta hai.</p>
-
 <p><strong>Worked Example — Gain(S, Wind): </strong>\[ H(S) = 0.94 \]</p>
 <p>for <strong>9 yes / 5 no</strong></p>
 <p>\[ H(S_{weak}) = 0.81 \]</p>
@@ -101,7 +89,6 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>for <strong>3/3</strong></p>
 <p>Therefore:</p>
 <p>\[ Gain = 0.94 - \frac{8}{14}\cdot0.81 - \frac{6}{14}\cdot1.0 = 0.049 \]</p>
-<hr/>
 <h2 id="c"><span>3</span>Decision Trees for Regression</h2>
 <p>Training set:</p>
 <p>\[ Z = \{(x_1,y_1),...\} \]</p>
@@ -113,14 +100,12 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>\[ x_k &lt; t \]</p>
 <p>ke basis par split hota hai:</p>
 <ul><li>\(Z_L\) → left side</li><li>\(Z_R\) → right side</li></ul>
-
 <p><strong>No Split: </strong>Agar koi split nahi hai, to ek single number predict kiya jata hai jo squared error ko minimize karta hai.</p>
 <p>Ye number <strong>all targets ka average</strong> hota hai:</p>
 <p>\[ \hat{a} = \frac{1}{|Z|}\sum y_i \]</p>
 <p>Impurity:</p>
 <p>\[ Impurity(Z)=\frac{1}{|Z|} \sum(\hat{a}-y_i)^2 \]</p>
 <p>Yani impurity = <strong>Mean Squared Error (MSE)</strong>.</p>
-
 <p><strong>Best Split: </strong>Best split ke liye \(k,t\) aur leaf values select ki jati hain.</p>
 <p>Leaf values each side ke <strong>means</strong> hote hain:</p>
 <p>\[ \hat{a}_L,\hat{a}_R \]</p>
@@ -129,11 +114,8 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Yani:</p>
 <p><strong>error before split − error after split</strong></p>
 <p>Ye process top-to-bottom repeatedly perform hota hai.</p>
-<p class="subtopic"><strong>Stopping Rules</strong></p>
-<ol><li>Node depth = <strong>maxDepth</strong></li><li>Koi split <strong>minInfoGain</strong> se above information gain nahi deta.</li><li>Koi split dono children mein kam se kam <strong>minInstancesPerNode</strong> training instances nahi de pata.</li></ol>
-<hr/>
+<div class="box"><b class="t">Stopping rules</b><ol><li>Node depth = <strong>maxDepth</strong></li><li>Koi split <strong>minInfoGain</strong> se above information gain nahi deta.</li><li>Koi split dono children mein kam se kam <strong>minInstancesPerNode</strong> training instances nahi de pata.</li></ol></div>
 <h2 id="d"><span>4</span>Building Trees with MapReduce: PLANET</h2>
-
 <p><strong>Problem: </strong>Dataset bahut huge hai aur usme hundreds of attributes hain.</p>
 <p>Tree relatively small/shallow hota hai (~10 levels) aur memory mein fit ho sakta hai, lekin <strong>data ek single machine par fit nahi hota</strong>.</p>
 <p><strong>PLANET</strong>:</p>
@@ -143,15 +125,12 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Setting:</p>
 <ul><li>Numerical attributes</li><li>Numerical target (regression)</li><li>Binary splits:</li></ul>
 <p>\[ X_j &lt; v \]</p>
-
 <p><strong>Mapper: </strong>Mapper:</p>
 <ul><li>Model load karta hai.</li><li>Har data point ko uske corresponding leaf tak <strong>"drop"</strong> karta hai.</li><li>Har candidate split ke liye partial statistics maintain karta hai.</li></ul>
 <p>↓</p>
-
 <p><strong>Reducer: </strong>Reducer:</p>
 <ul><li>Statistics ko aggregate karta hai.</li><li>Har node ke liye <strong>best split</strong> select karta hai.</li></ul>
 <p>↓</p>
-
 <p><strong>Master: </strong>Master:</p>
 <ul><li>Tree ko grow karta hai.</li><li>Har MapReduce step mein <strong>one level</strong> grow karta hai.</li></ul>
 <p class="subtopic"><strong>PLANET Jobs</strong></p>
@@ -161,20 +140,14 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td><strong>InMemoryBuild (once, last)</strong></td><td>Jab kisi node ka data memory mein fit ho jaye, tab complete sub-tree grow karta hai.</td></tr>
 </tbody></table></div>
 <p><strong>Master</strong> sab kuch monitor karta hai aur jobs run karta hai.</p>
-<hr/>
 <h2 id="e"><span>5</span>Bootstrap &amp; Bagging</h2>
-
-<p><strong>Bootstrap: </strong>Bootstrap dataset <strong>Z</strong> ki replicas produce karta hai by <strong>random sampling with replacement</strong>.</p>
-<p>Har pick independent hota hai.</p>
+<div class="box def"><b class="t">Bootstrap</b><p>Bootstrap dataset <strong>Z</strong> ki replicas produce karta hai by <strong>random sampling with replacement</strong>.</p><p>Har pick independent hota hai.</p></div>
 <p>New dataset ka size same <strong>n</strong> hota hai, lekin:</p>
 <ul><li>kuch objects missing ho sakte hain</li><li>kuch objects repeat ho sakte hain</li></ul>
 <p>Example:</p>
 <pre><code class="language-text">Original:  1 2 3 4 5
 Bootstrap: 3 1 5 5 2</code></pre>
-<hr/>
-
-<p><strong>Bagging (Bootstrap Aggregation): </strong>Bagging ek general method hai jo <strong>kisi bhi algorithm</strong> ki predictions ko average karta hai, sirf trees tak limited nahi hai.</p>
-<p>Ye prediction ki <strong>variance reduce</strong> karta hai.</p>
+<div class="box def"><b class="t">Bagging (Bootstrap Aggregation)</b><p>Bagging ek general method hai jo <strong>kisi bhi algorithm</strong> ki predictions ko average karta hai, sirf trees tak limited nahi hai.</p><p>Ye prediction ki <strong>variance reduce</strong> karta hai.</p></div>
 <p class="subtopic"><strong>Input</strong></p>
 <ul><li>Training set \(Z\)</li><li>\(B\) iterations</li><li>Learning method \(M\)</li></ul>
 <p class="subtopic"><strong>Process</strong></p>
@@ -183,32 +156,23 @@ Bootstrap: 3 1 5 5 2</code></pre>
     apply M → model f*b(x)
 
 Return ensemble {f*1 … f*B}</code></pre>
-
 <p><strong>Regression: </strong>\[ f(x)=\frac{1}{B}\sum f_b^*(x) \]</p>
-
 <p><strong>Classification: </strong>B predictions ka <strong>majority vote</strong> liya jata hai.</p>
-
 <p><strong>Why It Works: </strong>Training set itself random hota hai — jaise user behavior ya noisy physical measurements.</p>
 <p>Possible datasets par averaging karne se models ke <strong>noisy aur unstable parts remove</strong> ho jate hain, jabki stable aur reliable parts remain karte hain.</p>
 <p>Ye <strong>bias-variance trade-off</strong> par based hai.</p>
 <p>Bagging almost kisi bhi method ko improve kar sakta hai, lekin large data ke liye ye <strong>bahut time-consuming</strong> ho sakta hai.</p>
-<hr/>
 <h2 id="f"><span>6</span>Random Forest</h2>
 <div class="box def"><b class="t">Definition</b><p><strong>Random Forest = Bagging of de-correlated decision trees</strong></p>
 <p>For:</p>
 <p>\[ b = 1..B \]</p></div>
 <ul><li>Bootstrap sample draw karo.</li><li>De-correlated tree \(T_b\) grow karo.</li><li>Ensemble return karo.</li></ul>
-
 <p><strong>Regression: </strong>Predictions ka <strong>average</strong>.</p>
-
 <p><strong>Classification: </strong>Predictions ka <strong>majority vote</strong>.</p>
-<hr/>
-
 <p><strong>De-correlation: </strong>Tree ko greedily top-down grow kiya jata hai.</p>
 <p>Lekin har split par sirf <strong>m randomly selected input variables</strong> candidates hote hain:</p>
 <p>\[ m \leq p \]</p>
 <p>Har split maximum information gain karta hai.</p>
-
 <p><strong>Recommended Values: </strong>Inventors ke according:</p>
 <ul><li>Classification:</li></ul>
 <p>\[ m = \sqrt{p} \]</p>
@@ -216,7 +180,6 @@ Return ensemble {f*1 … f*B}</code></pre>
 <p>\[ m = \frac{p}{3} \]</p>
 <ul><li>Regression ke liye:</li></ul>
 <p>\[ minInstancesPerNode = 5 \]</p>
-
 <p><strong>Experiment: </strong>\[ m=\sqrt{p} \]</p>
 <p>(de-correlated trees) first approximately <strong>20 trees</strong> ke liye worse perform karte hain, lekin eventually:</p>
 <ul><li>single Decision Tree se better result</li><li>all variables use karne wale trees se better result</li></ul>
@@ -227,18 +190,14 @@ Return ensemble {f*1 … f*B}</code></pre>
 <tr><td>Interpretability</td><td>Good</td><td>Lost (hundreds/thousands of trees)</td><td>Poor</td></tr>
 <tr><td>Parallelism</td><td>–</td><td>Trees independent → essentially parallel, distributed setting mein trainable</td><td>Sequential iterations</td></tr>
 </tbody></table></div>
-
 <p><strong>Order of Quality: </strong>\[ Single\ DT &lt; Random\ Forest &lt; Gradient\ Boosted\ DT \]</p>
 <p>Yani predictive power badhti hai, lekin interpretability reduce hoti hai.</p>
-<hr/>
 <h2 id="g"><span>7</span>Gradient Boosted Decision Trees</h2>
 <p><strong>Boosting</strong> many weak/base classifiers ke outputs ko combine karke ek powerful ensemble banata hai.</p>
 <p>Variants:</p>
 <ul><li>AdaBoost</li><li>BrownBoost</li><li>LogitBoost</li><li>Gradient Boosting</li></ul>
 <p>Big data mein many examples/features ke saath complex model banane ke do approaches hain:</p>
 <ol><li>Complex model se start karo aur parameters fit karo — jaise <strong>neural network</strong></li><li>Iteratively build karo aur har step par ek simple model train karo — <strong>boosting</strong></li></ol>
-<hr/>
-
 <p><strong>Regression: </strong>\[ f(x)=\sum h_m(x) \]</p>
 <p>jahan har \(h_m\) ek decision tree hai.</p>
 <p>Initial function:</p>
@@ -254,12 +213,7 @@ Return f_M</code></pre>
 <p>\[ v = regularization\ (learningRate) \]</p>
 <p>Recommended:</p>
 <p>\[ v \leq 0.1 \]</p>
-<hr/>
-
-<p><strong>Link to Optimization: </strong>Gradient boosting <strong>gradient descent</strong> ki tarah work karta hai:</p>
-<ul><li>Gradient ke opposite direction mein move karta hai.</li><li>Small step size use karta hai — yahan <strong>v</strong>.</li><li>Ye <strong>functional space</strong> mein minimization karta hai.</li></ul>
-<hr/>
-
+<div class="box"><b class="t">Link to optimization</b><p>Gradient boosting <strong>gradient descent</strong> ki tarah work karta hai:</p><ul><li>Gradient ke opposite direction mein move karta hai.</li><li>Small step size use karta hai — yahan <strong>v</strong>.</li><li>Ye <strong>functional space</strong> mein minimization karta hai.</li></ul></div>
 <p><strong>Classification: </strong>Labels:</p>
 <p>\[ y \in \{0,1\} \]</p>
 <p>Probabilistic model:</p>
@@ -272,9 +226,7 @@ Return f_M</code></pre>
 <p>\[ L(y_i,f(x_i)) \]</p>
 <p>Har tree gradients ke according fit hota hai:</p>
 <p>\[ g_i=\frac{dL}{df} \]</p>
-
 <p><strong>Summary: </strong><strong>GBDT</strong> ko classification aur regression ke liye <strong>best general-purpose algorithm</strong> maana jata hai.</p>
-<hr/>
 <h2 id="h"><span>8</span>Case Study: Breast Cancer Diagnosis with Spark ML</h2>
 <p class="subtopic"><strong>Data — UCI WDBC</strong></p>
 <ul><li><strong>569 examples</strong></li><li>Column 1 = ID</li><li>Column 2 = diagnosis<ul><li>M = malignant</li><li>B = benign</li></ul></li><li>Remaining <strong>30 features</strong></li></ul>
@@ -299,28 +251,21 @@ print("Test Error = %g" % (1.0 - accuracy))</code></pre>
 <tr><td><strong>GBT</strong></td><td>100 trees, stepSize 0.1 (default); top importances feature 22 (0.4246) aur 20 (0.1718); accuracy single tree se thodi lower thi; printed error digits slides mein unclear hain; model interpret karne ke liye too large hai.</td></tr>
 <tr><td><strong>Random Forest</strong></td><td>100 trees; largest importances features 20 (0.1514) aur 22 (0.1206); test error = 0.0338983 — is dataset par best.</td></tr>
 </tbody></table></div>
-
 <p><strong>Lesson: </strong>Results dataset par depend karte hain.</p>
 <p>General rule:</p>
 <p><strong>Dataset jitna bigger hoga aur features jitne zyada honge, complex models (GBDT, Random Forest) utna better perform karenge.</strong></p>
-<hr/>
 <h2 id="i"><span>9</span>Cross-Validation in Spark ML</h2>
 <p><strong>Cross-validation</strong> model quality assess karta hai aur ek model family ke andar <strong>best model</strong> find karta hai.</p>
-
-
 <p><strong>Components: Pipeline: </strong>Ek Pipeline build karo.</p>
 <p>Yahan single stage hai:</p>
 <ul><li>Decision Tree</li></ul>
 <p>General case mein preprocessing, StringIndexer, etc. bhi pipeline mein ho sakte hain.</p>
-
 <p><strong>ParamGridBuilder: </strong>Example:</p>
 <pre><code class="language-text">maxDepth ∈ [1,2,4,5,6,7,8]</code></pre>
 <p>Optionally:</p>
 <pre><code class="language-text">minInstancesPerNode</code></pre>
 <p>More parameters add karne se training slower hoti hai.</p>
-
 <p><strong>Evaluator: </strong>Accuracy use ki jati hai.</p>
-
 <p><strong>CrossValidator: </strong>\[ numFolds = 10 \]</p>
 <p>Folds <strong>5 ya 10 se kam nahi hone chahiye</strong>.</p>
 <p class="subtopic"><strong>Spark Code</strong></p>
@@ -332,7 +277,6 @@ cvModel = crossval.fit(inputDF2)      # trains/evaluates 10 times per setting
 cvModel.avgMetrics                    # mean accuracy per maxDepth
 
 cvModel.bestModel.stages[0]</code></pre>
-
 <p><strong>Average Accuracies: </strong>Seven depths ke liye:</p>
 <div class="tbl"><table><thead><tr><th>maxDepth</th><th>Average Accuracy</th></tr></thead><tbody>
 <tr><td>1</td><td>0.892</td></tr>
@@ -346,42 +290,5 @@ cvModel.bestModel.stages[0]</code></pre>
 <p>Best model:</p>
 <ul><li><strong>Depth = 6</strong></li><li><strong>47 nodes</strong></li></ul>
 <p>Iske baad ye model kisi bhi other dataset par prediction kar sakta hai.</p>
-<hr/>
-<h2 id="j"><span>10</span>Quick Revision</h2>
-
-
-<p><strong>Must Remember: Entropy: </strong>\[ H=-\sum p\log_2p \]</p>
-<ul><li><strong>0</strong> → pure</li><li><strong>1</strong> → 50:50</li></ul>
-
-<p><strong>Information Gain: </strong>\[ Gain=H(S)-weighted\ child\ entropies \]</p>
-<ul><li>ID3 greedily <strong>maximum gain</strong> par split karta hai.</li><li><code>Gain(S, Wind) = 0.049</code></li></ul>
-<p class="subtopic"><strong>Regression Tree</strong></p>
-<ul><li>Leaf = <strong>mean</strong></li><li>Impurity = <strong>MSE</strong></li><li>Stopping:<ul><li><code>maxDepth</code></li><li><code>minInfoGain</code></li><li><code>minInstancesPerNode</code></li></ul></li></ul>
-<p class="subtopic"><strong>PLANET</strong></p>
-<ul><li>One MapReduce step per tree level.</li><li><strong>Initialization</strong></li><li>→ <strong>FindBestSplit</strong> (repeated)</li><li>→ <strong>InMemoryBuild</strong></li></ul>
-<p class="subtopic"><strong>Bootstrap &amp; Bagging</strong></p>
-<ul><li><strong>Bootstrap</strong> = sampling with replacement</li><li><strong>Bagging</strong> = average / majority vote</li><li>Reduces <strong>variance</strong></li></ul>
-
-<p><strong>Random Forest: </strong>\[ Random\ Forest = Bagging + random\ m\ of\ p\ features\ per\ split \]</p>
-<ul><li>Classification:</li></ul>
-<p>\[ m=\sqrt{p} \]</p>
-<ul><li>Regression:</li></ul>
-<p>\[ m=p/3 \]</p>
-<ul><li>Trees independent → <strong>parallel</strong></li></ul>
-
-<p><strong>GBDT: </strong>\[ f_0=mean \]</p>
-<p>Residuals fit karo:</p>
-<p>\[ f_m=f_{m-1}+v\cdot h_m \]</p>
-<p>where:</p>
-<p>\[ v\leq0.1 \]</p>
-<p>Ye <strong>gradient descent in functional space</strong> ke form mein work karta hai.</p>
-
-<p><strong>Accuracy Order: </strong>\[ Single\ DT &lt; Random\ Forest &lt; GBDT \]</p>
-
-<p><strong>Interpretability: </strong>Iska reverse trend hota hai:</p>
-<p>\[ Single\ DT &gt; Random\ Forest &gt; GBDT \]</p>
-<p class="subtopic"><strong>Spark ML</strong></p>
-<ul><li>StringIndexer</li><li>70/30 split</li><li>DecisionTree / GBT / RandomForest classifiers</li><li>CrossValidator</li><li>ParamGrid</li><li>10 folds</li><li><strong>Best depth = 6</strong></li></ul>
-<hr/>
-<p><strong>Source:</strong> NPTEL Big Data Computing, IIT Patna · Print-ready for A4</p>
+<h2 id="j"><span>10</span>Quick Revision</h2><div class="box"><b class="t">Must Remember</b><p><strong>Must Remember: Entropy: </strong>\[ H=-\sum p\log_2p \]</p><ul><li><strong>0</strong> → pure</li><li><strong>1</strong> → 50:50</li></ul><p><strong>Information Gain: </strong>\[ Gain=H(S)-weighted\ child\ entropies \]</p><ul><li>ID3 greedily <strong>maximum gain</strong> par split karta hai.</li><li><code>Gain(S, Wind) = 0.049</code></li></ul><p class="subtopic"><strong>Regression Tree</strong></p><ul><li>Leaf = <strong>mean</strong></li><li>Impurity = <strong>MSE</strong></li><li>Stopping:<ul><li><code>maxDepth</code></li><li><code>minInfoGain</code></li><li><code>minInstancesPerNode</code></li></ul></li></ul><p class="subtopic"><strong>PLANET</strong></p><ul><li>One MapReduce step per tree level.</li><li><strong>Initialization</strong></li><li>→ <strong>FindBestSplit</strong> (repeated)</li><li>→ <strong>InMemoryBuild</strong></li></ul><p class="subtopic"><strong>Bootstrap &amp; Bagging</strong></p><ul><li><strong>Bootstrap</strong> = sampling with replacement</li><li><strong>Bagging</strong> = average / majority vote</li><li>Reduces <strong>variance</strong></li></ul><p><strong>Random Forest: </strong>\[ Random\ Forest = Bagging + random\ m\ of\ p\ features\ per\ split \]</p><ul><li>Classification:</li></ul><p>\[ m=\sqrt{p} \]</p><ul><li>Regression:</li></ul><p>\[ m=p/3 \]</p><ul><li>Trees independent → <strong>parallel</strong></li></ul><p><strong>GBDT: </strong>\[ f_0=mean \]</p><p>Residuals fit karo:</p><p>\[ f_m=f_{m-1}+v\cdot h_m \]</p><p>where:</p><p>\[ v\leq0.1 \]</p><p>Ye <strong>gradient descent in functional space</strong> ke form mein work karta hai.</p><p><strong>Accuracy Order: </strong>\[ Single\ DT &lt; Random\ Forest &lt; GBDT \]</p><p><strong>Interpretability: </strong>Iska reverse trend hota hai:</p><p>\[ Single\ DT &gt; Random\ Forest &gt; GBDT \]</p><p class="subtopic"><strong>Spark ML</strong></p><ul><li>StringIndexer</li><li>70/30 split</li><li>DecisionTree / GBT / RandomForest classifiers</li><li>CrossValidator</li><li>ParamGrid</li><li>10 folds</li><li><strong>Best depth = 6</strong></li></ul><p><strong>Source:</strong> NPTEL Big Data Computing, IIT Patna · Print-ready for A4</p></div>
 <footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>

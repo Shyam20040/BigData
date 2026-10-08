@@ -41,7 +41,7 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 </style><link href="common.css" rel="stylesheet"/>
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>p.subtopic{margin:9px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style></head><body><a aria-label="Switch to English" class="language-switch" href="./big-data-week8-study-guide.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to English">EN</a><a aria-label="Switch to Hinglish" class="language-switch" href="Big Data Week 8 Study Guide - Hinglish.html" title="Switch to Hinglish">??</a><div class="pg">
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>p.subtopic{margin:9px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style><style class="subtopic-style">p.subtopic{margin:6px 0 2px;font-size:13px;font-weight:500;color:var(--dk)}</style></head><body><a aria-label="Switch to English" class="language-switch" href="./big-data-week8-study-guide.html" onclick="window.location.href=this.href; return false;" target="_self" title="Switch to English">EN</a><a aria-label="Switch to Hinglish" class="language-switch" href="Big Data Week 8 Study Guide - Hinglish.html" title="Switch to Hinglish">??</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Parameter Servers, PageRank &amp; GraphX</h1><p>Week 8 consolidated study guide · Hinglish</p></header>
 <nav><a href="#a">1 ML Systems</a><a href="#b">2 Parameter Server</a><a href="#c">3 PageRank</a><a href="#d">4 PageRank at Scale</a><a href="#e">5 Graph-Parallel</a><a href="#f">6 GraphX Design</a><a href="#g">7 Optimizations</a><a href="#h">8 Flight Case Study</a><a href="#i">9 Revision</a></nav>
@@ -51,13 +51,9 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td><strong>Graph</strong></td><td>GraphLab, TensorFlow (abstraction: vertex programs)</td><td>Graph algorithms, graphical models</td></tr>
 <tr><td><strong>Shared Memory</strong></td><td>Bosen, DMTK, ParameterServer.org (Parameter Server [VLDB'10])</td><td>SGD, sampling; Google, Yahoo mein used</td></tr>
 </tbody></table></div>
-
 <p><strong>Simplest Case of a Parameter Server: </strong>ML parameters ek <strong>distributed hash table</strong> mein stored hote hain jo network ke through accessible hota hai.</p>
-<hr/>
 <h2 id="b"><span>2</span>Parameter Server &amp; Stale Synchronous Parallel</h2>
-
-<p><strong>Parameter Server (PS): </strong><strong>Parameter Server</strong> ek ML framework hai jo model ko multiple machines (<strong>PS shards</strong>) mein distribute karta hai.</p>
-<p>Training state shards mein stored hoti hai aur <strong>asynchronous updates</strong> ke saath update hoti hai.</p>
+<div class="box def"><b class="t">Parameter Server (PS)</b><p><strong>Parameter Server</strong> ek ML framework hai jo model ko multiple machines (<strong>PS shards</strong>) mein distribute karta hai.</p><p>Training state shards mein stored hoti hai aur <strong>asynchronous updates</strong> ke saath update hoti hai.</p></div>
 <p>Iske do main operations hain:</p>
 <ul><li><strong>Pull</strong> → model ke required parts ko query karna</li><li><strong>Push</strong> → model ke parts ko update karna</li></ul>
 <p>Update equation:</p>
@@ -65,59 +61,43 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Examples:</p>
 <ul><li>Stochastic Gradient Descent (SGD)</li><li>Collapsed Gibbs sampling for topic models</li></ul>
 <p>Push updates ko <strong>addition</strong> ke through aggregate kiya jata hai.</p>
-<hr/>
 <p class="subtopic"><strong>Key-Value API for Workers</strong></p>
 <pre><code class="language-text">get(key) → value
 add(key, delta)</code></pre>
 <p>Ye ek <strong>distributed shared memory</strong> ki tarah work karta hai.</p>
 <p>Extensions:</p>
 <ul><li>Multiple keys → matrix</li><li>Multiple "channels"</li><li>Recent copies ka push/pull</li><li>Optional blocking</li><li>Clock-based blocking</li></ul>
-<hr/>
-
 <p><strong>Data-Parallel Learning: </strong>Data ko worker machines ke across split kiya jata hai.</p>
 <ul><li>Model ke different parts different servers par hote hain.</li><li>Workers apne required model parts ko fetch karte hain.</li></ul>
-<hr/>
-
 <p><strong>Flexible Framework: </strong>Parameter Server ka use different ML algorithms mein kiya ja sakta hai:</p>
 <ul><li>LDA (topic model)</li><li>Matrix Factorization (MF)</li><li>CNN</li><li>DNN</li></ul>
 <p>Examples:</p>
 <ul><li>Petuum</li><li>YahooLDA</li><li>DistBelief</li></ul>
 <p><strong>Glint</strong> Spark mein parameter servers add karta hai.</p>
-<hr/>
 <h3>Why not MapReduce for iterative ML?</h3>
 <p>MapReduce mein iterative ML ka cost high hota hai.</p>
 <p>Training data ko repeatedly load karna padta hai aur stages ke beech output ko redundantly save karna padta hai.</p>
-<hr/>
 <p class="subtopic"><strong>MapReduce vs Parameter Server</strong></p>
 <div class="tbl"><table><thead><tr><th>Property</th><th>MapReduce</th><th>Parameter Server</th></tr></thead><tbody>
 <tr><td><strong>Data</strong></td><td>Independent records</td><td>Independent data</td></tr>
 <tr><td><strong>Abstraction</strong></td><td>Map &amp; Reduce</td><td>Key-value store (distributed shared memory)</td></tr>
 <tr><td><strong>Execution semantics</strong></td><td>Bulk Synchronous Parallel (BSP)</td><td>Bounded asynchronous (SSP)</td></tr>
 </tbody></table></div>
-<hr/>
 <h3>The problem: networks are slow</h3>
-
 <p><strong>Solution 1 — Cache Synchronization: </strong>Workers parameters ko cache karte hain aur model ko sirf <strong>sparse changes</strong> send karte hain.</p>
-
 <p><strong>Solution 2 — Asynchronous Execution: </strong>Asynchronous execution:</p>
 <ul><li>Barriers avoid karta hai.</li><li>Idle waiting nahi hoti.</li><li>More frequent coordination enable karta hai.</li></ul>
 <p>Lekin isme <strong>theoretical guarantees nahi hote</strong>, because network delays aur stragglers arbitrary ho sakte hain.</p>
-<hr/>
-
-<p><strong>Stale Synchronous Parallel (SSP): </strong>Ek <strong>global clock \(t\)</strong> hota hai.</p>
-<p>Worker ka <code>get</code> operation out-of-date ho sakta hai, lekin woh <strong>staleness bound \(s\) (τ)</strong> se zyada old nahi hona chahiye.</p>
+<div class="box def"><b class="t">Stale Synchronous Parallel (SSP)</b><p>Ek <strong>global clock \(t\)</strong> hota hai.</p><p>Worker ka <code>get</code> operation out-of-date ho sakta hai, lekin woh <strong>staleness bound \(s\) (τ)</strong> se zyada old nahi hona chahiye.</p></div>
 <p>Fastest aur slowest workers ke clocks ka difference maximum <strong>s</strong> hona chahiye.</p>
 <p>Agar fast worker bahut aage nikal jata hai, to woh <strong>block</strong> ho jata hai.</p>
 <p>SSP:</p>
 <ul><li>BSP aur asynchronous execution ke beech interpolate karta hai.</li><li>Dono ko subsume karta hai.</li><li><strong>BSP = staleness 0</strong></li><li>Workers mostly apni own speed par run karte hain.</li><li>Parameters ko caching ke through efficiently implement kiya ja sakta hai.</li></ul>
-
 <p><strong>Delayed SGD: </strong>\[ x_{t+1} = \arg\min_{x\in X} \left\| x-(x_t-\eta_t g_{t-\tau}) \right\| \]</p>
 <p>Yani ek <strong>stale gradient</strong> ke saath gradient step, followed by projection onto the feasible space.</p>
-
 <p><strong>Consistency Matters: </strong>LDA ke 32 machines (256 cores) wale experiment mein suitable delay (<strong>SSP</strong>) ne strong consistency (<strong>BSP</strong>) ke comparison mein significant speed-up diya by reducing network waiting time.</p>
 <p>SSP ne:</p>
 <ul><li>BSP se better perform kiya</li><li>Pure asynchronous execution se bhi better convergence diya.</li></ul>
-<hr/>
 <h2 id="c"><span>3</span>PageRank</h2>
 <p>Big graphs ka scale bahut large ho sakta hai:</p>
 <div class="tbl"><table><thead><tr><th>Graph Scale</th><th>Vertices</th><th>Edges</th></tr></thead><tbody>
@@ -129,10 +109,7 @@ add(key, delta)</code></pre>
 <ul><li>1998 → <strong>150 million</strong></li><li>2008 → <strong>1000 billion</strong></li></ul>
 <p>Pages topic aur quality mein highly diverse hain.</p>
 <p>Isliye page importance ko objectively aur mechanically <strong>link structure</strong> se rate karne ki need hoti hai.</p>
-<hr/>
-
-<p><strong>PageRank: </strong><strong>Larry Page aur Sergey Brin</strong> ne PageRank develop kiya.</p>
-<ul><li>Project started: <strong>1995</strong></li><li>Prototype: <strong>1998</strong></li><li>Google ka first algorithm for ranking search results.</li></ul>
+<div class="box def"><b class="t">PageRank</b><p><strong>Larry Page aur Sergey Brin</strong> ne PageRank develop kiya.</p><ul><li>Project started: <strong>1995</strong></li><li>Prototype: <strong>1998</strong></li><li>Google ka first algorithm for ranking search results.</li></ul></div>
 <p>Agar kisi page ko:</p>
 <ul><li>Bahut saare pages link karte hain, ya</li><li>High-rank page link karta hai,</li></ul>
 <p>to us page ka rank high hota hai.</p>
@@ -140,13 +117,9 @@ add(key, delta)</code></pre>
 <p>PageRank ko <strong>random surfer</strong> ke equivalent bhi dekha ja sakta hai.</p>
 <p>Ranks stationary distribution form karte hain:</p>
 <p>\[ x^<em>=(x^</em>)^TP \]</p>
-<hr/>
-
 <p><strong>Basic PageRank: </strong>\[ PR(u)= \sum_{v\in\Gamma(u)} \frac{PR(v)}{L(v)} \]</p>
 <p>where:</p>
 <ul><li>\(L(v)\) = page \(v\) ke outbound links ki number</li><li>\(\Gamma(u)\) = un pages ka set jo \(u\) ko link karte hain</li></ul>
-<hr/>
-
 <p><strong>PageRank with Damping Factor: </strong>Damping factor:</p>
 <p>\[ d=0.85 \]</p>
 <p>Formula:</p>
@@ -155,20 +128,14 @@ add(key, delta)</code></pre>
 <ul><li>\(N\) = total pages</li><li>\(d=0.85\)</li></ul>
 <p>So:</p>
 <p>\[ PR(p_i) = \frac{0.15}{N} + 0.85\cdot sum \]</p>
-<hr/>
-
 <p><strong>Iteration: </strong>Initially:</p>
 <p>\[ PR(p;0)=\frac{1}{N} \]</p>
 <p>Then har step par PageRank update hota hai.</p>
 <p>Stop kar sakte hain:</p>
 <ul><li>Fixed number of iterations ke baad, ya</li><li>Convergence ke baad:</li></ul>
 <p>\[ \sum |PR^{(t+1)}-PR^{(t)}|&lt;\epsilon \]</p>
-<hr/>
-
 <p><strong>Stationary Distribution Theorem: </strong>Unique stationary distribution exist karti hai agar:</p>
 <ol><li>Har node se har node tak path available ho.</li><li>Sabhi cycle lengths ka <strong>greatest common divisor = 1</strong> ho.</li></ol>
-<hr/>
-
 <p><strong>Example: </strong>Four pages:</p>
 <p><strong>A, B, C, D</strong></p>
 <p>Initial PageRank:</p>
@@ -180,7 +147,6 @@ add(key, delta)</code></pre>
 <ul><li>B → A ka outgoing weight = \(1/2\)</li><li>C → A ka outgoing weight = \(1\)</li><li>D → A ka outgoing weight = \(1/3\)</li></ul>
 <p>Then:</p>
 <p>\[ PR(A) = 0.25 \left( \frac12+1+\frac13 \right) = 0.458 \]</p>
-<hr/>
 <h2 id="d"><span>4</span>PageRank at Scale: MapReduce &amp; Pregel</h2>
 <div class="tbl"><table><thead><tr><th>Framework</th><th>How It Works</th><th>Limitation</th></tr></thead><tbody>
 <tr><td><strong>MapReduce</strong></td><td>Map: vertex \(n\) ke liye vertex itself aur \(p = PageRank/</td><td>adjacency\ list</td><td>\) har neighbor ko emit karta hai. Reduce: vertex object ko contributions se separate karta hai, \(s\) sum karta hai, aur PageRank = \(s\cdot0.85+0.15/TotalVertices\) set karta hai.</td><td>Har iteration mein entire graph state shuffle hota hai, jabki sirf rank contributions shuffle hone chahiye. Iteration ko MapReduce ke bahar control karna padta hai.</td></tr>
@@ -190,7 +156,6 @@ add(key, delta)</code></pre>
 <ul><li>koi vertex active na rahe, ya</li><li>maximum iterations reach na ho.</li></ul>
 <p>Open-source implementations:</p>
 <ul><li>Apache Giraph</li><li>Stanford GPS</li><li>JPregel</li><li>Hama</li></ul>
-<hr/>
 <p class="subtopic"><strong>PageRank in Pregel</strong></p>
 <pre><code class="language-cpp">// PageRank in Pregel (Compute)
 
@@ -203,7 +168,6 @@ if (superstep() &lt; 30)
     SendMessageToAllNeighbors(value / numOutEdges)
 else
     VoteToHalt()</code></pre>
-
 <p><strong>Worked Example: </strong>Five vertices initially:</p>
 <p>\[ 0.2 \]</p>
 <p>each.</p>
@@ -214,7 +178,6 @@ else
 →
 0.03, 0.0513, 0.095, 0.794, 0.03</code></pre>
 <p>Eventually rank <strong>best-linked vertex</strong> par concentrate hota hai.</p>
-<hr/>
 <h2 id="e"><span>5</span>Graph Data &amp; Graph-Parallel Computation</h2>
 <div class="tbl"><table><thead><tr><th>Graph</th><th>Vertices</th><th>Edges</th></tr></thead><tbody>
 <tr><td><strong>Social network</strong></td><td>Users, posts</td><td>Relationships, likes</td></tr>
@@ -223,8 +186,6 @@ else
 <tr><td><strong>Communication (Internet, Enron email)</strong></td><td>Devices/routers; users</td><td>Network flows; emails (directed)</td></tr>
 <tr><td><strong>User-item (bipartite)</strong></td><td>Users and items</td><td>Ratings</td></tr>
 </tbody></table></div>
-<hr/>
-
 <p><strong>GraphX: </strong><strong>GraphX</strong> Spark Core ke upar built hai, aur Spark ke:</p>
 <ul><li>Spark SQL</li><li>Streaming</li><li>MLlib</li></ul>
 <p>ke saath integrate hota hai.</p>
@@ -233,30 +194,18 @@ else
 <p>GraphX:</p>
 <ul><li>PageRank apply karta hai.</li><li>Pregel API support karta hai.</li><li><code>VertexRDD</code></li><li><code>EdgeRDD</code></li><li><code>Edge</code></li><li><code>triplets</code></li></ul>
 <p>introduce karta hai.</p>
-<hr/>
-
-<p><strong>Graph-Parallel Pattern: </strong>(Gonzalez et al., OSDI'12)</p>
-<p>Ek vertex ki computation sirf uske <strong>neighbors</strong> par depend karti hai.</p>
+<div class="box def"><b class="t">Graph-parallel pattern (Gonzalez et al., OSDI'12)</b><p>(Gonzalez et al., OSDI'12)</p><p>Ek vertex ki computation sirf uske <strong>neighbors</strong> par depend karti hai.</p></div>
 <p>Pattern:</p>
-
 <p><strong>Gather: </strong>Neighbors se information gather karo.</p>
 <p>↓</p>
-
 <p><strong>Apply: </strong>Vertex property par update apply karo.</p>
 <p>↓</p>
-
 <p><strong>Scatter: </strong>Updated information neighbors ko send karo.</p>
-<hr/>
-
-
 <p><strong>Examples: PageRank: </strong>\[ R[i] = 0.15+ \sum w_{ji}\cdot R[j] \]</p>
-
 <p><strong>Shortest Path: </strong>\[ D[i]=1+\min D[j] \]</p>
-
 <p><strong>Cluster Coefficient: </strong>\[ \frac{2\cdot \#Triangles[i]} {Deg<a href="Deg[i]-1">i</a>} \]</p>
 <p>Triangle counting local-community cohesiveness measure karta hai:</p>
 <p><strong>More triangles → stronger community</strong></p>
-<hr/>
 <p class="subtopic"><strong>Pregel vs GraphLab</strong></p>
 <div class="tbl"><table><thead><tr><th>Abstraction</th><th>Style</th></tr></thead><tbody>
 <tr><td><strong>Pregel (push)</strong></td><td>“Think like a vertex”; vertex programs out-neighbors ko messages send karke interact karte hain.</td></tr>
@@ -270,32 +219,23 @@ else
 <p>Ye specialized graph APIs expose karte hain aur graph structure ko exploit karte hain, jisse general data-parallel systems ke comparison mein <strong>orders-of-magnitude gains</strong> mil sakte hain.</p>
 <p class="subtopic"><strong>Graph-Parallel Algorithms</strong></p>
 <ul><li>Collaborative filtering (ALS, SGD)</li><li>Structured prediction (belief propagation, Gibbs sampling)</li><li>Semi-supervised ML</li><li>Community detection:<ul><li>Triangle counting</li><li>K-core</li><li>K-truss</li></ul></li><li>Graph analytics:<ul><li>PageRank</li><li>Shortest path</li><li>Coloring</li></ul></li></ul>
-<hr/>
-
-
 <p><strong>Benchmark: PageRank — LiveJournal: </strong>10 iterations:</p>
 <ul><li>Mahout/Hadoop → <strong>1340 s</strong></li><li>Naïve Spark → <strong>354 s</strong></li><li>GraphLab → <strong>22 s</strong></li></ul>
 <p>Comparison:</p>
 <ul><li>Spark → Hadoop se <strong>4× faster</strong></li><li>GraphLab → Spark se <strong>16× faster</strong></li><li>GraphLab → Hadoop se <strong>60× faster</strong></li></ul>
-
 <p><strong>Triangle Counting — Twitter: </strong>Dataset:</p>
 <ul><li>40M users</li><li>1.4B links</li><li>34.8B triangles</li></ul>
 <p>Results:</p>
 <ul><li>Hadoop on 1536 machines → <strong>423 min</strong></li><li>GraphLab on 64 machines → <strong>15 s</strong></li></ul>
 <p>Approximately:</p>
 <p>\[ 1000\times faster \]</p>
-<hr/>
-
 <p><strong>Problem with Separate Systems: </strong>Analytics pipelines mein:</p>
 <ul><li>Table views → Hadoop, Spark</li><li>Graph views → Pregel, GraphLab, Giraph</li></ul>
 <p>Users ko multiple systems learn aur manage karne padte hain.</p>
 <p>Problems:</p>
 <ul><li>Brittle interfaces</li><li>Extensive data movement</li><li>Network aur file system mein data duplication</li><li>Internal structures ka little reuse</li></ul>
-<hr/>
 <h2 id="f"><span>6</span>GraphX: Unified Approach &amp; Design</h2>
-
-<p><strong>GraphX Idea: </strong>GraphX ek new API provide karta hai jo <strong>tables aur graphs ke distinction ko blur</strong> karta hai.</p>
-<p>System:</p>
+<div class="box def"><b class="t">GraphX idea</b><p>GraphX ek new API provide karta hai jo <strong>tables aur graphs ke distinction ko blur</strong> karta hai.</p><p>System:</p></div>
 <ul><li>Data-parallel execution</li><li>Graph-parallel execution</li></ul>
 <p>dono ko combine karta hai.</p>
 <p>Graphs ko <strong>distributed tables</strong> ke form mein encode kiya jata hai.</p>
@@ -303,44 +243,31 @@ else
 <p>Graph-system optimization ko reduce kiya jata hai:</p>
 <ul><li>Distributed joins</li><li>Incremental materialized maintenance</li></ul>
 <p>Tables aur graphs same physical data ke <strong>composable views</strong> hote hain.</p>
-<hr/>
-
 <p><strong>Property Graph: </strong>Property graph mein:</p>
-
 <p><strong>Vertex Property Table: </strong>\[ id\rightarrow property \]</p>
 <p>Example:</p>
 <pre><code class="language-text">rxin → Student</code></pre>
-
 <p><strong>Edge Property Table: </strong>\[ (source,destination,property) \]</p>
 <p>Example:</p>
 <pre><code class="language-text">Friend
 Advisor</code></pre>
-<hr/>
-
 <p><strong>Distributed Representation: </strong>Graph ko <strong>2D vertex-cut heuristic</strong> ke according partitions mein divide kiya jata hai.</p>
 <p>Stored as:</p>
 <ul><li>Vertex Table</li><li>Routing Table</li><li>Edge Table</li></ul>
 <p>Ye sab <strong>RDDs</strong> hote hain.</p>
-<hr/>
-
 <p><strong>Operators: </strong>GraphX all Spark RDD operators inherit karta hai:</p>
 <ul><li><code>map</code></li><li><code>filter</code></li><li><code>groupBy</code></li><li><code>join</code></li><li><code>reduceByKey</code></li></ul>
-
 <p><strong>Graph Operators: </strong>Table views:</p>
 <ul><li>vertices</li><li>edges</li><li>triplets</li></ul>
 <p>Other operators:</p>
 <ul><li><code>reverse</code></li><li><code>subgraph</code></li><li><code>mapV</code></li><li><code>mapE</code></li><li><code>joinV</code></li><li><code>joinE</code></li><li><code>mrTriplets</code></li></ul>
-<hr/>
-
 <p><strong>Triplets: </strong><code>triplets</code> = vertex information + edge information ka joined form.</p>
 <p><code>mrTriplets</code> = triplets par <strong>map-reduce</strong>.</p>
 <ul><li>Map → per edge</li><li>Reduce → destination ID ke according grouped</li></ul>
-
 <p><strong>Example: </strong><strong>“Age of the oldest follower of each user”</strong></p>
 <p>Map emits:</p>
 <pre><code class="language-text">(dst, src age)</code></pre>
 <p>Reduce maximum value leta hai.</p>
-<hr/>
 <h2 id="g"><span>7</span>GraphX Optimizations &amp; Performance</h2>
 <div class="tbl"><table><thead><tr><th>Optimization</th><th>Effect</th></tr></thead><tbody>
 <tr><td><strong>Mirror cache</strong></td><td>Vertex properties ko edge table ke paas locally cache karta hai for iterative <code>mrTriplets</code>.</td></tr>
@@ -350,69 +277,42 @@ Advisor</code></pre>
 <tr><td><strong>Join elimination</strong></td><td>Unused triplet fields ke joins skip karta hai. PageRank ko sirf source attribute chahiye → three-way join ke comparison mein <strong>2× less communication</strong>.</td></tr>
 <tr><td><strong>Indices &amp; bitmaps; reuse</strong></td><td>Joins aur subgraph construction ko speed up karta hai; routing tables, edge adjacency data aur indices ko graphs ke across reuse karta hai.</td></tr>
 </tbody></table></div>
-<hr/>
-
-
 <p><strong>Performance: PageRank — LiveJournal: </strong><strong>69M edges</strong></p>
 <p>GraphX:</p>
 <ul><li>Hadoop aur Giraph se faster</li><li>GraphLab se approximately <strong>3× slower</strong></li></ul>
-
 <p><strong>Twitter: </strong><strong>1.5B edges</strong></p>
 <p>GraphX approximately:</p>
 <p>\[ 2\times \]</p>
 <p>GraphLab se slower.</p>
 <p>Reasons:</p>
 <ul><li>Scala/Java overhead</li><li>Garbage collection</li><li>Shared-memory parallelism ka absence</li></ul>
-
 <p><strong>Integrated GraphX Pipeline: </strong>Wikipedia XML → top 20 pages</p>
 <p>GraphX ka integrated pipeline separate systems combine karne ke comparison mein better perform karta hai, e.g.:</p>
 <p><strong>GraphLab + Spark</strong></p>
-<hr/>
-
 <p><strong>Code Size: </strong>GraphX engine:</p>
 <p>≈ <strong>3575 lines</strong> on Spark</p>
 <p>PageRank, connected components, SVD etc.:</p>
 <p>≈ <strong>5–120 lines</strong></p>
 <p>Status:</p>
 <p><strong>Alpha in Spark 0.9</strong></p>
-<hr/>
-
 <p><strong>Real-World Graph Properties: </strong>Graph mein <strong>power-law degree distribution</strong> hota hai.</p>
 <p>Top <strong>1% vertices</strong> approximately <strong>50% edges</strong> touch karte hain.</p>
 <p>PageRank mein:</p>
 <p><strong>51% vertices sirf once update hote hain.</strong></p>
-<hr/>
-
-
 <p><strong>Use Cases: Recommendation: </strong>Low-rank matrix factorization on bipartite user-item graphs.</p>
 <p>Example:</p>
 <p><strong>Netflix</strong></p>
 <p class="subtopic"><strong>Behavior Prediction</strong></p>
 <ul><li>Conditional Random Fields</li><li>Belief propagation</li></ul>
-
 <p><strong>Community Discovery: </strong>Triangle counts ke through.</p>
 <p class="subtopic"><strong>Standard Pipeline</strong></p>
-<pre><code class="language-text">Raw XML
-   ↓
-ETL
-   ↓
-Initial Graph
-   ↓
-Slice Subgraph
-   ↓
-Compute (PageRank)
-   ↓
-Post-process (top users)</code></pre>
-
+<div class="flow"><div>Raw XML</div><div>ETL</div><div>Initial Graph</div><div>Slice Subgraph</div><div>Compute (PageRank)</div><div>Post-process (top users)</div></div>
 <p><strong>Conclusion: </strong>Graph systems ke liye ek standard graph algebra important hai, just like <strong>SQL databases ke liye important tha</strong>.</p>
 <p>Research directions:</p>
 <ul><li>Dynamic/time-evolving graphs</li><li>Graph data ko external systems ko serve karna</li></ul>
-<hr/>
 <h2 id="h"><span>8</span>Case Study: Flight Data with Spark GraphX</h2>
-
 <p><strong>Goal: </strong>Flight data ko analyze karna taaki:</p>
 <ul><li>Near-real-time results mil sakein</li><li>Data visualize kiya ja sake</li></ul>
-
 <p><strong>Dataset: </strong>January 2014 ke domestic flights ke:</p>
 <ul><li>Delays</li><li>Cancellations</li></ul>
 <p>Data source:</p>
@@ -421,25 +321,10 @@ Post-process (top users)</code></pre>
 <p><strong>17 attributes</strong></p>
 <p>Including:</p>
 <ul><li>Day of month/week</li><li>Times</li><li>Carrier</li><li>Tail number</li><li>Flight number</li><li>Origin/destination IDs and names</li><li>Delay minutes</li><li>Elapsed time</li><li>Distance</li></ul>
-<hr/>
 <p class="subtopic"><strong>Workflow</strong></p>
-<pre><code class="language-text">Ingest
-flight data into a database
-        ↓
-Parse
-into a GraphX graph
-(airports = vertices, routes = edges)
-        ↓
-Query
-graph
-        ↓
-Plot
-on a USA map
-(Google Data Studio)</code></pre>
-<hr/>
+<div class="flow"><div>Ingest flight data into a database</div><div>Parse into a GraphX graph (airports = vertices, routes = edges)</div><div>Query graph</div><div>Plot on a USA map (Google Data Studio)</div></div>
 <p class="subtopic"><strong>Objectives</strong></p>
 <ul><li>Airports aur routes count karna</li><li>Longest routes find karna</li><li>Most incoming flights wale airports find karna</li><li>Most outgoing flights wale airports find karna</li><li>PageRank ke through most important airports identify karna</li><li>Lowest-cost routes find karna</li></ul>
-<hr/>
 <p class="subtopic"><strong>Query Results</strong></p>
 <div class="tbl"><table><thead><tr><th>Query</th><th>Result</th></tr></thead><tbody>
 <tr><td><strong>Airports / routes</strong></td><td>305 vertices, 5366 edges</td></tr>
@@ -449,37 +334,5 @@ on a USA map
 <tr><td><strong>PageRank (top)</strong></td><td>ATL, DFW, ORD, MSP, SLC</td></tr>
 <tr><td><strong>Cheapest routes</strong></td><td>Pregel API ke through single-source shortest path; &gt;1000 miles routes edge filter ke through</td></tr>
 </tbody></table></div>
-<hr/>
-<h2 id="i"><span>9</span>Quick Revision</h2>
-
-<p class="subtopic"><strong>Must Remember: </strong><strong>Parameter Server</strong></p>
-<ul><li>Pull / Push</li><li>\[</li></ul>
-<p>W\leftarrow W+\Delta \]</p>
-<ul><li><code>get/add</code> key-value API</li><li>Sharded model</li><li>Async updates</li></ul>
-<p class="subtopic"><strong>BSP ↔ Async ↔ SSP</strong></p>
-<ul><li><strong>BSP</strong> → barriers, staleness = 0</li><li><strong>Async</strong> → no guarantee</li><li><strong>SSP</strong> → staleness ko \(s\) clocks se bound karta hai</li><li>SSP dono ko subsume karta hai.</li></ul>
-
-<p><strong>PageRank: </strong>\[ PR= \frac{1-d}{N} + d\cdot\sum\frac{PR}{L} \]</p>
-<p>where:</p>
-<p>\[ d=0.85 \]</p>
-<p>Stop condition:</p>
-<ul><li>Fixed iterations, or</li><li>Convergence</li></ul>
-<p>Unique stationary distribution requires:</p>
-<ul><li>Strong connectivity</li><li>Cycle lengths ka gcd = 1</li></ul>
-
-<p><strong>MapReduce PageRank: </strong>Har iteration mein <strong>entire graph reshuffle</strong> hota hai.</p>
-<p class="subtopic"><strong>Pregel</strong></p>
-<ul><li>Vertex supersteps</li><li>Messages</li><li><code>vote-to-halt</code></li></ul>
-
-<p><strong>Graph-Parallel: </strong>\[ Gather\rightarrow Apply\rightarrow Scatter \]</p>
-<ul><li>Pregel → <strong>pushes messages</strong></li><li>GraphLab → <strong>pulls neighbor data</strong></li></ul>
-
-<p><strong>GraphX: </strong><strong>Tables + Graphs = Unified approach</strong></p>
-<p>Main components:</p>
-<ul><li>Vertex table</li><li>Edge table</li><li>Routing table</li><li>Triplets</li><li><code>mrTriplets</code></li><li>2D vertex cut</li></ul>
-<p>Optimizations:</p>
-<ul><li>Mirror cache</li><li>Active-edge index</li><li>Join elimination</li></ul>
-<p class="subtopic"><strong>Flight Case</strong></p>
-<ul><li><strong>305 airports</strong></li><li><strong>5366 routes</strong></li><li><strong>ATL degree = 173</strong></li><li>PageRank top:</li></ul>
-<p>\[ ATL,\ DFW,\ ORD,\ MSP,\ SLC \]</p>
+<h2 id="i"><span>9</span>Quick Revision</h2><div class="box"><b class="t">Must Remember</b><p class="subtopic"><strong>Must Remember: </strong><strong>Parameter Server</strong></p><ul><li>Pull / Push</li><li>\[</li></ul><p>W\leftarrow W+\Delta \]</p><ul><li><code>get/add</code> key-value API</li><li>Sharded model</li><li>Async updates</li></ul><p class="subtopic"><strong>BSP ↔ Async ↔ SSP</strong></p><ul><li><strong>BSP</strong> → barriers, staleness = 0</li><li><strong>Async</strong> → no guarantee</li><li><strong>SSP</strong> → staleness ko \(s\) clocks se bound karta hai</li><li>SSP dono ko subsume karta hai.</li></ul><p><strong>PageRank: </strong>\[ PR= \frac{1-d}{N} + d\cdot\sum\frac{PR}{L} \]</p><p>where:</p><p>\[ d=0.85 \]</p><p>Stop condition:</p><ul><li>Fixed iterations, or</li><li>Convergence</li></ul><p>Unique stationary distribution requires:</p><ul><li>Strong connectivity</li><li>Cycle lengths ka gcd = 1</li></ul><p><strong>MapReduce PageRank: </strong>Har iteration mein <strong>entire graph reshuffle</strong> hota hai.</p><p class="subtopic"><strong>Pregel</strong></p><ul><li>Vertex supersteps</li><li>Messages</li><li><code>vote-to-halt</code></li></ul><p><strong>Graph-Parallel: </strong>\[ Gather\rightarrow Apply\rightarrow Scatter \]</p><ul><li>Pregel → <strong>pushes messages</strong></li><li>GraphLab → <strong>pulls neighbor data</strong></li></ul><p><strong>GraphX: </strong><strong>Tables + Graphs = Unified approach</strong></p><p>Main components:</p><ul><li>Vertex table</li><li>Edge table</li><li>Routing table</li><li>Triplets</li><li><code>mrTriplets</code></li><li>2D vertex cut</li></ul><p>Optimizations:</p><ul><li>Mirror cache</li><li>Active-edge index</li><li>Join elimination</li></ul><p class="subtopic"><strong>Flight Case</strong></p><ul><li><strong>305 airports</strong></li><li><strong>5366 routes</strong></li><li><strong>ATL degree = 173</strong></li><li>PageRank top:</li></ul><p>\[ ATL,\ DFW,\ ORD,\ MSP,\ SLC \]</p></div>
 <footer>Source: NPTEL Big Data Computing, IIT Patna · Print-ready for A4</footer></div></body></html>
