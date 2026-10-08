@@ -40,7 +40,7 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 </style><link rel="stylesheet" href="common.css">
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="big-data-week8-study-guide.html" aria-label="Switch to English" title="Switch to English">EN</a><a class="language-switch" href="Big Data Week 8 Study Guide - Hinglish.html" aria-label="Switch to Hinglish" title="Switch to Hinglish">??</a><div class="pg">
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style><style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:16px;font-weight:bold;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="./big-data-week8-study-guide.html" aria-label="Switch to English" title="Switch to English">EN</a><a class="language-switch" href="Big Data Week 8 Study Guide - Hinglish.html" aria-label="Switch to Hinglish" title="Switch to Hinglish">??</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>Parameter Servers, PageRank &amp; GraphX</h1><p>Week 8 consolidated study guide &middot; Hinglish</p></header>
 <nav><a href="#a">1 ML Systems</a><a href="#b">2 Parameter Server</a><a href="#c">3 PageRank</a><a href="#d">4 PageRank at Scale</a><a href="#e">5 Graph-Parallel</a><a href="#f">6 GraphX Design</a><a href="#g">7 Optimizations</a><a href="#h">8 Flight Case Study</a><a href="#i">9 Revision</a></nav>
@@ -51,7 +51,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td><strong>Graph</strong></td><td>GraphLab, TensorFlow (abstraction: vertex programs)</td><td>Graph algorithms, graphical models</td></tr>
 <tr><td><strong>Shared Memory</strong></td><td>Bosen, DMTK, ParameterServer.org (Parameter Server [VLDB'10])</td><td>SGD, sampling; Google, Yahoo mein used</td></tr>
 </tbody></table></div>
-<h4>Simplest Case of a Parameter Server</h4>
+<h3>Simplest Case of a Parameter Server</h3>
 <p>ML parameters ek <strong>distributed hash table</strong> mein stored hote hain jo network ke through accessible hota hai.</p>
 <hr>
 <h2 id="b"><span>2</span>Parameter Server &amp; Stale Synchronous Parallel</h2>
@@ -96,9 +96,9 @@ add(key, delta)</code></pre>
 </tbody></table></div>
 <hr>
 <h3>The Problem: Networks Are Slow</h3>
-<h4>Solution 1 — Cache Synchronization</h4>
+<h3>Solution 1 — Cache Synchronization</h3>
 <p>Workers parameters ko cache karte hain aur model ko sirf <strong>sparse changes</strong> send karte hain.</p>
-<h4>Solution 2 — Asynchronous Execution</h4>
+<h3>Solution 2 — Asynchronous Execution</h3>
 <p>Asynchronous execution:</p>
 <ul><li>Barriers avoid karta hai.</li><li>Idle waiting nahi hoti.</li><li>More frequent coordination enable karta hai.</li></ul>
 <p>Lekin isme <strong>theoretical guarantees nahi hote</strong>, because network delays aur stragglers arbitrary ho sakte hain.</p>
@@ -110,10 +110,10 @@ add(key, delta)</code></pre>
 <p>Agar fast worker bahut aage nikal jata hai, to woh <strong>block</strong> ho jata hai.</p>
 <p>SSP:</p>
 <ul><li>BSP aur asynchronous execution ke beech interpolate karta hai.</li><li>Dono ko subsume karta hai.</li><li><strong>BSP = staleness 0</strong></li><li>Workers mostly apni own speed par run karte hain.</li><li>Parameters ko caching ke through efficiently implement kiya ja sakta hai.</li></ul>
-<h4>Delayed SGD</h4>
+<h3>Delayed SGD</h3>
 <p>\[ x_{t+1} = \arg\min_{x\in X} \left\| x-(x_t-\eta_t g_{t-\tau}) \right\| \]</p>
 <p>Yani ek <strong>stale gradient</strong> ke saath gradient step, followed by projection onto the feasible space.</p>
-<h4>Consistency Matters</h4>
+<h3>Consistency Matters</h3>
 <p>LDA ke 32 machines (256 cores) wale experiment mein suitable delay (<strong>SSP</strong>) ne strong consistency (<strong>BSP</strong>) ke comparison mein significant speed-up diya by reducing network waiting time.</p>
 <p>SSP ne:</p>
 <ul><li>BSP se better perform kiya</li><li>Pure asynchronous execution se bhi better convergence diya.</li></ul>
@@ -203,7 +203,7 @@ if (superstep() &lt; 30)
     SendMessageToAllNeighbors(value / numOutEdges)
 else
     VoteToHalt()</code></pre>
-<h4>Worked Example</h4>
+<h3>Worked Example</h3>
 <p>Five vertices initially:</p>
 <p>\[ 0.2 \]</p>
 <p>each.</p>
@@ -238,21 +238,21 @@ else
 <p>(Gonzalez et al., OSDI'12)</p>
 <p>Ek vertex ki computation sirf uske <strong>neighbors</strong> par depend karti hai.</p>
 <p>Pattern:</p>
-<h4>Gather</h4>
+<h3>Gather</h3>
 <p>Neighbors se information gather karo.</p>
 <p>↓</p>
-<h4>Apply</h4>
+<h3>Apply</h3>
 <p>Vertex property par update apply karo.</p>
 <p>↓</p>
-<h4>Scatter</h4>
+<h3>Scatter</h3>
 <p>Updated information neighbors ko send karo.</p>
 <hr>
 <h3>Examples</h3>
-<h4>PageRank</h4>
+<h3>PageRank</h3>
 <p>\[ R[i] = 0.15+ \sum w_{ji}\cdot R[j] \]</p>
-<h4>Shortest Path</h4>
+<h3>Shortest Path</h3>
 <p>\[ D[i]=1+\min D[j] \]</p>
-<h4>Cluster Coefficient</h4>
+<h3>Cluster Coefficient</h3>
 <p>\[ \frac{2\cdot \#Triangles[i]} {Deg<a href="Deg[i]-1">i</a>} \]</p>
 <p>Triangle counting local-community cohesiveness measure karta hai:</p>
 <p><strong>More triangles → stronger community</strong></p>
@@ -268,16 +268,16 @@ else
 <p>Used by:</p>
 <ul><li>Pregel</li><li>GraphLab</li><li>Giraph</li></ul>
 <p>Ye specialized graph APIs expose karte hain aur graph structure ko exploit karte hain, jisse general data-parallel systems ke comparison mein <strong>orders-of-magnitude gains</strong> mil sakte hain.</p>
-<h4>Graph-Parallel Algorithms</h4>
+<h3>Graph-Parallel Algorithms</h3>
 <ul><li>Collaborative filtering (ALS, SGD)</li><li>Structured prediction (belief propagation, Gibbs sampling)</li><li>Semi-supervised ML</li><li>Community detection:<ul><li>Triangle counting</li><li>K-core</li><li>K-truss</li></ul></li><li>Graph analytics:<ul><li>PageRank</li><li>Shortest path</li><li>Coloring</li></ul></li></ul>
 <hr>
 <h3>Benchmark</h3>
-<h4>PageRank — LiveJournal</h4>
+<h3>PageRank — LiveJournal</h3>
 <p>10 iterations:</p>
 <ul><li>Mahout/Hadoop → <strong>1340 s</strong></li><li>Naïve Spark → <strong>354 s</strong></li><li>GraphLab → <strong>22 s</strong></li></ul>
 <p>Comparison:</p>
 <ul><li>Spark → Hadoop se <strong>4× faster</strong></li><li>GraphLab → Spark se <strong>16× faster</strong></li><li>GraphLab → Hadoop se <strong>60× faster</strong></li></ul>
-<h4>Triangle Counting — Twitter</h4>
+<h3>Triangle Counting — Twitter</h3>
 <p>Dataset:</p>
 <ul><li>40M users</li><li>1.4B links</li><li>34.8B triangles</li></ul>
 <p>Results:</p>
@@ -306,11 +306,11 @@ else
 <hr>
 <h3>Property Graph</h3>
 <p>Property graph mein:</p>
-<h4>Vertex Property Table</h4>
+<h3>Vertex Property Table</h3>
 <p>\[ id\rightarrow property \]</p>
 <p>Example:</p>
 <pre><code class="language-text">rxin → Student</code></pre>
-<h4>Edge Property Table</h4>
+<h3>Edge Property Table</h3>
 <p>\[ (source,destination,property) \]</p>
 <p>Example:</p>
 <pre><code class="language-text">Friend
@@ -325,7 +325,7 @@ Advisor</code></pre>
 <h3>Operators</h3>
 <p>GraphX all Spark RDD operators inherit karta hai:</p>
 <ul><li><code>map</code></li><li><code>filter</code></li><li><code>groupBy</code></li><li><code>join</code></li><li><code>reduceByKey</code></li></ul>
-<h4>Graph Operators</h4>
+<h3>Graph Operators</h3>
 <p>Table views:</p>
 <ul><li>vertices</li><li>edges</li><li>triplets</li></ul>
 <p>Other operators:</p>
@@ -335,7 +335,7 @@ Advisor</code></pre>
 <p><code>triplets</code> = vertex information + edge information ka joined form.</p>
 <p><code>mrTriplets</code> = triplets par <strong>map-reduce</strong>.</p>
 <ul><li>Map → per edge</li><li>Reduce → destination ID ke according grouped</li></ul>
-<h4>Example</h4>
+<h3>Example</h3>
 <p><strong>“Age of the oldest follower of each user”</strong></p>
 <p>Map emits:</p>
 <pre><code class="language-text">(dst, src age)</code></pre>
@@ -352,18 +352,18 @@ Advisor</code></pre>
 </tbody></table></div>
 <hr>
 <h3>Performance</h3>
-<h4>PageRank — LiveJournal</h4>
+<h3>PageRank — LiveJournal</h3>
 <p><strong>69M edges</strong></p>
 <p>GraphX:</p>
 <ul><li>Hadoop aur Giraph se faster</li><li>GraphLab se approximately <strong>3× slower</strong></li></ul>
-<h4>Twitter</h4>
+<h3>Twitter</h3>
 <p><strong>1.5B edges</strong></p>
 <p>GraphX approximately:</p>
 <p>\[ 2\times \]</p>
 <p>GraphLab se slower.</p>
 <p>Reasons:</p>
 <ul><li>Scala/Java overhead</li><li>Garbage collection</li><li>Shared-memory parallelism ka absence</li></ul>
-<h4>Integrated GraphX Pipeline</h4>
+<h3>Integrated GraphX Pipeline</h3>
 <p>Wikipedia XML → top 20 pages</p>
 <p>GraphX ka integrated pipeline separate systems combine karne ke comparison mein better perform karta hai, e.g.:</p>
 <p><strong>GraphLab + Spark</strong></p>
@@ -383,15 +383,15 @@ Advisor</code></pre>
 <p><strong>51% vertices sirf once update hote hain.</strong></p>
 <hr>
 <h3>Use Cases</h3>
-<h4>Recommendation</h4>
+<h3>Recommendation</h3>
 <p>Low-rank matrix factorization on bipartite user-item graphs.</p>
 <p>Example:</p>
 <p><strong>Netflix</strong></p>
-<h4>Behavior Prediction</h4>
+<h3>Behavior Prediction</h3>
 <ul><li>Conditional Random Fields</li><li>Belief propagation</li></ul>
-<h4>Community Discovery</h4>
+<h3>Community Discovery</h3>
 <p>Triangle counts ke through.</p>
-<h4>Standard Pipeline</h4>
+<h3>Standard Pipeline</h3>
 <pre><code class="language-text">Raw XML
    ↓
 ETL
@@ -403,7 +403,7 @@ Slice Subgraph
 Compute (PageRank)
    ↓
 Post-process (top users)</code></pre>
-<h4>Conclusion</h4>
+<h3>Conclusion</h3>
 <p>Graph systems ke liye ek standard graph algebra important hai, just like <strong>SQL databases ke liye important tha</strong>.</p>
 <p>Research directions:</p>
 <ul><li>Dynamic/time-evolving graphs</li><li>Graph data ko external systems ko serve karna</li></ul>
@@ -412,7 +412,7 @@ Post-process (top users)</code></pre>
 <h3>Goal</h3>
 <p>Flight data ko analyze karna taaki:</p>
 <ul><li>Near-real-time results mil sakein</li><li>Data visualize kiya ja sake</li></ul>
-<h4>Dataset</h4>
+<h3>Dataset</h3>
 <p>January 2014 ke domestic flights ke:</p>
 <ul><li>Delays</li><li>Cancellations</li></ul>
 <p>Data source:</p>
@@ -452,13 +452,13 @@ on a USA map
 <hr>
 <h2 id="i"><span>9</span>Quick Revision</h2>
 <h3>Must Remember</h3>
-<h4>Parameter Server</h4>
+<h3>Parameter Server</h3>
 <ul><li>Pull / Push</li><li>\[</li></ul>
 <p>W\leftarrow W+\Delta \]</p>
 <ul><li><code>get/add</code> key-value API</li><li>Sharded model</li><li>Async updates</li></ul>
-<h4>BSP ↔ Async ↔ SSP</h4>
+<h3>BSP ↔ Async ↔ SSP</h3>
 <ul><li><strong>BSP</strong> → barriers, staleness = 0</li><li><strong>Async</strong> → no guarantee</li><li><strong>SSP</strong> → staleness ko \(s\) clocks se bound karta hai</li><li>SSP dono ko subsume karta hai.</li></ul>
-<h4>PageRank</h4>
+<h3>PageRank</h3>
 <p>\[ PR= \frac{1-d}{N} + d\cdot\sum\frac{PR}{L} \]</p>
 <p>where:</p>
 <p>\[ d=0.85 \]</p>
@@ -466,20 +466,20 @@ on a USA map
 <ul><li>Fixed iterations, or</li><li>Convergence</li></ul>
 <p>Unique stationary distribution requires:</p>
 <ul><li>Strong connectivity</li><li>Cycle lengths ka gcd = 1</li></ul>
-<h4>MapReduce PageRank</h4>
+<h3>MapReduce PageRank</h3>
 <p>Har iteration mein <strong>entire graph reshuffle</strong> hota hai.</p>
-<h4>Pregel</h4>
+<h3>Pregel</h3>
 <ul><li>Vertex supersteps</li><li>Messages</li><li><code>vote-to-halt</code></li></ul>
-<h4>Graph-Parallel</h4>
+<h3>Graph-Parallel</h3>
 <p>\[ Gather\rightarrow Apply\rightarrow Scatter \]</p>
 <ul><li>Pregel → <strong>pushes messages</strong></li><li>GraphLab → <strong>pulls neighbor data</strong></li></ul>
-<h4>GraphX</h4>
+<h3>GraphX</h3>
 <p><strong>Tables + Graphs = Unified approach</strong></p>
 <p>Main components:</p>
 <ul><li>Vertex table</li><li>Edge table</li><li>Routing table</li><li>Triplets</li><li><code>mrTriplets</code></li><li>2D vertex cut</li></ul>
 <p>Optimizations:</p>
 <ul><li>Mirror cache</li><li>Active-edge index</li><li>Join elimination</li></ul>
-<h4>Flight Case</h4>
+<h3>Flight Case</h3>
 <ul><li><strong>305 airports</strong></li><li><strong>5366 routes</strong></li><li><strong>ATL degree = 173</strong></li><li>PageRank top:</li></ul>
 <p>\[ ATL,\ DFW,\ ORD,\ MSP,\ SLC \]</p>
 

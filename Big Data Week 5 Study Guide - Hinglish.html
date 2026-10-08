@@ -40,15 +40,14 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12px/1.5 "DejaVu Sans Mono",monospace;overflow-x:auto;margin:10px 0}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 </style><link rel="stylesheet" href="common.css">
-<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="Big Data Week 5 Study Guide.html" aria-label="Switch to English" title="Switch to English">EN</a><div class="pg">
+<style>.language-switch{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:1000;pointer-events:auto;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:23px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.45)}@media print{.language-switch{display:none}}</style></head><body><a class="language-switch" href="./Big%20Data%20Week%205%20Study%20Guide.html" aria-label="Switch to English" title="Switch to English">EN</a><div class="pg">
 <header><small>NPTEL · Big Data Computing · IIT Patna (Dr. Rajiv Misra)</small>
 <h1>HBase, Spark Streaming &amp; Kafka</h1><p>Week 5 consolidated study guide &middot; Hinglish</p></header>
 <nav><a href="#a">1 HBase</a><a href="#b">2 Streaming Basics</a><a href="#c">3 Spark Streaming</a><a href="#d">4 DStream Ops</a><a href="#e">5 Fault Tolerance</a><a href="#f">6 Windows</a><a href="#g">7 Sentiment</a><a href="#h">8 Kafka</a><a href="#i">9 Revision</a></nav>
 
 <h2 id="a"><span>1</span>HBase</h2>
-<h3>Definition</h3>
-<p><strong>HBase</strong> ek open-source <strong>NoSQL, distributed, column-oriented store</strong> hai jo <strong>1,000s of commodity servers</strong> aur <strong>petabytes</strong> tak scale out kar sakta hai.</p>
-<p>Ye <strong>HDFS</strong> ke upar run karta hai aur HDFS se:</p>
+<div class="box def"><b class="t">Definition</b><p><strong>HBase</strong> ek open-source <strong>NoSQL, distributed, column-oriented store</strong> hai jo <strong>1,000s of commodity servers</strong> aur <strong>petabytes</strong> tak scale out kar sakta hai.</p>
+<p>Ye <strong>HDFS</strong> ke upar run karta hai aur HDFS se:</p></div>
 <ul><li>Scalability</li><li>Fault tolerance</li><li>High availability</li></ul>
 <p>inherit karta hai.</p>
 <p>HBase Google's <strong>BigTable architecture</strong> ko implement karta hai aur:</p>
@@ -56,7 +55,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>data handle kar sakta hai.</p>
 <p>HBase ko Yahoo! ne open-source kiya tha aur <strong>Facebook</strong> ise use karta hai.</p>
 <p><strong>Cassandra ke unlike, HBase availability ke comparison mein consistency ko prefer karta hai.</strong></p>
-<h4>API</h4>
+<h3>API</h3>
 <ul><li><code>Get/Put(row)</code></li><li><code>Scan(row range, filter)</code> → range queries</li><li><code>MultiPut</code></li></ul>
 <hr>
 <h3>Architecture &amp; Components</h3>
@@ -87,14 +86,14 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><code>family:column</code></p>
 <p>Example:</p>
 <p><code>personaldata:Name</code></p>
-<h4>Cell</h4>
+<h3>Cell</h3>
 <p><strong>Cell = row key + column family + qualifier</strong></p>
 <p>Cell mein:</p>
 <ul><li>Value</li><li>Timestamp</li></ul>
 <p>hota hai.</p>
 <p>Cell values <strong>versioned</strong> hoti hain.</p>
 <ul><li>Default timestamp use hota hai.</li><li>Agar timestamp specify nahi kiya gaya, latest version return hota hai.</li><li>Default <strong>3 versions per column family</strong> hoti hain.</li></ul>
-<h4>Full KeyValue</h4>
+<h3>Full KeyValue</h3>
 <p><code>(row key, family, qualifier, timestamp) → value</code></p>
 <p>Column families separate files, yani <strong>HFiles</strong>, mein stored hoti hain aur separately read ki ja sakti hain.</p>
 <hr>
@@ -114,7 +113,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>StoreFile / HFile</strong></p>
 <p>HDFS par stored hota hai.</p>
 <p>Ye BigTable ke <strong>SSTable</strong> jaisa hai.</p>
-<h4>HFile</h4>
+<h3>HFile</h3>
 <p>HFile mein:</p>
 <ul><li>Data blocks of <code>(key, value)</code></li><li>Metadata</li><li>File information</li><li>Indices</li><li>Trailer</li></ul>
 <p>hote hain.</p>
@@ -163,7 +162,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p>Ye HFile ke end par stored hota hai aur memory mein load kiya jaata hai.</p>
 <p>Bloom filter:</p>
 <ul><li>Row + column level par checks karta hai.</li><li>Entire store files ko skip kar sakta hai.</li><li>Grouped data aur many misses ke case mein useful hai.</li></ul>
-<h4>Example</h4>
+<h3>Example</h3>
 <p>Agar <code>"row-R"</code> search karna hai:</p>
 <p>Block index ke according <strong>6 files</strong> mein possibility hai:</p>
 <p>→ 6 blocks load.</p>
@@ -184,16 +183,16 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <tr><td><strong>Style</strong></td><td>Request-based bulk, short-lived</td><td>Event/micro-batch driven, continuous, long-lived</td></tr>
 <tr><td><strong>Analytics</strong></td><td>Retrospective, reactive, on-demand</td><td>Prospective, proactive, predictive — next best action</td></tr>
 </tbody></table></div>
-<h4>Stream + Batch</h4>
+<h3>Stream + Batch</h3>
 <p><strong>Stream + Batch = All-data analytics</strong></p>
 <p>Yaani:</p>
 <p><strong>Historical past + Real-time now</strong></p>
 <p>Streaming ka matlab data ko ek <strong>steady continuous stream</strong> ke form mein transfer karna.</p>
 <p>Examples:</p>
 <ul><li>YouTube</li><li>Facebook</li><li>Twitter</li><li>Netflix</li></ul>
-<h4>Applications</h4>
+<h3>Applications</h3>
 <ul><li>Fraud detection</li><li>Sensor anomaly detection</li><li>Website monitoring</li><li>Ad monetization</li><li>Social trends</li><li>Intrusion detection</li></ul>
-<h4>Requirements</h4>
+<h3>Requirements</h3>
 <p>Streaming system ko:</p>
 <ul><li><strong>100s of nodes</strong> tak scale karna chahiye.</li><li><strong>Second-scale latency</strong> provide karni chahiye.</li><li>Simple programming model hona chahiye.</li><li>Batch/interactive systems ke saath integrate hona chahiye.</li><li>Stateful computation mein efficient fault tolerance provide karni chahiye.</li></ul>
 <hr>
@@ -215,7 +214,7 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <p><strong>At-least-once</strong></p>
 <p>semantics milti hai.</p>
 <p>Lekin same state <strong>twice update</strong> ho sakti hai aur state lost bhi ho sakta hai.</p>
-<h4>Trident</h4>
+<h3>Trident</h3>
 <p>Transactions ke through <strong>exactly-once</strong> provide karta hai.</p>
 <p>Lekin external database mein per-state transactions slow hote hain.</p>
 <hr>
@@ -230,10 +229,10 @@ pre{background:#0A2647;color:#e6f0fb;border-radius:6px;padding:10px 14px;font:12
 <h2 id="c"><span>3</span>Spark Streaming</h2>
 <p><strong>Spark Streaming</strong> Spark ko extend karta hai taaki scalable, fault-tolerant, <strong>second-latency stream processing</strong> possible ho.</p>
 <p>Ismein simple <strong>batch-like API</strong> hoti hai.</p>
-<h4>Sources</h4>
+<h3>Sources</h3>
 <p>Spark Streaming consume kar sakta hai:</p>
 <ul><li>Kafka</li><li>Flume</li><li>Twitter</li><li>ZeroMQ</li><li>Kinesis</li><li>TCP sockets</li><li>HDFS</li></ul>
-<h4>Outputs</h4>
+<h3>Outputs</h3>
 <p>Results ko send kar sakta hai:</p>
 <ul><li>HDFS</li><li>Databases</li><li>Dashboards</li></ul>
 <p><strong>Spark 2.x</strong> mein <strong>Structured Streaming</strong>, Dataset-based approach ke saath add hua.</p>
@@ -276,13 +275,13 @@ RDD@time2 = data from 1–2
 <p>DStreams memory mein held hote hain aur:</p>
 <ul><li>Immutable</li><li>Distributed</li></ul>
 <p>hote hain.</p>
-<h4>Execution</h4>
+<h3>Execution</h3>
 <p>Driver user code run karta hai aur executors ko:</p>
 <ul><li>YARN</li><li>Mesos</li><li>Standalone</li></ul>
 <p>par launch karta hai.</p>
 <p>Har batch ek graph hota hai jo multiple jobs mein convert hota hai.</p>
 <p><strong>Blocks parallelism provide karte hain.</strong></p>
-<h4>Workflow</h4>
+<h3>Workflow</h3>
 <pre><code class="language-text">Streaming Sources
 Kafka / Flume / Akka...
         ↓
@@ -318,7 +317,7 @@ hashTags = tweets.flatMap(getTags)
 saveAsHadoopFiles("hdfs://…")</code></pre>
 <p>Ya:</p>
 <pre><code class="language-text">foreach</code></pre>
-<h4>Count</h4>
+<h3>Count</h3>
 <pre><code class="language-text">hashTags.countByValue()</code></pre>
 <p>Internally:</p>
 <p><strong>map + reduceByKey per batch</strong></p>
@@ -334,7 +333,7 @@ saveAsHadoopFiles("hdfs://…")</code></pre>
 <pre><code class="language-scala">hashTags.window(Minutes(10), Seconds(1)).countByValue()</code></pre>
 <p>Yahan:</p>
 <ul><li>Window length = <strong>10 minutes</strong></li><li>Sliding interval = <strong>1 second</strong></li></ul>
-<h4>Smart Version</h4>
+<h3>Smart Version</h3>
 <p><code>countByValueAndWindow</code></p>
 <p>incrementally:</p>
 <ul><li>Old batch ko subtract karta hai.</li><li>New batch ko add karta hai.</li></ul>
@@ -366,7 +365,7 @@ saveAsHadoopFiles("hdfs://…")</code></pre>
 <p>Har action:</p>
 <p>→ Spark <strong>job</strong></p>
 <p>create karta hai.</p>
-<h4>Power</h4>
+<h3>Power</h3>
 <p>Spark Streaming useful hai:</p>
 <ul><li>Online machine learning</li><li>Live + historical data combine karne mein</li><li>CEP-style window operations</li></ul>
 <hr>
@@ -400,16 +399,16 @@ spark.streaming.receiver.maxRate</code></pre>
 <tr><td><strong>Per node</strong></td><td>Spark Streaming <strong>670k records/s</strong> vs Storm <strong>115k</strong> vs commercial <strong>100–500k</strong></td></tr>
 <tr><td><strong>Recovery</strong></td><td>Faults/stragglers se <strong>within 1 s</strong> recovery</td></tr>
 </tbody></table></div>
-<h4>Mobile Millennium</h4>
+<h3>Mobile Millennium</h3>
 <p>GPS data par online <strong>ML/MCMC</strong> use karke traffic transit-time estimation.</p>
 <ul><li>CPU-intensive</li><li>Cluster size ke saath linearly scale karta hai.</li></ul>
-<h4>Vision</h4>
+<h3>Vision</h3>
 <p><strong>Spark Streaming + Shark + Spark</strong></p>
 <pre><code class="language-text">Spark Streaming → Stream
 Shark            → Ad-hoc queries
 Spark            → Batch</code></pre>
 <p>Yaani ek unified stack.</p>
-<h4>Roadmap</h4>
+<h3>Roadmap</h3>
 <ul><li>Spark 0.9 → January 2014, alpha se bahar</li><li>Automated master fault recovery</li><li>Web UI</li><li>Spark 2.4.0 → November 2, 2018</li></ul>
 <hr>
 <h2 id="f"><span>6</span>Sliding Window Analytics</h2>
@@ -429,7 +428,7 @@ Spark            → Batch</code></pre>
 <p><strong>Rows ke window par one result per row</strong> calculate karti hain.</p>
 <p>Ye aggregates se different hain:</p>
 <ul><li>Aggregate → one result per group</li><li>UDF → current row se one result per row</li></ul>
-<h4>Window Specification</h4>
+<h3>Window Specification</h3>
 <p>Window spec mein:</p>
 <ol><li><strong>partitionBy</strong><ul><li>Grouping</li><li>Ek group ka data one machine par jaata hai.</li></ul></li><li><strong>orderBy</strong><ul><li>Group ke andar ordering.</li></ul></li><li><strong>frame</strong><ul><li>Current row ke relative boundaries.</li></ul></li></ol>
 <hr>
@@ -439,11 +438,11 @@ Spark            → Batch</code></pre>
     "movingAvg",
     avg(customers("amountSpent")).over(w1)
 )</code></pre>
-<h4>Cumulative Sum</h4>
+<h3>Cumulative Sum</h3>
 <pre><code class="language-scala">val w2 = ... .rowsBetween(Long.MinValue, 0)</code></pre>
-<h4>Previous Row</h4>
+<h3>Previous Row</h3>
 <pre><code class="language-scala">lag(customers("amountSpent"), 1).over(w3)</code></pre>
-<h4>Rank</h4>
+<h3>Rank</h3>
 <pre><code class="language-scala">rank().over(w3)</code></pre>
 <hr>
 <h3>Window Function Example</h3>
@@ -461,23 +460,23 @@ Spark            → Batch</code></pre>
 <p><strong>Sentiment = kisi mention ke behind emotion.</strong></p>
 <p>Sentiment analysis ka matlab:</p>
 <ul><li>Tweets ko topic ke according categorize karna.</li><li>Un tweets ko mine karke sentiment identify karna.</li></ul>
-<h4>Applications</h4>
+<h3>Applications</h3>
 <ul><li>Crisis management</li><li>Service adjustment</li><li>Target marketing</li><li>Movie success prediction</li><li>Political campaign success prediction</li><li>Investment decisions</li><li>Product reviews</li></ul>
 <hr>
 <h3>Twitter Sentiment Workflow</h3>
-<h4>Authorize</h4>
+<h3>Authorize</h3>
 <p>Twitter:</p>
 <ul><li>Consumer key/secret</li><li>Access token/secret</li></ul>
 <p><code>twitter4j</code> properties ke through.</p>
 <p>↓</p>
-<h4>StreamingContext</h4>
+<h3>StreamingContext</h3>
 <pre><code class="language-text">local[2]
 Seconds(5)</code></pre>
 <p>↓</p>
-<h4>createStream</h4>
+<h3>createStream</h3>
 <p><code>TwitterUtils</code> with filters.</p>
 <p>↓</p>
-<h4>flatMap / map</h4>
+<h3>flatMap / map</h3>
 <p>Hashtags extract karo.</p>
 <p><code>detectSentiment</code></p>
 <p>→</p>
@@ -485,13 +484,12 @@ Seconds(5)</code></pre>
 <p>Filtering by keyword, e.g.:</p>
 <pre><code class="language-text">"Trump"</code></pre>
 <p>se kisi specific topic ka sentiment obtain kiya ja sakta hai.</p>
-<h4>Business Benefits</h4>
+<h3>Business Benefits</h3>
 <ul><li>Better customer experience</li><li>Competitive advantage</li><li>Business intelligence</li><li>Losing brand ko revitalize karna</li></ul>
 <hr>
 <h2 id="h"><span>8</span>Apache Kafka</h2>
-<h3>Definition</h3>
-<p><strong>Kafka</strong> ek open-source, high-performance, real-time messaging system hai.</p>
-<p>Features:</p>
+<div class="box def"><b class="t">Definition</b><p><strong>Kafka</strong> ek open-source, high-performance, real-time messaging system hai.</p>
+<p>Features:</p></div>
 <ul><li>Distributed</li><li>Partitioned</li><li>Fault-tolerant</li><li>Scalable</li></ul>
 <p>Ye <strong>millions of messages/sec</strong> ko many receivers tak deliver kar sakta hai.</p>
 <p>Kafka:</p>
@@ -499,22 +497,22 @@ Seconds(5)</code></pre>
 <hr>
 <h3>Kafka as Streaming Platform</h3>
 <p>Kafka ko Unix-pipe analogy se samajh sakte hain.</p>
-<h4>Kafka Core</h4>
+<h3>Kafka Core</h3>
 <p>Distributed durable pipes:</p>
 <p><strong>Hub → Transport/Store Event Streams</strong></p>
-<h4>Kafka Connect</h4>
+<h3>Kafka Connect</h3>
 <p>I/O redirection:</p>
 <p><strong>Other systems ke saath import/export</strong></p>
-<h4>Kafka Streams</h4>
+<h3>Kafka Streams</h3>
 <p>Commands ki tarah:</p>
 <p>Java library jo streams ko live process karti hai.</p>
 <hr>
 <h3>Use Cases</h3>
 <p>Kafka ka use:</p>
 <ul><li>Messaging service</li><li>Real-time stream processing</li><li>Storm ko data dene ke liye</li><li>Log aggregation → HDFS</li><li>Distributed systems ke liye commit log service</li><li>Event sourcing</li><li>User activity aggregation</li></ul>
-<h4>Event Sourcing</h4>
+<h3>Event Sourcing</h3>
 <p>Time-ordered events maintain karna.</p>
-<h4>User Activity</h4>
+<h3>User Activity</h3>
 <p>Portals se:</p>
 <ul><li>Clicks</li><li>Searches</li></ul>
 <p>collect karke:</p>
@@ -531,10 +529,10 @@ Seconds(5)</code></pre>
 <tr><td><strong>Consumer / Group</strong></td><td>Topics read karta hai; consumer group ka member hota hai</td></tr>
 <tr><td><strong>Broker</strong></td><td>Messages handle karne wala Kafka process; generally one per machine</td></tr>
 </tbody></table></div>
-<h4>Partition</h4>
+<h3>Partition</h3>
 <p>Partition ko ideally <strong>one server par fit</strong> hona chahiye.</p>
 <p><strong>Number of partitions = available parallelism</strong></p>
-<h4>Broker</h4>
+<h3>Broker</h3>
 <p>Kafka cluster:</p>
 <p><strong>Set of brokers</strong></p>
 <p>Brokers coordination ke liye <strong>ZooKeeper</strong> use karte hain.</p>
@@ -573,7 +571,7 @@ Consumer 3 → Messages 3, 6</code></pre>
 <h3>Kafka Guarantees</h3>
 <p>Kafka guarantee karta hai:</p>
 <ul><li>Producer se topic-partition tak messages <strong>order mein append</strong> honge.</li><li>Consumers messages ko <strong>produced order</strong> mein dekhenge.</li><li>Replication factor <strong>N</strong> → <strong>N−1 server failures</strong> tolerate kar sakta hai.</li></ul>
-<h4>Replication</h4>
+<h3>Replication</h3>
 <p><strong>Primary-backup</strong> model.</p>
 <p>Leader:</p>
 <ul><li>Writes propagate karta hai.</li><li>All replicas ke response/persistence ka wait karta hai.</li></ul>
@@ -581,7 +579,7 @@ Consumer 3 → Messages 3, 6</code></pre>
 <p>→ Usse temporarily skip kiya jaata hai.</p>
 <p>Jab replica return karta hai:</p>
 <p>→ Replication resume hoti hai.</p>
-<h4>Persistence</h4>
+<h3>Persistence</h3>
 <p>Kafka Linux file system use karta hai.</p>
 <p>OS <strong>page cache</strong> par rely karta hai.</p>
 <p>Data immediately file mein written hota hai.</p>
@@ -590,22 +588,22 @@ Consumer 3 → Messages 3, 6</code></pre>
 <hr>
 <h2 id="i"><span>9</span>Quick Revision</h2>
 <h3>Must Remember</h3>
-<h4>HBase</h4>
+<h3>HBase</h3>
 <ul><li><strong>HBase = BigTable clone on HDFS</strong></li><li>Availability ke comparison mein <strong>consistency prefer</strong> karta hai.</li><li><strong>Region = scalability ki unit</strong></li><li>Write order:</li></ul>
 <p><strong>HLog → MemStore → HFile</strong></p>
 <ul><li>Bloom filters files ko skip karne mein help karte hain.</li><li>Default <strong>3 versions</strong>.</li></ul>
-<h4>Spark Streaming</h4>
+<h3>Spark Streaming</h3>
 <ul><li><strong>Micro-batches of RDDs</strong></li><li><strong>DStream = sequence of RDDs</strong></li><li>Latency ≈ <strong>seconds</strong></li><li>Batch + Stream ko <strong>unified stack</strong> mein combine karta hai.</li></ul>
-<h4>Fault Tolerance</h4>
+<h3>Fault Tolerance</h3>
 <ul><li><strong>Lineage</strong></li><li>In-memory replication</li><li>Default replication factor = <strong>2</strong></li><li>Checkpointing</li><li>Transformations = <strong>exactly-once</strong></li><li>Storm = <strong>at-least-once</strong></li></ul>
-<h4>Windows</h4>
+<h3>Windows</h3>
 <p>Window:</p>
 <p><strong>Window length + Sliding interval</strong></p>
 <p>Dono batch interval ke multiples hone chahiye.</p>
 <p>Incremental window operations ke liye <strong>inverse function</strong> required hota hai.</p>
-<h4>Window Functions</h4>
+<h3>Window Functions</h3>
 <ul><li><code>partitionBy</code></li><li><code>orderBy</code></li><li><code>frame</code></li><li>Moving average</li><li>Cumulative sum</li><li><code>lag</code></li><li><code>rank</code></li></ul>
-<h4>Kafka</h4>
+<h3>Kafka</h3>
 <p><strong>Topics → Partitions</strong></p>
 <p>Partitions mein:</p>
 <ul><li>Offsets</li><li>Parallelism</li></ul>
