@@ -38,6 +38,12 @@ section h2 small{font-size:11px;font-weight:400;color:var(--bl)}
 .practice a{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;border:1px solid var(--ac);border-radius:6px;background:var(--ac);color:#fff;font-weight:500;font-size:12px;text-decoration:none}
 .practice a:hover{background:var(--dk);border-color:var(--dk)}
 footer{margin-top:30px;padding-top:12px;border-top:1px solid var(--bd);color:var(--bl);font-size:11px;text-align:center}
+.creator-intro{display:flex;flex-direction:column;align-items:center;gap:14px;margin:0 auto 26px;text-align:center}
+.creator-portrait{width:164px;aspect-ratio:1;padding:5px;border-radius:50%;background:conic-gradient(from 0deg,#2C7FCE,#9cc7f0,#1E5A96,#2C7FCE);box-shadow:0 10px 30px rgba(30,90,150,.2);animation:portrait-float 3.6s ease-in-out infinite}
+.creator-portrait img{display:block;width:100%;height:100%;border:4px solid var(--bg);border-radius:50%;object-fit:cover;object-position:center 28%}
+.creator-tag{display:inline-flex;align-items:center;gap:9px;margin:0;padding:8px 15px;border:1px solid var(--bd);border-radius:999px;background:var(--pl);color:var(--dk);font-size:12px;font-weight:500}
+.creator-tag strong{padding:3px 8px;border-radius:999px;background:var(--ac);color:#fff;font-size:9px;letter-spacing:.1em}
+@keyframes portrait-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:720px){.weeks{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:420px){.page{padding:18px 14px 28px}header{padding:24px 20px}header h1{font-size:24px}.week{min-height:120px;padding:12px}.practice{align-items:flex-start;flex-direction:column}.practice a{width:100%}section h2 small{max-width:42%;text-align:right}}
@@ -48,6 +54,12 @@ footer{margin-top:30px;padding-top:12px;border-top:1px solid var(--bd);color:var
 </head>
 <body>
 <main class="page">
+<div class="creator-intro">
+<div class="creator-portrait">
+<img src="file_00000000ef207206834e6b1d2b420d16.png" alt="Portrait of the creator of this repository">
+</div>
+<p class="creator-tag"><strong>Shyam Patidar</strong><span>Made with ❤️ for my friends to learn, practice &amp; succeed.</span></p>
+</div>
 <header>
 <small>NPTEL · Big Data Computing · IIT Patna</small>
 <h1>NPTEL Study Guide For Big Data and Cloud Computing</h1>
