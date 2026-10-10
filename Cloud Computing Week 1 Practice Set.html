@@ -6,29 +6,33 @@
 <title>Cloud Computing – Week 1 Practice Set</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;--ok:#0d7d4d;--okb:#eafaf1;--no:#b42318;--nob:#fff1f0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea;--ok:#6ad39b;--okb:#12321f;--nob:#3a1d1a}}
-:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea;--ok:#6ad39b;--okb:#12321f;--nob:#3a1d1a}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
-.pg{max-width:860px;margin:0 auto;padding:28px 22px 60px}
-header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;--ok:#1a8f4c;--okb:#e6f6ec;--no:#c0392b;--nob:#fdecea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea;--ok:#4cc47f;--no:#ff7b6b;--okb:#12341f;--nob:#3a1a17}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea;--ok:#4cc47f;--no:#ff7b6b;--okb:#12341f;--nob:#3a1a17}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.6 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:22px 18px 110px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:24px 26px;border-left:8px solid #2C7FCE}
 header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
-header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
-nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
-nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
-h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
-h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
-.question{background:var(--card);border:1px solid var(--bd);border-left:5px solid var(--ac);border-radius:9px;padding:16px 18px;margin:0 0 14px}
-.question p{margin:0 0 10px;font-size:14px;line-height:1.65}
-.question strong{color:var(--dk)}
-.options{margin:0;padding:0;list-style:none}
-.options li{margin:6px 0;padding:8px 10px;border:1px solid var(--bd);border-radius:7px;background:var(--lg);font-size:13px;line-height:1.5}
-.options li b{display:inline-block;min-width:22px;color:var(--bl);font-weight:600}
-.answer-box{margin-top:10px;padding:8px 10px;border-radius:7px;background:var(--okb);border:1px solid rgba(13,125,77,.2);color:var(--ok);font-size:13px;font-weight:600}
-.answer-box .letter{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--ok);color:#fff;margin-left:8px}
-footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
-@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}.pg{padding:0;max-width:none}header{padding:20px 24px}.question{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+header h1{margin:4px 0;font-size:24px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5;font-size:13px}
+.stat{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 16px;margin:16px 0 14px}
+.stat .r{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;color:var(--dk)}
+.bar{height:8px;background:var(--bd);border-radius:5px;margin-top:7px;overflow:hidden}.bar div{height:100%;background:var(--ac);width:0;transition:width .3s}
+.res{background:var(--dk);color:#fff;border-radius:10px;padding:18px 22px;margin-bottom:14px;display:none}
+.res h2{margin:0;font-size:30px;font-weight:700}.res p{margin:4px 0 0;font-weight:300;font-size:13px}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.q.ok{border-left:5px solid var(--ok)}.q.no{border-left:5px solid var(--no)}.q.na{border-left:5px solid #b9a24a}
+.q h3{margin:0 0 9px;font-size:14px;font-weight:600;color:var(--dk)}.q h3 span{color:var(--ac);margin-right:6px}
+.o{display:flex;gap:9px;align-items:flex-start;width:100%;text-align:left;background:var(--lg);border:1.5px solid var(--bd);color:var(--tx);border-radius:8px;padding:8px 11px;margin:6px 0;font:400 13.5px/1.45 Poppins,sans-serif;cursor:pointer}
+.o b{min-width:20px;color:var(--bl)}.o:hover:not(:disabled){border-color:var(--ac)}.o.sel{background:var(--pl);border-color:var(--ac)}
+.o.c{background:var(--okb);border-color:var(--ok)}.o.w{background:var(--nob);border-color:var(--no)}.o:disabled{cursor:default}
+.key{margin-top:8px;padding:8px 11px;border-radius:6px;font-size:12.5px;font-weight:500}
+.key.ok{background:var(--okb);color:var(--ok)}.key.no{background:var(--nob);color:var(--no)}.key.na{background:var(--lg);color:var(--dk)}
+.empty{background:var(--pl);border:1px dashed var(--ac);border-radius:10px;padding:30px;text-align:center;color:var(--dk)}
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;justify-content:center;z-index:9}
+.dock button{font:600 13px Poppins,sans-serif;border-radius:8px;padding:10px 22px;cursor:pointer;border:1.5px solid var(--ac)}
+#sub{background:var(--ac);color:#fff}#rst{background:var(--card);color:var(--ac)}.dock button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:520px){header h1{font-size:20px}}
 </style>
 <link rel="stylesheet" href="common.css">
 </head>
@@ -36,242 +40,113 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 <div class="pg">
 <header>
 <small>NPTEL · Cloud Computing · IIT Kharagpur</small>
-<h1>Cloud Computing – Week 1 Practice Set</h1>
-<p>20 MCQs with answers and explanation-ready key</p>
+<h1>Practice Set: Week 1</h1>
+<p>20 questions · 1 mark each · select answers and submit</p>
 </header>
 
-<nav>
-<a href="#q1-10">Section A: Questions 1–10</a>
-<a href="#q11-20">Section B: Questions 11–20</a>
-</nav>
-
-<h2 id="q1-10"><span>1</span>Questions 1–10</h2>
-
-<div class="question">
-<p><strong>Q1.</strong> Which of the following best represents the meaning of resource pooling in cloud computing?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Every customer receives a permanently dedicated physical server.</li>
-<li><b>B.</b> Computing resources are dynamically assigned to multiple customers using a shared infrastructure.</li>
-<li><b>C.</b> Resources can only be accessed from a local network.</li>
-<li><b>D.</b> Users must manually allocate hardware before using cloud services.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
+<div class="stat">
+<div class="r"><span id="st1">0 / 20 answered</span><span id="st2">Progress 0%</span></div>
+<div class="bar"><div id="pb"></div></div>
 </div>
-
-<div class="question">
-<p><strong>Q2.</strong> A startup rents virtual servers on Amazon EC2. The team installs and patches its own operating system, configures the web server, and manages the runtime and applications itself. The provider supplies only the virtualized compute, storage, and networking. This is best classified as:</p>
-<ol class="options" type="A">
-<li><b>A.</b> SaaS</li>
-<li><b>B.</b> PaaS</li>
-<li><b>C.</b> IaaS</li>
-<li><b>D.</b> FaaS</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">C</span></div>
+<div class="res" id="res"></div>
+<div id="qs"></div>
 </div>
+<div class="dock"><button id="rst">↻ Reset Week</button><button id="sub">Submit Week</button></div>
+<script>
+const Q = [
+"Which of the following best represents the meaning of resource pooling in cloud computing?|Every customer receives a permanently dedicated physical server.|Computing resources are dynamically assigned to multiple customers using a shared infrastructure.|Resources can only be accessed from a local network.|Users must manually allocate hardware before using cloud services.|B",
+"A startup rents virtual servers on Amazon EC2. The team installs and patches its own operating system, configures the web server, and manages the runtime and applications itself. The provider supplies only the virtualized compute, storage, and networking. This is best classified as:|SaaS|PaaS|IaaS|FaaS|C",
+"Which deployment model allows an organization to maintain cloud infrastructure exclusively for its own use, either on-premises or hosted by a third party?|Public Cloud|Hybrid Cloud|Community Cloud|Private Cloud|D",
+"Virtualization technology allows multiple virtual machines (VMs) to run on a single physical system or on a cluster of physical systems. Which of the following statements is the MOST accurate?|Each VM always shares the same operating system kernel with the host OS.|Multiple VMs can run different operating systems on the same physical machine simultaneously.|Virtualization is only possible in cloud computing environments.|Virtualization prevents resource overcommitment on the host system.|B",
+"Consider the following statements about distributed systems (DS): (i) DS can improve scalability by adding more nodes to the system. (ii) DS can increase fault tolerance through data and service replication. (iii) DS guarantees lower latency for every single operation compared to a centralized system. Choose the MOST APPROPRIATE option:|(i) and (ii)|(Only (iii))|(i) and (iii)|(i), (ii), and (iii)|A",
+"The combination of Service-Oriented Architecture (SOA) and Cloud Computing led to a paradigm where almost any IT capability can be delivered as a network-accessible service. This is often referred to as:|FTP|SNTP|XaaS|FaaS|C",
+"Which of the following correctly describes a Type-2 (hosted) hypervisor?|It runs directly on the physical hardware without any underlying operating system.|It runs as an application on top of a host operating system.|It always provides lower virtualization overhead than a Type-1 hypervisor.|It cannot run more than one virtual machine at a time.|B",
+"Which of the following are advantages of Platform-as-a-Service (PaaS)? (i) Developers can focus primarily on application development. (ii) Automatic software updates for the underlying platform. (iii) Complete control over physical server hardware. (iv) Faster application deployment.|(i), (ii), and (iv)|(ii) and (iii)|(i) and (iii)|(i), (ii), (iii), and (iv)|A",
+"Which of the following services is most likely to be classified as Infrastructure as a Service (IaaS)?|Microsoft Word Online|Amazon EC2 Virtual Machines|Google Docs|Salesforce CRM|B",
+"A __________ is a form of distributed computing in which a large number of geographically dispersed and often heterogeneous resources across multiple administrative domains are loosely coupled and coordinated to work together on a common, large-scale task.|Cluster|Grid|Node|Hypervisor|B",
+"Which of the following is NOT one of the five essential characteristics of cloud computing defined by NIST?|On-demand self-service|Broad network access|Resource pooling|Dedicated physical hardware for every customer|D",
+"Which of the following correctly represents the order of computing paradigms discussed in the course?|Distributed → Cluster → Grid → Utility → Cloud|Distributed → Grid → Cluster → Utility → Cloud|Grid → Distributed → Cluster → Cloud → Utility|Cluster → Distributed → Grid → Cloud → Utility|B",
+"Which of the following is the BEST description of rapid elasticity in cloud computing?|Resources are permanently allocated to each customer.|Resources can be rapidly provisioned and released according to demand.|Users must manually purchase physical servers whenever demand increases.|Resources can only be increased but never decreased.|B",
+"A cloud provider serves multiple customers using a common pool of computing resources while dynamically assigning resources according to demand. This concept is known as:|Resource pooling|Vertical scaling|Dedicated hosting|Single system image|A",
+"Which of the following correctly distinguishes vertical scaling from horizontal scaling?|Vertical scaling adds more machines, while horizontal scaling increases the capacity of one machine.|Vertical scaling increases resources of a single computation unit, while horizontal scaling adds more computation units.|Both methods require increasing resources of the same physical machine.|Horizontal scaling means replacing software with hardware.|B",
+"In a three-tier client–server architecture, which tier is responsible for coordinating the application, processing commands, making logical decisions, and performing calculations?|Presentation tier|Logic tier|Data tier|Physical tier|B",
+"Which statement correctly describes the difference between SaaS, PaaS, and IaaS?|SaaS provides fundamental infrastructure, PaaS provides physical servers, and IaaS provides only applications.|SaaS allows users to use applications, PaaS allows developers to deploy applications, and IaaS provides fundamental computing resources.|SaaS and PaaS are identical, while IaaS is only used for networking.|IaaS provides applications, while SaaS provides virtual machines.|B",
+"A company needs additional computing capacity only when its private cloud becomes overloaded and wants to release those resources when the workload decreases. Which concept is most appropriate?|Cloud bursting|Virtual LAN|Single system image|Dedicated hosting|A",
+"Which of the following BEST describes Network Function Virtualization (NFV)?|Replacing software-based network functions with dedicated physical appliances.|Implementing network functions as software running on standard server hardware.|Restricting network functions to one physical location.|Providing every network function with a separate physical server.|B",
+"Which statement about cloud networking and service models is CORRECT?|As the level of abstraction increases, the customer generally manages more physical network layers.|In SaaS, the customer is responsible for managing the physical and data-link layers.|As the cloud service model becomes more abstract, the provider generally handles more layers.|IaaS completely removes the customer's responsibility for operating systems and applications.|C"
+];
 
-<div class="question">
-<p><strong>Q3.</strong> Which deployment model allows an organization to maintain cloud infrastructure exclusively for its own use, either on-premises or hosted by a third party?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Public Cloud</li>
-<li><b>B.</b> Hybrid Cloud</li>
-<li><b>C.</b> Community Cloud</li>
-<li><b>D.</b> Private Cloud</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">D</span></div>
-</div>
+const state = new Array(Q.length).fill(null);
+let submitted = false;
 
-<div class="question">
-<p><strong>Q4.</strong> Virtualization technology allows multiple virtual machines (VMs) to run on a single physical system or on a cluster of physical systems. Which of the following statements is the MOST accurate?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Each VM always shares the same operating system kernel with the host OS.</li>
-<li><b>B.</b> Multiple VMs can run different operating systems on the same physical machine simultaneously.</li>
-<li><b>C.</b> Virtualization is only possible in cloud computing environments.</li>
-<li><b>D.</b> Virtualization prevents resource overcommitment on the host system.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
+const qs = document.getElementById('qs');
+const res = document.getElementById('res');
+const st1 = document.getElementById('st1');
+const st2 = document.getElementById('st2');
+const pb = document.getElementById('pb');
 
-<div class="question">
-<p><strong>Q5.</strong> Consider the following statements about distributed systems (DS):</p>
-<p>(i) DS can improve scalability by adding more nodes to the system.<br>(ii) DS can increase fault tolerance through data and service replication.<br>(iii) DS guarantees lower latency for every single operation compared to a centralized system.</p>
-<ol class="options" type="A">
-<li><b>A.</b> (i) and (ii)</li>
-<li><b>B.</b> Only (iii)</li>
-<li><b>C.</b> (i) and (iii)</li>
-<li><b>D.</b> (i), (ii), and (iii)</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">A</span></div>
-</div>
+function renderQuestions(){
+  qs.innerHTML = '';
+  Q.forEach((item, idx) => {
+    const [question, a, b, c, d, answer] = item.split('|');
+    const qWrap = document.createElement('div');
+    qWrap.className = 'q';
+    qWrap.innerHTML = `
+      <h3><span>Q${idx + 1}</span>${question}</h3>
+      <button class="o ${(state[idx] === 'A') ? 'sel' : ''} ${(submitted && answer === 'A') ? 'c' : ''} ${(submitted && state[idx] === 'A' && answer !== 'A') ? 'w' : ''}" data-index="${idx}" data-opt="A" ${submitted ? 'disabled' : ''}><b>A.</b>${a}</button>
+      <button class="o ${(state[idx] === 'B') ? 'sel' : ''} ${(submitted && answer === 'B') ? 'c' : ''} ${(submitted && state[idx] === 'B' && answer !== 'B') ? 'w' : ''}" data-index="${idx}" data-opt="B" ${submitted ? 'disabled' : ''}><b>B.</b>${b}</button>
+      <button class="o ${(state[idx] === 'C') ? 'sel' : ''} ${(submitted && answer === 'C') ? 'c' : ''} ${(submitted && state[idx] === 'C' && answer !== 'C') ? 'w' : ''}" data-index="${idx}" data-opt="C" ${submitted ? 'disabled' : ''}><b>C.</b>${c}</button>
+      <button class="o ${(state[idx] === 'D') ? 'sel' : ''} ${(submitted && answer === 'D') ? 'c' : ''} ${(submitted && state[idx] === 'D' && answer !== 'D') ? 'w' : ''}" data-index="${idx}" data-opt="D" ${submitted ? 'disabled' : ''}><b>D.</b>${d}</button>
+      ${submitted ? `<div class="key ${(state[idx] === answer) ? 'ok' : 'no'}">${(state[idx] === answer) ? 'Correct' : 'Incorrect'} · Correct answer: ${answer}</div>` : ''}
+    `;
+    qs.appendChild(qWrap);
+  });
 
-<div class="question">
-<p><strong>Q6.</strong> The combination of Service-Oriented Architecture (SOA) and Cloud Computing led to a paradigm where almost any IT capability can be delivered as a network-accessible service. This is often referred to as:</p>
-<ol class="options" type="A">
-<li><b>A.</b> FTP</li>
-<li><b>B.</b> SNTP</li>
-<li><b>C.</b> XaaS</li>
-<li><b>D.</b> FaaS</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">C</span></div>
-</div>
+  document.querySelectorAll('.o').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (submitted) return;
+      const idx = Number(btn.dataset.index);
+      const opt = btn.dataset.opt;
+      state[idx] = state[idx] === opt ? null : opt;
+      renderQuestions();
+      updateProgress();
+    });
+  });
 
-<div class="question">
-<p><strong>Q7.</strong> Which of the following correctly describes a Type-2 (hosted) hypervisor?</p>
-<ol class="options" type="A">
-<li><b>A.</b> It runs directly on the physical hardware without any underlying operating system.</li>
-<li><b>B.</b> It runs as an application on top of a host operating system.</li>
-<li><b>C.</b> It always provides lower virtualization overhead than a Type-1 hypervisor.</li>
-<li><b>D.</b> It cannot run more than one virtual machine at a time.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
+  updateProgress();
+}
 
-<div class="question">
-<p><strong>Q8.</strong> Which of the following are advantages of Platform-as-a-Service (PaaS)?</p>
-<p>(i) Developers can focus primarily on application development.<br>(ii) Automatic software updates for the underlying platform.<br>(iii) Complete control over physical server hardware.<br>(iv) Faster application deployment.</p>
-<ol class="options" type="A">
-<li><b>A.</b> (i), (ii), and (iv)</li>
-<li><b>B.</b> (ii) and (iii)</li>
-<li><b>C.</b> (i) and (iii)</li>
-<li><b>D.</b> (i), (ii), (iii), and (iv)</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">A</span></div>
-</div>
+function updateProgress(){
+  const answered = state.filter(v => v !== null).length;
+  const pct = Math.round((answered / Q.length) * 100);
+  st1.textContent = `${answered} / ${Q.length} answered`;
+  st2.textContent = `Progress ${pct}%`;
+  pb.style.width = pct + '%';
+}
 
-<div class="question">
-<p><strong>Q9.</strong> Which of the following services is most likely to be classified as Infrastructure as a Service (IaaS)?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Microsoft Word Online</li>
-<li><b>B.</b> Amazon EC2 Virtual Machines</li>
-<li><b>C.</b> Google Docs</li>
-<li><b>D.</b> Salesforce CRM</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
+function submitWeek(){
+  submitted = true;
+  const correct = state.reduce((count, chosen, idx) => {
+    const answer = Q[idx].split('|')[5];
+    return count + (chosen === answer ? 1 : 0);
+  }, 0);
 
-<div class="question">
-<p><strong>Q10.</strong> A __________ is a form of distributed computing in which a large number of geographically dispersed and often heterogeneous resources across multiple administrative domains are loosely coupled and coordinated to work together on a common, large-scale task.</p>
-<ol class="options" type="A">
-<li><b>A.</b> Cluster</li>
-<li><b>B.</b> Grid</li>
-<li><b>C.</b> Node</li>
-<li><b>D.</b> Hypervisor</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
+  const pct = Math.round((correct / Q.length) * 100);
+  res.style.display = 'block';
+  res.innerHTML = `<h2>${correct}/${Q.length}</h2><p>You scored ${pct}% on Cloud Computing Week 1.</p>`;
+  renderQuestions();
+}
 
-<h2 id="q11-20"><span>2</span>Questions 11–20</h2>
+function resetWeek(){
+  submitted = false;
+  state.fill(null);
+  res.style.display = 'none';
+  renderQuestions();
+}
 
-<div class="question">
-<p><strong>Q11.</strong> Which of the following is NOT one of the five essential characteristics of cloud computing defined by NIST?</p>
-<ol class="options" type="A">
-<li><b>A.</b> On-demand self-service</li>
-<li><b>B.</b> Broad network access</li>
-<li><b>C.</b> Resource pooling</li>
-<li><b>D.</b> Dedicated physical hardware for every customer</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">D</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q12.</strong> Which of the following correctly represents the order of computing paradigms discussed in the course?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Distributed → Cluster → Grid → Utility → Cloud</li>
-<li><b>B.</b> Distributed → Grid → Cluster → Utility → Cloud</li>
-<li><b>C.</b> Grid → Distributed → Cluster → Cloud → Utility</li>
-<li><b>D.</b> Cluster → Distributed → Grid → Cloud → Utility</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q13.</strong> Which of the following is the BEST description of rapid elasticity in cloud computing?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Resources are permanently allocated to each customer.</li>
-<li><b>B.</b> Resources can be rapidly provisioned and released according to demand.</li>
-<li><b>C.</b> Users must manually purchase physical servers whenever demand increases.</li>
-<li><b>D.</b> Resources can only be increased but never decreased.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q14.</strong> A cloud provider serves multiple customers using a common pool of computing resources while dynamically assigning resources according to demand. This concept is known as:</p>
-<ol class="options" type="A">
-<li><b>A.</b> Resource pooling</li>
-<li><b>B.</b> Vertical scaling</li>
-<li><b>C.</b> Dedicated hosting</li>
-<li><b>D.</b> Single system image</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">A</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q15.</strong> Which of the following correctly distinguishes vertical scaling from horizontal scaling?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Vertical scaling adds more machines, while horizontal scaling increases the capacity of one machine.</li>
-<li><b>B.</b> Vertical scaling increases resources of a single computation unit, while horizontal scaling adds more computation units.</li>
-<li><b>C.</b> Both methods require increasing resources of the same physical machine.</li>
-<li><b>D.</b> Horizontal scaling means replacing software with hardware.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q16.</strong> In a three-tier client–server architecture, which tier is responsible for coordinating the application, processing commands, making logical decisions, and performing calculations?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Presentation tier</li>
-<li><b>B.</b> Logic tier</li>
-<li><b>C.</b> Data tier</li>
-<li><b>D.</b> Physical tier</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q17.</strong> Which statement correctly describes the difference between SaaS, PaaS, and IaaS?</p>
-<ol class="options" type="A">
-<li><b>A.</b> SaaS provides fundamental infrastructure, PaaS provides physical servers, and IaaS provides only applications.</li>
-<li><b>B.</b> SaaS allows users to use applications, PaaS allows developers to deploy applications, and IaaS provides fundamental computing resources.</li>
-<li><b>C.</b> SaaS and PaaS are identical, while IaaS is only used for networking.</li>
-<li><b>D.</b> IaaS provides applications, while SaaS provides virtual machines.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q18.</strong> A company needs additional computing capacity only when its private cloud becomes overloaded and wants to release those resources when the workload decreases. Which concept is most appropriate?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Cloud bursting</li>
-<li><b>B.</b> Virtual LAN</li>
-<li><b>C.</b> Single system image</li>
-<li><b>D.</b> Dedicated hosting</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">A</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q19.</strong> Which of the following BEST describes Network Function Virtualization (NFV)?</p>
-<ol class="options" type="A">
-<li><b>A.</b> Replacing software-based network functions with dedicated physical appliances.</li>
-<li><b>B.</b> Implementing network functions as software running on standard server hardware.</li>
-<li><b>C.</b> Restricting network functions to one physical location.</li>
-<li><b>D.</b> Providing every network function with a separate physical server.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">B</span></div>
-</div>
-
-<div class="question">
-<p><strong>Q20.</strong> Which statement about cloud networking and service models is CORRECT?</p>
-<ol class="options" type="A">
-<li><b>A.</b> As the level of abstraction increases, the customer generally manages more physical network layers.</li>
-<li><b>B.</b> In SaaS, the customer is responsible for managing the physical and data-link layers.</li>
-<li><b>C.</b> As the cloud service model becomes more abstract, the provider generally handles more layers.</li>
-<li><b>D.</b> IaaS completely removes the customer's responsibility for operating systems and applications.</li>
-</ol>
-<div class="answer-box">Final Answer: <span class="letter">C</span></div>
-</div>
-
-<footer>Week 1 · Cloud Computing Practice Set</footer>
-</div>
+document.getElementById('sub').addEventListener('click', submitWeek);
+document.getElementById('rst').addEventListener('click', resetWeek);
+renderQuestions();
+</script>
 </body>
 </html>
