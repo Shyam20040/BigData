@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing – Week 2 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:10px 0}.two .box{margin:0}
+pre{background:#0A2647;color:#e6f0fb;font:12px/1.5 "DejaVu Sans Mono",monospace;border-radius:6px;padding:10px 14px;overflow-x:auto;margin:10px 0;white-space:pre}
+@media print{body{font-size:10.5px;line-height:1.5}table{font-size:10px}td,th{padding:4px 6px}h2{margin:20px 0 8px;font-size:17px}h3{margin:12px 0 4px;font-size:13px;break-after:avoid}.box{padding:7px 11px;margin:8px 0;font-size:11px}.grid div{padding:6px 9px;font-size:11px}.flow div{font-size:10.5px;padding:5px}header{padding:20px 24px}header h1{font-size:23px}pre{font-size:9.5px;padding:7px 10px;white-space:pre-wrap}table{break-inside:auto}tr{break-inside:avoid}.tbl{break-inside:auto}td:first-child{white-space:normal}}
+</style></head><body><div class="pg">
+
+<header><small>NPTEL · Cloud Computing · IIT Kharagpur (Prof. Soumya K. Ghosh)</small>
+<h1>Deployment Models, Virtualization, XML &amp; Web Services</h1>
+<p>Week 2 consolidated study guide</p></header>
+
+<nav><a href="#s1">1 Deployment Models</a><a href="#s2">2 IaaS Architecture</a><a href="#s3">3 Virtualization</a><a href="#s4">4 Network Virtualization</a><a href="#s5">5 XML Basics</a><a href="#s6">6 DTD, Schema, Namespaces</a><a href="#s7">7 XML Processing</a><a href="#s8">8 Web Services &amp; SOA</a><a href="#s9">9 SOAP, WSDL, UDDI</a><a href="#s10">10 Revision</a></nav>
+
+<h2 id="s1"><span>1</span>Cloud Deployment Models</h2>
+<div class="flow"><div><b>Public</b>open to the general public</div><i>|</i><div><b>Private</b>one organization</div><i>|</i><div><b>Community</b>shared concerns</div><i>|</i><div><b>Hybrid</b>two or more clouds</div></div>
+<div class="tbl"><table><tr><th>Model</th><th>Definition</th><th>Examples</th></tr>
+<tr><td>Public</td><td>Infrastructure provisioned for <b>open use by the general public</b>; owned, managed and operated by a business, academic or government organization (or a combination); exists <b>on the premises of the provider</b>.</td><td>Google App Engine, Windows Azure, IBM SmartCloud, Amazon EC2</td></tr>
+<tr><td>Private</td><td>Provisioned for <b>exclusive use by a single organization</b> comprising multiple consumers (e.g. business units); owned/managed by the organization, a third party or both; may be on or off premises.</td><td>Eucalyptus, Ubuntu Enterprise Cloud (UEC), Amazon VPC, VMware Cloud Infrastructure Suite, Microsoft ECI data center</td></tr>
+<tr><td>Community</td><td>Provisioned for exclusive use by a specific community of consumers from organizations with <b>shared concerns</b> (mission, security requirements, policy, compliance); owned/managed by one or more members, a third party or both; on or off premises.</td><td>Google Apps for Government, Microsoft Government Community Cloud</td></tr>
+<tr><td>Hybrid</td><td>Composition of <b>two or more distinct clouds</b> (private, community or public) that remain unique entities but are bound by standardized or proprietary technology enabling <b>data and application portability</b>.</td><td>Windows Azure (hybrid-capable), VMware vCloud</td></tr></table></div>
+<div class="box"><b class="t">Key subtlety</b>Contrary to popular belief a private cloud may exist <b>off premises</b> and be managed by a third party. Hence two private scenarios: <b>on-site private</b> (at the customer's premises) and <b>outsourced private</b> (server side outsourced to a hosting company). Community clouds likewise split into on-site and outsourced.</div>
+<h3>Public cloud: characteristics and issues</h3>
+<ul><li><b>Resources and clients:</b> provider resources potentially very large; links over the public Internet; a diverse pool of clients (and possibly attackers).</li>
+<li><b>Hidden workload locations:</b> provider may migrate workload or data at any time (e.g. to cheaper data centres) unless it offers optional location-restriction policies.</li>
+<li><b>Multi-tenancy risk:</b> a machine may be shared by competitors or adversaries, giving reliability and security risk.</li>
+<li><b>Network dependency:</b> access depends on Internet infrastructure (DNS servers, routers, inter-router links).</li>
+<li><b>Limited visibility and control:</b> provider operations and software are proprietary; a subscriber cannot verify that data was completely deleted.</li>
+<li><b>Elasticity:</b> illusion of unlimited resources; flexible workload movement. <b>Low up-front cost</b> of migration. <b>Restrictive default SLAs</b> (limited promises).</li></ul>
+<h3>Comparison of private, community and hybrid scenarios</h3>
+<div class="tbl"><table><tr><th>Aspect</th><th>On-site private</th><th>Outsourced private</th><th>On-site community</th><th>Outsourced community</th></tr>
+<tr><td>Security perimeter</td><td>One perimeter around subscriber and cloud resources; gives control but no guarantee over cloud resources</td><td><b>Two perimeters</b> (subscriber and provider) joined by a protected link; security depends on both and the link</td><td>Each member has a perimeter; boundary controllers link them; optional inner perimeter</td><td>Provider perimeter plus members' perimeters; multiple protected links</td></tr>
+<tr><td>Network dependency / data transfer</td><td>Bulk import/export limited by own network capacity</td><td>Limited by provider–subscriber link; can be improved (not eliminated) with high-performance links</td><td>Needs controlled inter-site links or cryptography over public Internet; similar limits to outsourced private</td><td>Like outsourced private, but multiple links</td></tr>
+<tr><td>IT skills</td><td>Traditional plus cloud IT skills still needed</td><td>—</td><td>Providers need skills like on-site private, at higher level (complex identity and access control)</td><td>—</td></tr>
+<tr><td>Up-front cost</td><td><b>Significant-to-high</b> (install and manage cloud software even if free)</td><td><b>Modest-to-significant</b> (SLA negotiation, network upgrade, porting, training)</td><td><b>Highly variable</b>: consumer only vs also provider (provider ≈ on-site private)</td><td>Same as outsourced private</td></tr>
+<tr><td>Resources</td><td><b>Limited</b>: fixed capacity sized to anticipated workload and budget</td><td><b>Extensive</b>: rent any quantity offered</td><td>—</td><td>Extensive (as outsourced private)</td></tr>
+<tr><td>Security from external threats</td><td>Potentially strong, as for non-cloud resources</td><td>Must harden both perimeters and protect the link</td><td>Depends on all members' perimeters and links</td><td>As on-site community</td></tr></table></div>
+<ul><li><b>Multi-tenancy</b> in private clouds: workloads of different clients share systems and networks, separated only by access policies; a software or policy flaw can expose them to each other.</li>
+<li><b>Community access policy</b> may be complex: with N members, each must decide how to share its local resources with the others. Policy techniques: <b>role-based access control (RBAC)</b>, attribute-based access control. At least one member must provide cloud services; others may only consume.</li>
+<li><b>Hybrid:</b> performance, reliability and security vary with the clouds chosen; can be <b>extremely complex</b>, and constituent clouds may join and leave over time.</li></ul>
+
+<h2 id="s2"><span>2</span>IaaS in Depth</h2>
+<p><b>What a subscriber gets:</b> virtual computers, network-accessible storage, network components such as firewalls, and configuration services. <b>Fees</b> are typically per CPU-hour, GB stored per hour, bandwidth consumed, network infrastructure used (e.g. IP addresses) per hour, and value-added services (monitoring, automatic scaling).</p>
+<p><b>Interaction:</b> the provider holds a pool of VMs (vm1…vmN) and allocates them to clients (e.g. A gets vm1–vm2, B gets vm3, C gets vm4–vm6); the provider retains the rest.</p>
+<h3>Scope of control</h3>
+<div class="tbl"><table><tr><th>Layer</th><th>Provider</th><th>Subscriber</th></tr>
+<tr><td>Application, Middleware, Guest OS</td><td>No control</td><td><b>Total control</b> (free to load any supported OS into the VM)</td></tr>
+<tr><td>Hypervisor (VMM)</td><td><b>Administrative control</b></td><td>Makes requests only</td></tr>
+<tr><td>Hardware</td><td><b>Total control</b></td><td>No control</td></tr></table></div>
+<p>The OS layer splits into two: the lower, more privileged <b>hypervisor/VMM</b> and the higher <b>guest OS</b> running in a VM. A hypervisor synthesizes VMs, each "an efficient, isolated duplicate of a real machine"; the subscriber administers the VM (power on/off, peripherals) by commands over the network.</p>
+<h3>Logical IaaS cloud architecture: three-level hierarchy</h3>
+<div class="flow"><div><b>Cloud Manager</b>top level; central control</div><i>→</i><div><b>Cluster Managers</b>middle level; manage clusters (may be geographically distant)</div><i>→</i><div><b>Computer Managers</b>bottom level; run hosts that create VMs</div></div>
+<p>Subscriber queries and commands enter at the top and flow down. Within a cluster, computer managers are connected by a high-speed network (LAN); cluster managers connect over a WAN.</p>
+<div class="tbl"><table><tr><th>Component</th><th>Role</th></tr>
+<tr><td>Cloud Manager</td><td>Public access point: subscribers sign up, manage rented resources and access stored data. Authenticates subscribers, generates/validates access credentials for VMs, does top-level resource management, and decides whether free resources can satisfy a request.</td></tr>
+<tr><td>Data Object Storage (DOS)</td><td>Stores subscriber metadata such as user credentials and OS images; usually a single service per cloud.</td></tr>
+<tr><td>Cluster Manager</td><td>Runs a collection of computers on high-speed LANs. Receives allocation commands and queries from the Cloud Manager, calculates whether the cluster can satisfy them, queries Computer Managers for availability, then (as directed) instructs them to allocate and reconfigures the virtual network for uniform subscriber access. Connected to <b>Persistent Local Storage (PLS)</b>, which gives VMs persistent disk-like storage.</td></tr>
+<tr><td>Computer Manager</td><td>Runs on each computer; uses virtualization to provide VMs; tracks how many VMs run and can still start; uses the hypervisor's command interface to start, stop, suspend and reconfigure VMs.</td></tr></table></div>
+
+<h2 id="s3"><span>3</span>Virtualization</h2>
+<div class="box def"><b class="t">Definition</b>Virtualization (broad: memory, storage, network…) lets one computer do the job of several by <b>sharing a single hardware platform across multiple environments</b>. Focus here: <b>platform virtualization</b>. A non-virtualized system has one OS controlling all hardware; a virtualized system adds a <b>virtualization layer</b> so several virtual containers (each with OS and apps) run on one physical platform.</div>
+<p><b>Different from dual-boot:</b> both OSes run <b>simultaneously</b> and are completely isolated (e.g. Windows and Linux on one laptop).</p>
+<h3>Hypervisor / VMM and Popek–Goldberg</h3>
+<p>A hypervisor runs the guest OS directly on the CPU (works only if guest and host share the instruction set). The guest runs in user mode, so privileged instructions must be intercepted or replaced. Popek and Goldberg (CACM 1974) set three goals:</p>
+<div class="grid"><div><b>Equivalence</b>: VM indistinguishable from the underlying hardware</div><div><b>Resource control</b>: VM in complete control of virtualized resources</div><div><b>Efficiency</b>: most VM instructions run directly on the CPU without the hypervisor</div></div>
+<ul><li><b>Privileged instructions</b> trap if executed in user mode. <b>Sensitive instructions</b> change underlying resources (I/O, page tables) or reveal the privilege level; they are <b>control sensitive</b> or <b>behavior sensitive</b>.</li>
+<li><b>Theorem:</b> a VMM can be constructed for a conventional third-generation computer if the set of sensitive instructions is a <b>subset of the privileged instructions</b>; then most instructions run directly and sensitive ones trap to the hypervisor, which emulates them. It is <b>recursively virtualizable</b> if virtualizable and a VMM without timing dependencies can be built.</li>
+<li>Xen example: Domain 0 (privileged, device drivers) and Domain U (guest, split device drivers) on the Xen hypervisor over hardware.</li></ul>
+<h3>Approaches to server virtualization</h3>
+<div class="flow"><div><b>1st gen: Full</b>binary rewriting; software based (VMware, Microsoft)</div><i>→</i><div><b>2nd gen: Para</b>cooperative; modified guest (VMware, Xen)</div><i>→</i><div><b>3rd gen: Hardware-assisted</b>silicon-based; unmodified guest (VMware, Xen on virtualization-aware hardware)</div></div>
+<div class="tbl"><table><tr><th></th><th>Full virtualization</th><th>Para-virtualization</th><th>Hardware-assisted</th></tr>
+<tr><td>How</td><td>Dynamic binary translation; emulation layer between guest and host OS; <b>all hardware, including CPU, emulated</b>. Guest unaware. Emulators: QEMU, Bochs</td><td>Guest OS <b>modified</b>, uses a <b>specialized API</b> to talk to the VMM, which handles requests and passes them to hardware</td><td>VMM uses processor extensions (<b>Intel VT, AMD-V</b>) to intercept and emulate privileged operations; a Virtual-1 ring is created</td></tr>
+<tr><td>Rings</td><td>Guest OS at Ring 1/3, VMM at Ring 0 (traditional x86: OS Ring 0, apps Ring 3)</td><td>Guest kernel operations at Ring 1 (or 3); no privileged-instruction translation needed</td><td>Guest OS runs at <b>Ring 0</b>; VMM in a more privileged ring</td></tr>
+<tr><td>Pros</td><td>Isolates VMs from host and each other; stops an unstable VM harming others; <b>total VM portability</b> across dissimilar hosts (Dell to HP); can run OS built for another architecture</td><td>Better performance; guest knows how to handle privileged instructions</td><td>Runs <b>unmodified OSs</b> (legacy); speed and flexibility</td></tr>
+<tr><td>Cons</td><td><b>Performance price</b> of emulation (trap and emulate)</td><td>Needs modified OS (recompiled kernel): Novell provides builds, Microsoft does not. Alternative: para-virtualized drivers for individual devices (network, graphics)</td><td>Unmodified OS is unaware it is virtualized and cannot exploit virtualization features (partly solved by para-virtualization)</td></tr></table></div>
+
+<h2 id="s4"><span>4</span>Network Virtualization</h2>
+<div class="box def"><b class="t">Definition</b>A networking environment that allows <b>multiple service providers to dynamically compose multiple heterogeneous virtual networks</b> that co-exist in isolation, deploy customized end-to-end services on the fly and manage them for end users, by sharing and using network resources <b>leased from multiple infrastructure providers</b>. Simply: making one physical network appear as multiple logical ones.</div>
+<p><b>Why:</b> the Internet is almost "paralyzed" by makeshift fixes (e.g. overlays); a clean-slate architecture is needed but a one-size-fits-all design is hard and the future is unpredictable, so build an open, expandable "all sizes fit into one" architecture and a testbed for future protocols.</p>
+<p><b>Related concepts:</b> VPN (connects distributed sites; not customizable enough) · active and programmable networks (customized functions, programmable interfaces) · overlay networks (application-layer virtual networks; not flexible enough).</p>
+<div class="two">
+<div class="box"><b class="t">Business model: players</b><b>Infrastructure Providers (InPs)</b> manage physical networks · <b>Service Providers (SPs)</b> create/manage virtual networks and deploy end-to-end services · <b>End users</b> buy services · <b>Brokers</b> mediate. Relationships via SLA, NPA, SIA, IIA, EIA.</div>
+<div class="box"><b class="t">Architecture</b>Physical nodes/links host virtual nodes/links of VN1, VN2… owned by SP1, SP2; supports <b>recursion</b> (child virtual network over a parent) and <b>revisitation</b> of virtual nodes.</div></div>
+<div class="tbl"><table><tr><th>Design principles</th><th>Effect</th></tr>
+<tr><td>Concurrence of multiple heterogeneous virtual networks</td><td>Introduces diversity</td></tr><tr><td>Recursion of virtual networks</td><td>Opens the door to network-virtualization economics</td></tr>
+<tr><td>Inheritance of architectural attributes</td><td>Promotes value addition</td></tr><tr><td>Revisitation of virtual nodes</td><td>Simplifies network operation and management</td></tr></table></div>
+<div class="tbl"><table><tr><th>Design goal</th><th>Meaning</th></tr>
+<tr><td>Flexibility</td><td>SPs choose any topology, routing/forwarding, control and data planes without coordinating with others ("IPv6 fiasco should never happen again")</td></tr>
+<tr><td>Manageability</td><td>Separate policy from mechanism; defined accountability of InPs and SPs; modular management</td></tr>
+<tr><td>Scalability</td><td>Maximize co-existing virtual networks; raise utilization and amortize CAPEX/OPEX</td></tr>
+<tr><td>Security, privacy, isolation</td><td>Complete logical and resource isolation; isolate faults, bugs, misconfigurations</td></tr>
+<tr><td>Programmability</td><td>Of network elements (routers); answers "how much" and "how"; safe from threats</td></tr>
+<tr><td>Heterogeneity</td><td>Of networking technologies (optical, sensor, wireless) and of virtual networks</td></tr>
+<tr><td>Experimental and deployment facility</td><td>PlanetLab, GENI, VINI; deploy services directly from the testing phase</td></tr>
+<tr><td>Legacy support</td><td>Treat the existing Internet as one of many virtual Internets</td></tr></table></div>
+<p><b>Typical approach:</b> networking technology (IP, ATM) · layer of virtualization (architectural domain: network resource management, spawning networks) · level of virtualization (node virtualization, full virtualization).</p>
+
+<h2 id="s5"><span>5</span>XML Basics</h2>
+<div class="box def"><b class="t">What is XML</b>eXtensible Markup Language: a syntax for <b>encoding text-based data</b>. <b>Text-based</b> (printable Unicode characters; no explicit binary data). <b>Extensible</b> (define your own elements within the syntax rules). <b>Universal format</b>: syntax rules ensure all XML software must handle a given piece of XML identically. "XML" has also come to mean a family of tools, standards and application dialects built on it. It descends from <b>SGML</b>, is supported by the W3C, separates <b>content from presentation</b>, and is designed to describe data.</div>
+<pre>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;      &lt;!-- XML declaration --&gt;
+&lt;partorders xmlns="http://myco.org/Spec/partorders"&gt;
+  &lt;order ref="x23-2112-2342" date="25aug1999-12:34:23h"&gt;
+    &lt;desc&gt; Gold sprocket grommets &lt;/desc&gt;
+    &lt;part number="23-23221-a12" /&gt;
+    &lt;quantity units="gross"&gt; 12 &lt;/quantity&gt;   &lt;!-- tags/element; units = attribute --&gt;
+  &lt;/order&gt;
+&lt;/partorders&gt;</pre>
+<ul><li><b>Data model is a tree:</b> hierarchical, structured; root <code>partorders</code> → <code>order</code> (attributes ref, date) → <code>desc</code> (text), <code>part</code>, <code>quantity</code>, <code>delivery-date</code>.</li>
+<li><b>Why it is this way:</b> simple, with <b>strict syntax rules</b> that eliminate errors; syntax defines hierarchical structure and names parts, so data is <b>self-describing</b>; extensible (unlike HTML, you create your own tags); designed for a distributed environment; different tag sets can be mixed and the result is still reliably processed.</li></ul>
+<div class="tbl"><table><tr><th>XML vs HTML</th><th>HTML</th><th>XML</th></tr>
+<tr><td>Purpose</td><td>Specifies <b>how data is displayed</b>, not what it contains</td><td>Marks up <b>what the information is</b>, not how to display it</td></tr>
+<tr><td>Readability</td><td>Easy for humans, hard for machines to extract</td><td>Readable by both humans and machines</td></tr>
+<tr><td>Tags</td><td>Predefined vocabulary</td><td>Not predefined; you define your own; enables cross-platform data exchange in Web Services</td></tr></table></div>
+<h3>Parser processing model</h3>
+<div class="flow"><div><b>XML data</b></div><i>→</i><div><b>Parser</b>(+ DTD)</div><i>→</i><div><b>Parser interface</b></div><i>↔</i><div><b>XML-based application</b></div></div>
+<ul><li>The parser must verify the data is syntactically correct, i.e. <b>well-formed</b>: the minimal requirement to "be" XML. If not well-formed it <b>MUST stop</b> and throw an exception (required by XML 1.0).</li>
+<li><b>Entities:</b> an <b>internal entity</b> (declared in the DOCTYPE with <code>&lt;!ENTITY name "…"&gt;</code>) encodes reusable markup, referenced as <code>&amp;name;</code>. An <b>external entity</b> lives in another file (<code>SYSTEM "URL"</code>) so multiple resources share it. The parser replaces every reference recursively and hands the resolved data to the application.</li>
+<li><b>Two parser types:</b> a <b>validating</b> parser must retrieve all entities, process all DTD content, check the document against the DTD's rules, and stop with a failure if it cannot. A <b>non-validating</b> parser tries to retrieve entities but stops DTD processing at the first one it cannot find; this is not an error, and it passes the data and unresolved entity names to the application. Many parsers support either mode.</li>
+<li><b>Characters:</b> XML restricts whitespace characters (e.g. EBCDIC NEL not allowed); characters outside the charset use <b>character references</b> (<code>&amp;#9824;</code> = Unicode character 9824, spades); binary data must be encoded as printable characters.</li></ul>
+
+<h2 id="s6"><span>6</span>Defining Dialects: DTD, Schema, Namespaces</h2>
+<div class="tbl"><table><tr><th></th><th>DTD</th><th>XML Schema</th></tr>
+<tr><td>Origin</td><td>Part of core XML spec (Document Type Declaration)</td><td>W3C specification (2001) for validation rules</td></tr>
+<tr><td>Syntax</td><td>Special DTD grammar</td><td><b>Pure XML</b></td></tr>
+<tr><td>Power</td><td>Allowed element/attribute names, nesting, content restrictions; <b>can declare entities</b></td><td>More powerful: types such as integers, date strings, real numbers in a range; used for type validation and relating database schemas to XML models; <b>cannot declare entities</b></td></tr></table></div>
+<ul><li><b>Well-formed:</b> syntactically correct. <b>Valid:</b> well-formed <b>and</b> consistent with a specific DTD or Schema.</li>
+<li>DTD can be internal (<code>&lt;!DOCTYPE transfers [ … ]&gt;</code> with <code>&lt;!ELEMENT …&gt;</code>, <code>&lt;!ATTLIST …&gt;</code>) or external (<code>&lt;!DOCTYPE transfers SYSTEM "http://…/simple.dtd"&gt;</code>; the file must exist and be accessible).</li></ul>
+<pre>&lt;!ELEMENT transfers (fundsTransfer)+ &gt;
+&lt;!ELEMENT fundsTransfer (from, to) &gt;
+&lt;!ATTLIST fundsTransfer date CDATA #REQUIRED&gt;
+&lt;!ELEMENT to EMPTY &gt;</pre>
+<div class="box"><b class="t">Namespaces</b>A mechanism identifying different "spaces" for element and attribute names, i.e. different language dialects, so <code>&lt;key/&gt;</code> as a security key differs from <code>&lt;key/&gt;</code> as a database key. Defined with the special <b>xmlns</b> attribute whose value is a URL; the URL need not reference anything. Namespaces let dialects be mixed, e.g. default space XHTML with <code>mt:</code> prefix for MathML.</div>
+
+<h2 id="s7"><span>7</span>XML Processing Tools &amp; Messaging</h2>
+<div class="tbl"><table><tr><th>Tool</th><th>Nature</th><th>Advantages</th><th>Disadvantages</th></tr>
+<tr><td>SAX (Simple API for XML)</td><td><b>Event-based</b>; parser reports events (tag, attribute, text, unresolved entity); programmer attaches handlers</td><td>Simple; <b>very fast</b>; <b>low memory</b> (no whole-document load); stream processing</td><td>You do everything yourself; poor for dynamic modification</td></tr>
+<tr><td>DOM (Document Object Model)</td><td><b>Object/tree-based</b>; builds in-memory tree with methods to access and modify it</td><td>Dynamic modification; querying by tree structure; same interface across languages (C++, Java…)</td><td>Slow, memory-hungry; awkward, not very object-oriented API</td></tr>
+<tr><td>JDOM</td><td>Java-specific object-oriented tree interface</td><td>Dynamic modification; much nicer OO interface than DOM</td><td>Slow, memory-hungry; new/not fully mature; Java only, not part of core Java</td></tr>
+<tr><td>dom4j</td><td>Java framework to read, write, navigate, edit XML; gives access to SAX, DOM, JDOM, XSLT, JAXP</td><td>Many features in one package; <b>mixed parsing</b> (SAX up to a point, rest as DOM tree); Apache open-source licence</td><td>Java only; open-source concerns</td></tr>
+<tr><td>XSLT (eXtensible Stylesheet Language – Transformations)</td><td>XML language for processing XML: takes XML plus a style sheet and produces a <b>new XML document with a different structure</b></td><td>Easier than DOM/SAX for tree transformations; can query a document</td><td>Slow for large documents/style sheets; hard to debug (better with schemas)</td></tr></table></div>
+<p><b>Benchmarks (summary):</b> SAX is faster, uses less memory and suits stream processing; DOM is slower, uses more memory and suits object/persistence processing; <b>non-validating is always faster than validating</b>. Parser examples: Xerces (C++, Apache), IBM XML toolkit, XML for C++, XMLBooster, XML4Cobol.</p>
+<p><b>XSLT model:</b> style sheet and XML data each go through an XML parser (with schema) into the XSLT processor, which outputs XML.</p>
+<h3>XML messaging</h3>
+<ul><li>Use XML as the message format between systems. <b>Advantages:</b> common, self-describing syntax (easier to parse); reuse existing transports (HTTP, HTTPS, SMTP, MQ, IIOP/CORBA, JMS).</li>
+<li><b>Requirements:</b> shared understanding of dialects (a registry/namespace to identify them) and shared acceptance of the messaging contract.</li>
+<li><b>Disadvantages:</b> asynchronous transport with no guarantee of delivery or that the partner accepts the contract; messages are about <b>10× larger</b> than binary (can compress).</li>
+<li><b>XML over HTTP:</b> HTTP POST with <code>Content-type: application/xml</code>. Wrapper standards: <b>XML-RPC</b> (simple encoding of a method name and parameters) and <b>SOAP</b> (more complex; schemas for interfaces, message handling/proxying; core of Microsoft .NET).</li></ul>
+
+<h2 id="s8"><span>8</span>Web Services &amp; SOA</h2>
+<div class="box def"><b class="t">Web service (W3C)</b>A software application identified by a <b>URI</b>, whose interfaces and bindings can be <b>defined, described and discovered as XML artifacts</b>. Revisited: a component that communicates via open protocols (HTTP, SMTP), processes <b>XML messages framed using SOAP</b>, describes messages with <b>XML Schema</b>, provides an endpoint description using <b>WSDL</b>, and can be discovered using <b>UDDI</b>.<br>Vendor views: Microsoft, programmable application logic via standard Internet protocols; IBM, an interface describing network-accessible operations through standardized XML messaging; Sun, components spontaneously discovered, combined and recombined to solve a request.</div>
+<p><b>History:</b> structured programming → object-oriented → distributed computing → EDI → World Wide Web → Web services.</p>
+<ul><li><b>Distributed computing:</b> N-tier applications (e.g. UI, business logic, database on three machines) need communicating components (DCE, CORBA, DCOM, RMI); <b>interoperability</b> across vendors/platforms is limited in proprietary technologies.</li>
+<li><b>EDI:</b> computer-to-computer exchange of business documents in standard formats agreed by both parties. Benefits: lower operating cost, fewer errors (no data entry), higher productivity, faster trading cycle. Web services give EDI-like capability that is <b>simpler and cheaper</b>, can work alongside EDI or let organizations phase it out.</li>
+<li><b>Web services:</b> build applications from existing components modularly (network as one library of components); open, <b>text-based</b> standards that are easier to debug than binary; separate visual from non-visual parts (browser or desktop client).</li></ul>
+<div class="tbl"><table><tr><th>Problem solved</th><th>How</th></tr>
+<tr><td>Interoperability</td><td>DCOM was bound to Windows, RMI to Java; open standards let any two components communicate</td></tr>
+<tr><td>Firewall traversal</td><td>CORBA/DCOM used non-standard ports; web services use HTTP (port 80), which most firewalls allow</td></tr>
+<tr><td>Complexity</td><td>Developer-friendly, text-based standards across languages/platforms; adopted <b>incrementally</b>, lowering cost and disruption</td></tr></table></div>
+<h3>Service-Oriented Architecture and the web service model</h3>
+<p>IBM's SOA is a generic model of service collaboration (not specific to web services) with three entities: <b>service provider, service requestor, service broker (registry)</b>.</p>
+<div class="flow"><div><b>Service Provider</b>owner and host of the service</div><i>→ Publish →</i><div><b>Service Registry</b>searchable service descriptions</div><i>← Find ←</i><div><b>Service Requestor</b>application invoking the service</div></div>
+<p>The requestor then <b>binds</b> directly to the provider at runtime. <b>Operations:</b> <b>Publish</b> (descriptions must be published so they can be found), <b>Find</b> (retrieve a description directly or query the registry), <b>Bind</b> (invoke the service at runtime).</p>
+<div class="tbl"><table><tr><th>Component</th><th>Role</th></tr>
+<tr><td>XML</td><td>Uniform data representation and exchange</td></tr><tr><td>SOAP</td><td>Standard way to communicate</td></tr>
+<tr><td>WSDL</td><td>Standard meta-language to describe the services offered</td></tr><tr><td>UDDI</td><td>Mechanism to register and locate web-service applications</td></tr></table></div>
+<h3>Steps of operation</h3>
+<div class="flow"><div><b>1</b> Client queries UDDI registry</div><i>→</i><div><b>2</b> Registry refers to WSDL document</div><i>→</i><div><b>3–4</b> Client reads WSDL for interaction data</div><i>→</i><div><b>5</b> Client sends SOAP request</div><i>→</i><div><b>6</b> Service returns SOAP response</div></div>
+<p><b>Conceptual stack (bottom-up):</b> network (HTTP, FTP, email, MQ, IIOP) → SOAP (XML messaging) → WSDL (description) → UDDI (publication and discovery) → WSFL (service flow); with Security, Management and Quality of Service as side pillars. <i>Example:</i> a web purchase where a PO service consolidates results from a credit service and an inventory service.</p>
+
+<h2 id="s9"><span>9</span>SOAP, WSDL, UDDI &amp; Security</h2>
+<h3>SOAP (Simple Object Access Protocol)</h3>
+<ul><li>Format for sending messages between programs over the Internet; <b>XML-based, platform- and language-independent, simple and extensible</b>. Mainly uses <b>HTTP</b> as transport (HTTP message carries the SOAP message as payload). <b>Stateless, one-way</b>, though applications can build richer interaction patterns.</li>
+<li><b>Message:</b> request invokes a method on a remote object; response returns the result. A SOAP <b>envelope</b> wraps the application-specific message; namespace prefixes separate the two vocabularies.</li></ul>
+<div class="tbl"><table><tr><th>Building block</th><th>Status</th><th>Contents</th></tr>
+<tr><td>Envelope</td><td>Required</td><td>Identifies the XML document as a SOAP message</td></tr><tr><td>Header</td><td>Optional</td><td>Header information</td></tr>
+<tr><td>Body</td><td>Required</td><td>Call and response information</td></tr><tr><td>Fault</td><td>Optional</td><td>Errors that occurred while processing</td></tr></table></div>
+<pre>POST /InStock HTTP/1.1  Host: www.stock.org  Content-Type: application/soap+xml
+&lt;soap:Envelope xmlns:soap="http://www.w3.org/2001/12/soap-envelope"&gt;
+  &lt;soap:Body xmlns:m="http://www.stock.org/stock"&gt;
+    &lt;m:GetStockPrice&gt;&lt;m:StockName&gt;IBM&lt;/m:StockName&gt;&lt;/m:GetStockPrice&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;       → response returns &lt;m:GetStockPriceResponse&gt;&lt;m:Price&gt;34.5&lt;/m:Price&gt;…</pre>
+<ul><li><b>Why SOAP:</b> other technologies failed on the Internet: Unix RPC needs binary-compatible Unix at each end, CORBA needs compatible ORBs, RMI needs Java, DCOM needs Windows. SOAP is a platform-neutral XML wire format with no restriction on endpoint technology.</li>
+<li><b>Characteristics:</b> <b>extensibility</b> (security, WS-routing), <b>neutrality</b> (any transport: HTTP, SMTP, TCP), <b>independence</b> (any programming model).</li>
+<li><b>Usage models:</b> RPC-like exchange (method name and parameters; return values) but not required; any XML body is allowed, e.g. send a purchase order to a B2B partner and receive a shipping/exception report.</li>
+<li><b>Security:</b> can use HTTP over SSL; since SOAP can run over other protocols (e.g. SMTP), <b>WS-Security</b> defines a complete encryption system. Security architecture: WS-Security on SOAP, with WS-Policy, WS-Trust, WS-Privacy, WS-Secure Conversation, WS-Federation, WS-Authorization above.</li></ul>
+<h3>WSDL (Web Service Definition Language)</h3>
+<p>XML vocabulary describing web services and their capabilities; the <b>contract between the service and the client</b>. It specifies what a request must contain and what the response looks like, <b>where</b> the service is available and <b>which protocol</b> is used. A WSDL document is simple XML with four major elements:</p>
+<div class="grid"><div><b>types</b>: data types used</div><div><b>message</b>: messages used</div><div><b>portType</b>: operations performed</div><div><b>binding</b>: communication protocols used (e.g. SOAP over HTTP)</div></div>
+<h3>UDDI (Universal Description, Discovery and Integration)</h3>
+<ul><li>A framework for XML-based <b>registries</b>: repositories of documents describing business data, with search. Businesses publish information about themselves and their services; the registry can be queried by SOAP messages and gives access to WSDL documents.</li>
+<li>Roles: <b>Service registry</b> (publish and locate, "like telephone yellow pages"), <b>service provider</b> (publishes through the registry), <b>service requestor</b> (finds via the broker, binds to the provider).</li>
+<li><b>Use case:</b> a business registers via an ASP with the UDDI Business Registry (UBR); marketplaces and search engines query it, cache data and bind to its services; consumers then discover it.</li>
+<li><b>Benefits:</b> discover the right business among millions; define how to enable commerce afterwards; reach new customers; expand offerings and market reach.</li></ul>
+
+<h2 id="s10"><span>10</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b>
+<ul>
+<li><b>Deployment:</b> public (open, provider premises), private (single organization; on-site or outsourced), community (shared concerns; RBAC policies), hybrid (two or more clouds with portability, complex, changing). Private on-site = significant-to-high cost, limited resources; outsourced = modest-to-significant cost, extensive resources, two perimeters.</li>
+<li><b>IaaS control:</b> provider has total hardware control and admin control of hypervisor; subscriber controls guest OS, middleware, applications. Architecture: Cloud Manager → Cluster Managers (with PLS) → Computer Managers; DOS stores credentials and OS images.</li>
+<li><b>Virtualization:</b> Popek–Goldberg goals (equivalence, resource control, efficiency); VMM possible when sensitive ⊆ privileged instructions. Full (binary translation, slow, portable) · para (modified guest, specialized API) · hardware-assisted (Intel VT/AMD-V, unmodified guest, Ring 0).</li>
+<li><b>Network virtualization:</b> InPs, SPs, end users, brokers; recursion, revisitation, inheritance, concurrence; goals include flexibility, isolation, programmability, heterogeneity, legacy support.</li>
+<li><b>XML:</b> well-formed vs valid; DTD (declares entities) vs Schema (pure XML, data types); namespaces via xmlns; validating vs non-validating parser.</li>
+<li><b>Processing:</b> SAX (event, fast, low memory) · DOM (tree, slow, memory-hungry) · JDOM/dom4j (Java) · XSLT (transform XML to XML).</li>
+<li><b>Web services:</b> SOA triangle (provider, requestor, registry) with publish, find, bind; XML + SOAP + WSDL + UDDI; solves interoperability, firewall traversal, complexity.</li>
+<li><b>SOAP:</b> envelope (required), header (optional), body (required), fault (optional); stateless, mainly over HTTP. <b>WSDL:</b> types, message, portType, binding. <b>UDDI:</b> yellow pages for services.</li></ul></div>
+
+<footer>Source: NPTEL Cloud Computing, IIT Kharagpur (Prof. Soumya K. Ghosh) · Week 2 · Print-ready for A4</footer>
+</div></body></html>

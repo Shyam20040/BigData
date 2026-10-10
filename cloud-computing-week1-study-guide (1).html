@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing – Week 1 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:12mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:10px 0}.two .box{margin:0}
+.note{font-size:12px;color:var(--bl)}
+.wrap td:first-child{white-space:normal}
+@media print{body{font-size:10.5px;line-height:1.5}table{font-size:10.5px}td,th{padding:4px 7px}h2{margin:20px 0 8px;font-size:17px}h3{margin:12px 0 4px;font-size:13px}.box{padding:7px 11px;margin:8px 0;font-size:11px}.grid div{padding:6px 9px;font-size:11px}.flow div{font-size:10.5px;padding:5px}header{padding:20px 24px}header h1{font-size:23px}h3{break-after:avoid}table{break-inside:auto}tr{break-inside:avoid}.tbl{break-inside:auto}}
+</style></head><body><div class="pg">
+
+<header><small>NPTEL · Cloud Computing · IIT Kharagpur (Prof. Soumya K. Ghosh)</small>
+<h1>Cloud Computing: Overview, Service Models &amp; Architecture</h1>
+<p>Week 1 consolidated study guide</p></header>
+
+<nav><a href="#s1">1 Trends</a><a href="#s2">2 Distributed</a><a href="#s3">3 Grid</a><a href="#s4">4 Cluster</a><a href="#s5">5 Utility</a><a href="#s6">6 Cloud (NIST)</a><a href="#s7">7 Service Models</a><a href="#s8">8 Deployment &amp; Virtualization</a><a href="#s9">9 Pros &amp; Cons</a><a href="#s10">10 Economics</a><a href="#s11">11 Architecture</a><a href="#s12">12 Networking</a><a href="#s13">13 Revision</a></nav>
+
+<h2 id="s1"><span>1</span>Computing Trends &amp; Course Map</h2>
+<div class="box def"><b class="t">Computing (ACM Computing Curricula 2005)</b>Any goal-oriented activity requiring, benefiting from, or creating computers. It includes designing and building hardware and software systems for a wide range of purposes; processing, structuring and managing information; scientific studies using computers; making computer systems behave intelligently; creating and using communication and entertainment media; and finding and gathering information relevant to any purpose.</div>
+<p><b>Trend of computing paradigms:</b></p>
+<div class="flow"><div><b>Distributed</b>computing</div><i>→</i><div><b>Grid</b>computing</div><i>→</i><div><b>Cluster</b>computing</div><i>→</i><div><b>Utility</b>computing</div><i>→</i><div><b>Cloud</b>computing</div></div>
+<p><b>Course outline:</b> introduction (NIST model, characteristics) · architecture (service and deployment models) · service management (SLA, economics) · resource and data management · security · case studies and simulators · research trends (fog computing).</p>
+
+<h2 id="s2"><span>2</span>Distributed Computing</h2>
+<h3>Centralized vs distributed</h3>
+<p>Early computing ran on a single processor; <b>uni-processor computing is centralized computing</b> (terminals connected to a mainframe). In distributed computing several computers (workstations, hosts) are connected by a network link.</p>
+<div class="box def"><b class="t">Definition</b><b>Distributed computing</b> is the field of computing science that studies distributed systems, and the use of distributed systems to solve computational problems.<br><b>Distributed system</b> (Wikipedia): several <b>autonomous computational entities, each with its own local memory</b>, communicating by <b>message passing</b>. (Operating System Concepts): processors communicate through communication lines such as high-speed buses or telephone lines, and each has its own local memory.</div>
+<p><b>Examples:</b> the Internet, ATM (bank) machines, intranets/workgroups. The computing landscape will soon consist of ubiquitous network-connected devices.</p>
+<p><b>Computers in a distributed system:</b> <b>workstations</b> (used by end-users), <b>server systems</b> (provide resources and services), <b>personal assistance devices</b> (handheld computers on a wireless link).</p>
+<h3>Common properties</h3>
+<div class="tbl"><table><tr><th>Property</th><th>Meaning</th></tr>
+<tr><td>Fault tolerance</td><td>If one or some nodes fail, the whole system still works (except performance drops); the status of each node must be checked.</td></tr>
+<tr><td>Partial role of each node</td><td>Each computer has only a limited, incomplete view of the system and may know only one part of the input.</td></tr>
+<tr><td>Resource sharing</td><td>Users share resources in the system with other users.</td></tr>
+<tr><td>Load sharing</td><td>Dispatching tasks to different nodes spreads load across the whole system.</td></tr>
+<tr><td>Easy to expand</td><td>Adding nodes should take little or (ideally) no time.</td></tr>
+<tr><td>Performance</td><td>Parallel computing can be considered a subset of distributed computing.</td></tr></table></div>
+<h3>Why distributed computing?</h3>
+<div class="tbl"><table><tr><th>Reason</th><th>Explanation</th><th>Example</th></tr>
+<tr><td>Performance: computing intensive</td><td>Task consumes a lot of computing time</td><td>Computing the value of Pi by Monte Carlo simulation</td></tr>
+<tr><td>Performance: data intensive</td><td>Task deals with a large amount or size of files</td><td>Facebook; LHC (Large Hadron Collider) experimental data processing</td></tr>
+<tr><td>Robustness</td><td><b>No SPOF</b> (single point of failure): other nodes can execute the task of a failed node</td><td>—</td></tr></table></div>
+<h3>Distributed applications</h3>
+<p>Applications consisting of a set of processes <b>distributed across a network of machines that work together as an ensemble</b> to solve a common problem.</p>
+<div class="two">
+<div class="box"><b class="t">Client–server (past)</b>Clients invoke individual servers (invocation → result). Resource management is <b>centralized at the server</b>.</div>
+<div class="box"><b class="t">Peer-to-peer</b>Peer processes (Peer 1 … N) share objects among themselves. Represents a movement toward "truly" distributed applications.</div></div>
+
+<h2 id="s3"><span>3</span>Grid Computing</h2>
+<div class="tbl"><table><tr><th>Source</th><th>Definition</th></tr>
+<tr><td>Pcwebopedia</td><td>A form of networking. Unlike conventional networks that focus on communication among devices, grid computing <b>harnesses unused processing cycles of all computers in a network</b> to solve problems too intensive for any stand-alone machine.</td></tr>
+<tr><td>IBM</td><td>Enables <b>virtualization of distributed computing and data resources</b> (processing, network bandwidth, storage) to create a <b>single system image</b>, giving seamless access to vast IT capabilities. A grid user sees a single, large virtual computer.</td></tr>
+<tr><td>Sun Microsystems</td><td>A computing infrastructure that provides <b>dependable, consistent, pervasive and inexpensive</b> access to computational capabilities.</td></tr></table></div>
+<div class="box"><b class="t">Electrical power grid analogy</b><b>Power grid:</b> users get electricity from wall sockets without caring where or how it is generated; the grid links power plants of many kinds.<br><b>Computing grid:</b> users/client applications get processors, storage, data and applications as needed with little or no knowledge of where they are or the underlying hardware/OS; the grid links PCs, workstations, servers and storage and provides the mechanism to access them.</div>
+<h3>When to use, and why it is needed</h3>
+<ul><li>Share more than information: data, computing power and applications in a dynamic, multi-institutional environment (<b>virtual organizations</b>).</li>
+<li>Efficient use of resources at many institutes; people from many institutions solve a common problem; join local communities.</li>
+<li>Interaction with underlying layers must be <b>transparent and seamless</b> to the user.</li>
+<li>Science today relies on computation, data analysis, data visualization and collaboration; simulation and modelling are more cost-effective than experiments; problems are more complex and need precise answers fast; data visualization is increasingly important; <b>exploits under-utilized resources</b>.</li>
+<li>Users: reactor applications, natural-disaster detection and modelling, crystallography, material characterization, physics applications, weather forecasting.</li></ul>
+<h3>Types of grids</h3>
+<div class="tbl"><table><tr><th>Type</th><th>Purpose</th></tr>
+<tr><td>Computational grid</td><td>Secure access to a huge pool of shared processing power; suits high-throughput and computation-intensive applications.</td></tr>
+<tr><td>Data grid</td><td>Infrastructure for storage, discovery, handling, publication and manipulation of large volumes of data stored in heterogeneous databases and file systems.</td></tr>
+<tr><td>Collaboration grid</td><td>Better collaboration over the Internet, e.g. people from different companies in a virtual enterprise work on different components of a CAD project without disclosing proprietary technologies.</td></tr>
+<tr><td>Network grid</td><td>Fault-tolerant, high-performance communication services; each node acts as a data router between two communication points, with data caching to speed communication.</td></tr>
+<tr><td>Utility grid</td><td>Ultimate form: data, computation cycles, <b>software and special equipment</b> are shared. E.g. an application runs on one machine; users send data to it and receive results.</td></tr></table></div>
+<h3>Grid components</h3>
+<div class="two">
+<div class="box"><b class="t">Users</b>Large, dynamic population; different accounts at different sites; personal and confidential data; heterogeneous privileges (roles); desire <b>single sign-on</b>.</div>
+<div class="box"><b class="t">Sites</b>Heterogeneous resources; access patterns; local policies; membership. <b>Groups</b> have group data, access patterns and membership.</div></div>
+
+<h2 id="s4"><span>4</span>Cluster Computing</h2>
+<div class="box def"><b class="t">Definition</b>A cluster is a type of parallel or distributed computer system consisting of a collection of <b>interconnected stand-alone computers working together as a single integrated computing resource</b>.</div>
+<p><b>Components:</b> multiple stand-alone computers (PCs, workstations or SMPs), operating systems, high-performance interconnects, middleware, parallel programming environments and applications.</p>
+<p>Clusters improve <b>speed and/or reliability</b> over a single computer and are much more cost-effective than a single computer of comparable speed or reliability. In a typical cluster: a closer connection than a typical network, <b>low-latency communication protocols</b>, and <b>looser coupling than SMP</b>.</p>
+<div class="grid">
+<div><b>Types:</b> High-availability (failover) · Load-balancing · Parallel/distributed processing</div>
+<div><b>Building blocks:</b> cluster nodes, cluster network, network characterization (nodes connected through a switch)</div></div>
+<h3>Key operational benefits</h3>
+<ul><li><b>System availability</b>: redundancy of hardware, OS and applications.</li>
+<li><b>Hardware fault tolerance</b>: redundancy for most components (e.g. disk RAID).</li>
+<li><b>OS and application reliability</b>: multiple copies of OS and applications.</li>
+<li><b>Scalability</b>: add servers, more clusters, or CPUs to an SMP as needed.</li>
+<li><b>High performance</b>: when running cluster-enabled programs.</li></ul>
+
+<h2 id="s5"><span>5</span>Utility Computing</h2>
+<div class="box def"><b class="t">Definition</b>Utility computing is purely a <b>concept which cloud computing practically implements</b>. It is a service provisioning model in which a provider makes computing resources and infrastructure management available as needed and <b>charges for specific usage rather than a flat rate</b>. It has low or no initial cost; resources are essentially <b>rented</b>. The "utility" analogy is to services such as electrical power that meet fluctuating needs and charge on usage (<b>pay-per-use</b>).</div>
+<p>It usually envisions some form of <b>virtualization</b>, so the storage or computing power available is much larger than a single time-sharing computer.</p>
+<h3>Key elements</h3>
+<div class="grid"><div>Pay-for-use pricing business model</div><div>Data-center virtualization and provisioning</div><div>Solves the resource-utilization problem</div><div>Outsourcing</div><div>Web-services delivery</div><div>Automation</div></div>
+<h3>Payment models &amp; risks</h3>
+<p><b>Payment models</b> (same range as gas, electricity, telecom, water, TV): flat rate, tiered, subscription, metered, pay-as-you-go, standing charges. Pricing differs by scale, commitment and payment frequency, but the principle holds: price expresses the provider's cost of provision plus a profit margin.</p>
+<p><b>Risks in a UC world:</b> data backup, data security, partner competency, defining SLA, getting value from charge-back.</p>
+
+<h2 id="s6"><span>6</span>Cloud Computing: NIST Definition &amp; Characteristics</h2>
+<div class="box def"><b class="t">NIST definition</b>Cloud computing is a model for enabling <b>ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources</b> (e.g. networks, servers, storage, applications, services) that can be <b>rapidly provisioned and released with minimal management effort or service provider interaction</b>.</div>
+<h3>Five essential characteristics</h3>
+<div class="tbl"><table><tr><th>Characteristic</th><th>Meaning</th></tr>
+<tr><td>On-demand self-service</td><td>A consumer can unilaterally provision capabilities (server time, network storage) automatically, without human interaction with each provider.</td></tr>
+<tr><td>Broad network access</td><td>Capabilities available over the network via standard mechanisms, supporting heterogeneous thin or thick clients (phones, tablets, laptops, workstations).</td></tr>
+<tr><td>Resource pooling</td><td>Provider resources are pooled to serve multiple consumers using a <b>multi-tenant model</b>; physical and virtual resources are dynamically assigned and reassigned by demand.</td></tr>
+<tr><td>Rapid elasticity</td><td>Capabilities are elastically provisioned and released (sometimes automatically) to scale <b>outward and inward</b> with demand; to the consumer they appear unlimited and available in any quantity at any time.</td></tr>
+<tr><td>Measured service</td><td>Resource use is automatically controlled and optimized via a <b>metering capability</b> (storage, processing, bandwidth, active user accounts); usage is monitored, controlled and reported, giving transparency to provider and consumer.</td></tr></table></div>
+<h3>Common characteristics</h3>
+<div class="grid"><div>Massive scale</div><div>Resilient computing</div><div>Homogeneity</div><div>Geographic distribution</div><div>Virtualization</div><div>Service orientation</div><div>Low-cost software</div><div>Advanced security</div></div>
+
+<h2 id="s7"><span>7</span>Service Models (XaaS)</h2>
+<div class="flow"><div><b>SaaS</b>Software / application</div><i>→</i><div><b>PaaS</b>Platform / runtime</div><i>→</i><div><b>IaaS</b>Infrastructure</div></div>
+<div class="tbl"><table><tr><th>Model</th><th>Capability to consumer</th><th>Consumer controls</th><th>Examples</th></tr>
+<tr><td>SaaS</td><td>Use the provider's applications running on cloud infrastructure, via a thin client (e.g. web browser) or a program interface</td><td>Not the infrastructure (network, servers, OS, storage) nor individual application capabilities, except limited user-specific configuration</td><td>Web-based email, Google Spreadsheet, Salesforce CRM, Zoho</td></tr>
+<tr><td>PaaS</td><td>Deploy consumer-created or acquired applications built with languages, libraries, services and tools supported by the provider</td><td>Deployed applications and possibly application-hosting configuration; not network, servers, OS, storage</td><td>Microsoft Azure, Google App Engine, Force.com</td></tr>
+<tr><td>IaaS</td><td>Provision processing, storage, networks and other fundamental resources; deploy and run arbitrary software</td><td>OS, storage, deployed applications (provider manages virtualization, servers, storage, network)</td><td>Amazon Web Services (EC2, S3), Flexiscale</td></tr></table></div>
+<p><b>Typical content:</b> SaaS (CRM, email, virtual desktop) · PaaS (runtime, database, web server, dev tools) · IaaS (VMs, servers, storage, load balancers, network).</p>
+<div class="box"><b class="t">Simplified view &amp; analogy</b>SaaS = applications for end users delivered over the web. PaaS = tools and services to code and deploy applications quickly. IaaS = the hardware and software that powers it all (servers, storage, network, OS).<br><b>Transportation analogy:</b> roads = infrastructure; cars and trucks = platform; people and goods = software and information. Infrastructure alone is not useful.</div>
+
+<h3>Who manages what</h3>
+<div class="tbl"><table><tr><th>Layer</th><th>Classical (on-premise)</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Applications, Data</td><td>User</td><td>User</td><td>User</td><td>Provider</td></tr>
+<tr><td>Runtime, Middleware, O/S</td><td>User</td><td>User</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Virtualization, Servers, Storage, Network</td><td>User</td><td>Provider</td><td>Provider</td><td>Provider</td></tr></table></div>
+<p class="note"><i>Note: in the slide diagram IaaS lists O/S as user-managed and virtualization downward as provider-managed; PaaS lists only applications and data as user-managed.</i></p>
+
+<h3>Software as a Service (SaaS)</h3>
+<p>Software deployed over the Internet; a provider licenses an application on demand, by <b>subscription, pay-as-you-go</b>, or (increasingly) free when revenue comes from other streams such as advertising or user-list sales.</p>
+<ul><li><b>Characteristics:</b> web access to commercial software; managed from a central location; <b>"one-to-many"</b> delivery; users need not handle upgrades and patches; APIs allow integration between different software.</li>
+<li><b>Good fit:</b> significant interplay between organization and outside world (email newsletter software); need for web/mobile access (mobile sales management); short-term need; demand spikes (tax/billing software). E.g. Salesforce CRM.</li>
+<li><b>Poor fit:</b> extremely fast real-time data processing; regulation forbids external hosting of data; an existing on-premise solution already meets all needs.</li></ul>
+<h3>Platform as a Service (PaaS)</h3>
+<p>A computing platform for creating web applications quickly and easily, <b>without the complexity of buying and maintaining the underlying software and infrastructure</b>. Analogous to SaaS, except it is a platform for creating software, delivered over the web.</p>
+<ul><li><b>Characteristics:</b> services to develop, test, deploy, host and maintain applications in one integrated environment; web-based UI creation tools; <b>multi-tenant architecture</b>; built-in scalability (load balancing, failover); integration with web services and databases via common standards; team-collaboration support; billing and subscription management tools.</li>
+<li><b>Good fit:</b> multiple developers or external parties in the development process; automated testing and deployment; agile development (iterative and incremental). E.g. Azure, Google App Engine.</li>
+<li><b>Poor fit:</b> application must be highly portable across hosts; proprietary languages would hinder later provider moves (<b>vendor lock-in</b>); performance needs customization of underlying hardware/software.</li></ul>
+<h3>Infrastructure as a Service (IaaS)</h3>
+<p>Delivering infrastructure (servers, storage, network, operating systems) as an <b>on-demand service</b>. Instead of buying servers, software, data-center space or network equipment, clients buy them as a fully outsourced service.</p>
+<ul><li><b>Characteristics:</b> resources distributed as a service; dynamic scaling; variable cost, utility pricing; generally multiple users on a single piece of hardware.</li>
+<li><b>Good fit:</b> volatile demand (spikes and troughs); new organizations without capital; rapid growth where scaling hardware is hard; pressure to limit capital expenditure and move to operating expenditure; trial/temporary needs.</li>
+<li><b>Poor fit:</b> compliance makes offshoring/outsourcing of storage and processing difficult; highest performance is needed and on-premise/dedicated infrastructure can deliver it.</li></ul>
+
+<h3>XaaS: the generalization</h3>
+<div class="box def"><b class="t">XaaS</b>"Anything/everything as a service": an increasing number of services delivered over the Internet rather than locally or on-site. Service-Oriented Infrastructure (SOI) + cloud computing realize XaaS; it is the essence of cloud computing.<br><b>Broad network access + resource pooling (cloud) + business-driven on-demand infrastructure + service orientation (SOI) = XaaS</b>, which fulfils all four CSP requirements: increase <b>productivity, end-user satisfaction, innovation and agility</b>.</div>
+<div class="tbl"><table><tr><th>XaaS</th><th>Description</th></tr>
+<tr><td>BPaaS</td><td>Horizontal or vertical business processes on a subscription basis to companies or industries</td></tr>
+<tr><td>SaaS</td><td>Software applications hosted in the cloud, on subscription (maturing; stateless, multi-instance architecture, monthly subscription; e.g. Google Docs, Zoho)</td></tr>
+<tr><td>PaaS</td><td>Virtualized application development and run-time platform (nascent; e.g. Azure, Google App Engine, Force.com)</td></tr>
+<tr><td>IaaS</td><td>Raw infrastructure (CPU, memory, storage, network) as needed (evolving; highly scaled, redundant, shared; e.g. Amazon EC2/S3, Rackspace Mosso, Sun cloud services, Terremark)</td></tr></table></div>
+<p><b>Other XaaS:</b> Storage aaS, Security aaS (SECaaS), Database aaS (DaaS), Monitoring/Management aaS (MaaS), Communications/Content/Computing aaS (CaaS), Identity aaS (IDaaS), Backup aaS (BaaS), Desktop aaS (DaaS).</p>
+
+<div class="box"><b class="t">Classic IT vs cloud</b>Classical model: users manage all layers, bear hardware and maintenance cost, build tightly coupled custom stacks with manual provisioning, giving <b>Legacy IT</b>. Cloud shifts IT <b>from Legacy to Evergreen IT</b>. New business models: SaaS (Salesforce, Taleo, Workday, NetSuite), IaaS (EC2, Dropbox, eVault), PaaS (Force.com, Azure, AWS) vs traditional licensed software (Oracle, SAP), hardware (Cisco, Dell, HP) and people-based services (IBM, Accenture, Wipro).</div>
+<h3>Provider examples</h3>
+<div class="tbl"><table><tr><th>Model</th><th>Providers (slide examples)</th></tr>
+<tr><td>SaaS</td><td>Salesforce.com (CRM, pay per use), Gmail (free), Process Maker Live and Appian Anywhere (BPM, pay per use), XDrive/SmugMug/OpSource (subscription), Box.net and MuxCloud (pay per use)</td></tr>
+<tr><td>PaaS</td><td>Aneka (.NET; threads, task, MapReduce), App Engine (Python/Java; BigTable), Force.com (Apex; own object DB), Azure (.NET; table/BLOB/queue, SQL), Heroku (Ruby on Rails; PostgreSQL, RDS), Amazon Elastic MapReduce (Hive, Pig; S3)</td></tr>
+<tr><td>IaaS</td><td>Amazon EC2 (US/Europe; Linux, Windows; billed hourly), Flexiscale (UK; hourly), GoGrid (hourly), Joyent (US; OpenSolaris; monthly), Rackspace (US; Linux; hourly)</td></tr></table></div>
+
+<h2 id="s8"><span>8</span>Deployment Models &amp; Virtualization</h2>
+<div class="tbl"><table><tr><th>Cloud type</th><th>Description</th><th>Example</th></tr>
+<tr><td>Private</td><td>Infrastructure operated <b>solely for one organization</b></td><td>Windows Server Hyper-V</td></tr>
+<tr><td>Community</td><td>Shared by <b>several organizations</b> supporting a specific goal</td><td>—</td></tr>
+<tr><td>Public</td><td>Made available to the <b>general public</b></td><td>Google Docs, Spreadsheet</td></tr>
+<tr><td>Hybrid</td><td>Composition of <b>two or more clouds</b> (private, community or public)</td><td>Cloud bursting for load balancing between clouds</td></tr></table></div>
+<h3>Virtualization</h3>
+<div class="box def"><b class="t">Virtual workspace</b>An abstraction of an execution environment made dynamically available to authorized clients via well-defined protocols, with a <b>resource quota</b> (CPU, memory share) and <b>software configuration</b> (e.g. OS). Implemented on <b>virtual machines (VMs)</b>: an abstraction of a physical host. A <b>hypervisor</b> (VMM) intercepts and emulates VM instructions and manages VMs (VMware, Xen, KVM). An infrastructure API provides plug-ins to hardware.</div>
+<div class="flow"><div><b>Hardware</b></div><i>→</i><div><b>Hypervisor / VMM</b>Xen, VMware</div><i>→</i><div><b>Guest OS VMs</b>Linux, NetBSD, Windows</div><i>→</i><div><b>Apps</b></div></div>
+<p>VM technology lets <b>multiple VMs run on a single physical machine</b>. Para-virtualization (e.g. Xen) performs very close to raw physical performance.</p>
+<p><b>Advantages of VMs:</b> run operating systems where physical hardware is unavailable; easier to create and back up machines; software testing on "clean" installs; emulate more machines than physically available; time-share lightly loaded systems on one host; debug by suspending and resuming; easy migration; run legacy systems.</p>
+
+<h2 id="s9"><span>9</span>Advantages, Disadvantages &amp; Cloud-sourcing</h2>
+<h3>Why cloud-sourcing matters</h3>
+<div class="two">
+<div class="box"><b class="t">Benefits</b>High-scale/low-cost providers; access any time/place via web browser; rapid scalability with incremental cost and load sharing; no need to focus on local IT.</div>
+<div class="box"><b class="t">Concerns</b>Performance, reliability and SLAs; control of data and service parameters; application features and choices; interaction between cloud providers; <b>no standard API</b> (mix of SOAP and REST); privacy, security, compliance, trust.</div></div>
+<p><b>Cloud storage:</b> large web companies hire out spare storage capacity; remotely stored data can be cached on desktops, phones and other devices. Examples: Amazon EC2 and S3.</p>
+<div class="tbl"><table><tr><th>Advantages</th><th>Disadvantages</th></tr>
+<tr><td>Lower computer costs: no high-powered PC needed; less disk, memory, no CD/DVD drive</td><td>Requires a constant Internet connection; no connection means no access, even to own documents</td></tr>
+<tr><td>Improved performance: fewer programs in memory, faster boot</td><td>Does not work well with low-speed connections (needs bandwidth for applications and large documents)</td></tr>
+<tr><td>Reduced software costs: most needs met free (e.g. Google Docs suite)</td><td>Features might be limited: e.g. more can be done in Microsoft PowerPoint than Google Presentation</td></tr>
+<tr><td>Instant software updates: latest version at next login, no upgrade cost</td><td>Can be slow: interface and documents travel to and from cloud servers; congested servers or network slow response</td></tr>
+<tr><td>Improved document-format compatibility</td><td>Stored data might not be secure: can unauthorized users access confidential data?</td></tr>
+<tr><td>Unlimited storage: hundreds of petabytes vs a 1 TB local drive</td><td>Stored data can be lost: no physical/local backup if the cloud fails you</td></tr>
+<tr><td>Increased data reliability: a PC crash does not affect cloud data (e.g. Dropbox, SkyDrive)</td><td>HPC systems: unclear whether compute-intensive MPI/OpenMP applications run well; VMs should be co-located to cut communication latency</td></tr>
+<tr><td>Universal information access and latest-version availability</td><td>General concerns: different clouds use different protocols and APIs, so applications may not run across clouds; Amazon's own DB (not SQL-92) and workflow system mean applications must be adapted</td></tr>
+<tr><td>Easier group collaboration; device independence</td><td></td></tr></table></div>
+
+<h2 id="s10"><span>10</span>Cloud Economics &amp; Business Drivers</h2>
+<p><b>Main reason for interest:</b> public clouds can significantly reduce IT costs. To the end user the cloud gives the <b>illusion of potentially infinite capacity</b>, scaling rapidly and paying only for consumed resources. In contrast, private data centers must provision for peak capacity, giving a <b>low average utilization of 5–20%</b>.</p>
+<h3>IaaS economics: in-house server vs cloud server</h3>
+<div class="tbl"><table><tr><th>Item</th><th>In-house</th><th>Cloud</th></tr>
+<tr><td>Purchase cost</td><td>$9600 (x86, 3 quad-core, 12 GB RAM, 300 GB HD)</td><td>0</td></tr>
+<tr><td>Cost/hr (over 3 years)</td><td>$0.36</td><td>$0.68</td></tr>
+<tr><td>Cost ratio cloud / in-house</td><td colspan="2">1.88</td></tr>
+<tr><td>Efficiency (utilization)</td><td>40%</td><td>80%</td></tr>
+<tr><td>Cost per effective hour</td><td>$0.90</td><td>$0.85</td></tr>
+<tr><td>Power and cooling</td><td>$0.36</td><td>0</td></tr>
+<tr><td>Management cost</td><td>$0.10</td><td>$0.01</td></tr>
+<tr><td>Total cost per effective hour</td><td>$1.36</td><td>$0.86</td></tr>
+<tr><td>Cost ratio in-house / cloud</td><td colspan="2">1.58</td></tr></table></div>
+<p>The cloud's raw hourly cost is higher (ratio 1.88), but after accounting for efficiency, power/cooling and management it is cheaper overall (in-house costs 1.58× more). <i>(Source: Enterprise Cloud Computing, Gautam Shroff.)</i></p>
+<h3>Benefits of public cloud for the end user</h3>
+<ul><li>High utilization and high scalability; no separate hardware procurement, power cost, or IT infrastructure administration/maintenance.</li>
+<li>User-friendly SLAs: high availability (~99%) with compensation if the SLA is missed.</li>
+<li>Rent the cloud to develop and test prototypes before major technology investment.</li>
+<li><b>Portability standards</b> from the Cloud Computing Interoperability Forum and Open Cloud Consortium; e.g. Amazon EC2 and Eucalyptus share the same API.</li>
+<li>Software start-ups benefit by renting infrastructure instead of buying, since their future is uncertain.</li></ul>
+<h3>Benefits of private cloud</h3>
+<ul><li>One server with 12 cores and 12 GB RAM costs far less than 12 servers with 1 core and 1 GB each.</li>
+<li>Data confidentiality is preserved; VMs are cheaper and faster to provision than actual machines.</li></ul>
+<h3>PaaS vs IaaS economics, and SaaS benefits</h3>
+<div class="two">
+<div class="box"><b class="t">PaaS vs IaaS</b>For a 24×7 web app with unpredictable transaction volume: IaaS needs a minimal number of servers provisioned at all times. PaaS deployment <b>costs nothing up front</b>; cost follows usage, and the platform scales automatically. PaaS also removes user handling of scaling/load balancing, offers web-based IDEs, eases migration from development to production, and avoids separate IDE licences.</div>
+<div class="box"><b class="t">SaaS benefits</b>Users subscribe to web applications instead of buying and licensing software (e.g. free Google Docs instead of buying Microsoft Word). Enterprises use SaaS CRM instead of buying servers and installing CRM software and databases.</div></div>
+<p><b>Drivers (survey data in slides):</b> top ranked factors were reduced infrastructure cost (67%), flexibility (54%) and scalability (41%). IT industry rated easy/fast deployment and pay-per-use highest. SMBs expect cloud use for email, backup, voice, web conferencing and file sharing to roughly double in 2–3 years. Typical uses: backup, CRM/ERP, development and testing, archiving, data analysis, handling demand spikes, batch jobs, collaboration, video conferencing.</p>
+
+<h2 id="s11"><span>11</span>Cloud Computing Architecture</h2>
+<h3>High-level architectural approach</h3>
+<div class="flow"><div><b>Business goals</b>TCO, quality, market share, flexibility, stakeholder satisfaction, compliance</div><i>→</i><div><b>Quality attributes</b>Availability, elasticity, interoperability, security, adaptability, performance, usability, maintainability</div><i>→</i><div><b>Architectural tactics</b>Stateless design, loose coupling, caching, claim-based authentication, scale-out, pipelining, divide and conquer, firewall traversal, partitioning, publish-subscribe, strong encryption, multi-tenancy, reliable messaging, asynchronous communication</div></div>
+<div class="two">
+<div class="box"><b class="t">Technical architecture</b>Structure by the XaaS stack; adopt cloud paradigms; structure cloud services and components; show relationships and external endpoints; middleware and communication; management and security.</div>
+<div class="box"><b class="t">Deployment/operation architecture</b>Geo-location check (legal issues, export control); operation and monitoring.</div></div>
+<h3>XaaS stack: layers and customer vs provider view</h3>
+<div class="tbl"><table><tr><th>Layer</th><th>Contents</th><th>Customer view (role)</th></tr>
+<tr><td>Client</td><td>Client infrastructure</td><td>—</td></tr>
+<tr><td>SaaS: Application</td><td>Applications (e.g. CRM)</td><td>User, application administrator</td></tr>
+<tr><td>PaaS: Cloud runtime / Service</td><td>Runtime and services (e.g. access control)</td><td>Software architect, developer</td></tr>
+<tr><td>IaaS: Storage / Infrastructure</td><td>VMs and networks</td><td>IT architect, IT operator</td></tr>
+<tr><td>Cross-cutting</td><td>Management and security</td><td>Provider view spans all layers</td></tr></table></div>
+<p><b>Azure vs Amazon EC2</b> map onto the same stack: Azure (AppFabric services, .NET roles, Blob/Table store, SQL Azure, Fabric Controller, LiveID/ACS) and Amazon (CloudFront, queues, S3/SimpleDB/RDS, EC2, CloudWatch, Elastic Load Balancer, IAM/VPC).</p>
+<h3>Architecture for elasticity</h3>
+<div class="tbl"><table><tr><th>Approach</th><th>Idea</th></tr>
+<tr><td>Vertical scale-up</td><td>Add more resources to a single computation unit ("buy a bigger box"), or move the workload to a unit with more resources.</td></tr>
+<tr><td>Horizontal scale-out</td><td>Add computation units acting in concert; split workload across units; database partitioning.</td></tr></table></div>
+<div class="box"><b class="t">Remember</b>For small scenarios scale-up is probably cheaper (code "just works"); for larger scenarios scale-out is the only solution. One 64-way server is much more expensive than 64 one-way servers.</div>
+<h3>Client–server vs cloud model</h3>
+<p><b>Client–server:</b> one or more load-balanced servers serve client requests in a <b>request–response</b> fashion; clients are often thin clients; the server may be a load-balanced cluster or stand-alone machine.</p>
+<div class="tbl"><table><tr><th>Aspect</th><th>Client–server</th><th>Cloud</th></tr>
+<tr><td>Service model</td><td>Simple: server services client requests</td><td>Complex: IaaS, PaaS, SaaS</td></tr>
+<tr><td>Load balancing</td><td>May or may not be</td><td>Load balanced</td></tr>
+<tr><td>Scalability</td><td>To some extent in a cluster</td><td>Theoretically infinite</td></tr>
+<tr><td>Virtualization</td><td>No concept</td><td>Core concept</td></tr></table></div>
+<h3>Three-tier client–server architecture</h3>
+<div class="flow"><div><b>Presentation tier</b>User interface; translates tasks and results into something the user understands</div><i>↔</i><div><b>Logic tier</b>Coordinates the application, processes commands, makes logical decisions, performs calculations; moves data between the other two tiers</div><i>↔</i><div><b>Data tier</b>Stores and retrieves information from a database or file system and passes it back to the logic tier</div></div>
+<p><i>Slide example:</i> "Get sales total" → logic tier fetches all sales made last year and adds them → data tier is queried for the individual sales.</p>
+<h3>Layered view of cloud services</h3>
+<p>Presentation layer (consumer interfaces, API) → business processes (BPaaS) → services (SaaS, PaaS, IaaS) → service components → operational systems (compute, network, storage, facilities). Cross-cutting concerns: <b>integration, quality of service, information, governance</b>.</p>
+
+<h2 id="s12"><span>12</span>Networking in the Cloud &amp; NFV</h2>
+<p>In cloud computing, <b>network resources can be provisioned dynamically</b>. Core concepts: <b>Virtual LANs, Virtual Private Networks</b> and the different protocol layers. Tools for setting up network topologies and configurations: <b>OpenSSH, OpenVPN</b>.</p>
+<div class="tbl"><table><tr><th>OSI layer</th><th>Example protocols</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>7 Application</td><td>HTTP, FTP, NFS, SMTP, SSH</td><td>Consumer</td><td>Consumer</td><td>Provider</td></tr>
+<tr><td>6 Presentation</td><td>SSL, TLS</td><td>Consumer</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>5 Session</td><td>TCP</td><td>Consumer</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>4 Transport</td><td>TCP</td><td>Consumer</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>3 Network</td><td>IP, IPSec</td><td>Consumer</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>2 Data link</td><td>Ethernet, Fibre Channel</td><td>Provider</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>1 Physical</td><td>Copper, optic fibre</td><td>Provider</td><td>Provider</td><td>Provider</td></tr></table></div>
+<p>The table shows who is responsible for each network layer: the more the model abstracts, the more layers the provider handles.</p>
+<h3>Network Function Virtualization (NFV)</h3>
+<div class="box def"><b class="t">Definition (ETSI)</b>NFV transforms how network operators architect networks by evolving standard IT virtualization to <b>consolidate many network equipment types onto industry-standard high-volume servers, switches and storage</b> (in data centres, network nodes or end-user premises). Network functions are implemented in <b>software</b> that runs on standard server hardware and can be moved to or instantiated in various network locations as required, <b>without installing new equipment</b>.</div>
+<div class="tbl"><table><tr><th>Classical network appliance approach</th><th>Network virtualization approach</th></tr>
+<tr><td>Separate appliances: message router, DPI, CDN, firewall, session border controller, carrier-grade NAT, BRAS, WAN acceleration, tester/QoE monitor, SGSN/GGSN, PE router, RAN nodes</td><td>Virtual appliances from independent software vendors running on standard high-volume servers, storage and Ethernet switches</td></tr>
+<tr><td>Fragmented, non-commodity hardware; physical install per appliance per site</td><td>Orchestrated, automatic and remote install</td></tr>
+<tr><td>Hardware development is a large barrier to entry for new vendors, constraining innovation and competition</td><td>—</td></tr></table></div>
+
+<h2 id="s13"><span>13</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b>
+<ul>
+<li><b>Paradigm order:</b> distributed → grid → cluster → utility → cloud. Utility computing is the concept; cloud is its practical implementation.</li>
+<li><b>Distributed system:</b> autonomous nodes, local memory, message passing; no SPOF. <b>Grid:</b> single system image, virtual organizations; 5 types (computational, data, collaboration, network, utility). <b>Cluster:</b> stand-alone computers acting as one; 3 types (high-availability, load-balancing, parallel).</li>
+<li><b>NIST essential characteristics (5):</b> on-demand self-service, broad network access, resource pooling (multi-tenant), rapid elasticity, measured service.</li>
+<li><b>Service models:</b> SaaS (use the app) · PaaS (deploy your app) · IaaS (provision fundamental resources). XaaS adds BPaaS, SECaaS, DaaS, MaaS, CaaS, IDaaS, BaaS and others.</li>
+<li><b>Deployment models:</b> private, community, public, hybrid (cloud bursting).</li>
+<li><b>Virtualization:</b> hypervisor/VMM (Xen, VMware, KVM) runs multiple VMs on one host.</li>
+<li><b>Economics:</b> private data centers average 5–20% utilization; the cloud is cheaper per effective hour ($0.86 vs $1.36; ratio 1.58); PaaS costs nothing until used.</li>
+<li><b>Disadvantages:</b> constant Internet, speed, limited features, security and data loss, lack of standard APIs, HPC limits, vendor lock-in.</li>
+<li><b>Elasticity:</b> scale-up (bigger box) vs scale-out (more units); scale-out for large scenarios.</li>
+<li><b>Three-tier:</b> presentation, logic, data. <b>Cloud vs client–server:</b> complex service models, load balanced, infinitely scalable, virtualization at the core.</li>
+<li><b>Networking:</b> VLAN, VPN, OSI layers split between consumer and provider; NFV replaces dedicated appliances with software on standard servers.</li></ul></div>
+
+<footer>Source: NPTEL Cloud Computing, IIT Kharagpur (Prof. Soumya K. Ghosh) · Week 1 · Print-ready for A4</footer>
+</div></body></html>
