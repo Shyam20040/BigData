@@ -9,7 +9,7 @@
 :root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
-.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+.pg{max-width:1040px;margin:0 auto;padding:28px 22px}
 header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
 header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
 header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
@@ -42,6 +42,13 @@ footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
 .eq math{margin:6px 0;font-size:1.05em}.box .eq{margin:8px 0}
 math{font-family:"STIX Two Math","Cambria Math","Latin Modern Math","DejaVu Serif",serif}
 @media print{body{font-size:10.5px;line-height:1.5}table{font-size:10px}td,th{padding:4px 6px}h2{margin:20px 0 8px;font-size:17px}h3{margin:12px 0 4px;font-size:13px;break-after:avoid}.box{padding:7px 11px;margin:8px 0;font-size:11px}.grid div{padding:6px 9px;font-size:11px}.flow div{font-size:10.5px;padding:5px}header{padding:20px 24px}header h1{font-size:23px}table{break-inside:auto}tr{break-inside:avoid}.tbl{break-inside:auto}td:first-child{white-space:normal}.eq{break-inside:avoid;font-size:13px;padding:3px 8px;margin:6px 0}}
+.sla-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0}
+.sla-column{min-width:0;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;overflow-wrap:anywhere}
+.sla-column h4{margin:0 0 10px;padding-bottom:9px;border-bottom:1px solid var(--bd);font-size:14px;line-height:1.4;color:var(--dk)}
+.sla-column ul{margin:0;padding-left:19px}
+.sla-column li{margin:0 0 8px;line-height:1.55}
+.sla-column li:last-child{margin-bottom:0}
+@media(max-width:680px){.sla-layout{grid-template-columns:1fr}.sla-column{padding:12px 14px}}
 </style><link rel="stylesheet" href="common.css"></head><body><div class="pg">
 
 <header><small>NPTEL · Cloud Computing · IIT Kharagpur (Prof. Soumya K. Ghosh)</small>
@@ -71,9 +78,13 @@ math{font-family:"STIX Two Math","Cambria Math","Latin Modern Math","DejaVu Seri
 <li><b>SLOs</b> are objectively measurable and cover QoS parameters such as availability, serviceability, billing, penalties, throughput, response time or quality. Examples: "availability of service X is 99.9%"; "response time of database query Q is between 3 and 5 seconds"; "throughput of server S at peak load is 0.875".</li>
 <li><b>Service level management:</b> monitoring and measuring performance against SLOs. Provider view: decisions based on business objectives and technical realities; consumer view: decisions on how to use cloud services.</li></ul>
 <h3>Considerations and requirements</h3>
-<div class="tbl"><table><tr><th>Considerations when drafting an SLA</th><th>Requirements an SLA should address</th></tr>
-<tr><td style="font-weight:400"><b>Business-level objectives:</b> know why you use the cloud first.<br><b>Responsibilities</b> vary by service type.<br><b>Business continuity and disaster recovery.</b><br><b>System redundancy:</b> massively redundant systems hide disk, network or server failures.<br><b>Maintenance</b> affects hardware and software offerings.<br><b>Location of data:</b> the consumer must be able to audit compliance with data-location rules.<br><b>Seizure of data:</b> multi-tenancy means other consumers may be affected, so keep third-party backups.<br><b>Failure of the provider:</b> check financial health, contingency plans and handling of delinquent accounts.<br><b>Jurisdiction:</b> know the applicable laws.</td>
-<td style="font-weight:400"><b>Security</b> (controls and federation patterns) · <b>Data encryption</b> and access control policies · <b>Privacy</b> (isolation of customer data in multi-tenancy) · <b>Data retention and deletion</b> (prove compliance) · <b>Hardware erasure and destruction</b> (zero out memory when a VM powers off, zero out disk platters before disposal) · <b>Regulatory compliance</b> · <b>Transparency</b> (proactively notify SLA breaches) · <b>Certification</b> (keep up to date) · <b>Monitoring</b> by a neutral third party · <b>Auditability</b> (audits are disruptive and expensive, so providers limit and charge for them).</td></tr></table></div>
+<div class="sla-layout">
+<section class="sla-column"><h4>Considerations when drafting an SLA</h4><ul>
+<li><b>Business-level objectives:</b> know why you use the cloud first.</li><li><b>Responsibilities</b> vary by service type.</li><li><b>Business continuity and disaster recovery.</b></li><li><b>System redundancy:</b> massively redundant systems hide disk, network or server failures.</li><li><b>Maintenance</b> affects hardware and software offerings.</li><li><b>Location of data:</b> the consumer must be able to audit compliance with data-location rules.</li><li><b>Seizure of data:</b> multi-tenancy means other consumers may be affected, so keep third-party backups.</li><li><b>Failure of the provider:</b> check financial health, contingency plans and handling of delinquent accounts.</li><li><b>Jurisdiction:</b> know the applicable laws.</li>
+</ul></section>
+<section class="sla-column"><h4>Requirements an SLA should address</h4><ul>
+<li><b>Security:</b> controls and federation patterns.</li><li><b>Data encryption</b> and access control policies.</li><li><b>Privacy:</b> isolation of customer data in multi-tenancy.</li><li><b>Data retention and deletion:</b> prove compliance.</li><li><b>Hardware erasure and destruction:</b> zero out memory when a VM powers off and disk platters before disposal.</li><li><b>Regulatory compliance.</b></li><li><b>Transparency:</b> proactively notify SLA breaches.</li><li><b>Certification:</b> keep up to date.</li><li><b>Monitoring</b> by a neutral third party.</li><li><b>Auditability:</b> audits are disruptive and expensive, so providers limit and charge for them.</li>
+</ul></section></div>
 
 <h2 id="s2"><span>2</span>KPIs, Metrics, Examples &amp; Limitations</h2>
 <p><b>Key Performance Indicators (KPIs):</b> low-level resource metrics (downtime, uptime, in-bytes, out-bytes, packet size…) that are composed, aggregated or converted into high-level SLOs. Example mapping: availability (A) is derived from downtime and uptime.</p>
