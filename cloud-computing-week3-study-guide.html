@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing – Week 3 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:10px 0}.two .box{margin:0}
+.eq{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:6px 10px;margin:10px 0;text-align:center;overflow-x:auto;font-size:15px}
+.eq math{margin:6px 0;font-size:1.05em}.box .eq{margin:8px 0}
+math{font-family:"STIX Two Math","Cambria Math","Latin Modern Math","DejaVu Serif",serif}
+@media print{body{font-size:10.5px;line-height:1.5}table{font-size:10px}td,th{padding:4px 6px}h2{margin:20px 0 8px;font-size:17px}h3{margin:12px 0 4px;font-size:13px;break-after:avoid}.box{padding:7px 11px;margin:8px 0;font-size:11px}.grid div{padding:6px 9px;font-size:11px}.flow div{font-size:10.5px;padding:5px}header{padding:20px 24px}header h1{font-size:23px}table{break-inside:auto}tr{break-inside:avoid}.tbl{break-inside:auto}td:first-child{white-space:normal}.eq{break-inside:avoid;font-size:13px;padding:3px 8px;margin:6px 0}}
+</style><link rel="stylesheet" href="common.css"></head><body><div class="pg">
+
+<header><small>NPTEL · Cloud Computing · IIT Kharagpur (Prof. Soumya K. Ghosh)</small>
+<h1>SLAs, Cloud Economics, Data Management, MapReduce &amp; OpenStack</h1>
+<p>Week 3 consolidated study guide</p></header>
+
+<nav><a href="#s1">1 SLA</a><a href="#s2">2 SLA Metrics &amp; Limits</a><a href="#s3">3 Cloud Economics</a><a href="#s4">4 Utility Pricing</a><a href="#s5">5 Data Management</a><a href="#s6">6 Parallel Efficiency</a><a href="#s7">7 Cloud File Systems &amp; Stores</a><a href="#s8">8 MapReduce</a><a href="#s9">9 OpenStack</a><a href="#s10">10 Revision</a></nav>
+
+<h2 id="s1"><span>1</span>Service Level Agreements (SLA)</h2>
+<div class="box def"><b class="t">Definition</b>A formal contract between a <b>Service Provider (SP)</b> and a <b>Service Consumer (SC)</b>. It is the <b>foundation of the consumer's trust</b> in the provider and defines a formal basis for the <b>performance and availability</b> the SP guarantees. An SLA contains <b>Service Level Objectives (SLOs)</b>: objectively measurable conditions for the service. SLA and SLO are the basis for selecting a cloud provider.</div>
+<h3>SLA contents</h3>
+<ul><li>The set of services the provider will deliver, each completely and specifically defined.</li>
+<li>Responsibilities of the provider and the consumer.</li>
+<li>Metrics to measure whether services are delivered as guaranteed, and an <b>auditing mechanism</b> to monitor them.</li>
+<li>Remedies available to the consumer and provider if terms are not met; how the SLA will change over time.</li></ul>
+<h3>Web service SLA vs cloud SLA</h3>
+<div class="tbl"><table><tr><th>Web-service SLA languages</th><th>Description</th></tr>
+<tr><td>WS-Agreement</td><td>XML-based language and protocol to negotiate, establish and manage agreements <b>at runtime</b>; specifies the agreement template; helps discover compatible providers; request–response interaction; SLA violations dynamically managed and verified.</td></tr>
+<tr><td>WSLA (Web Service Level Agreement framework)</td><td>Formal XML-schema based language to express SLAs, plus a runtime interpreter; measures and monitors QoS parameters and reports violations. Weakness: lack of formal semantics for metrics.</td></tr></table></div>
+<div class="tbl"><table><tr><th>Aspect</th><th>Traditional web service</th><th>Cloud computing</th></tr>
+<tr><td>QoS parameters</td><td>Response time, SLA violation rate for reliability, availability, cost</td><td>QoS related to security, privacy, trust, management</td></tr>
+<tr><td>Automation</td><td>SLA negotiation, provisioning, delivery and monitoring not automated</td><td>SLA automation required for highly dynamic, scalable consumption</td></tr>
+<tr><td>Resource allocation</td><td>UDDI for advertising and discovery</td><td>Resources allocated and distributed globally, <b>no central directory</b></td></tr></table></div>
+<h3>Types of SLA and SLOs</h3>
+<ul><li><b>Off-the-shelf (non-negotiable / direct) SLA:</b> the provider creates the template and defines all criteria (contract period, billing, response time, availability); followed by today's state-of-the-art clouds; <b>not suitable for mission-critical data or applications</b>.</li>
+<li><b>Negotiable SLA:</b> negotiation via an external agent, or via multiple external agents.</li>
+<li><b>SLOs</b> are objectively measurable and cover QoS parameters such as availability, serviceability, billing, penalties, throughput, response time or quality. Examples: "availability of service X is 99.9%"; "response time of database query Q is between 3 and 5 seconds"; "throughput of server S at peak load is 0.875".</li>
+<li><b>Service level management:</b> monitoring and measuring performance against SLOs. Provider view: decisions based on business objectives and technical realities; consumer view: decisions on how to use cloud services.</li></ul>
+<h3>Considerations and requirements</h3>
+<div class="tbl"><table><tr><th>Considerations when drafting an SLA</th><th>Requirements an SLA should address</th></tr>
+<tr><td style="font-weight:400"><b>Business-level objectives:</b> know why you use the cloud first.<br><b>Responsibilities</b> vary by service type.<br><b>Business continuity and disaster recovery.</b><br><b>System redundancy:</b> massively redundant systems hide disk, network or server failures.<br><b>Maintenance</b> affects hardware and software offerings.<br><b>Location of data:</b> the consumer must be able to audit compliance with data-location rules.<br><b>Seizure of data:</b> multi-tenancy means other consumers may be affected, so keep third-party backups.<br><b>Failure of the provider:</b> check financial health, contingency plans and handling of delinquent accounts.<br><b>Jurisdiction:</b> know the applicable laws.</td>
+<td style="font-weight:400"><b>Security</b> (controls and federation patterns) · <b>Data encryption</b> and access control policies · <b>Privacy</b> (isolation of customer data in multi-tenancy) · <b>Data retention and deletion</b> (prove compliance) · <b>Hardware erasure and destruction</b> (zero out memory when a VM powers off, zero out disk platters before disposal) · <b>Regulatory compliance</b> · <b>Transparency</b> (proactively notify SLA breaches) · <b>Certification</b> (keep up to date) · <b>Monitoring</b> by a neutral third party · <b>Auditability</b> (audits are disruptive and expensive, so providers limit and charge for them).</td></tr></table></div>
+
+<h2 id="s2"><span>2</span>KPIs, Metrics, Examples &amp; Limitations</h2>
+<p><b>Key Performance Indicators (KPIs):</b> low-level resource metrics (downtime, uptime, in-bytes, out-bytes, packet size…) that are composed, aggregated or converted into high-level SLOs. Example mapping: availability (A) is derived from downtime and uptime.</p>
+<p><b>Monitoring:</b> who should monitor the provider, and does the consumer meet its responsibilities? A <b>neutral third party</b> removes conflicts of interest (the provider reporting outages at its sole discretion; the consumer responsible for an outage). <b>Auditability:</b> is the provider adhering to legal regulations or industry standards; the SLA should state how and when audits happen.</p>
+<div class="tbl"><table><tr><th>Metric</th><th>Meaning</th></tr>
+<tr><td>Throughput</td><td>How quickly the service responds</td></tr><tr><td>Availability</td><td>Percentage of uptime in a given observation period</td></tr>
+<tr><td>Reliability</td><td>How often the service is available</td></tr><tr><td>Load balancing</td><td>When elasticity kicks in (VMs booted or terminated)</td></tr>
+<tr><td>Durability</td><td>How likely data is to be lost</td></tr><tr><td>Elasticity</td><td>Ability of a resource to grow, with limits (max storage, bandwidth) clearly stated</td></tr>
+<tr><td>Linearity</td><td>How the system performs as load increases</td></tr><tr><td>Agility</td><td>How quickly the provider responds as consumer load scales up and down</td></tr>
+<tr><td>Automation</td><td>Percentage of requests handled without human interaction</td></tr><tr><td>Customer service response time</td><td>How quickly the provider responds to a service request (human interaction)</td></tr>
+<tr><td>Service-level violation rate</td><td>Mean rate of SLA violation due to infringements of agreed warranty levels</td></tr>
+<tr><td>Transaction time</td><td>Time from invocation to completion of a transaction, including delays</td></tr>
+<tr><td>Resolution time</td><td>Time between detecting a problem and resolving it</td></tr></table></div>
+<h3>Example cloud SLAs (from the slides)</h3>
+<div class="tbl"><table><tr><th>Provider / service</th><th>Model</th><th>Guarantee</th></tr>
+<tr><td>Amazon EC2</td><td>IaaS</td><td>Availability 99.95% (annual uptime; region unavailable = no external connectivity for 5 minutes; service credit)</td></tr>
+<tr><td>Amazon S3</td><td>Storage</td><td>Availability 99.9% (error rate, monthly uptime, service credit)</td></tr>
+<tr><td>Amazon SimpleDB; Salesforce CRM</td><td>DaaS; PaaS</td><td>No specific SLA / no availability guarantee</td></tr>
+<tr><td>Google App Engine</td><td>PaaS</td><td>Availability 99.9% (error rate, scheduled maintenance, credits, exclusions)</td></tr>
+<tr><td>Microsoft Azure Compute / Storage</td><td>IaaS-PaaS; Storage</td><td>99.95% / 99.9%</td></tr>
+<tr><td>Zoho suite</td><td>SaaS</td><td>Customizable: resolution time, business hours and support plans, escalation</td></tr>
+<tr><td>Rackspace Cloud Servers</td><td>IaaS</td><td>Internal network 100%, data-centre infrastructure 100%, load balancers 99.9%; migration notified 24 h ahead, done in ≤3 h; recovery within 1 h of problem identification</td></tr>
+<tr><td>Terremark vCloud Express</td><td>IaaS</td><td>Monthly uptime 100%</td></tr><tr><td>Nirvanix</td><td>Storage</td><td>Monthly availability 99.9% (data replication policy, credits)</td></tr></table></div>
+<div class="two">
+<div class="box"><b class="t">Limitations of current SLAs</b><b>Service measurement</b> is restricted to uptime percentage (mean availability over a period), ignoring stability, capacity, etc. <b>Bias towards vendors</b>: parameters set to the vendor's advantage. <b>Lack of active monitoring by the customer</b>: only ticketing systems; no access to active data streams or audit trails, no outage reports from providers. <b>Gap between QoS hype and reality</b>: governance, reliability, availability, security and scalability poorly addressed; no formal way to verify compliance.</div>
+<div class="box"><b class="t">Why proper SLAs matter</b>Provider: improves infrastructure and enables fair competition. Customer: builds trust and supports choosing an appropriate provider to move business to the cloud.</div></div>
+<h3>Expected SLA parameters</h3>
+<p><b>IaaS:</b> CPU capacity, cache size, boot time of standard images, storage, scale up/down limits, on-demand availability, auto scaling, maximum VMs per physical server, availability, cost by geography, response time. <b>PaaS:</b> integration, scalability, billing, deployment environment (licences, patches, versions, upgrades, federation), servers, browsers, number of developers. <b>SaaS:</b> reliability, usability, scalability, availability, customizability, response time. <b>Storage-aaS:</b> geographic location, scalability, space, billing, security, privacy, backup, fault tolerance, recovery, throughput, bandwidth, data life-cycle management.</p>
+
+<h2 id="s3"><span>3</span>Cloud Economics: Common Infrastructure &amp; Location Independence</h2>
+<div class="tbl"><table><tr><th>Cloud property</th><th>Economic meaning</th></tr>
+<tr><td>Common infrastructure</td><td>Pooled, standardized resources; benefits from <b>statistical multiplexing</b></td></tr>
+<tr><td>Location independence</td><td>Ubiquitous availability meeting performance needs; benefits from latency reduction and better user experience</td></tr>
+<tr><td>Online connectivity</td><td>Enabler of the other attributes; network cost and performance can be quantified by traditional methods</td></tr>
+<tr><td>Utility pricing</td><td>Usage-sensitive, pay-per-use pricing; benefits in on-demand environments</td></tr>
+<tr><td>On-demand resources</td><td>Scalable, elastic resources provisioned and de-provisioned without delay or cost</td></tr></table></div>
+<h3>Value of common infrastructure</h3>
+<ul><li><b>Economies of scale:</b> reduced overhead costs; buyer power through volume purchasing.</li>
+<li><b>Statistics of scale:</b> for infrastructure built to <b>peak</b> requirements, multiplexing demand gives higher utilization and lower cost per delivered resource; for infrastructure built to <b>less than peak</b>, multiplexing reduces unserved demand, so less lost revenue or SLA-violation payout.</li></ul>
+<div class="box def"><b class="t">Coefficient of variation (a measure of "smoothness")</b>The ratio of the <b>standard deviation σ to the absolute value of the mean</b> (not the variance, nor the correlation coefficient). It compares variation across data series even when their means differ greatly.
+<div class="eq"><math display="block"><msub><mi>C</mi><mi>v</mi></msub><mo>=</mo><mfrac><mi>σ</mi><mrow><mo>|</mo><mi>μ</mi><mo>|</mo></mrow></mfrac></math></div>
+"Smoother" curves have a large mean for a given σ, or a smaller σ for a given mean. A facility with fixed assets serving highly variable demand achieves lower utilization than one serving smooth demand, and multiplexing demand from several sources may reduce C<sub>v</sub>. (In investing, a lower σ-to-mean ratio means a better risk–return trade-off.)</div>
+<h3>Aggregating independent demands</h3>
+<p>Take <i>n</i> independent random demands X<sub>1</sub>, X<sub>2</sub>, …, X<sub>n</sub>, each with identical mean μ and standard deviation σ. The aggregate has mean equal to the sum of means and variance equal to the sum of variances:</p>
+<div class="eq"><math display="block"><mrow><mtext>Mean</mtext><mo>=</mo><mi>n</mi><mo>·</mo><mi>μ</mi></mrow><mtext>&#160;&#160;,&#160;</mtext><mrow><mtext>Variance</mtext><mo>=</mo><mi>n</mi><mo>·</mo><msup><mi>σ</mi><mn>2</mn></msup></mrow></math><math display="block"><msub><mi>C</mi><mi>v</mi></msub><mrow><mo>(</mo><mi>n</mi><mo>)</mo></mrow><mo>=</mo><mfrac><msqrt><mrow><mi>n</mi><mo>·</mo><msup><mi>σ</mi><mn>2</mn></msup></mrow></msqrt><mrow><mi>n</mi><mo>·</mo><mi>μ</mi></mrow></mfrac><mo>=</mo><mfrac><mi>σ</mi><mrow><msqrt><mi>n</mi></msqrt><mo>·</mo><mi>μ</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><msqrt><mi>n</mi></msqrt></mfrac><mo>·</mo><msub><mi>C</mi><mi>v</mi></msub></math></div>
+<div class="box"><b class="t">Result</b>Adding <i>n</i> independent demands reduces C<sub>v</sub> by a factor of <b>1/√n</b>, so the penalty of insufficient or excess resources grows smaller. <b>Aggregating 100 workloads brings the penalty to 10%</b> (1/√100 = 0.1).</div>
+<h3>But what about real workloads?</h3>
+<ul><li><b>Negatively correlated demands:</b> X and 1 − X; their sum is the constant 1, so choosing customer segments appropriately removes variability.</li>
+<li><b>Perfectly correlated demands</b> (simultaneous peaks): aggregation gives no benefit; C<sub>v</sub> stays constant.</li></ul>
+<div class="eq"><math display="block"><mtext>Aggregate</mtext><mo>=</mo><mrow><mi>n</mi><mo>·</mo><mi>X</mi></mrow><mo>,</mo><mrow><mtext>mean</mtext><mo>=</mo><mi>n</mi><mi>μ</mi></mrow><mo>,</mo><mrow><mtext>std.&#160;dev.</mtext><mo>=</mo><mi>n</mi><mi>σ</mi></mrow><mo>⇒</mo><msub><mi>C</mi><mi>v</mi></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mi>σ</mi></mrow><mrow><mi>n</mi><mi>μ</mi></mrow></mfrac><mo>=</mo><mfrac><mi>σ</mi><mi>μ</mi></mfrac></math></div>
+<ul><li><b>In the real world:</b> with correlated demands, private, mid-size and large providers see similar statistics of scale; with independent demands, mid-size providers achieve statistical economies similar to an infinitely large provider. Data on economies of scale for large providers is mixed (same COTS components, cheap power locations, early automation tools, third parties taking care of operations).</li></ul>
+<h3>Value of location independence</h3>
+<p>Applications, services and content now come to us over wired, wireless and satellite networks. <b>Latency</b>: human response latency is tens to hundreds of ms; latency correlates strongly with <b>distance</b> (routing algorithms are second-order); light in fibre travels only about 124 miles per ms. Examples: Google word suggestion taking 2 s would be unusable; VoIP degrades at 200 ms or more. Serving a global user base requires a <b>dispersed service architecture</b> (coordination, consistency, availability, partition tolerance) with investment implications.</p>
+
+<h2 id="s4"><span>4</span>Utility Pricing &amp; Provisioning Penalty</h2>
+<p>Economy of scale may not be very effective, but <b>cloud services need not be cheaper per unit to be economical</b>. <i>Car analogy:</i> buying or leasing costs INR 10,000 per day, renting costs INR 45,000 per day; for a 2-day trip renting is far cheaper than owning, so it depends on demand.</p>
+<div class="box def"><b class="t">Utility pricing in detail</b>Let demand be D(t) for 0 &lt; t &lt; T, with peak P and average A. A <b>baseline</b> (owned) system must be provisioned for the peak; the utility is charged per use at a <b>utility premium</b> U (utility cost per unit divided by baseline cost per unit, e.g. 45,000/10,000 = 4.5 in the car example).
+<div class="eq"><math display="block"><msub><mi>B</mi><mi>T</mi></msub><mo>=</mo><mi>P</mi><mo>×</mo><mi>T</mi></math><math display="block"><msub><mi>C</mi><mi>T</mi></msub><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>T</mi></msubsup><mi>U</mi><mo>×</mo><mi>D</mi><mo>(</mo><mi>t</mi><mo>)</mo><mtext>dt</mtext><mo>=</mo><mi>U</mi><mo>×</mo><mi>A</mi><mo>×</mo><mi>T</mi></math><math display="block"><msub><mi>C</mi><mi>T</mi></msub><mtext>&lt;</mtext><msub><mi>B</mi><mi>T</mi></msub><mo>⇒</mo><mi>U</mi><mo>×</mo><mi>A</mi><mo>×</mo><mi>T</mi><mtext>&lt;</mtext><mi>P</mi><mo>×</mo><mi>T</mi><mo>⇒</mo><mi>U</mi><mtext>&lt;</mtext><mfrac><mi>P</mi><mi>A</mi></mfrac></math></div>
+The utility is cheaper whenever the premium is below the <b>peak-to-average ratio</b>. Spiky, highly variable demand (large P/A) favours the cloud even at a high U.
+<p style="font-size:11.5px;margin:6px 0 0"><i>Note: the slide's equations were garbled in extraction; this is the standard form they correspond to, with baseline cost normalized to one unit per resource per unit time.</i></p></div>
+<h3>Penalty cost</h3>
+<p><b>Penalty</b> = either paying for unused resources or missing service delivery, i.e. the area between demand D(t) and the provisioned resource R(t). If resources follow demand with provisioning delay t<sub>p</sub>, demand that grows exponentially falls exponentially behind:</p>
+<div class="eq"><math display="block"><mrow><mi>D</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mi>e</mi><mi>t</mi></msup></mrow><mtext>&#160;,&#160;&#160;</mtext><mrow><mi>R</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mi>e</mi><mrow><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>p</mi></msub></mrow></msup></mrow></math><math display="block"><mtext>Penalty</mtext><mo>=</mo><mrow><mo>∫</mo><mo>|</mo><mi>D</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>−</mo><mi>R</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>|</mo><mtext>dt</mtext></mrow></math><math display="block"><mrow><mi>D</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>−</mo><mi>R</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><msup><mi>e</mi><mi>t</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>p</mi></msub></mrow></msup><mo>=</mo><msup><mi>e</mi><mi>t</mi></msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><msub><mi>t</mi><mi>p</mi></msub></mrow></msup><mo>)</mo></mrow><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub><msup><mi>e</mi><mi>t</mi></msup></math></div>
+<p>The penalty grows in proportion to the demand itself: with exponential demand, <b>any fixed provisioning interval according to current demand falls exponentially behind</b>, so the penalty cost keeps growing even with continuous monitoring and a non-zero provisioning interval.</p>
+<div class="box"><b class="t">Assignment 1 (as stated)</b>Peak computing demand of an organization is 120 units. Demand is D(t) = 50 sin t for 0 ≤ t &lt; π/2 and 20 sin t for π/2 ≤ t &lt; π. Resource provisioned is R(t) = D(t) + δ·dD(t)/dt, where δ is the provisioning delay (read from the slide as π/12 time units); minimum demand is 0. Cost to provision one resource unit for one time unit is 0.9. Calculate the penalty and draw an inference. <i>(Slide symbols were partly garbled in extraction.)</i></div>
+
+<h2 id="s5"><span>5</span>Managing Data: Relational and Parallel Databases</h2>
+<p><b>Relational databases</b> have been the default storage and retrieval mechanism since the 1980s (System R, Ingres), efficient for <b>transaction processing</b>, replacing hierarchical and network databases. For scalable web search Google built <b>GFS</b> (massively parallel, fault-tolerant distributed file system), <b>BigTable</b> (data organization, similar to column-oriented databases such as Vertica) and <b>MapReduce</b> (parallel programming paradigm). These suit large-volume, massively parallel text processing and enterprise analytics; similar to the BigTable model are Google App Engine's Datastore and Amazon's SimpleDB.</p>
+<h3>RDBMS internals</h3>
+<ul><li><b>Query layer:</b> users interact via SQL; the parser transforms queries into memory and disk-level operations and optimizes execution time.</li>
+<li><b>Disk-space management:</b> records stored on pages of contiguous memory blocks, fetched with pre-fetching and page-replacement policies.</li>
+<li><b>Database file system layer:</b> independent of the OS file system, to keep full control over retaining or releasing a page in memory; files may span multiple disks and use parallel I/O (RAID arrays, multiprocessor clusters).</li></ul>
+<div class="tbl"><table><tr><th>Storage technique</th><th>Row-oriented</th><th>Column-oriented</th></tr>
+<tr><td>Best for</td><td>Write-oriented operations, transaction processing</td><td>Data-warehouse workloads</td></tr>
+<tr><td>Layout</td><td>Relational records on contiguous disk pages; accessed via primary index on chosen columns (e.g. B+-tree)</td><td>Projection of a table stored sorted by dimension values; aggregation of measure columns by dimension values</td></tr>
+<tr><td>Indexing</td><td>Index → records on pages of rows</td><td>Needs multiple <b>join indexes</b> if different projections must be indexed in sorted order</td></tr></table></div>
+<h3>Parallel database architectures</h3>
+<div class="tbl"><table><tr><th>Architecture</th><th>Description</th></tr>
+<tr><td>Shared memory</td><td>Servers with multiple CPUs; memory address space shared and managed by a symmetric multiprocessing (<b>SMP</b>) OS, which schedules processes in parallel across all processors</td></tr>
+<tr><td>Shared disk</td><td>Hybrid: independent server clusters share storage over a high-speed network (<b>NAS</b> or <b>SAN</b>) via Ethernet, faster Fibre Channel or InfiniBand</td></tr>
+<tr><td>Shared nothing</td><td>Cluster of independent servers, each with its own disk space, connected by a network</td></tr></table></div>
+<p><b>Advantages of parallel DB over a plain relational DB:</b> efficient SQL execution by exploiting multiple processors; in shared-nothing, tables are <b>partitioned</b> across nodes, the SQL optimizer handles distributed joins, and <b>distributed two-phase commit locking</b> isolates transactions; fault tolerant (control transferred to a stand-by system for transaction processing, or computations restored for data warehousing). <b>Examples:</b> transaction processing: Oracle, DB2, SQL Server; data warehousing: Netezza, Vertica, Teradata.</p>
+<p><b>Parallel computing models:</b> <b>shared-memory</b> (any processor can access any memory location; unequal latency) and <b>distributed-memory</b> (each processor accesses only its own memory and uses message passing). Parallel computing began with compute-intensive scientific tasks and moved into databases.</p>
+
+<h2 id="s6"><span>6</span>Parallel Efficiency (Worked Illustration)</h2>
+<div class="box def"><b class="t">Parallel efficiency</b>If a task takes time T on a uniprocessor, it should ideally take T/p on p processors. Inefficiencies arise from <b>synchronization</b> among processors, <b>message-communication overheads</b> and <b>imbalance</b> in work distribution. Parallel efficiency is
+<div class="eq"><math display="block"><mi>ε</mi><mo>=</mo><mfrac><mi>T</mi><mrow><mi>p</mi><mo>·</mo><msub><mi>T</mi><mi>p</mi></msub></mrow></mfrac></math></div>
+A <b>scalable</b> parallel implementation keeps efficiency constant as data size and processor count grow together, and efficiency increases with data size for a fixed number of processors.</div>
+<p><b>Problem:</b> given <i>n</i> documents (e.g. crawled web pages) and <i>m</i> distinct words, compute the frequency (total occurrences) of each word, i.e. <i>m</i> frequencies. Assumptions: distributed-memory model with a shared disk (no contention); each word occurs <i>f</i> times per document on average; time to read a word = time to send it = <i>c</i>; addition time negligible.</p>
+<div class="two">
+<div class="box"><b class="t">Approach 1: split the words</b>Each processor computes frequencies for <i>m/p</i> words across all documents, so it reads every word of every document (wasted reads).
+<div class="eq"><math display="block"><mi>T</mi><mo>=</mo><mi>n</mi><mo>×</mo><mi>m</mi><mo>×</mo><mi>f</mi><mo>×</mo><mi>c</mi><mtext>&#160;,&#160;&#160;&#160;</mtext><msub><mi>T</mi><mi>p</mi></msub><mo>=</mo><mi>n</mi><mo>×</mo><mi>m</mi><mo>×</mo><mi>f</mi><mo>×</mo><mi>c</mi></math><math display="block"><msub><mi>ε</mi><mi>a</mi></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mi>m</mi><mi>f</mi><mi>c</mi></mrow><mrow><mi>p</mi><mo>·</mo><mi>n</mi><mi>m</mi><mi>f</mi><mi>c</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mi>p</mi></mfrac></math></div>
+Efficiency <b>falls with increasing p</b>: not scalable.</div>
+<div class="box"><b class="t">Approach 2: split the documents</b>Each processor computes frequencies of all <i>m</i> words over <i>n/p</i> documents, then processors sum their results.
+<div class="eq"><math display="block"><msub><mi>T</mi><mi>p</mi></msub><mo>=</mo><mrow><mo>(</mo><mfrac><mi>n</mi><mi>p</mi></mfrac><mo>)</mo><mi>m</mi><mi>f</mi><mi>c</mi></mrow><mo>+</mo><mrow><mi>c</mi><mi>m</mi></mrow><mo>+</mo><mrow><mi>p</mi><mo>×</mo><mo>(</mo><mfrac><mi>m</mi><mi>p</mi></mfrac><mo>)</mo><mo>×</mo><mi>c</mi></mrow></math><math display="block"><msub><mi>ε</mi><mi>b</mi></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mi>m</mi><mi>f</mi><mi>c</mi></mrow><mrow><mi>p</mi><mo>·</mo><msub><mi>T</mi><mi>p</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>n</mi><mi>m</mi><mi>f</mi><mi>c</mi></mrow><mrow><mi>n</mi><mi>m</mi><mi>f</mi><mi>c</mi><mo>+</mo><mn>2</mn><mi>p</mi><mi>c</mi><mi>m</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>n</mi><mi>f</mi></mrow><mrow><mi>n</mi><mi>f</mi><mo>+</mo><mn>2</mn><mi>p</mi></mrow></mfrac></math><math display="block"><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><mfrac><mrow><mn>2</mn><mi>p</mi></mrow><mrow><mi>n</mi><mi>f</mi></mrow></mfrac></mrow></mfrac><mo>≈</mo><mn>1</mn><mtext>&#160;&#160;for&#160;p&#160;≪&#160;nf</mtext></math></div>
+Every read is useful; efficiency is constant as <i>n</i> and <i>p</i> grow proportionally and tends to 1 for fixed <i>p</i> as <i>n</i> grows: <b>scalable</b>.</div></div>
+
+<h2 id="s7"><span>7</span>Cloud File Systems and Data Stores</h2>
+<h3>GFS / HDFS</h3>
+<ul><li><b>GFS:</b> manages relatively large files on a very large cluster of <b>commodity servers</b> on a high-speed network; handles failures even during reads/writes; supports parallel reads, writes and appends by many clients. Fault tolerance is a necessity because the chance that something fails grows with the number of components N:</li></ul>
+<div class="eq"><math display="block"><mtext>p(system&#160;failure)</mtext><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mtext>p(component&#160;failure)</mtext><mo>)</mo></mrow><mi>N</mi></msup><mo>→</mo><mn>1</mn><mtext>&#160;&#160;&#160;(for&#160;large&#160;N)</mtext></math></div>
+<ul><li><b>HDFS:</b> open-source implementation of the GFS architecture, available on Amazon EC2.</li>
+<li><b>Architecture:</b> a <b>single master</b> (GFS) / <b>NameNode</b> (HDFS) controls the file namespace; files split into <b>chunks</b> (GFS) / <b>blocks</b> (HDFS), typically <b>64 MB</b>, stored on <b>chunk servers</b> / <b>DataNodes</b> (commodity Linux servers), <b>replicated three times</b> across different physical racks and network segments.</li></ul>
+<div class="tbl"><table><tr><th>Operation</th><th>Steps</th></tr>
+<tr><td>Read</td><td>Client sends file path and offset to the master → master returns metadata for one replica of the chunk → client <b>caches</b> the metadata → reads from the chunk server.</td></tr>
+<tr><td>Write / append</td><td>Client sends path to master → master returns metadata for <b>all replicas</b> → client sends data to all chunk servers, which acknowledge → master designates one as <b>primary</b> → primary appends at an offset it chooses (can be beyond EOF to handle multiple writers) and sends the offset to replicas → if any replica fails, the primary <b>retries</b>.</td></tr>
+<tr><td>Fault tolerance</td><td>Master exchanges <b>heartbeat messages</b> with chunk servers; on failure the metadata is updated, a new primary is assigned if the primary failed, and clients refresh metadata from the master and retry.</td></tr></table></div>
+<h3>BigTable</h3>
+<p>A distributed structured storage system built on GFS: a <b>sparse, persistent, multi-dimensional sorted map</b> of key–value pairs accessed by <b>row key, column key and timestamp</b> (example row <code>com.cnn.www</code> with columns <code>contents:</code> and <code>anchor:cnnsi.com</code>).</p>
+<ul><li>Columns have the form <b>column-family : label</b>; the set of column families is fixed when the table is created, but labels can be added dynamically at any time. Each cell stores <b>multiple versions</b> in decreasing timestamp order; data in a column is stored together for efficient access.</li>
+<li><b>Storage:</b> each table is split into row ranges called <b>tablets</b>, each managed by a <b>tablet server</b>, which stores each column family of its row range in a separate distributed file, an <b>SSTable</b> (HBase: HStore). A single <b>metadata table</b> (managed by a metadata server) locates the tablets for any read/write; it can itself be split into tablets, with a <b>root tablet</b> pointing to the other metadata tablets. Supports large parallel reads and inserts, even simultaneously; insertions are sorted, so they need more work than a simple append.</li></ul>
+<h3>Dynamo (Amazon)</h3>
+<ul><li>Supports a large volume of concurrent, small updates (unlike BigTable, which targets bulk reads/writes); data model is a simple <b>&lt;key, value&gt;</b> pair, well suited to e-commerce; <b>independent of any distributed file system</b> for failure handling, replication, forwarding writes if a replica is down, and conflict resolution.</li>
+<li><b>Ring architecture:</b> objects are arbitrary byte arrays; <b>MD5</b> generates a 128-bit hash whose range maps onto <b>virtual nodes arranged in a ring</b>; each key maps to one virtual node and is replicated at a primary and additional virtual nodes; each physical node manages several virtual nodes at distributed ring positions (load balancing for transient failures and network partitions).</li>
+<li><b>Writes:</b> executed at one virtual node and forwarded to all replica nodes; a <b>quorum protocol</b> maintains <b>eventual consistency</b> under many concurrent reads and writes.</li>
+<li><b>Versioning:</b> each write creates a new version with an incremented local (vector) timestamp capturing update history; superseded versions are discarded; concurrent writes keep all versions, returned to readers, and conflicts are resolved by application-independent logic.</li></ul>
+<div class="box"><b class="t">Quorum consistency</b>A read accesses R replicas and a write accesses W replicas out of N. The system is <b>quorum consistent</b> if
+<div class="eq"><math display="block"><mrow><mo>(</mo><mi>R</mi><mo>+</mo><mi>W</mi><mo>)</mo></mrow><mtext>&gt;</mtext><mi>N</mi></math></div>
+Trade-off: for efficient writes, more replicas must be read; for efficient reads, more replicas must be written. Dynamo's node-level storage engines include Berkeley DB (used by Amazon) and MySQL.</div>
+<h3>Datastore (Google App Engine) and SimpleDB</h3>
+<ul><li>Simple transactional &lt;key, value&gt; stores. All Datastore entities live in <b>one BigTable table</b> (no column-oriented storage; the entities table keeps data as one column family), <b>sharded</b> across disks and sorted lexicographically by key, enabling efficient <b>prefix and range queries</b>. Entities are <b>grouped</b> for transactions (keys lexicographic by group ancestry; same group stored close together).</li>
+<li><b>Index tables</b> (using entity attribute values as keys) support varied queries: automatic <b>single-property</b> indexes (WHERE-clause lookups) and <b>kind</b> indexes (SELECT ALL queries), plus configurable <b>composite</b> indexes for complex queries. The query executor picks the index with the <b>highest selectivity</b>.</li></ul>
+
+<h2 id="s8"><span>8</span>MapReduce</h2>
+<p><b>MapReduce</b> is Google's programming model for large-scale search and text processing on web data stored in BigTable/GFS: massively parallel computation across tens of thousands of processors, <b>fault tolerant</b> so progress continues despite processor or network failures. <b>Hadoop</b> is the open-source implementation (developed at Yahoo!), available pre-packaged on Amazon EC2.</p>
+<h3>The model</h3>
+<p>A parallel programming abstraction over a common fault-tolerant implementation, with two phases (<b>map</b> and <b>reduce</b>). A configurable number <i>M</i> of mapper and <i>R</i> of reducer processors work on a problem, coordinated by a <b>single master</b>.</p>
+<div class="eq"><math display="block"><mrow><mtext>Map:</mtext><mtext>&#160;&#160;</mtext><mo>(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>,</mo><msub><mi>v</mi><mn>1</mn></msub><mo>)</mo><mo>→</mo><mo>[</mo><mo>(</mo><msub><mi>k</mi><mn>2</mn></msub><mo>,</mo><msub><mi>v</mi><mn>2</mn></msub><mo>)</mo><mo>]</mo></mrow></math><math display="block"><mrow><mtext>Reduce:</mtext><mtext>&#160;&#160;</mtext><mo>(</mo><msub><mi>k</mi><mn>2</mn></msub><mo>,</mo><mo>[</mo><msub><mi>v</mi><mn>2</mn></msub><mo>]</mo><mo>)</mo><mo>→</mo><mo>(</mo><msub><mi>k</mi><mn>2</mn></msub><mo>,</mo><mi>f</mi><mo>(</mo><mo>[</mo><msub><mi>v</mi><mn>2</mn></msub><mo>]</mo><mo>)</mo><mo>)</mo></mrow></math></div>
+<div class="flow"><div><b>Map phase</b>Each mapper reads about 1/M of the input from the global file system (locations from the master), transforms key–value pairs, and writes one file per reducer, sorted by key, to its local file system. The master tracks file locations.</div><i>→</i><div><b>Reduce phase</b>The master tells reducers where the files are. Reducers fetch them by remote procedure call, group by key, apply f to each value list, and write results back to GFS.</div></div>
+<p><b>Word-count example</b> (M = 3 mappers, R = 2 reducers; documents d1…d10 with words w1…w4): the map function emits a count per word per document, the reduce function sums the counts for each word.</p>
+<div class="eq"><math display="block"><mtext>Map:</mtext><mtext>&#160;&#160;</mtext><mo>(</mo><msub><mi>d</mi><mi>k</mi></msub><mo>,</mo><mo>[</mo><msub><mi>w</mi><mn>1</mn></msub><mo>…</mo><msub><mi>w</mi><mi>n</mi></msub><mo>]</mo><mo>)</mo><mo>→</mo><mo>[</mo><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>,</mo><msub><mi>c</mi><mi>i</mi></msub><mo>)</mo><mo>]</mo></math><math display="block"><mtext>Reduce:</mtext><mtext>&#160;&#160;</mtext><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>,</mo><mo>[</mo><msub><mi>c</mi><mi>i</mi></msub><mo>]</mo><mo>)</mo><mo>→</mo><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>,</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>c</mi><mi>i</mi></msub><mo>)</mo></math></div>
+<p><b>Fault tolerance:</b> <b>heartbeat</b> messages report task status. If a worker communicates but makes no progress, the master <b>duplicates</b> its tasks on processors that have finished. If a <b>mapper fails</b>, its key range is reassigned and <b>re-executed</b>, because partial results sit on local files, not GFS. If a <b>reducer fails</b>, only its remaining tasks are reassigned, since completed work is already in GFS.</p>
+<h3>Efficiency of MapReduce</h3>
+<p>A task on data volume D takes <i>wD</i> on a uniprocessor (read + compute + write back; <i>c</i> = time to read/write one word). Decomposed into map and reduce stages with no decomposition overhead:</p>
+<div class="eq"><math display="block"><mi>w</mi><mi>D</mi><mo>=</mo><mi>c</mi><mi>D</mi><mo>+</mo><mi>c</mi><mi>m</mi><mi>D</mi><mo>+</mo><mi>c</mi><mi>r</mi><mi>σ</mi><mi>D</mi><mo>+</mo><mi>c</mi><mi>σ</mi><mi>μ</mi><mi>D</mi></math><math display="block"><mrow><mtext>Map&#160;time</mtext><mo>=</mo><mi>c</mi><mi>m</mi><mi>D</mi></mrow><mtext>&#160;,&#160;</mtext><mrow><mtext>map&#160;output</mtext><mo>=</mo><mi>σ</mi><mi>D</mi></mrow><mtext>&#160;,&#160;</mtext><mrow><mtext>reduce&#160;time</mtext><mo>=</mo><mi>c</mi><mi>r</mi><mi>σ</mi><mi>D</mi></mrow><mtext>&#160;,&#160;</mtext><mrow><mtext>reduce&#160;output</mtext><mo>=</mo><mi>σ</mi><mi>μ</mi><mi>D</mi></mrow></math></div>
+<p>With <i>P</i> processors acting as mappers and then reducers, the extra overhead is each mapper writing to local disk and each reducer reading remotely from every mapper (reading a word locally or remotely costs the same):</p>
+<div class="eq"><math display="block"><mtext>Per&#160;mapper:</mtext><mtext>&#160;&#160;read</mtext><mo>=</mo><mfrac><mrow><mi>c</mi><mi>D</mi></mrow><mi>P</mi></mfrac><mtext>,&#160;&#160;map&#160;output</mtext><mo>=</mo><mfrac><mrow><mi>σ</mi><mi>D</mi></mrow><mi>P</mi></mfrac><mtext>,&#160;&#160;local&#160;write</mtext><mo>=</mo><mfrac><mrow><mi>c</mi><mi>σ</mi><mi>D</mi></mrow><mi>P</mi></mfrac></math><math display="block"><mtext>Each&#160;reducer&#160;reads&#160;</mtext><mfrac><mrow><mi>σ</mi><mi>D</mi></mrow><msup><mi>P</mi><mn>2</mn></msup></mfrac><mtext>&#160;from&#160;each&#160;of&#160;P&#160;mappers&#160;(reducer&#160;r&#160;reads&#160;mapper&#160;(r&#160;+&#160;i)&#160;mod&#160;P&#160;in&#160;step&#160;i)</mtext></math><math display="block"><mtext>Transfer&#160;per&#160;reducer</mtext><mo>=</mo><mi>P</mi><mo>×</mo><mfrac><mrow><mi>c</mi><mi>σ</mi><mi>D</mi></mrow><msup><mi>P</mi><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><mrow><mi>c</mi><mi>σ</mi><mi>D</mi></mrow><mi>P</mi></mfrac><mtext>,&#160;&#160;overhead</mtext><mo>=</mo><mfrac><mrow><mn>2</mn><mi>c</mi><mi>σ</mi><mi>D</mi></mrow><mi>P</mi></mfrac></math></div>
+<p>Parallel efficiency of the MapReduce implementation:</p>
+<div class="eq"><math display="block"><msub><mi>ε</mi><mtext>MR</mtext></msub><mo>=</mo><mfrac><mrow><mi>w</mi><mi>D</mi></mrow><mrow><mi>P</mi><mo>(</mo><mfrac><mrow><mi>w</mi><mi>D</mi></mrow><mi>P</mi></mfrac><mo>+</mo><mfrac><mrow><mn>2</mn><mi>c</mi><mi>σ</mi><mi>D</mi></mrow><mi>P</mi></mfrac><mo>)</mo></mrow></mfrac><mo>=</mo><mfrac><mi>w</mi><mrow><mi>w</mi><mo>+</mo><mn>2</mn><mi>c</mi><mi>σ</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><mfrac><mrow><mn>2</mn><mi>c</mi><mi>σ</mi></mrow><mi>w</mi></mfrac></mrow></mfrac></math></div>
+<p>Overhead is small when the computation cost per word <i>w</i> is large relative to <i>2cσ</i>, so efficiency approaches 1 for compute-heavy tasks.</p>
+<h3>Applications</h3>
+<ul><li><b>Indexing a large collection of documents</b> (key to web search and structured data): map emits a (word, document-id) pair for each word; reduce groups pairs by word and builds an index entry.</li></ul>
+<div class="eq"><math display="block"><mtext>Map:</mtext><mtext>&#160;&#160;</mtext><mo>(</mo><msub><mi>d</mi><mi>k</mi></msub><mo>,</mo><mo>[</mo><msub><mi>w</mi><mn>1</mn></msub><mo>…</mo><msub><mi>w</mi><mi>n</mi></msub><mo>]</mo><mo>)</mo><mo>→</mo><mo>[</mo><mo>(</mo><msub><mi>w</mi><mi>v</mi></msub><mo>,</mo><msub><mi>d</mi><mi>k</mi></msub><mo>)</mo><mo>]</mo></math><math display="block"><mtext>Reduce:</mtext><mtext>&#160;&#160;</mtext><mo>[</mo><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>,</mo><msub><mi>d</mi><mi>k</mi></msub><mo>)</mo><mo>]</mo><mo>→</mo><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>,</mo><mo>[</mo><msub><mi>d</mi><msub><mi>i</mi><mn>1</mn></msub></msub><mo>…</mo><msub><mi>d</mi><msub><mi>i</mi><mi>m</mi></msub></msub><mo>]</mo><mo>)</mo></math></div>
+<ul><li><b>Relational operations</b> (SQL joins, group by) on large data sets, with advantages over parallel databases in <b>scale and fault tolerance</b>.</li></ul>
+
+<h2 id="s9"><span>9</span>OpenStack</h2>
+<div class="box def"><b class="t">Definition</b>OpenStack is a <b>cloud operating system</b> that controls large pools of compute, storage and networking resources across a datacenter, managed through a dashboard that gives administrators control while letting users provision resources through a web interface. It began as a collaboration between <b>NASA and Rackspace</b>; in 2017 job-posting trends showed OpenStack ahead of EC2, CloudStack and Eucalyptus.</div>
+<p><b>Capabilities:</b> IaaS (provision compute, network, storage), with PaaS (e.g. Cloud Foundry) built on top and SaaS via browser or thin client; VMs on demand, provisioning, <b>snapshotting</b>, networking, storage for VMs and arbitrary files, <b>multi-tenancy</b>, <b>quotas</b> for projects and users (a user can belong to several projects). Releases run Austin (2010) to Ocata (2017, latest in slides), then Pike and Queens under development.</p>
+<div class="tbl"><table><tr><th>Project</th><th>Service</th><th>Function</th></tr>
+<tr><td>Nova</td><td>Compute</td><td>Manages the life cycle of compute instances: spawning, scheduling and decommissioning VMs on demand</td></tr>
+<tr><td>Neutron</td><td>Networking</td><td>Network-Connectivity-as-a-Service for other services; API to define networks and attachments; pluggable architecture supporting many vendors</td></tr>
+<tr><td>Swift</td><td>Object storage</td><td>Stores/retrieves unstructured objects via a RESTful HTTP API; highly fault tolerant (replication, scale-out); not a mountable file server; writes objects to multiple drives across a cluster</td></tr>
+<tr><td>Cinder</td><td>Block storage</td><td>Persistent block storage for running instances; pluggable driver architecture</td></tr>
+<tr><td>Keystone</td><td>Identity</td><td>Authentication and authorization for other services; catalog of service endpoints</td></tr>
+<tr><td>Glance</td><td>Image service</td><td>Stores and retrieves VM disk images; used by Nova during provisioning</td></tr>
+<tr><td>Ceilometer</td><td>Telemetry</td><td>Monitors and meters the cloud for billing, benchmarking, scalability and statistics</td></tr>
+<tr><td>Horizon</td><td>Dashboard</td><td>Web-based self-service portal (launch instances, assign IPs, configure access controls)</td></tr></table></div>
+<p style="font-size:12px"><i>The extracted text for the later architecture diagrams (slides 35–43) was not available, so they are not covered.</i></p>
+
+<h2 id="s10"><span>10</span>Quick Revision</h2>
+<div class="box"><b class="t">Must remember</b>
+<ul>
+<li><b>SLA:</b> contract between provider and consumer; contains SLOs; off-the-shelf SLAs are non-negotiable and unsuited to mission-critical use; WS-Agreement and WSLA for web services; neutral third-party monitoring; limits: uptime-only metrics, vendor bias, weak consumer monitoring.</li>
+<li><b>Economics:</b> C<sub>v</sub> = σ/|μ|; aggregating n independent demands gives C<sub>v</sub>/√n (100 workloads → 10%); correlated demands give no gain; utility is cheaper when <b>U &lt; P/A</b>; exponential demand with provisioning delay t<sub>p</sub> gives penalty ∝ e<sup>t</sup>.</li>
+<li><b>Parallel efficiency:</b> ε = T/(p·T<sub>p</sub>); approach 1 (split words) has ε = 1/p; approach 2 (split documents) has ε = nf/(nf + 2p) ≈ 1 for p ≪ nf.</li>
+<li><b>Parallel DB:</b> shared memory, shared disk, shared nothing. <b>GFS/HDFS:</b> single master, 64 MB chunks, 3 replicas, primary-based append. <b>BigTable:</b> row/column/timestamp, tablets, SSTables. <b>Dynamo:</b> key–value, MD5 ring, quorum <b>R + W &gt; N</b>, vector timestamps. <b>Datastore:</b> single BigTable table with index tables.</li>
+<li><b>MapReduce:</b> map (k1,v1) → [(k2,v2)]; reduce (k2,[v2]) → (k2, f([v2])); mapper failure ⇒ re-execute (local files), reducer failure ⇒ only remaining tasks; ε<sub>MR</sub> = 1/(1 + 2σc/w).</li>
+<li><b>OpenStack:</b> Nova, Neutron, Swift, Cinder, Keystone, Glance, Ceilometer, Horizon.</li></ul></div>
+
+<footer>Source: NPTEL Cloud Computing, IIT Kharagpur (Prof. Soumya K. Ghosh) · Week 3 · Print-ready for A4</footer>
+</div></body></html>

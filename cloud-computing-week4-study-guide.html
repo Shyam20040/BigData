@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing – Week 4 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dk:#0A2647;--bl:#1E5A96;--ac:#2C7FCE;--pl:#EAF2FB;--lg:#F4F6F8;--bd:#DCE3EA;--tx:#171A1E;--bg:#fff;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142234;--tx:#e6ecf3;--pl:#16304d;--lg:#142234;--bd:#2a3d55;--dk:#9cc7f0;--bl:#7fb5ea}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 14px/1.65 Poppins,system-ui,sans-serif}
+.pg{max-width:820px;margin:0 auto;padding:28px 22px}
+header{background:#0A2647;color:#fff;border-radius:10px;padding:30px 28px;margin-bottom:22px;border-left:8px solid #2C7FCE}
+header small{letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#9cc7f0;font-size:11px}
+header h1{margin:6px 0 4px;font-size:28px;font-weight:700;line-height:1.25}header p{margin:0;font-weight:300;color:#d5e4f5}
+nav{background:var(--pl);border:1px solid var(--bd);border-radius:8px;padding:12px 18px;margin-bottom:8px;font-size:12.5px}
+nav a{color:var(--bl);text-decoration:none;font-weight:500;margin-right:14px;white-space:nowrap}
+h2{font-size:20px;font-weight:600;color:var(--dk);border-bottom:2px solid var(--ac);padding-bottom:5px;margin:34px 0 12px}
+h2 span{background:var(--ac);color:#fff;border-radius:5px;padding:1px 9px;margin-right:8px;font-size:15px}
+h3{font-size:15px;font-weight:600;color:var(--bl);margin:20px 0 6px}
+p{margin:6px 0}ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--card)}
+th{background:#0A2647;color:#fff;text-align:left;font-weight:500;padding:7px 10px}
+td{border:1px solid var(--bd);padding:6px 10px;vertical-align:top}tr:nth-child(even) td{background:var(--lg)}
+td:first-child{font-weight:600;color:var(--dk);white-space:nowrap}
+.box{background:var(--pl);border-left:4px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.box b.t{display:block;color:var(--bl);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.def{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--dk)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow div{flex:1 1 90px;background:var(--card);border:1.5px solid var(--ac);border-radius:6px;padding:7px 8px;text-align:center;font-size:12px}
+.flow div b{display:block;color:var(--dk);font-size:12.5px}
+.flow i{align-self:center;color:var(--ac);font-style:normal;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.grid div{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:13px}
+.grid b{color:var(--dk)}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:12px;background:var(--lg);padding:1px 5px;border-radius:3px}
+footer{margin-top:30px;font-size:11.5px;color:var(--bl);text-align:center}
+@media print{@page{size:A4;margin:14mm}body{font-size:11.5px;background:#fff}nav{display:none}.pg{padding:0;max-width:none}h2{break-after:avoid}table,.box,.flow{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:10px 0}.two .box{margin:0}
+pre{background:#0A2647;color:#e6f0fb;font:12px/1.5 "DejaVu Sans Mono",monospace;border-radius:6px;padding:10px 14px;overflow-x:auto;margin:10px 0;white-space:pre}
+ol{margin:6px 0;padding-left:22px}
+td code{word-break:break-word}
+@media print{body{font-size:10.5px;line-height:1.5}table{font-size:10px}td,th{padding:4px 6px}h2{margin:20px 0 8px;font-size:17px}h3{margin:12px 0 4px;font-size:13px;break-after:avoid}.box{padding:7px 11px;margin:8px 0;font-size:11px}.grid div{padding:6px 9px;font-size:11px}.flow div{font-size:10.5px;padding:5px}header{padding:20px 24px}header h1{font-size:23px}pre{font-size:9.5px;padding:7px 10px;white-space:pre-wrap}table{break-inside:auto}tr{break-inside:avoid}.tbl{break-inside:auto}td:first-child{white-space:normal}}
+</style><link rel="stylesheet" href="common.css"></head><body><div class="pg">
+
+<header><small>NPTEL · Cloud Computing · IIT Kharagpur (Prof. Soumya K. Ghosh)</small>
+<h1>Private Cloud with OpenStack, Azure &amp; Google Cloud Platform</h1>
+<p>Week 4 consolidated study guide (case studies and hands-on demos)</p></header>
+
+<nav><a href="#s1">1 Meghamala</a><a href="#s2">2 OpenStack Dashboard</a><a href="#s3">3 VM Lifecycle</a><a href="#s4">4 Azure</a><a href="#s5">5 Azure Python Demo</a><a href="#s6">6 Google Cloud Platform</a><a href="#s7">7 GCP Web-page Demo</a><a href="#s8">8 App Engine Demo</a><a href="#s9">9 Revision</a></nav>
+
+<h2 id="s1"><span>1</span>Meghamala: the IIT Kharagpur Private Cloud</h2>
+<div class="box def"><b class="t">Case study</b><b>Meghamala</b> is an initiative of IIT Kharagpur to provide <b>on-demand computational and storage resources</b> to the institute's research community ("a one-stop solution to your computational needs: compute and storage with one click"). It is built on the <b>OpenStack</b> cloud platform and set up in the Computer and Informatics Centre (CIC). Hardware: <b>blade servers, SAN storage and NAS</b>.</div>
+<p><b>Milestones:</b> inauguration and workshop (April 2015) · MeghaData, a data-storage service, in beta (Aug 2015) · <b>MegHadoop</b>, a Hadoop cluster on Meghamala, available (March 2016).</p>
+<h3>Services offered</h3>
+<div class="tbl"><table><tr><th>Service</th><th>Details</th></tr>
+<tr><td>VMs4U (compute nodes)</td><td>Provision a VM on demand and use it as a desktop or run workloads on it.</td></tr>
+<tr><td>Storage on the House</td><td>Persistent storage provided on request (the form offers 20 GB).</td></tr></table></div>
+<div class="tbl"><table><tr><th>VM flavor</th><th>vCPUs</th><th>RAM</th><th>Ephemeral storage</th></tr>
+<tr><td>IITKGP_regular</td><td>2</td><td>4 GB</td><td>45 GB</td></tr>
+<tr><td>IITKGP_large</td><td>4</td><td>8 GB</td><td>45 GB</td></tr>
+<tr><td>IITKGP_XLarge</td><td>8</td><td>16 GB</td><td>60 GB</td></tr></table></div>
+<p><b>Guest OS options:</b> Ubuntu 14.04, CentOS 7, Fedora 20.</p>
+<h3>How a VM is requested</h3>
+<div class="flow"><div><b>1. Fill the form</b>faculty details, purpose, VM name, type, number, OS, persistent storage, duration (max 60 days)</div><i>→</i><div><b>2. Print and sign</b>the generated PDF</div><i>→</i><div><b>3. Submit hard copy</b>to the professor-in-charge</div></div>
+<div class="box"><b class="t">Usage policy</b>VMs are for <b>academic purposes only</b>. Neither the Meghamala team nor IIT Kharagpur is responsible for VM contents, and inappropriate material may lead to <b>immediate termination</b> of the VM.</div>
+<p>The team consists of students, CIC engineers and faculty (Soumya K. Ghosh, Shamik Sural); the key aim is to make people learn.</p>
+
+<h2 id="s2"><span>2</span>The OpenStack Dashboard (Horizon) in Practice</h2>
+<p>The admin logs in to the OpenStack dashboard and sees the cloud through several views, each backed by an OpenStack project:</p>
+<div class="tbl"><table><tr><th>Dashboard view</th><th>OpenStack service</th><th>What it shows</th></tr>
+<tr><td>Overview / usage summary</td><td>Horizon</td><td>Usage over a chosen period. June 2017 example: <b>30 active instances, 304 GB active RAM, 128 vCPUs, 679.47 vCPU-hours, 64,662.52 GB-hours</b>.</td></tr>
+<tr><td>Limit summary</td><td>Quotas</td><td>Floating IPs 43 of 250 used; volumes 21 of 200; volume storage 3.0 TB of 3.7 TB; instances, vCPUs, RAM and security groups with no limit.</td></tr>
+<tr><td>Instances</td><td>Nova</td><td>Name, image, IP address, size, key pair, status, availability zone, power state, task, uptime, actions.</td></tr>
+<tr><td>Volumes</td><td><b>Cinder</b></td><td>Block volumes (2 GB to 1024 GB) with description, status, type and the instance they are attached to.</td></tr>
+<tr><td>Images</td><td><b>Glance</b></td><td>VM images with type, status, public/protected flags and format: CentOS 6.5 GUI, Ubuntu 14.04 (x2go), Windows 7 x64, Fedora 20 GUI, CentOS 7 GUI.</td></tr>
+<tr><td>Security group rules</td><td><b>Neutron</b></td><td>Ingress/egress rules (direction, ether type IPv4/IPv6, IP protocol, port range, remote), e.g. ICMP and TCP ports 1–65535, 3389 (RDP), 27017 (MongoDB).</td></tr>
+<tr><td>Hypervisors</td><td>Nova</td><td>Per-host vCPU, RAM and storage; summary: <b>128 of 144 vCPUs and 305 GB of 377 GB memory used</b>.</td></tr>
+<tr><td>Flavors</td><td>Nova</td><td>VM sizes (vCPUs, RAM, root, ephemeral and swap disk): m1.tiny, m1.small, m1.medium plus the IITKGP_regular/large/xlarge flavors.</td></tr>
+<tr><td>System info: compute services</td><td>Nova</td><td>Running services: nova-consoleauth, nova-conductor, nova-scheduler, nova-cert, nova-compute, nova-console.</td></tr></table></div>
+
+<h2 id="s3"><span>3</span>VM Lifecycle on OpenStack</h2>
+<div class="flow"><div><b>Creation</b>Launch Instance: name, flavor, image, network</div><i>→</i><div><b>Access</b>connect with a client such as X2Go</div><i>→</i><div><b>Termination</b>Terminate Instances, confirm</div></div>
+<ul><li><b>VM creation:</b> in Launch Instance enter the <b>instance name</b> (Cloud_nptel_1), pick a <b>flavor</b> (m1.tiny or IITKGP_regular), a boot <b>image</b> (CentOS 6.5 GUI) and a <b>network</b> (net04_ext, net04). The instance passes through scheduling and building in Nova, then shows <b>Active</b>; a <code>ping</code> to its IP (10.4.2.38) succeeds, confirming it is reachable.</li>
+<li><b>Accessing the VM:</b> the user connects with the <b>X2Go client</b> using a session name, the VM's host IP, login (centos), <b>SSH port 22</b> and session type <b>XFCE</b>, which gives a full CentOS desktop (file browser, Firefox).</li>
+<li><b>Termination:</b> choose <b>Terminate Instances</b> for the instance; a confirmation warns <i>"This action cannot be undone"</i>; the status shows <b>Deleting</b>, then "Scheduled termination of Instance".</li></ul>
+
+<h2 id="s4"><span>4</span>Microsoft Azure</h2>
+<div class="box def"><b class="t">Definition</b>Microsoft Azure is a growing collection of <b>integrated cloud services</b> that developers and IT professionals use to <b>build, deploy and manage applications</b> through a <b>global network of datacenters</b>. Developers can build and deploy wherever they want, with the tools, applications and frameworks of their choice.</div>
+<div class="grid">
+<div><b>Deploy anywhere with your choice of tools</b><br>Consistent hybrid-cloud capabilities with open-source technologies (.NET, PHP, Windows, JavaScript, Java, Linux): build apps your way, connect on-premises data and apps, extend the cloud on-premises.</div>
+<div><b>Protect your business with the most trusted cloud</b><br>Rigorous focus on security, privacy, compliance and transparency: global scale in local regions, detect and mitigate threats.</div>
+<div><b>Accelerate app innovation</b><br>Consistent portal experience with deeply integrated services: build apps quickly, manage apps proactively, deliver mobile apps seamlessly.</div>
+<div><b>Power decisions and apps with insights</b><br>Advanced analytics and data services: add intelligence to apps, predict and respond proactively, support strategy with any data.</div></div>
+
+<h2 id="s5"><span>5</span>Demo: Python Web App on Azure</h2>
+<p><b>Azure Web Apps:</b> a highly scalable, <b>self-patching</b> web hosting service. <b>Prerequisites:</b> install Git and Python. The workflow is: sign in at the Azure portal → open <b>Cloud Shell</b> (a free bash shell inside the portal) → prepare the sample locally → create cloud resources with the Azure CLI → deploy through Git.</p>
+<h3>Step 1: run the sample locally</h3>
+<pre>git clone https://github.com/Azure-Samples/python-docs-hello-world
+cd python-docs-hello-world
+pip install flask
+python main.py            # Running on http://127.0.0.1:5000/  → "Hello, World!"</pre>
+<h3>Step 2: create the Azure resources (Cloud Shell)</h3>
+<div class="tbl"><table><tr><th>Step</th><th>Command</th><th>Purpose</th></tr>
+<tr><td>Deployment user</td><td><code>az webapp deployment user set --user-name &lt;username&gt; --password &lt;password&gt;</code></td><td>A deployment user is required for <b>FTP and local-Git deployment</b></td></tr>
+<tr><td>Resource group</td><td><code>az group create --name myResourceGroup --location westeurope</code></td><td>A <b>logical container</b> for resources (web apps, databases, storage)</td></tr>
+<tr><td>App Service plan</td><td><code>az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE</code></td><td>Defines location, size and features of the <b>web-server farm</b>: region, instance size (small/medium/large), scale count (1–20 instances), SKU (Free, Shared, Basic, Standard, Premium)</td></tr>
+<tr><td>Web app</td><td><code>az webapp create --name &lt;app&gt; --resource-group myResourceGroup --plan myAppServicePlan</code></td><td>Provides <b>hosting space</b> for the code and a URL (&lt;app&gt;.azurewebsites.net)</td></tr>
+<tr><td>Python version</td><td><code>az webapp config set --python-version 3.4 --name &lt;app&gt; --resource-group myResourceGroup</code></td><td>Uses the platform's default container for that version</td></tr>
+<tr><td>Local Git deployment</td><td><code>az webapp deployment source config-local-git --name &lt;app&gt; --resource-group myResourceGroup</code></td><td>Returns the Git URL of the app (App Service also supports FTP, GitHub, Visual Studio Team Services)</td></tr></table></div>
+<h3>Step 3: deploy and update</h3>
+<pre>git remote add azure https://&lt;deployuser&gt;@&lt;app&gt;.scm.azurewebsites.net/&lt;app&gt;.git
+git push azure master     # asks for the deployment password; Azure detects requirements.txt,
+                          # the Python runtime and installs Flask
+# browse to &lt;app&gt;.azurewebsites.net → Hello, World!
+
+nano main.py              # change the returned text
+git commit -am "updated output"
+git push azure master     # redeploy; refresh the page to see the new message</pre>
+<div class="box"><b class="t">Sample app</b><code>from flask import Flask</code> · <code>app = Flask(__name__)</code> · a route <code>@app.route('/')</code> returning a string · <code>app.run()</code>. After the change the page displays "Welcome to the NPTEL course on Cloud Computing!!".</div>
+
+<h2 id="s6"><span>6</span>Google Cloud Platform (GCP)</h2>
+<div class="box def"><b class="t">Definition</b>A set of <b>modular cloud-based services</b> that lets developers build, test and deploy applications on Google's reliable infrastructure, from simple websites to complex applications.</div>
+<h3>Services: Build · Store · Analyze</h3>
+<div class="tbl"><table><tr><th>Category</th><th>Services</th></tr>
+<tr><td>Compute</td><td><b>App Engine</b> (PaaS: focus on code, no patching or maintenance) · <b>Compute Engine</b> (IaaS: raw virtual machines for maximum flexibility)</td></tr>
+<tr><td>Storage</td><td>Cloud Storage (flexible object storage with global edge caching) · Cloud SQL (MySQL) · Cloud Datastore (NoSQL) · Persistent Disk</td></tr>
+<tr><td>App services</td><td>BigQuery (big-data analytics) · Cloud Endpoints · caching · queues; Google APIs can be integrated without building features from scratch</td></tr></table></div>
+<p><b>From the user's end:</b> migrate a web app to GCP for better performance using App Engine; scale it wherever users go with Cloud Endpoints; integrate Google's services using Google APIs.</p>
+<h3>Why Google Cloud Platform?</h3>
+<div class="tbl"><table><tr><th>Reason</th><th>Meaning</th></tr>
+<tr><td>Run on Google's infrastructure</td><td>The same infrastructure that returns billions of search results in milliseconds: global network, redundancy, innovative infrastructure</td></tr>
+<tr><td>Focus on your product</td><td>Develop, deploy and iterate without system administration: managed services, developer tools and SDKs, console and administration</td></tr>
+<tr><td>Mix and match services</td><td>Virtual machines, managed platform, blob and block storage, NoSQL datastore, MySQL, big-data analytics</td></tr>
+<tr><td>Scale to millions of users</td><td><b>Automatic scale-up</b> for spikes and <b>scale-down</b> when traffic subsides; pay only for what you use (managed services such as App Engine and Datastore auto-scale)</td></tr>
+<tr><td>Performance you can count on</td><td>Consistent CPU, memory and disk performance; global network and edge cache; transparent maintenance</td></tr>
+<tr><td>Support</td><td>Worldwide community, partner ecosystem and premium support packages</td></tr></table></div>
+
+<h2 id="s7"><span>7</span>Demo 1: Host a Web Page on Cloud Storage</h2>
+<div class="flow"><div><b>1</b> Cloud Storage browser → Create Bucket</div><i>→</i><div><b>2</b> Bucket menu → Edit configuration (website)</div><i>→</i><div><b>3</b> Set Main Page and 404 page; upload files and folders; share publicly</div><i>→</i><div><b>4</b> Open the public link of <code>index.html</code></div></div>
+<p>In the demo a bucket (storage class Multi-Regional, location Asia) holds <code>index.html</code>, <code>404.html</code> and the css, js, figures and fonts folders. All objects must be <b>shared publicly</b>; the page is then served from a URL of the form <code>storage.googleapis.com/&lt;bucket&gt;/&lt;folder&gt;/index1.html</code>.</p>
+
+<h2 id="s8"><span>8</span>Demo 2: Web App on Google App Engine</h2>
+<ol><li>Open the Cloud Platform Console and create a <b>new project</b> (the project ID is derived from the name) with an App Engine application.</li>
+<li>Select the <b>region</b> to serve the app from (closer users see lower latency; it <b>cannot be changed later</b>), then choose the programming language (Node.js, Java, Python, PHP, Go, Ruby, .NET).</li>
+<li>Activate <b>Cloud Shell</b> and clone the Hello World sample repository (python-docs-samples).</li>
+<li>Every application needs <b><code>app.yaml</code></b> (configuration) and <b><code>main.py</code></b> (code):</li></ol>
+<pre># app.yaml
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+- url: /.*
+  script: main.app</pre>
+<ol start="5"><li>From the <code>hello_world</code> directory start the <b>local development server</b> with <code>dev_appserver.py $PWD</code> (default module at port 8080, admin server at 8000) and use <b>Web preview</b> to view the app ("Hello, World!"). The server stays running, <b>watches source files and reloads on change</b>; it can be shut down at any point.</li>
+<li>Edit <code>main.py</code> (a <code>webapp2</code> request handler writing a plain-text response), reload the page to see the new message.</li>
+<li><b>Deploy:</b> <code>gcloud app deploy app.yaml --project &lt;project-id&gt;</code> (shows the target project, service, version and URL, asks for confirmation, uploads files to Cloud Storage and updates the service).</li>
+<li><b>View:</b> <code>gcloud app browse</code> (prints the URL <code>https://&lt;project&gt;.appspot.com</code>); logs can be streamed with <code>gcloud app logs tail -s default</code>.</li></ol>
+
+<h2 id="s9"><span>9</span>Quick Revision</h2>
+<div class="tbl"><table><tr><th>Platform</th><th>Type</th><th>Deploy a web app by</th></tr>
+<tr><td>OpenStack (Meghamala)</td><td>Private cloud, IaaS (VMs)</td><td>Dashboard: choose flavor + image + network → launch; access by X2Go/SSH; terminate</td></tr>
+<tr><td>Azure App Service</td><td>PaaS</td><td><b>az CLI</b> (resource group → App Service plan → web app) then <b>git push azure master</b></td></tr>
+<tr><td>Google App Engine</td><td>PaaS</td><td><b>app.yaml + main.py</b>, test with dev_appserver.py, deploy with <b>gcloud app deploy</b></td></tr>
+<tr><td>Google Cloud Storage</td><td>Object storage</td><td>Bucket with website configuration and publicly shared files</td></tr></table></div>
+<div class="box"><b class="t">Must remember</b>
+<ul>
+<li><b>Meghamala:</b> IIT Kharagpur's OpenStack private cloud (blade servers, SAN, NAS); VMs4U flavors regular/large/XLarge (2/4/8 vCPUs; 4/8/16 GB RAM); guest OS Ubuntu 14.04, CentOS 7, Fedora 20; VMs for academic use, up to 60 days.</li>
+<li><b>Dashboard mapping:</b> instances and hypervisors/flavors → Nova; volumes → Cinder; images → Glance; security groups → Neutron.</li>
+<li><b>VM lifecycle:</b> launch (name, flavor, image, network) → Active → access (X2Go, SSH port 22) → terminate (irreversible).</li>
+<li><b>Azure:</b> resource group = logical container; App Service plan = region, size, scale count (1–20), SKU; deploy via local Git.</li>
+<li><b>GCP:</b> App Engine = PaaS, Compute Engine = IaaS; Cloud Storage, Cloud SQL, Datastore, BigQuery, Cloud Endpoints; auto scale-up and scale-down, pay only for use.</li></ul></div>
+
+<footer>Source: NPTEL Cloud Computing, IIT Kharagpur (Prof. Soumya K. Ghosh) · Week 4 · Print-ready for A4</footer>
+</div></body></html>
